@@ -24,8 +24,12 @@ def inity(mainWindow):
     UI = Ui_MainWindow()
     UI.setupUi(mainWindow)
     initFont(UI.codeSource)
+    initFont(UI.remapCodeSource)
     # 设置语法高亮
     UI.completer = Completer()
-    UI.highlighter = HighLighter(UI.codeSource.document())
+
     UI.codeSource.set_completer(UI.completer.completer)
+    UI.remapCodeSource.set_completer(UI.completer.completer)
+    UI.highlighter = HighLighter(UI.codeSource.document())
+    UI.highlighter = HighLighter(UI.remapCodeSource.document())
     return UI
