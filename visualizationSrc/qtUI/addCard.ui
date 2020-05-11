@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1152</width>
-    <height>640</height>
+    <width>1200</width>
+    <height>715</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,9 +18,17 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1152</width>
-    <height>640</height>
+    <width>1200</width>
+    <height>720</height>
    </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Adobe 黑体 Std R</family>
+    <pointsize>12</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
   </property>
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
@@ -29,7 +37,10 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AL-IDE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="Main">
    <property name="maximumSize">
@@ -38,18 +49,41 @@
      <height>16777215</height>
     </size>
    </property>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QTabWidget" name="ContentTabList">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1151</width>
-      <height>642</height>
+      <x>20</x>
+      <y>40</y>
+      <width>1161</width>
+      <height>671</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,2">
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="HomeTab">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1161</width>
+        <height>651</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1,1" rowminimumheight="1,1" columnminimumwidth="1,1,1">
        <property name="leftMargin">
         <number>10</number>
        </property>
@@ -62,49 +96,199 @@
        <property name="bottomMargin">
         <number>10</number>
        </property>
-       <item>
-        <widget class="QTabWidget" name="tabWidget">
-         <property name="maximumSize">
-          <size>
-           <width>384</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="currentIndex">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <item row="1" column="1">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="leftMargin">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="baseSetting">
-          <attribute name="title">
-           <string>Tab 1</string>
-          </attribute>
-          <widget class="QScrollArea" name="scrollArea">
-           <property name="geometry">
-            <rect>
-             <x>-1</x>
-             <y>-1</y>
-             <width>361</width>
-             <height>601</height>
-            </rect>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="2" column="0">
+          <widget class="QGraphicsView" name="graphicsView_7">
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
-           <property name="widgetResizable">
-            <bool>true</bool>
+           <property name="styleSheet">
+            <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>359</width>
-              <height>599</height>
-             </rect>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>359</width>
-              <height>599</height>
-             </size>
-            </property>
-            <widget class="QWidget" name="verticalLayoutWidget">
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QGraphicsView" name="graphicsView_8">
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QGraphicsView" name="graphicsView_6">
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QGraphicsView" name="graphicsView_9">
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="2">
+        <widget class="QGraphicsView" name="graphicsView">
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGraphicsView" name="graphicsView_2">
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGraphicsView" name="graphicsView_4">
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border:1px solid #afafaf; 
+border-radius:10px;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QTextBrowser" name="CardMake">
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/picture/Data/qrc/Card.png);
+background-repeat: no-repeat;
+background-position: bottom;
+
+border:1px solid #afafaf; 
+border-radius:10px;</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;卡牌制作&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QTextBrowser" name="PeopleMake">
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/picture/Data/qrc/Card.png);
+background-repeat: no-repeat;
+background-position: bottom;
+
+border:1px solid #afafaf; 
+border-radius:10px;</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;人物制作&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="CardMakeTab">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1151</width>
+        <height>642</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="addNewCard" stretch="1,2">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QTabWidget" name="tabWidget">
+           <property name="maximumSize">
+            <size>
+             <width>384</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="baseSetting">
+            <attribute name="title">
+             <string>Tab 1</string>
+            </attribute>
+            <widget class="QScrollArea" name="scrollArea">
              <property name="geometry">
               <rect>
                <x>-1</x>
@@ -113,372 +297,517 @@
                <height>601</height>
               </rect>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
-              <property name="spacing">
-               <number>10</number>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>359</width>
+                <height>599</height>
+               </rect>
               </property>
-              <property name="leftMargin">
-               <number>10</number>
+              <property name="maximumSize">
+               <size>
+                <width>359</width>
+                <height>599</height>
+               </size>
               </property>
-              <property name="topMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>10</number>
-              </property>
-              <property name="bottomMargin">
-               <number>10</number>
-              </property>
-              <item>
-               <layout class="QHBoxLayout" name="data01_2" stretch="2,1,1">
+              <widget class="QWidget" name="verticalLayoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>-1</x>
+                 <y>-1</y>
+                 <width>361</width>
+                 <height>601</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
                 <property name="spacing">
-                 <number>0</number>
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>10</number>
+                </property>
+                <property name="topMargin">
+                 <number>10</number>
+                </property>
+                <property name="rightMargin">
+                 <number>10</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>10</number>
                 </property>
                 <item>
-                 <layout class="QHBoxLayout" name="L_price_2">
+                 <layout class="QHBoxLayout" name="data03" stretch="2,1,1">
                   <property name="spacing">
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_6">
-                    <property name="text">
-                     <string>卡片名</string>
+                   <layout class="QHBoxLayout" name="L_displayName">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
+                    <item>
+                     <widget class="QLabel" name="label_6">
+                      <property name="text">
+                       <string>卡片名</string>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="displayName"/>
+                    </item>
+                   </layout>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_4"/>
+                   <layout class="QHBoxLayout" name="L_price_2">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_7">
+                      <property name="text">
+                       <string>花费</string>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="spinBox_3"/>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="L_energyReq_2">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="label_9">
+                      <property name="text">
+                       <string>消耗能量</string>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="energyReq"/>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="L_displayName_2">
+                 <layout class="QHBoxLayout" name="data04" stretch="1">
                   <property name="spacing">
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_7">
-                    <property name="text">
-                     <string>花费</string>
+                   <layout class="QHBoxLayout" name="L_displayName_3">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinBox_3"/>
+                    <item>
+                     <widget class="QLabel" name="label_11">
+                      <property name="text">
+                       <string>作用范围</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSpinBox" name="range"/>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="L_energyReq_2">
+                 <layout class="QHBoxLayout" name="data02" stretch="2">
                   <property name="spacing">
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_9">
-                    <property name="text">
-                     <string>消耗能量</string>
+                   <layout class="QHBoxLayout" name="L_price_3" stretch="1,4">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinBox_4"/>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="data01_3" stretch="1">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <item>
-                 <layout class="QHBoxLayout" name="L_displayName_3">
-                  <property name="spacing">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="label_11">
-                    <property name="text">
-                     <string>作用范围</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="spinBox_5"/>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="data01_4" stretch="2">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <item>
-                 <layout class="QHBoxLayout" name="L_price_3">
-                  <property name="spacing">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="label_5">
-                    <property name="text">
-                     <string>卡牌介绍</string>
-                    </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QTextEdit" name="textEdit_3">
-                    <property name="styleSheet">
-                     <string notr="true">background-color: rgb(255, 255, 255);
+                    <item>
+                     <widget class="QLabel" name="label_5">
+                      <property name="text">
+                       <string>卡牌介绍</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTextEdit" name="description">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
 
 padding:5px;
 border:1px solid #afafaf; 
 border-radius:10px;</string>
-                    </property>
-                   </widget>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="data01" stretch="2">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
                 <item>
-                 <layout class="QHBoxLayout" name="L_price">
+                 <layout class="QHBoxLayout" name="data01" stretch="2">
                   <property name="spacing">
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_4">
-                    <property name="text">
-                     <string>故事</string>
+                   <layout class="QHBoxLayout" name="L_price" stretch="1,4">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                    <property name="margin">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QTextEdit" name="textEdit_2">
-                    <property name="styleSheet">
-                     <string notr="true">background-color: rgb(255, 255, 255);
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="text">
+                       <string>故事</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="margin">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTextEdit" name="story0">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
 
 padding:5px;
 border:1px solid #afafaf; 
 border-radius:10px;</string>
-                    </property>
-                   </widget>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </item>
                </layout>
-              </item>
-             </layout>
+              </widget>
+             </widget>
             </widget>
            </widget>
+           <widget class="QWidget" name="greateSetting">
+            <attribute name="title">
+             <string>Tab 2</string>
+            </attribute>
+           </widget>
           </widget>
-         </widget>
-         <widget class="QWidget" name="greateSetting">
-          <attribute name="title">
-           <string>Tab 2</string>
-          </attribute>
-         </widget>
-        </widget>
+         </item>
+        </layout>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="main">
-       <property name="leftMargin">
-        <number>20</number>
-       </property>
-       <property name="topMargin">
-        <number>20</number>
-       </property>
-       <property name="rightMargin">
-        <number>20</number>
-       </property>
-       <property name="bottomMargin">
-        <number>20</number>
-       </property>
        <item>
-        <layout class="QVBoxLayout" name="header">
+        <layout class="QVBoxLayout" name="main">
+         <property name="leftMargin">
+          <number>20</number>
+         </property>
+         <property name="topMargin">
+          <number>20</number>
+         </property>
+         <property name="rightMargin">
+          <number>20</number>
+         </property>
+         <property name="bottomMargin">
+          <number>20</number>
+         </property>
          <item>
-          <widget class="QLabel" name="title_2">
-           <property name="styleSheet">
-            <string notr="true">font: 9pt &quot;Adobe 黑体 Std R&quot;;
+          <layout class="QVBoxLayout" name="header">
+           <item>
+            <widget class="QLabel" name="title_2">
+             <property name="styleSheet">
+              <string notr="true">font: 9pt &quot;Adobe 黑体 Std R&quot;;
 
 text-align: center;
 font-size:20px;
 font-weight:600;
 </string>
-           </property>
-           <property name="text">
-            <string>添加新卡片</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="contenter" stretch="0">
-         <item>
-          <layout class="QVBoxLayout" name="textEdit">
-           <item>
-            <layout class="QVBoxLayout" name="code">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="styleSheet">
-                <string notr="true">padding:15px;
-
-font-size:20px;
-font-weight:600;
-</string>
-               </property>
-               <property name="text">
-                <string>Code代码</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="codeSource">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);
-
-padding:5px;
-border:1px solid #afafaf; 
-border-radius:10px;</string>
-               </property>
-               <property name="html">
-                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+             </property>
+             <property name="text">
+              <string>添加新卡片</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="contenter" stretch="0">
            <item>
-            <layout class="QVBoxLayout" name="remap">
+            <layout class="QVBoxLayout" name="textEdit">
              <item>
-              <widget class="QLabel" name="label_8">
-               <property name="styleSheet">
-                <string notr="true">padding:15px;
+              <layout class="QVBoxLayout" name="cardMakeTap_code">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="styleSheet">
+                  <string notr="true">padding:15px;
 
 font-size:20px;
 font-weight:600;
 </string>
-               </property>
-               <property name="text">
-                <string>Remap Code代码</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="remapCodeSource">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);
-
-padding:5px;
-border:1px solid #afafaf; 
-border-radius:10px;</string>
-               </property>
-               <property name="html">
-                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                 </property>
+                 <property name="text">
+                  <string>Code代码</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="codeSource">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="cardMakeTap_remap">
+               <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="styleSheet">
+                  <string notr="true">padding:15px;
+
+font-size:20px;
+font-weight:600;
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Remap Code代码</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="remapCodeSource">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
           </layout>
          </item>
+         <item>
+          <layout class="QHBoxLayout" name="footer">
+           <item>
+            <widget class="QPushButton" name="clearCardMakeData">
+             <property name="font">
+              <font>
+               <family>Adobe 黑体 Std R</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(50, 150, 255);
+
+margin-left:100px;
+margin-right:100px;
+padding:10px;
+border-radius:20px;</string>
+             </property>
+             <property name="text">
+              <string>清空</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addCard">
+             <property name="font">
+              <font>
+               <family>Adobe 黑体 Std R</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(50, 150, 255);
+
+margin-left:100px;
+margin-right:100px;
+padding:10px;
+border-radius:20px;</string>
+             </property>
+             <property name="text">
+              <string>添加</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
         </layout>
        </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="HeadToolBar" stretch="10,1">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="top_right">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <item>
-        <layout class="QHBoxLayout" name="footer">
-         <item>
-          <widget class="QPushButton" name="add">
-           <property name="font">
-            <font>
-             <family>Adobe 黑体 Std R</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(50, 150, 255);
-
-margin-left:100px;
-margin-right:100px;
-padding:10px;
-border-radius:20px;</string>
-           </property>
-           <property name="text">
-            <string>清空</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="clear">
-           <property name="font">
-            <font>
-             <family>Adobe 黑体 Std R</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(50, 150, 255);
-
-margin-left:100px;
-margin-right:100px;
-padding:10px;
-border-radius:20px;</string>
-           </property>
-           <property name="text">
-            <string>添加</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QTextBrowser" name="EXETitle">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;AL-IDE 1.0.0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="top_left">
+       <property name="spacing">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QGraphicsView" name="max_window">
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/ico/Data/qrc/ico/max.png);
+background-size:100%;
+background-repeat: no-repeat;
+background-position: center;
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="min_window">
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/ico/Data/qrc/ico/min.png);
+background-size:100%;
+background-repeat: no-repeat;
+background-position: center;
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="close_window">
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/ico/Data/qrc/ico/close.png);
+background-size:100%;
+background-repeat: no-repeat;
+background-position: center;
+</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -486,6 +815,8 @@ border-radius:20px;</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="AL_IDE_MainInterFace.qrc"/>
+ </resources>
  <connections/>
 </ui>

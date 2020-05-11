@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'addCard.ui'
+# Form implementation generated from reading ui file 'qtUI/addCard.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -9,26 +9,123 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from visualizationSrc.Util.TextEditorUtil import TextEditor
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1152, 640)
+        MainWindow.resize(1200, 715)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
-        MainWindow.setMaximumSize(QtCore.QSize(1152, 640))
+        MainWindow.setMaximumSize(QtCore.QSize(1200, 720))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        MainWindow.setFont(font)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setMouseTracking(False)
+        MainWindow.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Main = QtWidgets.QWidget(MainWindow)
         self.Main.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.Main.setStyleSheet("")
         self.Main.setObjectName("Main")
-        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.Main)
+        self.ContentTabList = QtWidgets.QTabWidget(self.Main)
+        self.ContentTabList.setGeometry(QtCore.QRect(20, 40, 1161, 671))
+        self.ContentTabList.setObjectName("ContentTabList")
+        self.HomeTab = QtWidgets.QWidget()
+        self.HomeTab.setObjectName("HomeTab")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.HomeTab)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1161, 651))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout.setContentsMargins(10, 10, 10, 10)
+        self.gridLayout.setSpacing(10)
+        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.graphicsView_7 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_7.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_7.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_7.setObjectName("graphicsView_7")
+        self.gridLayout_2.addWidget(self.graphicsView_7, 2, 0, 1, 1)
+        self.graphicsView_8 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_8.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_8.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_8.setObjectName("graphicsView_8")
+        self.gridLayout_2.addWidget(self.graphicsView_8, 0, 0, 1, 2)
+        self.graphicsView_6 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_6.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_6.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_6.setObjectName("graphicsView_6")
+        self.gridLayout_2.addWidget(self.graphicsView_6, 2, 1, 1, 1)
+        self.graphicsView_9 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_9.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_9.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_9.setObjectName("graphicsView_9")
+        self.gridLayout_2.addWidget(self.graphicsView_9, 1, 0, 1, 2)
+        self.gridLayout.addLayout(self.gridLayout_2, 1, 1, 1, 1)
+        self.graphicsView = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView.setObjectName("graphicsView")
+        self.gridLayout.addWidget(self.graphicsView, 1, 2, 1, 1)
+        self.graphicsView_2 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_2.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_2.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_2.setObjectName("graphicsView_2")
+        self.gridLayout.addWidget(self.graphicsView_2, 0, 2, 1, 1)
+        self.graphicsView_4 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_4.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_4.setStyleSheet("border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.graphicsView_4.setObjectName("graphicsView_4")
+        self.gridLayout.addWidget(self.graphicsView_4, 1, 0, 1, 1)
+        self.CardMake = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.CardMake.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CardMake.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
+"background-repeat: no-repeat;\n"
+"background-position: bottom;\n"
+"\n"
+"border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.CardMake.setObjectName("CardMake")
+        self.gridLayout.addWidget(self.CardMake, 0, 0, 1, 1)
+        self.PeopleMake = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.PeopleMake.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.PeopleMake.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
+"background-repeat: no-repeat;\n"
+"background-position: bottom;\n"
+"\n"
+"border:1px solid #afafaf; \n"
+"border-radius:10px;")
+        self.PeopleMake.setObjectName("PeopleMake")
+        self.gridLayout.addWidget(self.PeopleMake, 0, 1, 1, 1)
+        self.gridLayout.setColumnMinimumWidth(0, 1)
+        self.gridLayout.setColumnMinimumWidth(1, 1)
+        self.gridLayout.setColumnMinimumWidth(2, 1)
+        self.gridLayout.setRowMinimumHeight(0, 1)
+        self.gridLayout.setRowMinimumHeight(1, 1)
+        self.gridLayout.setColumnStretch(0, 1)
+        self.gridLayout.setColumnStretch(1, 1)
+        self.gridLayout.setColumnStretch(2, 1)
+        self.gridLayout.setRowStretch(0, 1)
+        self.gridLayout.setRowStretch(1, 1)
+        self.ContentTabList.addTab(self.HomeTab, "")
+        self.CardMakeTab = QtWidgets.QWidget()
+        self.CardMakeTab.setObjectName("CardMakeTab")
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.CardMakeTab)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1151, 642))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.addNewCard.setContentsMargins(0, 0, 0, 0)
+        self.addNewCard.setObjectName("addNewCard")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -52,46 +149,46 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.data01_2 = QtWidgets.QHBoxLayout()
-        self.data01_2.setSpacing(0)
-        self.data01_2.setObjectName("data01_2")
+        self.data03 = QtWidgets.QHBoxLayout()
+        self.data03.setSpacing(0)
+        self.data03.setObjectName("data03")
+        self.L_displayName = QtWidgets.QHBoxLayout()
+        self.L_displayName.setSpacing(0)
+        self.L_displayName.setObjectName("L_displayName")
+        self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_6.setObjectName("label_6")
+        self.L_displayName.addWidget(self.label_6)
+        self.displayName = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.displayName.setObjectName("displayName")
+        self.L_displayName.addWidget(self.displayName)
+        self.data03.addLayout(self.L_displayName)
         self.L_price_2 = QtWidgets.QHBoxLayout()
         self.L_price_2.setSpacing(0)
         self.L_price_2.setObjectName("L_price_2")
-        self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.label_6.setObjectName("label_6")
-        self.L_price_2.addWidget(self.label_6)
-        self.lineEdit_4 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.lineEdit_4.setObjectName("lineEdit_4")
-        self.L_price_2.addWidget(self.lineEdit_4)
-        self.data01_2.addLayout(self.L_price_2)
-        self.L_displayName_2 = QtWidgets.QHBoxLayout()
-        self.L_displayName_2.setSpacing(0)
-        self.L_displayName_2.setObjectName("L_displayName_2")
         self.label_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_7.setObjectName("label_7")
-        self.L_displayName_2.addWidget(self.label_7)
+        self.L_price_2.addWidget(self.label_7)
         self.spinBox_3 = QtWidgets.QSpinBox(self.verticalLayoutWidget)
         self.spinBox_3.setObjectName("spinBox_3")
-        self.L_displayName_2.addWidget(self.spinBox_3)
-        self.data01_2.addLayout(self.L_displayName_2)
+        self.L_price_2.addWidget(self.spinBox_3)
+        self.data03.addLayout(self.L_price_2)
         self.L_energyReq_2 = QtWidgets.QHBoxLayout()
         self.L_energyReq_2.setSpacing(0)
         self.L_energyReq_2.setObjectName("L_energyReq_2")
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.L_energyReq_2.addWidget(self.label_9)
-        self.spinBox_4 = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.spinBox_4.setObjectName("spinBox_4")
-        self.L_energyReq_2.addWidget(self.spinBox_4)
-        self.data01_2.addLayout(self.L_energyReq_2)
-        self.data01_2.setStretch(0, 2)
-        self.data01_2.setStretch(1, 1)
-        self.data01_2.setStretch(2, 1)
-        self.verticalLayout_2.addLayout(self.data01_2)
-        self.data01_3 = QtWidgets.QHBoxLayout()
-        self.data01_3.setSpacing(0)
-        self.data01_3.setObjectName("data01_3")
+        self.energyReq = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.energyReq.setObjectName("energyReq")
+        self.L_energyReq_2.addWidget(self.energyReq)
+        self.data03.addLayout(self.L_energyReq_2)
+        self.data03.setStretch(0, 2)
+        self.data03.setStretch(1, 1)
+        self.data03.setStretch(2, 1)
+        self.verticalLayout_2.addLayout(self.data03)
+        self.data04 = QtWidgets.QHBoxLayout()
+        self.data04.setSpacing(0)
+        self.data04.setObjectName("data04")
         self.L_displayName_3 = QtWidgets.QHBoxLayout()
         self.L_displayName_3.setSpacing(0)
         self.L_displayName_3.setObjectName("L_displayName_3")
@@ -99,32 +196,35 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.L_displayName_3.addWidget(self.label_11)
-        self.spinBox_5 = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.spinBox_5.setObjectName("spinBox_5")
-        self.L_displayName_3.addWidget(self.spinBox_5)
-        self.data01_3.addLayout(self.L_displayName_3)
-        self.data01_3.setStretch(0, 1)
-        self.verticalLayout_2.addLayout(self.data01_3)
-        self.data01_4 = QtWidgets.QHBoxLayout()
-        self.data01_4.setSpacing(0)
-        self.data01_4.setObjectName("data01_4")
+        self.range = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.range.setObjectName("range")
+        self.L_displayName_3.addWidget(self.range)
+        self.data04.addLayout(self.L_displayName_3)
+        self.data04.setStretch(0, 1)
+        self.verticalLayout_2.addLayout(self.data04)
+        self.data02 = QtWidgets.QHBoxLayout()
+        self.data02.setSpacing(0)
+        self.data02.setObjectName("data02")
         self.L_price_3 = QtWidgets.QHBoxLayout()
         self.L_price_3.setSpacing(0)
         self.L_price_3.setObjectName("L_price_3")
         self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.L_price_3.addWidget(self.label_5)
-        self.textEdit_3 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit_3.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.description = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.description.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "padding:5px;\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.textEdit_3.setObjectName("textEdit_3")
-        self.L_price_3.addWidget(self.textEdit_3)
-        self.data01_4.addLayout(self.L_price_3)
-        self.data01_4.setStretch(0, 2)
-        self.verticalLayout_2.addLayout(self.data01_4)
+        self.description.setObjectName("description")
+        self.L_price_3.addWidget(self.description)
+        self.L_price_3.setStretch(0, 1)
+        self.L_price_3.setStretch(1, 4)
+        self.data02.addLayout(self.L_price_3)
+        self.data02.setStretch(0, 2)
+        self.verticalLayout_2.addLayout(self.data02)
         self.data01 = QtWidgets.QHBoxLayout()
         self.data01.setSpacing(0)
         self.data01.setObjectName("data01")
@@ -132,16 +232,19 @@ class Ui_MainWindow(object):
         self.L_price.setSpacing(0)
         self.L_price.setObjectName("L_price")
         self.label_4 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.L_price.addWidget(self.label_4)
-        self.textEdit_2 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.story0 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.story0.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "padding:5px;\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.textEdit_2.setObjectName("textEdit_2")
-        self.L_price.addWidget(self.textEdit_2)
+        self.story0.setObjectName("story0")
+        self.L_price.addWidget(self.story0)
+        self.L_price.setStretch(0, 1)
+        self.L_price.setStretch(1, 4)
         self.data01.addLayout(self.L_price)
         self.data01.setStretch(0, 2)
         self.verticalLayout_2.addLayout(self.data01)
@@ -151,7 +254,7 @@ class Ui_MainWindow(object):
         self.greateSetting.setObjectName("greateSetting")
         self.tabWidget.addTab(self.greateSetting, "")
         self.verticalLayout.addWidget(self.tabWidget)
-        self.horizontalLayout.addLayout(self.verticalLayout)
+        self.addNewCard.addLayout(self.verticalLayout)
         self.main = QtWidgets.QVBoxLayout()
         self.main.setContentsMargins(20, 20, 20, 20)
         self.main.setObjectName("main")
@@ -172,8 +275,8 @@ class Ui_MainWindow(object):
         self.contenter.setObjectName("contenter")
         self.textEdit = QtWidgets.QVBoxLayout()
         self.textEdit.setObjectName("textEdit")
-        self.code = QtWidgets.QVBoxLayout()
-        self.code.setObjectName("code")
+        self.cardMakeTap_code = QtWidgets.QVBoxLayout()
+        self.cardMakeTap_code.setObjectName("cardMakeTap_code")
         self.label_2 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
         self.label_2.setStyleSheet("padding:15px;\n"
 "\n"
@@ -181,18 +284,14 @@ class Ui_MainWindow(object):
 "font-weight:600;\n"
 "")
         self.label_2.setObjectName("label_2")
-        self.code.addWidget(self.label_2)
-        self.codeSource = TextEditor(self.horizontalLayoutWidget_2)
-        self.codeSource.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"\n"
-"padding:5px;\n"
-"border:1px solid #afafaf; \n"
-"border-radius:10px;")
+        self.cardMakeTap_code.addWidget(self.label_2)
+        self.codeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
+        self.codeSource.setStyleSheet("")
         self.codeSource.setObjectName("codeSource")
-        self.code.addWidget(self.codeSource)
-        self.textEdit.addLayout(self.code)
-        self.remap = QtWidgets.QVBoxLayout()
-        self.remap.setObjectName("remap")
+        self.cardMakeTap_code.addWidget(self.codeSource)
+        self.textEdit.addLayout(self.cardMakeTap_code)
+        self.cardMakeTap_remap = QtWidgets.QVBoxLayout()
+        self.cardMakeTap_remap.setObjectName("cardMakeTap_remap")
         self.label_8 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
         self.label_8.setStyleSheet("padding:15px;\n"
 "\n"
@@ -200,71 +299,140 @@ class Ui_MainWindow(object):
 "font-weight:600;\n"
 "")
         self.label_8.setObjectName("label_8")
-        self.remap.addWidget(self.label_8)
-        self.remapCodeSource = TextEditor(self.horizontalLayoutWidget_2)
-        self.remapCodeSource.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"\n"
-"padding:5px;\n"
-"border:1px solid #afafaf; \n"
-"border-radius:10px;")
+        self.cardMakeTap_remap.addWidget(self.label_8)
+        self.remapCodeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
+        self.remapCodeSource.setStyleSheet("")
         self.remapCodeSource.setObjectName("remapCodeSource")
-        self.remap.addWidget(self.remapCodeSource)
-        self.textEdit.addLayout(self.remap)
+        self.cardMakeTap_remap.addWidget(self.remapCodeSource)
+        self.textEdit.addLayout(self.cardMakeTap_remap)
         self.contenter.addLayout(self.textEdit)
         self.main.addLayout(self.contenter)
         self.footer = QtWidgets.QHBoxLayout()
         self.footer.setObjectName("footer")
-        self.add = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.clearCardMakeData = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        self.add.setFont(font)
-        self.add.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.add.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.clearCardMakeData.setFont(font)
+        self.clearCardMakeData.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.clearCardMakeData.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
 "\n"
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
 "border-radius:20px;")
-        self.add.setObjectName("add")
-        self.footer.addWidget(self.add)
-        self.clear = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.clearCardMakeData.setObjectName("clearCardMakeData")
+        self.footer.addWidget(self.clearCardMakeData)
+        self.addCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        self.clear.setFont(font)
-        self.clear.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.clear.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.addCard.setFont(font)
+        self.addCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addCard.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
 "\n"
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
 "border-radius:20px;")
-        self.clear.setObjectName("clear")
-        self.footer.addWidget(self.clear)
+        self.addCard.setObjectName("addCard")
+        self.footer.addWidget(self.addCard)
         self.main.addLayout(self.footer)
-        self.horizontalLayout.addLayout(self.main)
-        self.horizontalLayout.setStretch(0, 1)
-        self.horizontalLayout.setStretch(1, 2)
+        self.addNewCard.addLayout(self.main)
+        self.addNewCard.setStretch(0, 1)
+        self.addNewCard.setStretch(1, 2)
+        self.ContentTabList.addTab(self.CardMakeTab, "")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.Main)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1201, 31))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.HeadToolBar = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.HeadToolBar.setContentsMargins(0, 0, 0, 0)
+        self.HeadToolBar.setSpacing(0)
+        self.HeadToolBar.setObjectName("HeadToolBar")
+        self.top_right = QtWidgets.QHBoxLayout()
+        self.top_right.setSpacing(0)
+        self.top_right.setObjectName("top_right")
+        self.EXETitle = QtWidgets.QTextBrowser(self.horizontalLayoutWidget)
+        self.EXETitle.setMaximumSize(QtCore.QSize(16777215, 24))
+        self.EXETitle.setStyleSheet("border: none;")
+        self.EXETitle.setObjectName("EXETitle")
+        self.top_right.addWidget(self.EXETitle)
+        self.HeadToolBar.addLayout(self.top_right)
+        self.top_left = QtWidgets.QHBoxLayout()
+        self.top_left.setSpacing(10)
+        self.top_left.setObjectName("top_left")
+        self.max_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
+        self.max_window.setMaximumSize(QtCore.QSize(24, 24))
+        self.max_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.max_window.setStyleSheet("border-image: url(:/ico/Data/qrc/ico/max.png);\n"
+"background-size:100%;\n"
+"background-repeat: no-repeat;\n"
+"background-position: center;\n"
+"")
+        self.max_window.setObjectName("max_window")
+        self.top_left.addWidget(self.max_window)
+        self.min_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
+        self.min_window.setMaximumSize(QtCore.QSize(24, 24))
+        self.min_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.min_window.setStyleSheet("border-image: url(:/ico/Data/qrc/ico/min.png);\n"
+"background-size:100%;\n"
+"background-repeat: no-repeat;\n"
+"background-position: center;\n"
+"")
+        self.min_window.setObjectName("min_window")
+        self.top_left.addWidget(self.min_window)
+        self.close_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
+        self.close_window.setMaximumSize(QtCore.QSize(24, 24))
+        self.close_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.close_window.setStyleSheet("border-image: url(:/ico/Data/qrc/ico/close.png);\n"
+"background-size:100%;\n"
+"background-repeat: no-repeat;\n"
+"background-position: center;\n"
+"")
+        self.close_window.setObjectName("close_window")
+        self.top_left.addWidget(self.close_window)
+        self.HeadToolBar.addLayout(self.top_left)
+        self.HeadToolBar.setStretch(0, 10)
+        self.HeadToolBar.setStretch(1, 1)
         MainWindow.setCentralWidget(self.Main)
 
         self.retranslateUi(MainWindow)
+        self.ContentTabList.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AL-IDE"))
+        self.HomeTab.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.CardMake.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">卡牌制作</span></p></body></html>"))
+        self.PeopleMake.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">人物制作</span></p></body></html>"))
+        self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
         self.label_6.setText(_translate("MainWindow", "卡片名"))
         self.label_7.setText(_translate("MainWindow", "花费"))
         self.label_9.setText(_translate("MainWindow", "消耗能量"))
         self.label_11.setText(_translate("MainWindow", "作用范围"))
         self.label_5.setText(_translate("MainWindow", "卡牌介绍"))
         self.label_4.setText(_translate("MainWindow", "故事"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.baseSetting), _translate("MainWindow", "基础设置"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.greateSetting), _translate("MainWindow", "高级设置"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.baseSetting), _translate("MainWindow", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.greateSetting), _translate("MainWindow", "Tab 2"))
         self.title_2.setText(_translate("MainWindow", "添加新卡片"))
         self.label_2.setText(_translate("MainWindow", "Code代码"))
         self.codeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -278,5 +446,15 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.add.setText(_translate("MainWindow", "清空"))
-        self.clear.setText(_translate("MainWindow", "添加"))
+        self.clearCardMakeData.setText(_translate("MainWindow", "清空"))
+        self.addCard.setText(_translate("MainWindow", "添加"))
+        self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.CardMakeTab), _translate("MainWindow", "Tab 2"))
+        self.EXETitle.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">AL-IDE 1.0.0.1</span></p></body></html>"))
+        self.max_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.min_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.close_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+from . import AL_IDE_MainInterFace_rc
