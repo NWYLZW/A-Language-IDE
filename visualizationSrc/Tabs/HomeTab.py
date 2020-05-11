@@ -8,11 +8,11 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   主页
 '''
-from ..Controler.ContentTabListControler import ContentTabList
+from PyQt5.QtWidgets import QMainWindow
 from ..qtUI.addCard import Ui_MainWindow
 
 class Home:
-    def __init__(self,UI:Ui_MainWindow):
+    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
         self.initCardItemClick()
     def initCardItemClick(self):

@@ -123,9 +123,9 @@ class Ui_MainWindow(object):
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.CardMakeTab)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1151, 642))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
-        self.addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.addNewCard.setContentsMargins(0, 0, 0, 0)
-        self.addNewCard.setObjectName("addNewCard")
+        self.CM_addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.CM_addNewCard.setContentsMargins(0, 0, 0, 0)
+        self.CM_addNewCard.setObjectName("CM_addNewCard")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -254,12 +254,12 @@ class Ui_MainWindow(object):
         self.CMT_greateSetting.setObjectName("CMT_greateSetting")
         self.CMT_settingTab.addTab(self.CMT_greateSetting, "")
         self.verticalLayout.addWidget(self.CMT_settingTab)
-        self.addNewCard.addLayout(self.verticalLayout)
-        self.main = QtWidgets.QVBoxLayout()
-        self.main.setContentsMargins(20, 20, 20, 20)
-        self.main.setObjectName("main")
-        self.header = QtWidgets.QVBoxLayout()
-        self.header.setObjectName("header")
+        self.CM_addNewCard.addLayout(self.verticalLayout)
+        self.CM_main = QtWidgets.QVBoxLayout()
+        self.CM_main.setContentsMargins(20, 20, 20, 20)
+        self.CM_main.setObjectName("CM_main")
+        self.CM_header = QtWidgets.QVBoxLayout()
+        self.CM_header.setObjectName("CM_header")
         self.title_2 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
         self.title_2.setStyleSheet("font: 9pt \"Adobe 黑体 Std R\";\n"
 "\n"
@@ -269,10 +269,10 @@ class Ui_MainWindow(object):
 "")
         self.title_2.setAlignment(QtCore.Qt.AlignCenter)
         self.title_2.setObjectName("title_2")
-        self.header.addWidget(self.title_2)
-        self.main.addLayout(self.header)
-        self.contenter = QtWidgets.QHBoxLayout()
-        self.contenter.setObjectName("contenter")
+        self.CM_header.addWidget(self.title_2)
+        self.CM_main.addLayout(self.CM_header)
+        self.CM_contenter = QtWidgets.QHBoxLayout()
+        self.CM_contenter.setObjectName("CM_contenter")
         self.textEdit = QtWidgets.QVBoxLayout()
         self.textEdit.setObjectName("textEdit")
         self.cardMakeTap_code = QtWidgets.QVBoxLayout()
@@ -305,44 +305,44 @@ class Ui_MainWindow(object):
         self.remapCodeSource.setObjectName("remapCodeSource")
         self.cardMakeTap_remap.addWidget(self.remapCodeSource)
         self.textEdit.addLayout(self.cardMakeTap_remap)
-        self.contenter.addLayout(self.textEdit)
-        self.main.addLayout(self.contenter)
-        self.footer = QtWidgets.QHBoxLayout()
-        self.footer.setObjectName("footer")
-        self.clearCardMakeData = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.CM_contenter.addLayout(self.textEdit)
+        self.CM_main.addLayout(self.CM_contenter)
+        self.CM_footer = QtWidgets.QHBoxLayout()
+        self.CM_footer.setObjectName("CM_footer")
+        self.CM_clearCardMakeData = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        self.clearCardMakeData.setFont(font)
-        self.clearCardMakeData.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.clearCardMakeData.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.CM_clearCardMakeData.setFont(font)
+        self.CM_clearCardMakeData.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CM_clearCardMakeData.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
 "\n"
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
 "border-radius:20px;")
-        self.clearCardMakeData.setObjectName("clearCardMakeData")
-        self.footer.addWidget(self.clearCardMakeData)
-        self.addCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.CM_clearCardMakeData.setObjectName("CM_clearCardMakeData")
+        self.CM_footer.addWidget(self.CM_clearCardMakeData)
+        self.CM_addCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        self.addCard.setFont(font)
-        self.addCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.addCard.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.CM_addCard.setFont(font)
+        self.CM_addCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CM_addCard.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
 "\n"
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
 "border-radius:20px;")
-        self.addCard.setObjectName("addCard")
-        self.footer.addWidget(self.addCard)
-        self.main.addLayout(self.footer)
-        self.addNewCard.addLayout(self.main)
-        self.addNewCard.setStretch(0, 1)
-        self.addNewCard.setStretch(1, 2)
+        self.CM_addCard.setObjectName("CM_addCard")
+        self.CM_footer.addWidget(self.CM_addCard)
+        self.CM_main.addLayout(self.CM_footer)
+        self.CM_addNewCard.addLayout(self.CM_main)
+        self.CM_addNewCard.setStretch(0, 1)
+        self.CM_addNewCard.setStretch(1, 2)
         self.ContentTabList.addTab(self.CardMakeTab, "")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.Main)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1201, 31))
@@ -399,7 +399,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.Main)
 
         self.retranslateUi(MainWindow)
-        self.ContentTabList.setCurrentIndex(0)
+        self.ContentTabList.setCurrentIndex(1)
         self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -446,8 +446,8 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.clearCardMakeData.setText(_translate("MainWindow", "清空"))
-        self.addCard.setText(_translate("MainWindow", "添加"))
+        self.CM_clearCardMakeData.setText(_translate("MainWindow", "清空"))
+        self.CM_addCard.setText(_translate("MainWindow", "添加"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.CardMakeTab), _translate("MainWindow", "Tab 2"))
         self.EXETitle.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

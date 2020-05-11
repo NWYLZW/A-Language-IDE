@@ -8,19 +8,20 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
-from visualizationSrc.qtUI.addCard import Ui_MainWindow
-from visualizationSrc.Util.HighLighterUtil import HighLighter
+from PyQt5.QtWidgets import QMessageBox, QMainWindow
+
+from ..qtUI.addCard import Ui_MainWindow
+from ..Util.HighLighterUtil import HighLighter
 
 class CardMake:
-    def __init__(self,UI:Ui_MainWindow):
+    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
+        self.mainWindow = mainWindow
         self.settingTab = UI.CMT_settingTab
         self.initTextEditor()
         self.initSettingTab()
-    def initSettingTab(self):
-        tabTextList = ["基础设置","高级设置"]
-        for i in range(tabTextList.__len__()):
-            self.settingTab.setTabText(i,tabTextList[i])
+        self.initClick()
+
     def initTextEditor(self):
         UI = self.UI
         def initFont(editor):
@@ -45,3 +46,24 @@ class CardMake:
 
         UI.codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.codeSource)
         UI.remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.remapCodeSource)
+    def initSettingTab(self):
+        tabTextList = ["基础设置","高级设置"]
+        for i in range(tabTextList.__len__()):
+            self.settingTab.setTabText(i,tabTextList[i])
+    def initClick(self):
+        UI = self.UI
+        mainWindow = self.mainWindow
+        from ..Controler.CardControler import insertCard
+        def __insertCard():
+            if insertCard() == 0:
+                QMessageBox.information(
+                    mainWindow,
+                    '成功', '添加成功',
+                    QMessageBox.Yes)
+            else:
+                QMessageBox.ctitical(
+                    mainWindow,
+                    '错误', '发送了一个错误',
+                    QMessageBox.Yes)
+        UI.CM_addCard.clicked.connect(__insertCard)
+        pass

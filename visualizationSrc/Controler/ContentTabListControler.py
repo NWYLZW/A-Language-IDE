@@ -8,15 +8,16 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
+from PyQt5.QtWidgets import QMainWindow
 from ..qtUI.addCard import Ui_MainWindow
 
 class ContentTabList():
-    def __init__(self,UI:Ui_MainWindow):
+    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
         from ..Tabs.CardMakeTab import CardMake
-        self.CardMake_C = CardMake(UI)
         from ..Tabs.HomeTab import Home
-        self.Home_C = Home(UI)
+        self.CardMake_C = CardMake(UI,mainWindow)
+        self.Home_C = Home(UI,mainWindow)
         for i in range(1,UI.ContentTabList.count()):
             UI.ContentTabList.removeTab(i)
         self.initTabName()

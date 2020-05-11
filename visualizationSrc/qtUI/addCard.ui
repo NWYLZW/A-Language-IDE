@@ -62,7 +62,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="HomeTab">
      <property name="toolTip">
@@ -258,7 +258,7 @@ p, li { white-space: pre-wrap; }
         <height>642</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="addNewCard" stretch="1,2">
+      <layout class="QHBoxLayout" name="CM_addNewCard" stretch="1,2">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="leftMargin">
@@ -528,7 +528,7 @@ border-radius:10px;</string>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="main">
+        <layout class="QVBoxLayout" name="CM_main">
          <property name="leftMargin">
           <number>20</number>
          </property>
@@ -542,7 +542,7 @@ border-radius:10px;</string>
           <number>20</number>
          </property>
          <item>
-          <layout class="QVBoxLayout" name="header">
+          <layout class="QVBoxLayout" name="CM_header">
            <item>
             <widget class="QLabel" name="title_2">
              <property name="styleSheet">
@@ -564,7 +564,7 @@ font-weight:600;
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="contenter" stretch="0">
+          <layout class="QHBoxLayout" name="CM_contenter" stretch="0">
            <item>
             <layout class="QVBoxLayout" name="textEdit">
              <item>
@@ -636,9 +636,9 @@ p, li { white-space: pre-wrap; }
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="footer">
+          <layout class="QHBoxLayout" name="CM_footer">
            <item>
-            <widget class="QPushButton" name="clearCardMakeData">
+            <widget class="QPushButton" name="CM_clearCardMakeData">
              <property name="font">
               <font>
                <family>Adobe 黑体 Std R</family>
@@ -663,7 +663,7 @@ border-radius:20px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="addCard">
+            <widget class="QPushButton" name="CM_addCard">
              <property name="font">
               <font>
                <family>Adobe 黑体 Std R</family>

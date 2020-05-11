@@ -29,10 +29,12 @@ def excel_open(filePath, sheetName, fun, VBA=""):
         xlBook.Close(True)
         if VBA !="":
             useVBA(xlApp, filePath, VBA)
+            print("VBA FINISHED")
     except Exception as e:
         print(e)
     finally:
         xlApp.Quit()
+        return 0
 def useVBA(xlApp, filePath, VBA):
     xlBook = xlApp.Workbooks.Open(filePath,False)
     xlBook.Application.Run(VBA)
@@ -41,7 +43,7 @@ def useVBA(xlApp, filePath, VBA):
 current_path = os.path.abspath(__file__)
 DatabaseXlsPath = (os.path.dirname(current_path)) + '/' + '../../Database/Database.xls'
 
-if __name__ == '__main__':
+def insertCard():
     filePath = DatabaseXlsPath
     c = Card(
         id=10001, displayName="转运咒语", price=100, energyReq=0,
@@ -62,4 +64,4 @@ if __name__ == '__main__':
                     if t[j] != "":sht.Cells(i + 1, j+1).Value = t[j]
                 break
             preCell = cell
-    excel_open(filePath, "Card", __insertCard, "CsvExportBook")
+    return excel_open(filePath, "Card", __insertCard, "CsvExportBook")

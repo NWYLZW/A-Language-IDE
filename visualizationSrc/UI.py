@@ -38,5 +38,5 @@ def init(APP:QApplication,mainWindow:QMainWindow):
     UI.completer = Completer()
 
     from .Controler.ContentTabListControler import ContentTabList
-    UI.ContentTabList_C = ContentTabList(UI)
+    UI.ContentTabList_C = ContentTabList(UI,mainWindow)
     return UI
