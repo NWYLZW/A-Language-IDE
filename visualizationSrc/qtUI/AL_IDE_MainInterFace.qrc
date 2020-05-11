@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="picture">
+    <file>../Data/qrc/Card.png</file>
+  </qresource>
+  <qresource prefix="ico">
+    <file>../Data/qrc/ico/close.png</file>
+    <file>../Data/qrc/ico/max.png</file>
+    <file>../Data/qrc/ico/min.png</file>
+  </qresource>
+</RCC>
