@@ -30,6 +30,6 @@ def inity(mainWindow):
 
     UI.codeSource.set_completer(UI.completer.completer)
     UI.remapCodeSource.set_completer(UI.completer.completer)
-    UI.highlighter = HighLighter(UI.codeSource.document())
-    UI.highlighter = HighLighter(UI.remapCodeSource.document())
+    UI.codeSourceHighlighter = HighLighter(UI.codeSource.document())
+    UI.remapCodeSourceHighlighter = HighLighter(UI.remapCodeSource.document())
     return UI
