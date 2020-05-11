@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
 "")
         self.label_8.setObjectName("label_8")
         self.remap.addWidget(self.label_8)
-        self.remapCodeSource = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
+        self.remapCodeSource = TextEditor(self.verticalLayoutWidget_4)
         self.remapCodeSource.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "padding:5px;\n"

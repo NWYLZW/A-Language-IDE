@@ -8,3 +8,4 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
+__all__ = ['Main']

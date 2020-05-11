@@ -9,33 +9,14 @@
 @Desciption     :
 '''
 import sys
-
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from visualizationSrc import UI
 
-from visualizationSrc.Util.CompleterUtil import Completer
-from visualizationSrc.Util.HighLighterUtil import HighLighter
-from visualizationSrc.qtUI.addCard import Ui_MainWindow
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
+def mainWindowStart():
+    APP = QApplication(sys.argv)
     mainWindow = QMainWindow()
-    UI = Ui_MainWindow()
-    UI.setupUi(mainWindow)
-
-    from PyQt5.QtGui import QFont
-    # 设置语法高亮
-    UI.codeSource.setPlainText('')
-    font = UI.codeSource.font()
-    font.setFamily('Consolas')
-    font.setStyleHint(QFont.Monospace)
-    font.setPointSize(14)
-    UI.codeSource.setFont(font)
-    UI.codeSource.setTabStopWidth(20)
-    UI.highlighter = HighLighter(UI.codeSource.document())
-
-    # TODO select block of text - Ctrl+/ and they become comments
-    UI.completer = Completer()
-    UI.codeSource.set_completer(UI.completer.completer)
+    # 防止触发gc机制
+    ui = UI.inity(mainWindow)
     mainWindow.show()
 
     sys._excepthook = sys.excepthook
@@ -44,5 +25,5 @@ if __name__ == '__main__':
         sys._excepthook(exctype, value, traceback)
         sys.exit(1)
     sys.excepthook = my_exception_hook
-    try: sys.exit(app.exec_())
+    try: sys.exit(APP.exec_())
     except: print("Exiting")
