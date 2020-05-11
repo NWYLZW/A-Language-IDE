@@ -1,0 +1,149 @@
+
+
+// 300:{
+// 	Switch:{PlusDataVar:dialogCount,1}{
+// 		case:1{
+// 			Say:"{spk:辛西娅,syn_1}那……那个……";
+// 			Say:"{spk:辛西娅,syn_1}虽然很突然，但请听我说……";
+// 			Say:"{spk:辛西娅,syn_1}你有什么用不到的东西吗……";
+// 			Say:"{spk:辛西娅,syn_1}我是说，垃圾……";
+// 			Say:"{spk:辛西娅,syn_1}你有垃圾吗？";
+// 			Say:"{spk:辛西娅,syn_1}我喜欢垃圾……";
+// 			Say:"{spk:辛西娅,syn_1}可能这很难让人理解……";
+// 			Say:"{spk:辛西娅,syn_1}但是，你能把你的垃圾给我吗？";
+// 		};
+// 	};
+// 	Say:"{spk:辛西娅,syn_1}你有垃圾吗？我可以用原石和你交换！";
+// 	Menu:"交换|取消"{
+// 		case:0{
+// 			IfNot:{itact.HasPropCard:142}{
+// 				Say:"你没有垃圾。";
+// 				return:;
+// 			};
+
+// 			Say:"你将垃圾给予了辛西娅……";
+// 			itact.DestroyCardForever:142;
+// 			itact.IncreasePlayerMoneyForeverWithMsg:{RandomIntNum:1,2};
+
+// 			Switch:{PlusDataVar:count,1}{
+// 				case:20{host.Die:};
+// 			};
+// 		};
+// 	};
+
+// };
+
+
+301:{
+	SayMenu:"{spk:辛西娅,syn_1}你有要删的卡吗？","是的|离开",{
+		case:0{
+			itact.SelectCardTo:{
+				onConfirm:{
+					itact.DestroyCardForever:$ctx0;
+					ShowUIMessageStripFormat:"{cha:0}删掉了{cn:1}",$target,{GetCardId:$ctx0};
+					host.Die:;
+				};
+				cards:{SearchCards:{list:Deck;list:Hand;list:Discarded;notTag:Unremovable}};
+				allowCancel:true;
+				title:"选1张卡进行删除";
+			}; 
+		}; 
+	}; 
+};
+
+
+
+302:{
+	SayMenu:"{spk:辛西娅,syn2_1}你要厄运吗","是的|离开",{
+		case:0{
+			ShowUIShop:{
+				pool:{SearchCards:{list:Db;id:729}};
+				cards:{SearchCards:{list:Db;id:729}};
+				onBuy:{
+					host.Die:;
+				};
+			};
+		}; 
+	}; 
+};
+
+
+303:{
+	SetLocalVar:cha,{CreateCha:422,{GetPoint:1}};
+	cha.AddPlotCode:{
+		SayMenu:"{spk:辛西娅,syn_1}你要送我过去吗？","确认|取消"{
+			case:0{
+				Say:"{spk:辛西娅,syn_1}那走吧……";
+				host.SetToTeammateOf:$itact;
+				$host.allowPlayerControl=true;
+				MsgStrip:"辛西娅加入队伍……";
+				Foreach:{host.SearchCards:{list:Buff;tag:Interactable;}}{host.RemoveBuff:$ctx0,1};
+			};
+		};
+	};
+};
+
+
+
+
+
+
+304:{//全队获得道具背包
+	IfNot:{mainPlayerCha.HasEquipment:737}{
+		SetDialogMode:1;
+		ShowIllus:Black;
+		Say:"你发现了{ylw:道具背包}";
+		Foreach:{SearchCharacters:{teamId:Player}}{
+			ctx0.CreateDeckCardForeverWithMsg:737;
+			ctx0.CreateDeckCardForever:737;//给两个背包10负重
+		};
+	};
+
+};
+
+305:{//全队获得耐药性
+	IfNot:{mainPlayerCha.HasEquipment:734}{
+		ShowIllus:Black;
+		SetDialogMode:0;
+		Say:"你体内的原石病毒使你产生了{ylw:耐药性}";
+		Foreach:{SearchCharacters:{teamId:Player}}{
+			ctx0.CreateDeckCardForeverWithMsg:734;
+		};
+	};
+
+};
+
+
+306:{
+	SetVar:shouldLeave,false;
+	SayMenu:"{spk:辛西娅,syn1_1}……","装填容器卡|加工原石|离开",{
+		case:0{ CardContainerFill:; }; 
+		case:1{ 
+	  		ShowUIShop:{
+	  			poolCards:{SearchCards:{list:Db;anyId:735,737,140,66,51,729}};
+	  			allowRefresh:false;
+	  			allowDiscount:false;
+	  			cardsPriceMultiplier:{*:{GetCurrentStageField:synthiaPriceMul},{*:$gameRound,0.5}};
+	  			allowExceptSoldCardsForWholeGame:false;
+	  		// 	onBuy:{
+					// SetVar:shouldLeave,true;
+	  		// 	};
+	  		};
+	  	};
+		
+	};
+
+
+	// If:$shouldLeave{
+	// 	MsgStrip:"辛西娅离开了……";
+	// 	host.Die:;
+	// };
+
+};
+
+
+
+307:{//初始房间辛西娅
+	SetDialogMode:4;
+	Say:"{spk:辛西娅,syn3_1}……";
+};

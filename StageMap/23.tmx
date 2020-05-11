@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="15" tileheight="15" infinite="0" nextlayerid="13" nextobjectid="27">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer id="7" name="Layer" width="10" height="10">
+  <data encoding="csv">
+4,4,4,4,0,0,4,4,4,4,
+4,0,0,0,0,0,0,0,0,4,
+4,0,0,0,0,0,0,0,0,4,
+4,0,0,0,0,0,0,0,0,4,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+4,0,0,0,0,0,0,0,0,4,
+4,0,0,0,0,0,0,0,0,4,
+4,0,0,0,0,0,0,0,0,4,
+4,4,4,4,0,0,4,4,4,4
+</data>
+ </layer>
+ <objectgroup id="12" name="Cha">
+  <object id="21" name="68" x="75" y="75" width="15" height="15"/>
+ </objectgroup>
+</map>

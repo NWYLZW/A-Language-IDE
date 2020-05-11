@@ -1,0 +1,600 @@
+
+
+
+
+206:{//隔离门-连接房间
+
+	If:{HasPlayerEnemyInStage:}{
+		Say:"检测到房间内有危险实体，为了将其隔离，此通道已关闭。\n（{ylw:'提示：请清空所有怪物'}）";
+	}{
+		interactor.TeleportToConnectionOf:$host;
+		// SayMenu:"要进入吗？","确定|取消",{
+		// 	case:0{interactor.TeleportToConnectionOf:$host}
+		// };
+	};
+};
+
+
+207:{//隔离门电梯-通向下一关
+	If:{HasPlayerEnemyInStage:}{
+		Say:"检测到房间内有危险实体，为了将其隔离，此通道已关闭。\n（{ylw:'提示：请清空所有怪物'}）";
+	}{
+		SayMenu:"要进入吗？","确定|取消",{
+			case:0{
+				interactor.LoadNextLevel:;
+			}
+		};
+	};
+};
+
+
+
+208:{//隔离门电梯-通向上一关
+	If:{HasPlayerEnemyInStage:}{
+		Say:"检测到房间内有危险实体，为了将其隔离，此通道已关闭。\n（{ylw:'提示：请清空所有怪物'}）";
+	}{
+		SayMenu:"要回到上一层吗？","确定|取消",{
+			case:0{
+				interactor.LoadPrevLevel:
+			}
+		};
+	};
+};
+
+
+
+// //40%回复3HP，20%增加3最大HP，10%增加1最大能量，10%增加1最大体力，否则什么也没得到
+// 209:{
+
+
+// 	Say:"你要用10个原石来提取原石病毒并注射吗？";
+// 	Menu:"确认|取消"{
+// 		case:0{
+
+// 			If:$playerMoneyInArchive<10{
+// 				Say:"你没有足够的原石。"; return:;
+// 			};
+
+// 			DecreasePlayerMoneyForever:10;
+// 			Say:"你使用了10个原石，并在原石中随机提取到了某种病毒……";
+// 			SeedMoveNext:"lotterySeed";
+// 			Switch:{RandomInt:0,100,"lotterySeed"}{
+// 				case:0~39{
+// 					Say:"原石病毒让你回复了{ylw:3}HP……";
+// 					itact.IncreaseHp:3;
+// 				};
+// 				case:40~59{
+// 					Say:"原石病毒让你永久增加了{ylw:3}最大HP……";
+// 					itact.IncreaseMaxHpForever:3;
+// 				};
+// 				case:60~69{
+// 					Say:"原石病毒让你永久增加了{ylw:1}最大能量……";
+// 					itact.IncreaseMaxEnergyForever:1;
+// 				};
+// 				case:70~79{
+// 					Say:"原石病毒让你永久增加了{ylw:1}最大体力……";
+// 					itact.IncreaseMaxStaminaForever:1;
+// 				};
+
+// 				default:{
+// 					Say:"原来你得到只是某种杂质，它对你没有任何帮助……";
+// 				};
+// 			};
+// 		};
+// 	};
+// 	PlusDataVar:"GainCount",1;
+// 	If:{>:{GetDataVar:"GainCount"},3}{
+// 		Say:"手术台因为过度使用而废弃了……";
+// 		host.Die:
+// 	};
+// };
+
+
+
+
+
+
+
+210:{
+	SayMenu:"你有要换的卡吗？","是的|离开",{
+		case:0{
+			itact.SelectCardTo:{
+				onConfirm:{
+					itact.DestroyCardForever:$ctx0;
+					host.SetVar:rewardCard,{SearchCard:{list:pool,MediumReward;random:} };
+					itact.CreateDeckCardForever:{host.GetVar:rewardCard};
+					ShowUIMessageStripFormat:"{cha:0}得到了{cn:1}",$target,{host.GetVar:rewardCard};
+					host.Die:;
+				};
+				cards:{SearchCards:{list:Deck;list:Hand;list:Discarded;}};
+				allowCancel:true;
+				title:"选1张卡进行交换";
+			}; 
+		}; 
+	}; 
+};
+
+
+211:{
+	SayMenu:"你有要删的卡吗？","是的|离开",{
+		case:0{
+			itact.SelectCardTo:{
+				onConfirm:{
+					If:{CardHasTag:$ctx0,Equipment}{
+						itact.DestroyEquipmentForever:$ctx0;
+					}{
+						itact.DestroyCardForever:$ctx0;
+					};
+					ShowUIMessageStripFormat:"{cha:0}删掉了{cn:1}",$target,{GetCardId:$ctx0};
+					host.Die:;
+				};
+				cards:{SearchCards:{list:DataDeck;notTag:Hidden;notTag:Unremovable}};
+				allowCancel:true;
+				title:"选1张卡进行删除";
+			}; 
+		}; 
+	}; 
+};
+
+//5hp=1能量=2体力
+212:{
+	SayMenu:"一个改造手术台，可以将身体进行改造。要使用吗？\n1.「{ylw:5}的最大HP」换取「{ylw:1}的最大能量」\n2.「{ylw:5}的最大HP」换取「{ylw:2}的最大体力」",
+	"用HP换取能量|用HP换取体力|取消",{
+		case:2{ return:; };
+	};
+	If:$itact.hp<=5{
+		Say:"因为你过于虚弱，无法进行改造。（HP过少）";
+		return:;
+	};
+
+	Say:"最大HP减少5";
+	itact.DecreaseMaxHpForeverWithCur:5;
+	itact.Switch:$menuSel{
+		case:0{ IncreaseMaxEnergyForeverWithCur:1; Say:"最大能量增加1"; };
+		case:1{ IncreaseMaxStaminaForeverWithCur:2; Say:"最大体力增加2"; };
+	};
+	host.Die:
+
+
+	// SayMenu:"一个改造手术台，可以将身体进行改造。\n（使用{ylw:5}的{ylw:最大HP}随机换取{ylw:最大能量}或{ylw:最大体力}）\n要使用吗？",
+	// "确认|取消",{
+	// 	case:0{
+	// 		If:$itact.hp<=5{
+	// 			Say:"因为你过于虚弱，无法进行改造。（HP过少）";
+	// 			return:;
+	// 		};
+	// 		SayMenu:"（{red:再次确认}，确定要使用{ylw:5}的{ylw:最大HP}随机换取{ylw:最大能量}或{ylw:最大体力}）","确认|取消",{ case:1{return:}; };
+
+	// 		Say:"最大HP减少5";
+	// 		itact.DecreaseMaxHpForeverWithCur:5;
+	// 		itact.SeedMoveNext:"212_seed";
+	// 		itact.Switch:{RandomIntNum:1,2,"212_seed"}{
+	// 			case:1{ IncreaseMaxEnergyForeverWithCur:1; Say:"最大能量增加1"; };
+	// 			case:2{ IncreaseMaxStaminaForeverWithCur:2; Say:"最大体力增加2"; };
+	// 		};
+	// 		host.Die:
+	// 	};
+	// };
+};
+
+
+
+
+213:{//属性移植手术台
+	SayMenu:"一个属性移植手术台，可以进行移植手术。\n（任选一项属性将其转移给队友）",
+	"5的最大HP|1的最大能量|2的最大体力|取消",{
+		case:0{ 213_1:{DecreaseMaxHpForeverWithCur:5;},{IncreaseMaxHpForeverWithCur:5},{<=:$maxHp,5},"5的最大HP"; };
+		case:1{ 213_1:{DecreaseMaxEnergyForeverWithCur:1;},{IncreaseMaxEnergyForeverWithCur:1},{<=:$maxEnergy,1},"1的最大能量"; };
+		case:2{ 213_1:{DecreaseMaxStaminaForeverWithCur:2;},{IncreaseMaxStaminaForeverWithCur:2},{<=:$maxStamina,2},"2的最大体力"; };
+	};
+};
+213_1:{//移植手术台操作：$0减少的指令，$1增加的指令，$2条件，$3标题关键字
+	SelectCharacterTo:{
+		characters:{SearchCharacters:{teamId:Player;tag:Animal}};
+		onConfirm:{
+			If:{$2}{ 
+				SayFormat:"因为{cha:0}过于虚弱，无法进行移植。",$target; 
+				return:;
+			};
+
+			host.SetVar:"srcCha",$tgt.target;
+			SelectCharacterTo:{
+				characters:{SearchCharacters:{teamId:Player;notId:{GetCharacterId:$target};tag:Animal}};
+				onConfirm:{
+					host.SetVar:"destCha",$tgt.target;
+					RunCommandForCharacter:{host.GetVar:"srcCha"}{$0};
+					RunCommandForCharacter:{host.GetVar:"destCha"}{$1};
+					host.Die:
+				};
+				title:{Format:"选择单位接受{ylw:0}",$3};
+			};
+
+		};
+		title:{Format:"选择单位移植{ylw:0}给其他队友",$3};
+	};
+};
+
+
+214:{
+
+	SayMenu:"一台食品贩卖机，一次投币5原石，要使用吗？","确定|取消"{
+		case:0{ 
+			If:$playerMoneyInArchive<5{
+				Say:"原石不足……";
+				return:;
+			};
+			DecreasePlayerMoneyForever:5; 
+			DropCards:{SearchCards:{list:pool,LowReward;tag:Food;random:;take:1~2}};
+			host.PlaybackAnim:Use;
+			host.TakeDamage:1;
+			Switch:{PlusDataVar:count,1}{
+				case:5{host.Die:};
+			};
+		}; 
+	};
+
+};
+
+
+215:{//献血姬器人
+	SayMenu:"仿生献血姬器人为您服务，请在我身边乖乖站好！\n（每次献血2~5HP，要继续吗？）","确定|取消"{
+		case:0{
+			If:$itact.hp<=5{
+				Say:"因为你过于虚弱，无法进行献血。（HP过少）";
+				return:;
+			};
+			itact.DecreaseHp:{RandomIntNum:2,5};
+			itact.DropCards:{GetRandomCardsByPoolTag:LowReward,1~2;};
+			Switch:{PlusDataVar:count,1}{
+				case:5{
+					// itact.DropCards:{GetRandomCardsByPoolTag:MediumReward,1};
+					host.Die:;
+				};
+			};
+		};
+	};
+};
+
+216:{//垃圾桶
+	// Say:"上面写着「请把垃圾放到正确的位置」。（对垃圾桶使用垃圾）";
+
+	SelectCardTo:{
+		cards:{itact.SearchCards:{list:Prop}};
+		maxSelectCount:$itact.propCardCount;
+		onConfirm:{
+			DropCard:151,$position;
+			itact.DestroyCardForever:$ctx0;
+		};
+		title:"选择卡牌丢到垃圾桶";
+	};
+
+	// IfNot:{itact.HasPropCard:142}{
+	// 	Say:"你没有垃圾。";
+	// 	return:;
+	// };
+	// Say:"你放入了垃圾……";
+	// itact.DestroyCardForever:142;
+	// itact.IncreasePlayerMoneyForeverWithMsg:{RandomIntNum:1,2};
+
+	// Switch:{PlusDataVar:count,1}{
+	// 	case:20{host.Die:};
+	// };
+};
+
+217:{
+	SayMenu:"一台道具交换机，要使用吗？","确定|取消"{
+		case:0{
+			SelectCardTo:{
+				onConfirm:{
+					itact.DestroyCardForever:$ctx0;
+					itact.CreateDeckCardForeverRandomByPoolTagWithMsg:LowReward;
+					Switch:{PlusDataVar:count,1}{
+						case:3{host.Die:};
+					};
+					host.PlaybackAnim:"Use";
+				};
+				title:"选择一张道具卡进行交换";
+				cards:{itact.SearchCards:{list:Prop;notId:142}};//142是垃圾，禁止用垃圾交换
+			};
+
+		};
+	};
+
+};
+
+
+218:{
+	SayMenu:"仿生救助姬器人为您服务，需要帮助吗？\n（治疗：全员回复30%HP、费用5原石）\n（抢救：单人复活并回复一半HP、费用10原石）","治疗|抢救|取消"{
+		case:0{
+			If:$playerMoneyInArchive < 5{
+				Say:"原石不足……";
+				return:;
+			};
+			Foreach:{SearchCharacters:{teamId:Player};}{
+				RunCommandForCharacter:$ctx0{ IncreaseHp:$maxHp*30%; };
+			};
+			DecreasePlayerMoneyForever:5; 
+			host.Die:;
+		};
+		case:1{
+			If:{>=:{Count:{SearchCharacters:{teamId:Player;died:}}},1}{
+				If:$playerMoneyInArchive < 10{
+					Say:"原石不足……";
+					return:;
+				};
+
+				SelectCharacterTo:{
+					characters:{SearchCharacters:{teamId:Player;died:}};
+					onConfirm:{
+						Revive:;
+						IncreaseHp:$maxHp*50%; 
+						DecreasePlayerMoneyForever:10; 
+						SayFormat:"成功抢救{cha:0}……",$target;
+						host.Die:;
+					};
+					title:"选择单位来复活";
+				};
+
+			}{
+				Say:"目前没有单位需要抢救……";
+			};
+
+
+		};
+	};
+
+};
+
+
+219:{//培养仓
+
+	//锁
+	Say:"一个培养仓……";
+	
+	If:{>=:{Count:{SearchCharacters:{teamId:Player;id:80}}},1}{
+		Say:"你看了看你身边的{cha:80}，你决定不打开这个培养仓。";
+		return:;
+	};
+
+	label:lBeginUnlock;
+	If:{<:{host.GetCardCountInDataDeck:140},3}{
+		SayFormat:"培养仓上面有{ylw:0}个锁口，{ylw:1}个锁已经开启，你身上有{ylw:2}个钥匙卡",3,{host.GetCardCountInDataDeck:140},{itact.GetCardCountInProp:140};
+		If:{<=:{itact.GetCardCountInProp:140},0}{
+			Say:"你无法开启培养仓";
+			return:;
+		};
+		SayMenu:"要使用钥匙开锁吗？","确认|取消"{
+			case:0{
+				host.CreateDeckCardForever:140;
+				itact.DestroyCardForever:140; 
+				Say:"开锁成功！";
+				goto:lBeginUnlock;
+			};
+			case:1{ return:; };
+		};
+		return:;
+	};
+
+	SayMenu:"要打开吗？","确认|取消"{
+		case:1{ return:; };
+	};
+
+
+	itact.Repeat:3{ DestroyCardForever:140; };
+
+	Say:"你打开了培养仓，并将仓里的人放了出来。";
+	itact.CreatePlayerTeammate:80,$host.position;
+	host.Die:;
+	Say:"你给仓里的人换上了衣服。";
+	Say:"仓里的人告诉你，她并不知道她为什么会在这里……";
+	Say:"你的直觉告诉你，她是一个被原石病毒培养的实验体。";
+	Say:"虽然她的身上拥有你曾经见过的某种特征……";
+	Say:"但你坚信，她和外面的那些怪物，并不是同类。";
+	Say:"（{cha:80}加入队伍）";
+};
+
+
+
+220:{//记忆手术台
+	SayMenu:"一个记忆移植手术台，可以进行移植手术。\n（从牌库选择1张卡牌将其转移给队友）","确认|取消",{
+		case:1{ return:; };
+	};
+
+	SelectCharacterTo:{
+		characters:{SearchCharacters:{teamId:Player;}};
+		onConfirm:{
+			host.SetVar:selCha,$tgt.target;
+			tgt.SelectCardTo:{
+				onConfirm:{
+					host.SetVar:selCard,$ctx0;
+					SelectCharacterTo:{
+						characters:{ SearchCharacters:{teamId:Player;notId:$target.id } };
+						onConfirm:{
+							With:{host.GetVar:selCha}{
+								DestroyCardForever:{host.GetVar:selCard};
+							};
+							SetCardInsOwnerChaForever:$ctx0,$tgt;
+							ShowUIMessageStripFormat:"{cha:0}的{cn:1}转移给了{cha:2}",{host.GetVar:selCha},$ctx0,$target;
+							host.Die:;
+						};
+						title:{Format:"选择队友接受{cn:0}",$ctx0};
+					};
+				};
+				cards:{SearchCards:{list:Deck;list:Hand;list:Discarded;notTag:Dedicated}};
+				title:{Format:"选择{cha:0}的卡牌转移给其他队友",$target};
+			};
+		};
+
+		title:{Format:"选择1个单位转移卡牌给其他队友"};
+	};
+
+	// itact.SelectCardTo:{
+	// 	onConfirm:{
+	// 		host.SetVar:selCard,$ctx0;
+
+	// 		SelectCharacterTo:{
+	// 			characters:{SearchCharacters:{teamId:Player;}};
+	// 			onConfirm:{
+	// 				If:{$2}{ 
+	// 					SayFormat:"因为{cha:0}过于虚弱，无法进行移植。",$target; 
+	// 					return:;
+	// 				};
+
+	// 				host.SetVar:"srcCha",$tgt.target;
+	// 				SelectCharacterTo:{
+	// 					characters:{SearchCharacters:{teamId:Player;notId:{GetCharacterId:$target}}};
+	// 					onConfirm:{
+	// 						host.SetVar:"destCha",$tgt.target;
+	// 						RunCommandForCharacter:{host.GetVar:"srcCha"}{$0};
+	// 						RunCommandForCharacter:{host.GetVar:"destCha"}{$1};
+	// 						host.Die:
+	// 					};
+	// 					title:{Format:"选择单位接受{ylw:0}",$3};
+	// 				};
+
+	// 			};
+	// 			title:{Format:"选择单位移植{ylw:0}给其他队友",$3};
+	// 		};
+
+	// 		itact.DestroyCardForever:$ctx0;
+	// 		host.SetVar:rewardCard,{SearchCard:{list:pool,MediumReward;random:} };
+	// 		itact.CreateDeckCardForever:{host.GetVar:rewardCard};
+	// 		ShowUIMessageStripFormat:"{cha:0}得到了{cn:1}",$target,{host.GetVar:rewardCard};
+	// 		host.Die:;
+	// 	};
+	// 	cards:{SearchCards:{list:Deck;list:Hand;list:Discarded;}};
+	// 	allowCancel:true;
+	// 	title:"选1张卡进行交换";
+	// };
+};
+
+
+
+
+221:{//教程公告牌
+	label:lBegin;
+	SayMenu:"你想了解什么？","卡牌|行动|取消",{
+		case:0{ 
+			label:l0;
+			SayMenu:"关于卡牌，你想了解什么？","手牌|射程|使用卡牌|返回",{
+				case:0{ Say:"手牌：屏幕的下方是角色的{ylw:手牌}，你将使用它进行战斗"; goto:l0; };
+				case:1{ Say:"射程：按住手牌后，地面上出现的{ylw:白圈}代表卡牌的{ylw:射程}，只有目标在射程内才能对其使用卡牌"; goto:l0;  };
+				case:2{ Say:"使用卡牌：当目标在射程内，将卡牌拖到目标可以使用卡牌"; goto:l0; };
+				case:3{ goto:lBegin; };
+			};
+			
+		};
+		case:1{ 
+			label:l1;
+			SayMenu:"关于行动，你想了解什么？","移动|切换角色|结束回合|返回",{
+				case:0{ Say:"移动：点击地面的{ylw:白色格子}可以移动角色，拖拽屏幕可以移动视角"; goto:l1; };
+				case:1{ Say:"切换角色：当一个角色无法再继续行动时，点击「切换角色」按钮，让队友继续行动"; goto:l1;};
+				case:2{ Say:"结束回合：当所有队友无法再继续行动时，点击「结束回合」按钮，等待敌人的行动"; goto:l1;; };
+				case:3{ goto:lBegin; };
+			};
+		};
+	};
+
+};
+222:{//教程公告牌
+	label:lBegin;
+	SayMenu:"你想了解什么？","扩散|HP|能量|体力|取消",{
+		case:0{ Say:"扩散(AOE)：只要卡牌支持扩散，就可以对一个范围内的单位使用，{ylw:红圈}代替扩散的范围"; goto:lBegin; };
+		case:1{ Say:"HP：红色的条代表生命值HP，当它归零的时候角色就会死亡"; goto:lBegin; };
+		case:2{ Say:"能量：蓝色的条代表能量值，使用手牌会消耗能量"; goto:lBegin;  };
+		case:3{ Say:"体力：白色的条代表体力值，移动需要体力值"; goto:lBegin;  };
+	};
+};
+
+223:{//教程公告牌
+	label:lBegin;
+	SayMenu:"你想了解什么？","道具卡|使用道具卡|取消",{
+		case:0{ Say:"道具卡：道具卡从本质上也是一种卡，不同的是它是一次性的，而且可以随时使用"; goto:lBegin; };
+		case:1{ Say:"使用道具卡：和使用手牌一样，按住不放拖到目标，松开手使用道具卡"; goto:lBegin; };
+	};
+};
+
+
+
+224:{//电视机-参数：$rewardMoney
+	//付费用户直接获得
+	If:{IsPaidUser:}{
+		// SayFormat:"一台电视机，不知为何观看之后会产生一些原石。\n（看广告奖励{ylw:0}原石，Steam玩家可不看广告直接获得。）",$rewardMoney;
+		IncreasePlayerMoneyForeverWithMsg:$rewardMoney; host.Die:;
+		return:;
+	};
+
+	label:lBegin;
+	SayMenu:{Format:"一台电视机，不知为何观看之后会产生一些原石。\n（看广告奖励{ylw:0}原石，绑定Steam完整版《原石计划》后可以不看广告直接获得。）",$rewardMoney},"观看|如何绑定|取消",{
+		case:0{ 
+			IfNot:{IsRewardAdReady:}{
+				Say:"广告还没有准备好……";
+				goto:lBegin;
+			};
+			ShowRewardedVideoAdsForUnpaidUser:{IncreasePlayerMoneyForeverWithMsg:$rewardMoney; host.Die: }; 
+		};
+		case:1{ 
+			Say:"非常抱歉打扰您的游戏体验！";
+			Say:"原石计划同时支持电脑端和手机端……";
+			Say:"因为手机端没有版号无法做付费功能，所以手机端有一些功能可能会受到限制。";
+			Say:"但您可以通过购买Steam版的完整版《原石计划》来解除限制……";
+			Say:"正常情况下在Steam购买后只能在电脑端游玩……";
+			Say:"但我架了一个服务器并做了一个帐号系统。";
+			Say:"您可以登陆这个帐号系统并绑定Steam帐号……（它的位置在：暂停菜单-帐户-登陆-绑定）";
+			Say:"绑定后重新登陆手机端就会同步电脑端的购买信息……";
+			Say:"然后就可以像电脑端一样，在手机端体验完整版的内容。";
+			Say:"感谢您的支持！";
+
+			Menu:"前往Steam|作者的话|返回",{
+				case:0{ OpenUrl:"https://store.steampowered.com/app/1017410/"; };
+				case:1{
+					Say:"您好，我是Alive，您可以叫我老A……";
+					Say:"从2014年辞职回家做独立游戏到现在，已经不知道有几个年头了。";
+					Say:"《原石计划》是我第二个正式作品，除了《原石计划》，我还有一个作品叫《丽莎的记忆》……";
+					Say:"说起《丽莎的记忆》……";
+					Say:"那一年，我因为不满游戏公司的换皮游戏，毅然决然地辞掉了主美的职位，回家准备做一款不一样的游戏……";
+					Say:"因为没有资金聘请大佬，于是我自学编程、编曲、编剧……";
+					Say:"在这个过程中，我一边制作游戏，一边将制作的过程以视频的形式发到了B站。（视频系列叫《丽莎的记忆开发日记》）";
+					Say:"在基本零收入情况下用爱发电做游戏，这一做就是4年……";
+					Say:"最终，游戏上线Steam了，销量以惨淡收尾……";
+					Say:"视频的观众都在劝我去找工作上班……";
+					Say:"但我的内心告诉我，不管遇到什么困难，都不应该轻易放弃……";
+					Say:"为了让年老以后不会后悔，我觉得我还应该再挣扎一下……";
+					Say:"于是我开了一个新坑，也就是《原石计划》。";
+					Say:"开发了快一年，游戏上架了Steam……";
+					Say:"虽然比前作有进步，但老实说，收入仍然只够我一个人苟且偷生地活着。";
+					Say:"《原石计划》想要顺利完成，需要更多大佬的加入……";
+					Say:"招人的成本、服务器的成本……";
+					Say:"以我目前资金，这完全就是杯水车薪。";
+					Say:"如果您觉得《原石计划》还不错，希望能到Steam商店购买完整版支持作者……";
+					Say:"感谢您的支持！";
+
+					goto:lBegin; 
+				};
+				case:2{ goto:lBegin; };
+			};
+		};
+	};
+};
+
+
+
+225:{//卡牌售卖机
+	SetVar:price,{+:5,{*:2,{GetDataVar:soldCount}}};
+	SayMenu:{Format:"这是一台卡牌售货机，花费{ylw:0}原石来掉落一张随机卡牌。",$price},"确定|取消"{
+		case:0{ 
+			If:$playerMoneyInArchive<$price{
+				Say:"原石不足……";
+				return:;
+			};
+			DecreasePlayerMoneyForever:$price; 
+			SearchAndDropCards:{list:pool,MediumReward;random:;take:1;};
+			host.PlaybackAnim:Use;
+			host.TakeDamage:1;
+			PlusDataVar:soldCount,1;
+		}; 
+	};
+
+};
+
+
