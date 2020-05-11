@@ -39,7 +39,7 @@ def useVBA(xlApp, filePath, VBA):
     xlBook.Close(True)
 
 current_path = os.path.abspath(__file__)
-DatabaseXlsPath = (os.path.dirname(current_path)) + '/' + '../Database/Database.xls'
+DatabaseXlsPath = (os.path.dirname(current_path)) + '/' + '../../Database/Database.xls'
 
 if __name__ == '__main__':
     filePath = DatabaseXlsPath
