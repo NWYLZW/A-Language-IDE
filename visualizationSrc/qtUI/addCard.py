@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1200, 715)
+        MainWindow.resize(1200, 720)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setMaximumSize(QtCore.QSize(1200, 720))
         font = QtGui.QFont()
@@ -87,16 +87,16 @@ class Ui_MainWindow(object):
 "border-radius:10px;")
         self.graphicsView_4.setObjectName("graphicsView_4")
         self.gridLayout.addWidget(self.graphicsView_4, 1, 0, 1, 1)
-        self.CardMake = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.CardMake.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CardMake.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
+        self.CardMakeCard = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.CardMakeCard.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CardMakeCard.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: bottom;\n"
 "\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.CardMake.setObjectName("CardMake")
-        self.gridLayout.addWidget(self.CardMake, 0, 0, 1, 1)
+        self.CardMakeCard.setObjectName("CardMakeCard")
+        self.gridLayout.addWidget(self.CardMakeCard, 0, 0, 1, 1)
         self.PeopleMake = QtWidgets.QTextBrowser(self.gridLayoutWidget)
         self.PeopleMake.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.PeopleMake.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
@@ -129,12 +129,12 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.tabWidget = QtWidgets.QTabWidget(self.horizontalLayoutWidget_2)
-        self.tabWidget.setMaximumSize(QtCore.QSize(384, 16777215))
-        self.tabWidget.setObjectName("tabWidget")
-        self.baseSetting = QtWidgets.QWidget()
-        self.baseSetting.setObjectName("baseSetting")
-        self.scrollArea = QtWidgets.QScrollArea(self.baseSetting)
+        self.CMT_settingTab = QtWidgets.QTabWidget(self.horizontalLayoutWidget_2)
+        self.CMT_settingTab.setMaximumSize(QtCore.QSize(384, 16777215))
+        self.CMT_settingTab.setObjectName("CMT_settingTab")
+        self.CMT_baseSetting = QtWidgets.QWidget()
+        self.CMT_baseSetting.setObjectName("CMT_baseSetting")
+        self.scrollArea = QtWidgets.QScrollArea(self.CMT_baseSetting)
         self.scrollArea.setGeometry(QtCore.QRect(-1, -1, 361, 601))
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
@@ -249,11 +249,11 @@ class Ui_MainWindow(object):
         self.data01.setStretch(0, 2)
         self.verticalLayout_2.addLayout(self.data01)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.tabWidget.addTab(self.baseSetting, "")
-        self.greateSetting = QtWidgets.QWidget()
-        self.greateSetting.setObjectName("greateSetting")
-        self.tabWidget.addTab(self.greateSetting, "")
-        self.verticalLayout.addWidget(self.tabWidget)
+        self.CMT_settingTab.addTab(self.CMT_baseSetting, "")
+        self.CMT_greateSetting = QtWidgets.QWidget()
+        self.CMT_greateSetting.setObjectName("CMT_greateSetting")
+        self.CMT_settingTab.addTab(self.CMT_greateSetting, "")
+        self.verticalLayout.addWidget(self.CMT_settingTab)
         self.addNewCard.addLayout(self.verticalLayout)
         self.main = QtWidgets.QVBoxLayout()
         self.main.setContentsMargins(20, 20, 20, 20)
@@ -399,8 +399,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.Main)
 
         self.retranslateUi(MainWindow)
-        self.ContentTabList.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(0)
+        self.ContentTabList.setCurrentIndex(0)
+        self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -408,7 +408,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "AL-IDE"))
         self.HomeTab.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
-        self.CardMake.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.CardMakeCard.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
@@ -431,8 +431,8 @@ class Ui_MainWindow(object):
         self.label_11.setText(_translate("MainWindow", "作用范围"))
         self.label_5.setText(_translate("MainWindow", "卡牌介绍"))
         self.label_4.setText(_translate("MainWindow", "故事"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.baseSetting), _translate("MainWindow", "Tab 1"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.greateSetting), _translate("MainWindow", "Tab 2"))
+        self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_baseSetting), _translate("MainWindow", "Tab 1"))
+        self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("MainWindow", "Tab 2"))
         self.title_2.setText(_translate("MainWindow", "添加新卡片"))
         self.label_2.setText(_translate("MainWindow", "Code代码"))
         self.codeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

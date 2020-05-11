@@ -8,8 +8,6 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   初始化UI界面
 '''
-from time import sleep
-
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
 def initFont(editor):
@@ -22,9 +20,8 @@ def initFont(editor):
     editor.setFont(font)
     editor.setTabStopWidth(16)
 def init(APP:QApplication,mainWindow:QMainWindow):
-    from visualizationSrc.Util.CompleterUtil import Completer
-    from visualizationSrc.Util.HighLighterUtil import HighLighter
-    from visualizationSrc.qtUI.addCard import Ui_MainWindow
+    from .Util.CompleterUtil import Completer
+    from .qtUI.addCard import Ui_MainWindow
     UI = Ui_MainWindow()
     UI.setupUi(mainWindow)
 
@@ -34,24 +31,12 @@ def init(APP:QApplication,mainWindow:QMainWindow):
         def close_windowClick(event):
             from PyQt5 import QtCore
             if event.buttons() == QtCore.Qt.LeftButton:
+                from time import sleep
                 sleep(0.1);mainWindow.close()
         UI.close_window.mousePressEvent = close_windowClick
     initToolBar()
-
-    # 设置语法高亮
     UI.completer = Completer()
-    from visualizationSrc.Util.TextEditorUtil import TextEditor
-    def QTextEditToTextEditor(parent,mQTextEdit):
-        parent.removeWidget(mQTextEdit);mQTextEdit.setParent(None)
-        mQTextEdit = TextEditor()
-        parent.addWidget(mQTextEdit)
-        initFont(mQTextEdit)
 
-        mQTextEdit.set_completer(UI.completer.completer)
-        mQTextEdit.HL = HighLighter(mQTextEdit.document())
-        return mQTextEdit
-
-    UI.codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.codeSource)
-    UI.remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.remapCodeSource)
-
+    from .Controler.ContentTabListControler import ContentTabList
+    UI.ContentTabList_C = ContentTabList(UI)
     return UI
