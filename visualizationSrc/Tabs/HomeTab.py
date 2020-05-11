@@ -22,4 +22,3 @@ class Home:
             if event.buttons() == QtCore.Qt.LeftButton:
                 UI.ContentTabList_C.showTab('CardMake')
         UI.CardMakeCard.mousePressEvent = CardMakeCardClick
-        print('initCardItemClick')

@@ -19,17 +19,21 @@ class ContentTabList():
         self.Home_C = Home(UI)
         for i in range(1,UI.ContentTabList.count()):
             UI.ContentTabList.removeTab(i)
+        self.initTabName()
+    def initTabName(self):
+        self.UI.ContentTabList.setTabText(0, "主页")
     def showTab(self,TabName):
         TabNameList = ['CardMake']
         if not TabName in TabNameList: return
         TabNameHash = {
             'CardMake':{
+                'CN':"卡牌制作",
                 'tab':self.UI.CardMakeTab,
                 'isShow':False
             },
         }
         if not TabNameHash[TabName]['isShow']:
             self.UI.ContentTabList\
-                .addTab(TabNameHash[TabName]['tab'],TabName)
+                .addTab(TabNameHash[TabName]['tab'],TabNameHash[TabName]['CN'])
             TabNameHash[TabName]['isShow'] = True
-            self.UI.ContentTabList.setCurrentWidget(TabNameHash[TabName]['tab'])
+        self.UI.ContentTabList.setCurrentWidget(TabNameHash[TabName]['tab'])
