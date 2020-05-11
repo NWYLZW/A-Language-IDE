@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="displayName"/>
+                     <widget class="QLineEdit" name="CM_displayName"/>
                     </item>
                    </layout>
                   </item>
@@ -381,7 +381,7 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QSpinBox" name="spinBox_3"/>
+                     <widget class="QSpinBox" name="CM_price"/>
                     </item>
                    </layout>
                   </item>
@@ -401,7 +401,7 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QSpinBox" name="energyReq"/>
+                     <widget class="QSpinBox" name="CM_energyReq"/>
                     </item>
                    </layout>
                   </item>
@@ -431,7 +431,7 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QSpinBox" name="range"/>
+                     <widget class="QSpinBox" name="CM_range"/>
                     </item>
                    </layout>
                   </item>
@@ -461,7 +461,7 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QTextEdit" name="description">
+                     <widget class="QTextEdit" name="CM_description">
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(255, 255, 255);
 
@@ -499,7 +499,7 @@ border-radius:10px;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QTextEdit" name="story0">
+                     <widget class="QTextEdit" name="CM_story0">
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(255, 255, 255);
 
@@ -584,7 +584,7 @@ font-weight:600;
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="codeSource">
+                <widget class="QTextEdit" name="CM_codeSource">
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -616,7 +616,7 @@ font-weight:600;
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="remapCodeSource">
+                <widget class="QTextEdit" name="CM_remapCodeSource">
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>

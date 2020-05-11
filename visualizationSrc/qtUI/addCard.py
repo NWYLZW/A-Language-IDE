@@ -158,9 +158,9 @@ class Ui_MainWindow(object):
         self.label_6 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_6.setObjectName("label_6")
         self.L_displayName.addWidget(self.label_6)
-        self.displayName = QtWidgets.QLineEdit(self.verticalLayoutWidget)
-        self.displayName.setObjectName("displayName")
-        self.L_displayName.addWidget(self.displayName)
+        self.CM_displayName = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.CM_displayName.setObjectName("CM_displayName")
+        self.L_displayName.addWidget(self.CM_displayName)
         self.data03.addLayout(self.L_displayName)
         self.L_price_2 = QtWidgets.QHBoxLayout()
         self.L_price_2.setSpacing(0)
@@ -168,9 +168,9 @@ class Ui_MainWindow(object):
         self.label_7 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_7.setObjectName("label_7")
         self.L_price_2.addWidget(self.label_7)
-        self.spinBox_3 = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.spinBox_3.setObjectName("spinBox_3")
-        self.L_price_2.addWidget(self.spinBox_3)
+        self.CM_price = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.CM_price.setObjectName("CM_price")
+        self.L_price_2.addWidget(self.CM_price)
         self.data03.addLayout(self.L_price_2)
         self.L_energyReq_2 = QtWidgets.QHBoxLayout()
         self.L_energyReq_2.setSpacing(0)
@@ -178,9 +178,9 @@ class Ui_MainWindow(object):
         self.label_9 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_9.setObjectName("label_9")
         self.L_energyReq_2.addWidget(self.label_9)
-        self.energyReq = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.energyReq.setObjectName("energyReq")
-        self.L_energyReq_2.addWidget(self.energyReq)
+        self.CM_energyReq = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.CM_energyReq.setObjectName("CM_energyReq")
+        self.L_energyReq_2.addWidget(self.CM_energyReq)
         self.data03.addLayout(self.L_energyReq_2)
         self.data03.setStretch(0, 2)
         self.data03.setStretch(1, 1)
@@ -196,9 +196,9 @@ class Ui_MainWindow(object):
         self.label_11.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11.setObjectName("label_11")
         self.L_displayName_3.addWidget(self.label_11)
-        self.range = QtWidgets.QSpinBox(self.verticalLayoutWidget)
-        self.range.setObjectName("range")
-        self.L_displayName_3.addWidget(self.range)
+        self.CM_range = QtWidgets.QSpinBox(self.verticalLayoutWidget)
+        self.CM_range.setObjectName("CM_range")
+        self.L_displayName_3.addWidget(self.CM_range)
         self.data04.addLayout(self.L_displayName_3)
         self.data04.setStretch(0, 1)
         self.verticalLayout_2.addLayout(self.data04)
@@ -212,14 +212,14 @@ class Ui_MainWindow(object):
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.L_price_3.addWidget(self.label_5)
-        self.description = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.description.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.CM_description = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.CM_description.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "padding:5px;\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.description.setObjectName("description")
-        self.L_price_3.addWidget(self.description)
+        self.CM_description.setObjectName("CM_description")
+        self.L_price_3.addWidget(self.CM_description)
         self.L_price_3.setStretch(0, 1)
         self.L_price_3.setStretch(1, 4)
         self.data02.addLayout(self.L_price_3)
@@ -235,14 +235,14 @@ class Ui_MainWindow(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.L_price.addWidget(self.label_4)
-        self.story0 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.story0.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.CM_story0 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.CM_story0.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "padding:5px;\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.story0.setObjectName("story0")
-        self.L_price.addWidget(self.story0)
+        self.CM_story0.setObjectName("CM_story0")
+        self.L_price.addWidget(self.CM_story0)
         self.L_price.setStretch(0, 1)
         self.L_price.setStretch(1, 4)
         self.data01.addLayout(self.L_price)
@@ -285,10 +285,10 @@ class Ui_MainWindow(object):
 "")
         self.label_2.setObjectName("label_2")
         self.cardMakeTap_code.addWidget(self.label_2)
-        self.codeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
-        self.codeSource.setStyleSheet("")
-        self.codeSource.setObjectName("codeSource")
-        self.cardMakeTap_code.addWidget(self.codeSource)
+        self.CM_codeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
+        self.CM_codeSource.setStyleSheet("")
+        self.CM_codeSource.setObjectName("CM_codeSource")
+        self.cardMakeTap_code.addWidget(self.CM_codeSource)
         self.textEdit.addLayout(self.cardMakeTap_code)
         self.cardMakeTap_remap = QtWidgets.QVBoxLayout()
         self.cardMakeTap_remap.setObjectName("cardMakeTap_remap")
@@ -300,10 +300,10 @@ class Ui_MainWindow(object):
 "")
         self.label_8.setObjectName("label_8")
         self.cardMakeTap_remap.addWidget(self.label_8)
-        self.remapCodeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
-        self.remapCodeSource.setStyleSheet("")
-        self.remapCodeSource.setObjectName("remapCodeSource")
-        self.cardMakeTap_remap.addWidget(self.remapCodeSource)
+        self.CM_remapCodeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
+        self.CM_remapCodeSource.setStyleSheet("")
+        self.CM_remapCodeSource.setObjectName("CM_remapCodeSource")
+        self.cardMakeTap_remap.addWidget(self.CM_remapCodeSource)
         self.textEdit.addLayout(self.cardMakeTap_remap)
         self.CM_contenter.addLayout(self.textEdit)
         self.CM_main.addLayout(self.CM_contenter)
@@ -435,13 +435,13 @@ class Ui_MainWindow(object):
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("MainWindow", "Tab 2"))
         self.title_2.setText(_translate("MainWindow", "添加新卡片"))
         self.label_2.setText(_translate("MainWindow", "Code代码"))
-        self.codeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.CM_codeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.label_8.setText(_translate("MainWindow", "Remap Code代码"))
-        self.remapCodeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.CM_remapCodeSource.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"

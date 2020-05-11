@@ -12,7 +12,7 @@
 class Card(object):
     def __init__(self,
                  # id、名字、价格、能量需求
-                 id,displayName="无名",price=0,energyReq=0,
+                 id=0,displayName="无名",price=0,energyReq=0,
                  # 使用半径、扩散半径、扩散作用位置图片(RangeShapeTexture/XXX.png)
                  range=0,spreadRadius="",spreadShapeTextureId="",
                  # 瞄准类型、使用目标类型（影响AI）

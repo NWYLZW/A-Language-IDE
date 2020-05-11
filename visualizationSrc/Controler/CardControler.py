@@ -43,14 +43,14 @@ def useVBA(xlApp, filePath, VBA):
 current_path = os.path.abspath(__file__)
 DatabaseXlsPath = (os.path.dirname(current_path)) + '/' + '../../Database/Database.xls'
 
-def insertCard():
+def insertCard(c):
     filePath = DatabaseXlsPath
-    c = Card(
-        id=10001, displayName="转运咒语", price=100, energyReq=0,
-        range=0,
-        description="传送至灰雾之上1个回合",
-        code="LoadLevel:get_currentLevelId:;\nLog:get_currentLevelId:;",
-        story0="“福生玄黄仙尊。”\n“福生玄黄天君。”\n“福生玄黄上帝。”\n“福生玄黄天尊。”")
+    # c = Card(
+    #     id=10001, displayName="转运咒语", price=100, energyReq=0,
+    #     range=0,
+    #     description="传送至灰雾之上1个回合",
+    #     code="LoadLevel:get_currentLevelId:;\nLog:get_currentLevelId:;",
+    #     story0="“福生玄黄仙尊。”\n“福生玄黄天君。”\n“福生玄黄上帝。”\n“福生玄黄天尊。”")
     def __insertCard(sht):
         preCell = None
         for i in range(1,sht.usedrange.rows.count):
