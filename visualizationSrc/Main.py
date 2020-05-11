@@ -16,7 +16,7 @@ def mainWindowStart():
     APP = QApplication(sys.argv)
     mainWindow = QMainWindow()
     # 防止触发gc机制
-    ui = UI.inity(mainWindow)
+    ui = UI.init(APP,mainWindow)
     mainWindow.show()
 
     sys._excepthook = sys.excepthook
