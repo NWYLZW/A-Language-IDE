@@ -9,3 +9,11 @@
 在项目文件夹shift+右键选择powershell输入下面的指令
 python .\start.py
 ```
+
+# Build
+
+```shell script
+# pyinstaller -F start.py --noupx
+# pyinstaller start.py -w -F --icon="AL-IDE.ico" --noupx
+pyinstaller start.spec
+```

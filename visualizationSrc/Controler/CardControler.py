@@ -8,13 +8,10 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-import os
 import win32com
 from win32com.client import Dispatch
 
 # 进程可见，False是它后台
-from visualizationSrc.Bean.CardBean import Card
-
 Visible = False
 
 def excel_open(filePath, sheetName, fun, VBA=""):
@@ -40,8 +37,9 @@ def useVBA(xlApp, filePath, VBA):
     xlBook.Application.Run(VBA)
     xlBook.Close(True)
 
-current_path = os.path.abspath(__file__)
-DatabaseXlsPath = (os.path.dirname(current_path)) + '/' + '../../Database/Database.xls'
+from ..Util.frozenDir import appPath
+temp = appPath()
+DatabaseXlsPath = temp[0] + (lambda : "" if temp[1] else "../../../")()+'Database/Database.xls'
 
 def insertCard(c):
     filePath = DatabaseXlsPath
