@@ -20,7 +20,6 @@ def initFont(editor):
     editor.setFont(font)
     editor.setTabStopWidth(16)
 def init(APP:QApplication,mainWindow:QMainWindow):
-    from .Util.CompleterUtil import Completer
     from .qtUI.mainInterFace import Ui_MainWindow
     UI = Ui_MainWindow()
     UI.setupUi(mainWindow)
@@ -35,7 +34,6 @@ def init(APP:QApplication,mainWindow:QMainWindow):
                 sleep(0.1);mainWindow.close()
         UI.close_window.mousePressEvent = close_windowClick
     initToolBar()
-    UI.completer = Completer()
 
     from .Controler.ContentTabListControler import ContentTabList
     UI.ContentTabList_C = ContentTabList(UI,mainWindow)

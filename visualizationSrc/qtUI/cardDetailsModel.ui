@@ -428,7 +428,7 @@ padding:10px;
 border-radius:20px;</string>
           </property>
           <property name="text">
-           <string>清空</string>
+           <string>印卡</string>
           </property>
          </widget>
         </item>

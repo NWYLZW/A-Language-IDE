@@ -1,11 +1,9 @@
 ﻿id,displayName,price,energyReq,range,spreadRadius,spreadShapeTextureId,aimTypeCode,perferredTargetTypeCode,tagCode,description,code,remapCode,backgroundId,effectCode,minUnlockGrade,story,characterModelSkinId,//comment,//,//story,10002,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10001,转运咒语,100,0,0,,,,,,传送至灰雾之上1个回合,"LoadLevel:get_currentLevelId:;
-Log:get_currentLevelId:;",,1,Sound:Shoot,1,"“福生玄黄仙尊。”
+10001,转运咒语01,99,0,0,,,,,,传送至灰雾之上1个回合,,,1,Sound:Shoot,1,"“福生玄黄仙尊。”
 “福生玄黄天君。”
 “福生玄黄上帝。”
 “福生玄黄天尊。”",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10002,转运咒语,100,0,0,,,,,,传送至灰雾之上1个回合,"LoadLevel:get_currentLevelId:;
-Log:get_currentLevelId:;",,1,Sound:Shoot,1,"“福生玄黄仙尊。”
+10002,转运咒语02,99,0,0,,,,,,传送至灰雾之上1个回合,,,1,Sound:Shoot,1,"“福生玄黄仙尊。”
 “福生玄黄天君。”
 “福生玄黄上帝。”
 “福生玄黄天尊。”",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
