@@ -21,7 +21,7 @@ def initFont(editor):
     editor.setTabStopWidth(16)
 def init(APP:QApplication,mainWindow:QMainWindow):
     from .Util.CompleterUtil import Completer
-    from .qtUI.addCard import Ui_MainWindow
+    from .qtUI.mainInterFace import Ui_MainWindow
     UI = Ui_MainWindow()
     UI.setupUi(mainWindow)
 

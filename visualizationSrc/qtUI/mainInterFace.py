@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'qtUI/addCard.ui'
+# Form implementation generated from reading ui file 'qtUI/mainInterFace.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -120,8 +120,68 @@ class Ui_MainWindow(object):
         self.ContentTabList.addTab(self.HomeTab, "")
         self.CardMakeTab = QtWidgets.QWidget()
         self.CardMakeTab.setObjectName("CardMakeTab")
-        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.CardMakeTab)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1151, 642))
+        self.CMT_Tab = QtWidgets.QTabWidget(self.CardMakeTab)
+        self.CMT_Tab.setGeometry(QtCore.QRect(0, 0, 1151, 651))
+        self.CMT_Tab.setTabPosition(QtWidgets.QTabWidget.West)
+        self.CMT_Tab.setTabShape(QtWidgets.QTabWidget.Rounded)
+        self.CMT_Tab.setElideMode(QtCore.Qt.ElideNone)
+        self.CMT_Tab.setUsesScrollButtons(True)
+        self.CMT_Tab.setDocumentMode(True)
+        self.CMT_Tab.setTabsClosable(True)
+        self.CMT_Tab.setMovable(True)
+        self.CMT_Tab.setTabBarAutoHide(False)
+        self.CMT_Tab.setObjectName("CMT_Tab")
+        self.CMT_CardList = QtWidgets.QWidget()
+        self.CMT_CardList.setObjectName("CMT_CardList")
+        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.CMT_CardList)
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 301, 51))
+        self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
+        self.CMT_C_Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
+        self.CMT_C_Search.setContentsMargins(0, 0, 0, 0)
+        self.CMT_C_Search.setObjectName("CMT_C_Search")
+        self.label = QtWidgets.QLabel(self.horizontalLayoutWidget_3)
+        self.label.setObjectName("label")
+        self.CMT_C_Search.addWidget(self.label)
+        self.CMT_C_Search_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
+        self.CMT_C_Search_Input.setStyleSheet("margin:10px;")
+        self.CMT_C_Search_Input.setObjectName("CMT_C_Search_Input")
+        self.CMT_C_Search.addWidget(self.CMT_C_Search_Input)
+        self.CMT_C_cardScroll = QtWidgets.QScrollArea(self.CMT_CardList)
+        self.CMT_C_cardScroll.setGeometry(QtCore.QRect(10, 70, 1111, 571))
+        self.CMT_C_cardScroll.setWidgetResizable(True)
+        self.CMT_C_cardScroll.setObjectName("CMT_C_cardScroll")
+        self.CMT_C_cardScrollWidget = QtWidgets.QWidget()
+        self.CMT_C_cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1109, 569))
+        self.CMT_C_cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.CMT_C_cardScrollWidget.setObjectName("CMT_C_cardScrollWidget")
+        self.CMT_C_cardScroll.setWidget(self.CMT_C_cardScrollWidget)
+        self.horizontalLayoutWidget_4 = QtWidgets.QWidget(self.CMT_CardList)
+        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(310, 10, 136, 51))
+        self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
+        self.CMT_C_btnList = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
+        self.CMT_C_btnList.setContentsMargins(5, 5, 5, 5)
+        self.CMT_C_btnList.setObjectName("CMT_C_btnList")
+        self.pushButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
+        self.pushButton.setStyleSheet("background: #2866bd;\n"
+"color: #fff;\n"
+"padding: 6px;\n"
+"border: none;\n"
+"border-radius: 8px;")
+        self.pushButton.setObjectName("pushButton")
+        self.CMT_C_btnList.addWidget(self.pushButton)
+        self.pushButton_2 = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
+        self.pushButton_2.setStyleSheet("background: #2866bd;\n"
+"color: #fff;\n"
+"padding: 6px;\n"
+"border: none;\n"
+"border-radius: 8px;")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.CMT_C_btnList.addWidget(self.pushButton_2)
+        self.CMT_Tab.addTab(self.CMT_CardList, "")
+        self.CMT_CardDetails_Model = QtWidgets.QWidget()
+        self.CMT_CardDetails_Model.setObjectName("CMT_CardDetails_Model")
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.CMT_CardDetails_Model)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.CM_addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.CM_addNewCard.setContentsMargins(0, 0, 0, 0)
@@ -143,7 +203,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setMaximumSize(QtCore.QSize(359, 599))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 361, 601))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 341, 601))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
@@ -343,6 +403,7 @@ class Ui_MainWindow(object):
         self.CM_addNewCard.addLayout(self.CM_main)
         self.CM_addNewCard.setStretch(0, 1)
         self.CM_addNewCard.setStretch(1, 2)
+        self.CMT_Tab.addTab(self.CMT_CardDetails_Model, "")
         self.ContentTabList.addTab(self.CardMakeTab, "")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.Main)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1201, 31))
@@ -399,7 +460,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.Main)
 
         self.retranslateUi(MainWindow)
-        self.ContentTabList.setCurrentIndex(0)
+        self.ContentTabList.setCurrentIndex(1)
+        self.CMT_Tab.setCurrentIndex(0)
         self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -415,7 +477,7 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">卡牌制作</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">卡牌管理</span></p></body></html>"))
         self.PeopleMake.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -423,8 +485,12 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">人物制作</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">人物管理</span></p></body></html>"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
+        self.label.setText(_translate("MainWindow", "搜索"))
+        self.pushButton.setText(_translate("MainWindow", "制作新卡"))
+        self.pushButton_2.setText(_translate("MainWindow", "删除已选"))
+        self.CMT_Tab.setTabText(self.CMT_Tab.indexOf(self.CMT_CardList), _translate("MainWindow", "Tab 1"))
         self.label_6.setText(_translate("MainWindow", "卡片名"))
         self.label_7.setText(_translate("MainWindow", "花费"))
         self.label_9.setText(_translate("MainWindow", "消耗能量"))
@@ -448,6 +514,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.CM_clearCardMakeData.setText(_translate("MainWindow", "清空"))
         self.CM_addCard.setText(_translate("MainWindow", "添加"))
+        self.CMT_Tab.setTabText(self.CMT_Tab.indexOf(self.CMT_CardDetails_Model), _translate("MainWindow", "Tab 2"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.CardMakeTab), _translate("MainWindow", "Tab 2"))
         self.EXETitle.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

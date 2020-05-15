@@ -9,7 +9,7 @@
 @Desciption     :   
 '''
 from PyQt5.QtWidgets import QMainWindow
-from ..qtUI.addCard import Ui_MainWindow
+from ..qtUI.mainInterFace import Ui_MainWindow
 
 class ContentTabList():
     def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):

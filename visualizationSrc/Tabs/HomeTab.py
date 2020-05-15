@@ -9,7 +9,7 @@
 @Desciption     :   主页
 '''
 from PyQt5.QtWidgets import QMainWindow
-from ..qtUI.addCard import Ui_MainWindow
+from ..qtUI.mainInterFace import Ui_MainWindow
 
 class Home:
     def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):

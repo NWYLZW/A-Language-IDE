@@ -18,15 +18,13 @@ class Card(object):
                  # 瞄准类型、使用目标类型（影响AI）
                  aimTypeCode="",perferredTargetTypeCode="",
                  # 标签、卡面简介、卡牌故事
-                 tagCode="",description="",story0="",
+                 tagCode="",description="",story="",
                  # 执行代码、remap代码
                  code="",remapCode="",
                  # 卡牌背景图、使用时特效代码、实体皮肤ID
                  backgroundId=1,effectCode="Sound:Shoot",characterModelSkinId="",
                  # 最小解锁分数(卡牌解锁限制)
-                 minUnlockGrade=1,
-                 # 职业类型
-                 professionalTypes=""):
+                 minUnlockGrade=1):
         self.id = id
         self.displayName = displayName
         self.price = price
@@ -43,9 +41,8 @@ class Card(object):
         self.backgroundId = backgroundId
         self.effectCode = effectCode
         self.minUnlockGrade = minUnlockGrade
-        self.story0 = story0
+        self.story = story
         self.characterModelSkinId = characterModelSkinId
-        self.professionalTypes = professionalTypes
     def toTuple(self) -> tuple:
         return (
             self.id,
@@ -64,7 +61,27 @@ class Card(object):
             self.backgroundId,
             self.effectCode,
             self.minUnlockGrade,
-            self.story0,
+            self.story,
             self.characterModelSkinId,
-            self.professionalTypes,
         )
+    def toDict(self) -> dict:
+        return {
+            "id":self.id,
+            "displayName":self.displayName,
+            "price":self.price,
+            "energyReq":self.energyReq,
+            "range":self.range,
+            "spreadRadius":self.spreadRadius,
+            "spreadShapeTextureId":self.spreadShapeTextureId,
+            "aimTypeCode":self.aimTypeCode,
+            "perferredTargetTypeCode":self.perferredTargetTypeCode,
+            "tagCode":self.tagCode,
+            "description":self.description,
+            "code":self.code,
+            "remapCode":self.remapCode,
+            "backgroundId":self.backgroundId,
+            "effectCode":self.effectCode,
+            "minUnlockGrade":self.minUnlockGrade,
+            "story":self.story,
+            "characterModelSkinId":self.characterModelSkinId,
+        }
