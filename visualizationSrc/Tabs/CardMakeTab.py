@@ -240,7 +240,7 @@ class cardDetail_C:
             import os
             from ..Util.frozenDir import appPath
             temp = appPath()
-            proHome = temp[0] + (lambda : "" if temp[1] else "../../../")()
+            proHome = temp[0] + (lambda : "/" if temp[1] else "../../../")()
             with open(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject\message.txt','w',encoding='utf-8') as f1:
                 f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(proHome+"Database/Database.xls")+";")
 
