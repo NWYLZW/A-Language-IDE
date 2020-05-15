@@ -122,6 +122,7 @@ class Ui_MainWindow(object):
         self.CardMakeTab.setObjectName("CardMakeTab")
         self.CMT_Tab = QtWidgets.QTabWidget(self.CardMakeTab)
         self.CMT_Tab.setGeometry(QtCore.QRect(0, 0, 1151, 651))
+        self.CMT_Tab.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.CMT_Tab.setTabPosition(QtWidgets.QTabWidget.West)
         self.CMT_Tab.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.CMT_Tab.setElideMode(QtCore.Qt.ElideNone)
@@ -179,6 +180,7 @@ class Ui_MainWindow(object):
         self.CMT_C_btnList.addWidget(self.pushButton_2)
         self.CMT_Tab.addTab(self.CMT_CardList, "")
         self.CMT_CardDetails_Model = QtWidgets.QWidget()
+        self.CMT_CardDetails_Model.setMaximumSize(QtCore.QSize(1127, 651))
         self.CMT_CardDetails_Model.setObjectName("CMT_CardDetails_Model")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.CMT_CardDetails_Model)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
@@ -461,7 +463,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.ContentTabList.setCurrentIndex(1)
-        self.CMT_Tab.setCurrentIndex(0)
+        self.CMT_Tab.setCurrentIndex(1)
         self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

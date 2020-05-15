@@ -258,6 +258,12 @@ p, li { white-space: pre-wrap; }
         <height>651</height>
        </rect>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::West</enum>
       </property>
@@ -265,7 +271,7 @@ p, li { white-space: pre-wrap; }
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -401,6 +407,12 @@ border-radius: 8px;</string>
        </widget>
       </widget>
       <widget class="QWidget" name="CMT_CardDetails_Model">
+       <property name="maximumSize">
+        <size>
+         <width>1127</width>
+         <height>651</height>
+        </size>
+       </property>
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>

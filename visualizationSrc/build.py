@@ -26,3 +26,4 @@ if __name__ == '__main__':
 
     buildUiFile("mainInterFace")
     buildUiFile("cardItemModel")
+    buildUiFile("cardDetailsModel")
