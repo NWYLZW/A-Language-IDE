@@ -33,6 +33,7 @@ class CardMake:
 
         self.initTab()
         self.initCardListTab()
+        self.initClick()
     def refreshCardList(self,cardList):
         UI = self.UI
         cardScroll =UI.CMT_C_cardScroll
@@ -51,29 +52,45 @@ class CardMake:
             edit = cardItemEle.findChild(QPushButton,"cardItemModel_edit")
             def editCard(index):
                 def __editCard():
-                    self.__editCard(cardList[index]['id'])
+                    self.toCardDetailTab(cardList[index]['id'])
                 return __editCard
             edit.clicked.connect(editCard(index))
 
             tempHL.addWidget(cardItemEle)
         cardScroll.setWidget(tempWidget)
-    def initCardListTab(self):
-        self.refreshCardList(self.cardControler.getCardList())
     def initTab(self):
         self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
         self.Tab.setTabText(0,"卡牌列表")
         for i in range(1,self.Tab.count()):
             self.Tab.removeTab(i)
+    def initCardListTab(self):
+        self.refreshCardList(self.cardControler.getCardList())
+    def initClick(self):
+        makeNewCardBtn =self.UI.makeNewCard
+        def makeNewCard():
+            self.toCardDetailTab("newCard")
+        makeNewCardBtn.clicked.connect(makeNewCard)
 
-    def __editCard(self,cardId):
+    def removeNewCardTab(self):
+        currentQWidget = self.newCardEditTabDict['tab']
+        currentQWidget.deleteLater()
+        self.Tab.removeTab(self.newCardEditTabDict['index'])
+        self.cardEditTabList.remove(self.newCardEditTabDict)
+        self.newCardEditTabDict = None
+        return
+    def toCardDetailTab(self, cardId):
         for cardEditTabItem in self.cardEditTabList:
             if cardEditTabItem["id"]==cardId:
                 self.Tab \
                     .addTab(cardEditTabItem["tab"], cardEditTabItem['displayName']+'('+cardEditTabItem['id']+')')
                 self.Tab.setCurrentWidget(cardEditTabItem["tab"])
                 return
-
-        card = self.cardControler.getCardById(cardId)
+        if cardId != "newCard":
+            card = self.cardControler.getCardById(cardId)
+        else:
+            card = {
+                "id":"newCard",
+                "displayName":"无名",}
         cardEditTabEle = QWidget()
         uiForm = cardDetailsModel.Ui_Form()
         uiForm.setupUi(cardEditTabEle)
@@ -96,6 +113,8 @@ class CardMake:
         cardEditTabDict['index'] = self.Tab\
             .addTab(cardEditTabEle,card['displayName']+'('+card['id']+')')
         self.Tab.setCurrentWidget(cardEditTabEle)
+        if cardId == "newCard":
+            self.newCardEditTabDict = cardEditTabDict
         cardEditTabDict['cardDetail_C'] = cardDetail_C(
             card=card,
             cardDetailsModel_UI=uiForm,
@@ -116,10 +135,9 @@ class cardDetail_C:
         self.initTextEditor()
         self.initSettingTab()
         self.initClick()
-        pass
     def initUI(self):
         card = self.card
-        if card != None:
+        if card["id"] != "newCard":
             self.cardId = card.get('id','')
             self.UI.CM_addCard.setText("修改")
             self.UI.CM_displayName.setText(card['displayName'])
@@ -165,20 +183,25 @@ class cardDetail_C:
         UI = self.UI
         mainWindow = self.mainWindow
         def __insertCard():
-            if self.card == None:
-                if self.cardControler.addCard(**Card(
+            if UI.CM_displayName.text() == "":
+                UI.CM_displayName.setText("无名")
+            if self.card["id"] == "newCard":
+                newCardId = self.cardControler.addCard(**Card(
                     displayName=UI.CM_displayName.text(), price=UI.CM_price.text(), energyReq=UI.CM_energyReq.text(),
                     range=UI.CM_range.text(),
                     description=UI.CM_description.toPlainText(),
                     story=UI.CM_story0.toPlainText(),
                     code=UI.CM_codeSource.toPlainText(),
                     remapCode=UI.CM_remapCodeSource.toPlainText()
-                ).toDict()):
+                ).toDict())
+                if newCardId!=-1:
                     QMessageBox.information(
                         mainWindow,
                         '成功', '添加成功',
                         QMessageBox.Yes)
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
+                    self.cardMake.removeNewCardTab()
+                    self.cardMake.toCardDetailTab(newCardId)
                 else:
                     QMessageBox.ctitical(
                         mainWindow,

@@ -88,7 +88,7 @@ class CardControler:
         try:
             mID = self.__cardList[len(self.__cardList) - 1].get('id', '10000')
             cardDict.update({
-                'id': int(mID) + 1,
+                'id': str(int(mID) + 1),
                 'displayName':
                     cardDict.get("displayName","无名"),
                 'price':
@@ -126,9 +126,9 @@ class CardControler:
             })
             self.__cardList.append(cardDict)
             self.refreshFile()
-            return int(mID)+1,True
+            return int(mID)+1
         except:
-            return -1,False
+            return -1
     def updataCard(self,**cardDict):
         mcardDict = self.getCardById(cardDict.get('id',None))
         if mcardDict == None: return False
@@ -177,7 +177,7 @@ class CardControler:
     def getCardIndexById(self,cardId) -> int:
         if cardId == None: return -1
         for index in range(len(self.__cardList)):
-            if self.__cardList[index]['id'] == cardId:
+            if str(self.__cardList[index]['id']) == str(cardId):
                 return index
         return -1
     def delCardById(self,cardId):

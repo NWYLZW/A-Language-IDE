@@ -162,14 +162,15 @@ class Ui_MainWindow(object):
         self.CMT_C_btnList = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
         self.CMT_C_btnList.setContentsMargins(5, 5, 5, 5)
         self.CMT_C_btnList.setObjectName("CMT_C_btnList")
-        self.pushButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.pushButton.setStyleSheet("background: #2866bd;\n"
+        self.makeNewCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
+        self.makeNewCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.makeNewCard.setStyleSheet("background: #2866bd;\n"
 "color: #fff;\n"
 "padding: 6px;\n"
 "border: none;\n"
 "border-radius: 8px;")
-        self.pushButton.setObjectName("pushButton")
-        self.CMT_C_btnList.addWidget(self.pushButton)
+        self.makeNewCard.setObjectName("makeNewCard")
+        self.CMT_C_btnList.addWidget(self.makeNewCard)
         self.pushButton_2 = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
         self.pushButton_2.setStyleSheet("background: #2866bd;\n"
 "color: #fff;\n"
@@ -463,7 +464,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.ContentTabList.setCurrentIndex(1)
-        self.CMT_Tab.setCurrentIndex(1)
+        self.CMT_Tab.setCurrentIndex(0)
         self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -490,7 +491,7 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">人物管理</span></p></body></html>"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
         self.label.setText(_translate("MainWindow", "搜索"))
-        self.pushButton.setText(_translate("MainWindow", "制作新卡"))
+        self.makeNewCard.setText(_translate("MainWindow", "制作新卡"))
         self.pushButton_2.setText(_translate("MainWindow", "删除已选"))
         self.CMT_Tab.setTabText(self.CMT_Tab.indexOf(self.CMT_CardList), _translate("MainWindow", "Tab 1"))
         self.label_6.setText(_translate("MainWindow", "卡片名"))
