@@ -130,11 +130,11 @@ class cardDetail_C:
         self.mainWindow = cardMake.mainWindow
         self.cardControler = cardMake.cardControler
         self.card = card
-        self.initUI()
 
         self.settingTab = cardDetailsModel_UI.CMT_settingTab
         self.initTextEditor()
         self.initSettingTab()
+        self.initUI()
         self.initClick()
     def initUI(self):
         card = self.card
