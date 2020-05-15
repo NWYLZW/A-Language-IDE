@@ -204,21 +204,22 @@ class Ui_Form(object):
         self.CM_main.addLayout(self.CM_contenter)
         self.CM_footer = QtWidgets.QHBoxLayout()
         self.CM_footer.setObjectName("CM_footer")
-        self.CM_clearCardMakeData = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.CM_printCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        self.CM_clearCardMakeData.setFont(font)
-        self.CM_clearCardMakeData.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CM_clearCardMakeData.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.CM_printCard.setFont(font)
+        self.CM_printCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CM_printCard.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
 "\n"
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
-"border-radius:20px;")
-        self.CM_clearCardMakeData.setObjectName("CM_clearCardMakeData")
-        self.CM_footer.addWidget(self.CM_clearCardMakeData)
+"border-radius:10px;")
+        self.CM_printCard.setCheckable(False)
+        self.CM_printCard.setObjectName("CM_printCard")
+        self.CM_footer.addWidget(self.CM_printCard)
         self.CM_addCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
@@ -231,7 +232,7 @@ class Ui_Form(object):
 "margin-left:100px;\n"
 "margin-right:100px;\n"
 "padding:10px;\n"
-"border-radius:20px;")
+"border-radius:10px;")
         self.CM_addCard.setObjectName("CM_addCard")
         self.CM_footer.addWidget(self.CM_addCard)
         self.CM_main.addLayout(self.CM_footer)
@@ -267,5 +268,5 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.CM_clearCardMakeData.setText(_translate("Form", "印卡"))
+        self.CM_printCard.setText(_translate("Form", "印卡"))
         self.CM_addCard.setText(_translate("Form", "添加"))

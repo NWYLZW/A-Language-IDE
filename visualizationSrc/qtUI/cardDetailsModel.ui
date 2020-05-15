@@ -408,7 +408,7 @@ p, li { white-space: pre-wrap; }
       <item>
        <layout class="QHBoxLayout" name="CM_footer">
         <item>
-         <widget class="QPushButton" name="CM_clearCardMakeData">
+         <widget class="QPushButton" name="CM_printCard">
           <property name="font">
            <font>
             <family>Adobe 黑体 Std R</family>
@@ -425,10 +425,13 @@ background-color: rgb(50, 150, 255);
 margin-left:100px;
 margin-right:100px;
 padding:10px;
-border-radius:20px;</string>
+border-radius:10px;</string>
           </property>
           <property name="text">
            <string>印卡</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
@@ -450,7 +453,7 @@ background-color: rgb(50, 150, 255);
 margin-left:100px;
 margin-right:100px;
 padding:10px;
-border-radius:20px;</string>
+border-radius:10px;</string>
           </property>
           <property name="text">
            <string>添加</string>
