@@ -9,6 +9,7 @@
 @Desciption     :   初始化UI界面
 '''
 from PyQt5.QtWidgets import QMainWindow, QApplication
+from .config import *
 
 def initFont(editor):
     from PyQt5.QtGui import QFont
@@ -37,4 +38,5 @@ def init(APP:QApplication,mainWindow:QMainWindow):
 
     from .Controler.ContentTabListControler import ContentTabList
     UI.ContentTabList_C = ContentTabList(UI,mainWindow)
+    UI.EXETitle.setText(ExeName+' '+version)
     return UI
