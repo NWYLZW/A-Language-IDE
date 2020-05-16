@@ -11,6 +11,6 @@
 import sys, os
 if hasattr(sys, 'frozen'):
     os.environ['PATH'] = sys._MEIPASS + ";" + os.environ['PATH']
-import visualizationSrc.Main as Main
 
+import visualizationSrc.Main as Main
 Main.mainWindowStart()

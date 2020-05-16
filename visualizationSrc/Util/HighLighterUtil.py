@@ -12,6 +12,8 @@ import io
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import (QTextCharFormat, QColor, QFont, QSyntaxHighlighter)
 
+from visualizationSrc.Util.frozenDir import tempPath
+
 class HighLighter(QSyntaxHighlighter):
     """Highlighter class to provide text coloring in the query panel."""
     def __init__(self, parent=None):
@@ -36,7 +38,7 @@ class HighLighter(QSyntaxHighlighter):
         keyword_format.setForeground(Qt.darkBlue)
         keyword_format.setFontWeight(QFont.Bold)
         with io.open(
-                r'visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
+                tempPath()[0]+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
             self.plain_keywords = [k.rstrip() for k in f.readlines()]
         keyword_patterns = [
             '\\b{0}\\b'.format(plain_keyword)

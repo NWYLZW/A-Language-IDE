@@ -9,11 +9,15 @@
 @Desciption     :   
 '''
 # -*- coding: utf-8 -*-
-import sys
-import os
+import sys,os
 
 def appPath():
     """Returns the base application path."""
     if hasattr(sys, 'frozen'):
         return os.path.dirname(sys.executable),True
+    return os.path.dirname(__file__),False
+def tempPath():
+    """Returns the base application path."""
+    if hasattr(sys, 'frozen'):
+        return sys._MEIPASS,True
     return os.path.dirname(__file__),False

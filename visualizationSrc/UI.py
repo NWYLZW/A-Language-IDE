@@ -38,5 +38,5 @@ def init(APP:QApplication,mainWindow:QMainWindow):
 
     from .Controler.ContentTabListControler import ContentTabList
     UI.ContentTabList_C = ContentTabList(UI,mainWindow)
-    UI.EXETitle.setText(ExeName+' '+version)
+    UI.EXETitle.setText(ExeName +' ' + Version)
     return UI

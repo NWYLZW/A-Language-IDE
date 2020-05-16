@@ -2,11 +2,15 @@
 
 block_cipher = None
 
+# 外置文件
+addedFiles = [
+    ('./visualizationSrc/Data/','./visualizationSrc/Data/'),
+]
 
 a = Analysis(['start.py'],
-             pathex=['C:\\Users\\Superme\\Documents\\TetraProject\\Packages\\诡秘之主Mod'],
+             pathex=['./'],
              binaries=[],
-             datas=[],
+             datas=addedFiles,
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -23,11 +27,11 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='AL-IDE_1.0.1.2',
+          name='AL-IDE_1.0.2.1',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=False,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=False , icon='AL-IDE.ico')
+          console=False, icon='AL-IDE.ico')
