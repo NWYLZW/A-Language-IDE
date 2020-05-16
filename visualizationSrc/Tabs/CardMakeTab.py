@@ -239,10 +239,8 @@ class cardDetail_C:
                     QMessageBox.Yes)
             import os
             from ..Util.frozenDir import appPath
-            temp = appPath()
-            proHome = temp[0] + (lambda : "/" if temp[1] else "../../../")()
             with open(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject\message.txt','w',encoding='utf-8') as f1:
-                f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(proHome+"Database/Database.xls")+";")
+                f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"Database/Database.xls")+";")
 
             QTimer.singleShot(500, lambda: UI.CM_printCard.setStyleSheet(
                 "color: rgb(255, 255, 255);background-color: rgb(50, 150, 255);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;"))

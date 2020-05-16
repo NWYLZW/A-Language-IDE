@@ -14,10 +14,10 @@ import sys,os
 def appPath():
     """Returns the base application path."""
     if hasattr(sys, 'frozen'):
-        return os.path.dirname(sys.executable),True
-    return os.path.dirname(__file__),False
+        return os.path.dirname(sys.executable)
+    return os.getcwd()
 def tempPath():
     """Returns the base application path."""
     if hasattr(sys, 'frozen'):
-        return sys._MEIPASS,True
-    return os.path.dirname(__file__),False
+        return sys._MEIPASS
+    return os.getcwd()

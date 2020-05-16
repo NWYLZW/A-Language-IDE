@@ -70,9 +70,8 @@ import csv
 class CardControler:
     def __init__(self):
         from ..Util.frozenDir import appPath
-        temp = appPath()
-        proHome = temp[0] + (lambda : "/" if temp[1] else "../../../")()
-        self.csvFileName = proHome+"Database/Card.csv"
+        proHome = appPath()
+        self.csvFileName = proHome+"/Database/Card.csv"
         self.__cardList = []
         self.readCard()
         pass

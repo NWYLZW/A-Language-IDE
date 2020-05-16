@@ -38,7 +38,7 @@ class HighLighter(QSyntaxHighlighter):
         keyword_format.setForeground(Qt.darkBlue)
         keyword_format.setFontWeight(QFont.Bold)
         with io.open(
-                tempPath()[0]+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
+                tempPath()+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
             self.plain_keywords = [k.rstrip() for k in f.readlines()]
         keyword_patterns = [
             '\\b{0}\\b'.format(plain_keyword)
