@@ -62,7 +62,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="HomeTab">
      <property name="toolTip">
@@ -300,7 +300,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>301</width>
+          <width>371</width>
           <height>51</height>
          </rect>
         </property>
@@ -318,7 +318,8 @@ p, li { white-space: pre-wrap; }
          <item>
           <widget class="QLineEdit" name="CMT_C_Search_Input">
            <property name="styleSheet">
-            <string notr="true">margin:10px;</string>
+            <string notr="true">margin: 5px;
+padding: 5px;</string>
            </property>
           </widget>
          </item>
@@ -356,24 +357,27 @@ p, li { white-space: pre-wrap; }
        <widget class="QWidget" name="horizontalLayoutWidget_4">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>380</x>
           <y>10</y>
-          <width>136</width>
+          <width>561</width>
           <height>51</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="CMT_C_btnList">
+        <layout class="QHBoxLayout" name="CMT_C_btnList" stretch="2,2,3">
+         <property name="spacing">
+          <number>5</number>
+         </property>
          <property name="leftMargin">
           <number>5</number>
          </property>
          <property name="topMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <property name="rightMargin">
           <number>5</number>
          </property>
          <property name="bottomMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <item>
           <widget class="QPushButton" name="makeNewCard">
@@ -383,7 +387,7 @@ p, li { white-space: pre-wrap; }
            <property name="styleSheet">
             <string notr="true">background: #2866bd;
 color: #fff;
-padding: 6px;
+padding: 10px;
 border: none;
 border-radius: 8px;</string>
            </property>
@@ -393,16 +397,36 @@ border-radius: 8px;</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="delSelCard">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="styleSheet">
             <string notr="true">background: #2866bd;
 color: #fff;
-padding: 6px;
+padding: 10px;
 border: none;
 border-radius: 8px;</string>
            </property>
            <property name="text">
             <string>删除已选</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="cursor">
+            <cursorShape>ForbiddenCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background: #2866bd;
+color: #fff;
+padding: 10px;
+border: none;
+border-radius: 8px;</string>
+           </property>
+           <property name="text">
+            <string>导出信息至Excel</string>
            </property>
           </widget>
          </item>
@@ -448,6 +472,9 @@ border-radius: 8px;</string>
            <width>16777215</width>
            <height>24</height>
           </size>
+         </property>
+         <property name="cursor" stdset="0">
+          <cursorShape>SizeAllCursor</cursorShape>
          </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>

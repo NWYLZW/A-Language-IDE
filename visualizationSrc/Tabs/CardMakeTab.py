@@ -35,6 +35,7 @@ class CardMake:
         self.initTab()
         self.initCardListTab()
         self.initClick()
+        self.initTabClose()
     def refreshCardList(self,cardList):
         UI = self.UI
         cardScroll =UI.CMT_C_cardScroll
@@ -71,6 +72,17 @@ class CardMake:
         def makeNewCard():
             self.toCardDetailTab("newCard")
         makeNewCardBtn.clicked.connect(makeNewCard)
+    def initTabClose(self):
+        def __closeTab(currentIndex):
+            currentQWidget = self.Tab.widget(currentIndex)
+            if currentQWidget == None: return
+            currentQWidget.deleteLater()
+            self.Tab.removeTab(currentIndex)
+            for cardEditTabDict in self.cardEditTabList:
+                if cardEditTabDict['index'] == currentIndex:
+                    self.cardEditTabList.remove(cardEditTabDict)
+                    break
+        self.Tab.tabCloseRequested.connect(__closeTab)
 
     def removeNewCardTab(self):
         currentQWidget = self.newCardEditTabDict['tab']
@@ -101,16 +113,6 @@ class CardMake:
             "displayName":card['displayName'],
         }
         self.cardEditTabList.append(cardEditTabDict)
-        def __closeTab(currentIndex):
-            currentQWidget = self.Tab.widget(currentIndex)
-            if currentQWidget == None: return
-            currentQWidget.deleteLater()
-            self.Tab.removeTab(currentIndex)
-            for cardEditTabDict in self.cardEditTabList:
-                if cardEditTabDict['index'] == currentIndex:
-                    self.cardEditTabList.remove(cardEditTabDict)
-                    return
-        self.Tab.tabCloseRequested.connect(__closeTab)
         cardEditTabDict['index'] = self.Tab\
             .addTab(cardEditTabEle,card['displayName']+'('+card['id']+')')
         self.Tab.setCurrentWidget(cardEditTabEle)
