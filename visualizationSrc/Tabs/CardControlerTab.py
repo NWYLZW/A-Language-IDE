@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File           :   CardMakeTab.py
+@File           :   CardControlerTab.py
 @License        :   (C)Copyright 2020
 @Modify Time    :   2020/5/12 4:06
 @Author         :   Superme
@@ -9,8 +9,7 @@
 @Desciption     :   卡牌制作界面
 '''
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QLabel, QWidget, QVBoxLayout, QTextBrowser, \
-    QPushButton, QCompleter
+from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QWidget, QVBoxLayout, QCompleter
 
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
@@ -22,7 +21,7 @@ class CardDetails_Model:
     def __init__(self):
         pass
 
-class CardMake:
+class CardControlerTab:
     def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
         self.mainWindow = mainWindow

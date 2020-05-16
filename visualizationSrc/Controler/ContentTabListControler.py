@@ -14,9 +14,9 @@ from ..qtUI.mainInterFace import Ui_MainWindow
 class ContentTabList():
     def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
-        from ..Tabs.CardMakeTab import CardMake
+        from ..Tabs.CardControlerTab import CardControlerTab
         from ..Tabs.HomeTab import Home
-        self.CardMake_C = CardMake(UI,mainWindow)
+        self.CardControlerTab_C = CardControlerTab(UI, mainWindow)
         self.Home_C = Home(UI,mainWindow)
         for i in range(1,UI.ContentTabList.count()):
             UI.ContentTabList.removeTab(i)
