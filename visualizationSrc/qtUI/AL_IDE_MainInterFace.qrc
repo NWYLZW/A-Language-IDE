@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="picture">
+    <file>../Data/qrc/cardPkg.png</file>
+    <file>../Data/qrc/command.png</file>
     <file>../Data/qrc/Card.png</file>
   </qresource>
   <qresource prefix="ico">

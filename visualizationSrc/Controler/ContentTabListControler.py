@@ -24,11 +24,11 @@ class ContentTabList():
     def initTabName(self):
         self.UI.ContentTabList.setTabText(0, "主页")
     def showTab(self,TabName):
-        TabNameList = ['CardMake']
+        TabNameList = ['CardControler']
         if not TabName in TabNameList: return
         TabNameHash = {
-            'CardMake':{
-                'CN':"卡牌制作",
+            'CardControler':{
+                'CN':"卡牌管理",
                 'tab':self.UI.CardMakeTab,
                 'isShow':False
             },

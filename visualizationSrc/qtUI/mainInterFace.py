@@ -87,26 +87,26 @@ class Ui_MainWindow(object):
 "border-radius:10px;")
         self.graphicsView_4.setObjectName("graphicsView_4")
         self.gridLayout.addWidget(self.graphicsView_4, 1, 0, 1, 1)
-        self.CardMakeCard = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.CardMakeCard.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CardMakeCard.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
+        self.CardControler = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.CardControler.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CardControler.setStyleSheet("background-image: url(:/picture/Data/qrc/cardPkg.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: bottom;\n"
 "\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.CardMakeCard.setObjectName("CardMakeCard")
-        self.gridLayout.addWidget(self.CardMakeCard, 0, 0, 1, 1)
-        self.PeopleMake = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.PeopleMake.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.PeopleMake.setStyleSheet("background-image: url(:/picture/Data/qrc/Card.png);\n"
+        self.CardControler.setObjectName("CardControler")
+        self.gridLayout.addWidget(self.CardControler, 0, 0, 1, 1)
+        self.CommandList = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.CommandList.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CommandList.setStyleSheet("background-image: url(:/picture/Data/qrc/command.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: bottom;\n"
 "\n"
 "border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.PeopleMake.setObjectName("PeopleMake")
-        self.gridLayout.addWidget(self.PeopleMake, 0, 1, 1, 1)
+        self.CommandList.setObjectName("CommandList")
+        self.gridLayout.addWidget(self.CommandList, 0, 1, 1, 1)
         self.gridLayout.setColumnMinimumWidth(0, 1)
         self.gridLayout.setColumnMinimumWidth(1, 1)
         self.gridLayout.setColumnMinimumWidth(2, 1)
@@ -256,7 +256,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.Main)
 
         self.retranslateUi(MainWindow)
-        self.ContentTabList.setCurrentIndex(1)
+        self.ContentTabList.setCurrentIndex(0)
         self.CMT_Tab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -265,7 +265,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "AL-IDE"))
         self.HomeTab.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
-        self.CardMakeCard.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.CardControler.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
@@ -273,14 +273,14 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">卡牌管理</span></p></body></html>"))
-        self.PeopleMake.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.CommandList.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">人物管理</span></p></body></html>"))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">指令列表</span></p></body></html>"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
         self.label.setText(_translate("MainWindow", "搜索"))
         self.makeNewCard.setText(_translate("MainWindow", "制作新卡"))

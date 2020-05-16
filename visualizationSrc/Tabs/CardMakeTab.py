@@ -72,6 +72,8 @@ class CardMake:
         def makeNewCard():
             self.toCardDetailTab("newCard")
         makeNewCardBtn.clicked.connect(makeNewCard)
+        Search_Input =self.UI.CMT_C_Search_Input
+        # Search_Input.returnPressed.connect()
     def initTabClose(self):
         def __closeTab(currentIndex):
             currentQWidget = self.Tab.widget(currentIndex)

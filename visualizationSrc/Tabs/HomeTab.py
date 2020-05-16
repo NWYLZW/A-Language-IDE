@@ -17,8 +17,8 @@ class Home:
         self.initCardItemClick()
     def initCardItemClick(self):
         UI = self.UI
-        def CardMakeCardClick(event):
+        def CardControlerClick(event):
             from PyQt5 import QtCore
             if event.buttons() == QtCore.Qt.LeftButton:
-                UI.ContentTabList_C.showTab('CardMake')
-        UI.CardMakeCard.mousePressEvent = CardMakeCardClick
+                UI.ContentTabList_C.showTab('CardControler')
+        UI.CardControler.mousePressEvent = CardControlerClick
