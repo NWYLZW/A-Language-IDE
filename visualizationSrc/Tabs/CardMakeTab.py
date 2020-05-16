@@ -10,7 +10,7 @@
 '''
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QLabel, QWidget, QVBoxLayout, QTextBrowser, \
-    QPushButton
+    QPushButton, QCompleter
 
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
@@ -36,6 +36,46 @@ class CardMake:
         self.initCardListTab()
         self.initClick()
         self.initTabClose()
+    def initTab(self):
+        self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
+        self.Tab.setTabText(0,"卡牌列表")
+        for i in range(1,self.Tab.count()):
+            self.Tab.removeTab(i)
+    def initCardListTab(self):
+        self.refreshCardList(self.cardControler.getCardList())
+    def initClick(self):
+        makeNewCardBtn =self.UI.makeNewCard
+        def makeNewCard():
+            self.toCardDetailTab("newCard")
+        makeNewCardBtn.clicked.connect(makeNewCard)
+        Search_Input =self.UI.CMT_C_Search_Input
+        Search_Input.setPlaceholderText("搜索想查找的卡牌名(回车搜索)")
+        Search_Input\
+            .setCompleter(
+            QCompleter([card['displayName'] for card in self.cardControler.getCardList()])
+        )
+        def searchCard():
+            inputStr = Search_Input.text()
+            if inputStr=='': self.refreshCardList(self.cardControler.getCardList())
+            newCardList = []
+            for card in self.cardControler.getCardList():
+                if card['displayName'].find(inputStr)!=-1:
+                    newCardList.append(card)
+            self.refreshCardList(newCardList)
+
+        Search_Input.returnPressed.connect(searchCard)
+    def initTabClose(self):
+        def __closeTab(currentIndex):
+            currentQWidget = self.Tab.widget(currentIndex)
+            if currentQWidget == None: return
+            currentQWidget.deleteLater()
+            self.Tab.removeTab(currentIndex)
+            for cardEditTabDict in self.cardEditTabList:
+                if cardEditTabDict['index'] == currentIndex:
+                    self.cardEditTabList.remove(cardEditTabDict)
+                    break
+        self.Tab.tabCloseRequested.connect(__closeTab)
+
     def refreshCardList(self,cardList):
         UI = self.UI
         cardScroll =UI.CMT_C_cardScroll
@@ -60,32 +100,6 @@ class CardMake:
 
             tempHL.addWidget(cardItemEle)
         cardScroll.setWidget(tempWidget)
-    def initTab(self):
-        self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
-        self.Tab.setTabText(0,"卡牌列表")
-        for i in range(1,self.Tab.count()):
-            self.Tab.removeTab(i)
-    def initCardListTab(self):
-        self.refreshCardList(self.cardControler.getCardList())
-    def initClick(self):
-        makeNewCardBtn =self.UI.makeNewCard
-        def makeNewCard():
-            self.toCardDetailTab("newCard")
-        makeNewCardBtn.clicked.connect(makeNewCard)
-        Search_Input =self.UI.CMT_C_Search_Input
-        # Search_Input.returnPressed.connect()
-    def initTabClose(self):
-        def __closeTab(currentIndex):
-            currentQWidget = self.Tab.widget(currentIndex)
-            if currentQWidget == None: return
-            currentQWidget.deleteLater()
-            self.Tab.removeTab(currentIndex)
-            for cardEditTabDict in self.cardEditTabList:
-                if cardEditTabDict['index'] == currentIndex:
-                    self.cardEditTabList.remove(cardEditTabDict)
-                    break
-        self.Tab.tabCloseRequested.connect(__closeTab)
-
     def removeNewCardTab(self):
         currentQWidget = self.newCardEditTabDict['tab']
         currentQWidget.deleteLater()

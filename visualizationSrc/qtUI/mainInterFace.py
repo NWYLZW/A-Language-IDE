@@ -89,6 +89,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.graphicsView_4, 1, 0, 1, 1)
         self.CardControler = QtWidgets.QTextBrowser(self.gridLayoutWidget)
         self.CardControler.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CardControler.setToolTip("")
         self.CardControler.setStyleSheet("background-image: url(:/picture/Data/qrc/cardPkg.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: bottom;\n"

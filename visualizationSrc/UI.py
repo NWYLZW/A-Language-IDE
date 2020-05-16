@@ -8,6 +8,7 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   初始化UI界面
 '''
+from PyQt5.QtGui import QPainter, QBrush
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from .config import *
 
