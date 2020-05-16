@@ -44,11 +44,12 @@ class CardMake:
     def initCardListTab(self):
         self.refreshCardList(self.cardControler.getCardList())
     def initClick(self):
-        makeNewCardBtn =self.UI.makeNewCard
+        makeNewCardBtn = self.UI.makeNewCard
         def makeNewCard():
             self.toCardDetailTab("newCard")
         makeNewCardBtn.clicked.connect(makeNewCard)
-        Search_Input =self.UI.CMT_C_Search_Input
+
+        Search_Input = self.UI.CMT_C_Search_Input
         Search_Input.setPlaceholderText("搜索想查找的卡牌名(回车搜索)")
         Search_Input\
             .setCompleter(
@@ -62,8 +63,14 @@ class CardMake:
                 if card['displayName'].find(inputStr)!=-1:
                     newCardList.append(card)
             self.refreshCardList(newCardList)
-
         Search_Input.returnPressed.connect(searchCard)
+
+        delBtn = self.UI.delSelCard
+        def delSelCard():
+            for cardId in self.cardSelList:
+                self.cardControler.delCardById(cardId)
+            self.refreshCardList(self.cardControler.getCardList())
+        delBtn.clicked.connect(delSelCard)
     def initTabClose(self):
         def __closeTab(currentIndex):
             currentQWidget = self.Tab.widget(currentIndex)
@@ -78,6 +85,7 @@ class CardMake:
 
     def refreshCardList(self,cardList):
         UI = self.UI
+        self.cardSelList = []
         cardScroll =UI.CMT_C_cardScroll
         tempWidget = QWidget()
         tempHL = QVBoxLayout()
@@ -93,12 +101,15 @@ class CardMake:
             cardItemUI.cardItemModel_Description.setText('卡牌简介:  '+card['description'])
             cardItemUI.cardItemModel_Code.setText(card['code'])
             cardItemUI.cardItemModel_Story.setText(card['story'])
-            edit = cardItemUI.cardItemModel_edit
-            def editCard(index):
+            def clickCardItem(index,tag):
                 def __editCard():
-                    self.toCardDetailTab(cardList[index]['id'])
+                    if tag == 'edit':
+                        self.toCardDetailTab(cardList[index]['id'])
+                    elif tag == 'sel':
+                        self.cardSelList.append(cardList[index]['id'])
                 return __editCard
-            edit.clicked.connect(editCard(index))
+            cardItemUI.cardItemModel_edit.clicked.connect(clickCardItem(index,'edit'))
+            cardItemUI.cardItemModel_sel.clicked.connect(clickCardItem(index,'sel'))
 
             tempHL.addWidget(cardItemEle)
         cardScroll.setWidget(tempWidget)
