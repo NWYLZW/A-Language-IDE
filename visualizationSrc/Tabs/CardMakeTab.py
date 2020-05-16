@@ -85,13 +85,15 @@ class CardMake:
         for index in range(len(cardList)):
             card = cardList[index]
             cardItemEle = QWidget()
-            cardItemModel.Ui_Form().setupUi(cardItemEle)
-            cardItemEle.findChild(QLabel,"cardItemModel_ID").setText('id:  '+card['id'])
-            cardItemEle.findChild(QLabel,"cardItemModel_DisplayName").setText('卡牌名:  '+card['displayName'])
-            cardItemEle.findChild(QLabel,"cardItemModel_Description").setText('卡牌简介:  '+card['description'])
-            cardItemEle.findChild(QTextBrowser,"cardItemModel_Code").setText(card['code'])
-            cardItemEle.findChild(QTextBrowser,"cardItemModel_Story").setText(card['story'])
-            edit = cardItemEle.findChild(QPushButton,"cardItemModel_edit")
+            cardItemUI = cardItemModel.Ui_Form()
+            cardItemUI.setupUi(cardItemEle)
+
+            cardItemUI.cardItemModel_ID.setText('id:  '+card['id'])
+            cardItemUI.cardItemModel_DisplayName.setText('卡牌名:  '+card['displayName'])
+            cardItemUI.cardItemModel_Description.setText('卡牌简介:  '+card['description'])
+            cardItemUI.cardItemModel_Code.setText(card['code'])
+            cardItemUI.cardItemModel_Story.setText(card['story'])
+            edit = cardItemUI.cardItemModel_edit
             def editCard(index):
                 def __editCard():
                     self.toCardDetailTab(cardList[index]['id'])

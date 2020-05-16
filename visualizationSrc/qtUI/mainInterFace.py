@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
         self.CardControler.setObjectName("CardControler")
         self.gridLayout.addWidget(self.CardControler, 0, 0, 1, 1)
         self.CommandList = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.CommandList.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CommandList.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.CommandList.setStyleSheet("background-image: url(:/picture/Data/qrc/command.png);\n"
 "background-repeat: no-repeat;\n"
 "background-position: bottom;\n"

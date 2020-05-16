@@ -8,7 +8,9 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   主页
 '''
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QMainWindow
+
 from ..qtUI.mainInterFace import Ui_MainWindow
 
 class Home:
@@ -22,3 +24,7 @@ class Home:
             if event.buttons() == QtCore.Qt.LeftButton:
                 UI.ContentTabList_C.showTab('CardControler')
         UI.CardControler.mousePressEvent = CardControlerClick
+        def mouseReleaseEvent(event):
+            UI.EXETitle.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.SizeAllCursor))
+            UI.CardControler.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        UI.CardControler.mouseReleaseEvent = mouseReleaseEvent
