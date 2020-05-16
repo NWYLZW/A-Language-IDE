@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File           :   build.py
+@File           :   buildUI.py
 @License        :   (C)Copyright 2020
 @Modify Time    :   2020/5/12 2:54
 @Author         :   Superme
 @Contact        :   yijie4188@gmail.com
-@Desciption     :   
+@Desciption     :   构建项目的UI与资源的py文件
 '''
 import os
 import re
