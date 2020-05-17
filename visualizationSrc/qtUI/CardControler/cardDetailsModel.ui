@@ -299,54 +299,36 @@ border-radius:10px;</string>
     </item>
     <item>
      <layout class="QVBoxLayout" name="CM_main">
+      <property name="spacing">
+       <number>10</number>
+      </property>
       <property name="leftMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="topMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="rightMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
-      <item>
-       <layout class="QVBoxLayout" name="CM_header">
-        <item>
-         <widget class="QLabel" name="title_2">
-          <property name="styleSheet">
-           <string notr="true">font: 9pt &quot;Adobe 黑体 Std R&quot;;
-
-text-align: center;
-font-size:20px;
-font-weight:600;
-</string>
-          </property>
-          <property name="text">
-           <string>添加新卡片</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
       <item>
        <layout class="QHBoxLayout" name="CM_contenter" stretch="0">
         <item>
          <layout class="QVBoxLayout" name="textEdit">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <layout class="QVBoxLayout" name="cardMakeTap_code">
             <item>
              <widget class="QLabel" name="label_2">
               <property name="styleSheet">
-               <string notr="true">padding:15px;
-
-font-size:20px;
-font-weight:600;
-</string>
+               <string notr="true">padding:10px;
+font-size:18px;
+font-weight:600;</string>
               </property>
               <property name="text">
                <string>Code代码</string>
@@ -374,11 +356,9 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QLabel" name="label_8">
               <property name="styleSheet">
-               <string notr="true">padding:15px;
-
-font-size:20px;
-font-weight:600;
-</string>
+               <string notr="true">padding:10px;
+font-size:18px;
+font-weight:600;</string>
               </property>
               <property name="text">
                <string>Remap Code代码</string>
@@ -407,6 +387,15 @@ p, li { white-space: pre-wrap; }
       </item>
       <item>
        <layout class="QHBoxLayout" name="CM_footer">
+        <property name="spacing">
+         <number>200</number>
+        </property>
+        <property name="leftMargin">
+         <number>100</number>
+        </property>
+        <property name="rightMargin">
+         <number>100</number>
+        </property>
         <item>
          <widget class="QPushButton" name="CM_printCard">
           <property name="font">
@@ -421,10 +410,7 @@ p, li { white-space: pre-wrap; }
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(50, 150, 255);
-
-margin-left:100px;
-margin-right:100px;
-padding:10px;
+padding:5px;
 border-radius:10px;</string>
           </property>
           <property name="text">
@@ -449,10 +435,7 @@ border-radius:10px;</string>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(50, 150, 255);
-
-margin-left:100px;
-margin-right:100px;
-padding:10px;
+padding:5px;
 border-radius:10px;</string>
           </property>
           <property name="text">

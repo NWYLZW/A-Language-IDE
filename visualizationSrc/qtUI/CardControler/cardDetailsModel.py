@@ -151,33 +151,20 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.CMT_settingTab)
         self.CM_addNewCard.addLayout(self.verticalLayout)
         self.CM_main = QtWidgets.QVBoxLayout()
-        self.CM_main.setContentsMargins(20, 20, 20, 20)
+        self.CM_main.setContentsMargins(10, 10, 10, 10)
+        self.CM_main.setSpacing(10)
         self.CM_main.setObjectName("CM_main")
-        self.CM_header = QtWidgets.QVBoxLayout()
-        self.CM_header.setObjectName("CM_header")
-        self.title_2 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
-        self.title_2.setStyleSheet("font: 9pt \"Adobe 黑体 Std R\";\n"
-"\n"
-"text-align: center;\n"
-"font-size:20px;\n"
-"font-weight:600;\n"
-"")
-        self.title_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.title_2.setObjectName("title_2")
-        self.CM_header.addWidget(self.title_2)
-        self.CM_main.addLayout(self.CM_header)
         self.CM_contenter = QtWidgets.QHBoxLayout()
         self.CM_contenter.setObjectName("CM_contenter")
         self.textEdit = QtWidgets.QVBoxLayout()
+        self.textEdit.setSpacing(0)
         self.textEdit.setObjectName("textEdit")
         self.cardMakeTap_code = QtWidgets.QVBoxLayout()
         self.cardMakeTap_code.setObjectName("cardMakeTap_code")
         self.label_2 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
-        self.label_2.setStyleSheet("padding:15px;\n"
-"\n"
-"font-size:20px;\n"
-"font-weight:600;\n"
-"")
+        self.label_2.setStyleSheet("padding:10px;\n"
+"font-size:18px;\n"
+"font-weight:600;")
         self.label_2.setObjectName("label_2")
         self.cardMakeTap_code.addWidget(self.label_2)
         self.CM_codeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
@@ -188,11 +175,9 @@ class Ui_Form(object):
         self.cardMakeTap_remap = QtWidgets.QVBoxLayout()
         self.cardMakeTap_remap.setObjectName("cardMakeTap_remap")
         self.label_8 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
-        self.label_8.setStyleSheet("padding:15px;\n"
-"\n"
-"font-size:20px;\n"
-"font-weight:600;\n"
-"")
+        self.label_8.setStyleSheet("padding:10px;\n"
+"font-size:18px;\n"
+"font-weight:600;")
         self.label_8.setObjectName("label_8")
         self.cardMakeTap_remap.addWidget(self.label_8)
         self.CM_remapCodeSource = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
@@ -203,6 +188,8 @@ class Ui_Form(object):
         self.CM_contenter.addLayout(self.textEdit)
         self.CM_main.addLayout(self.CM_contenter)
         self.CM_footer = QtWidgets.QHBoxLayout()
+        self.CM_footer.setContentsMargins(100, -1, 100, -1)
+        self.CM_footer.setSpacing(200)
         self.CM_footer.setObjectName("CM_footer")
         self.CM_printCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         font = QtGui.QFont()
@@ -212,10 +199,7 @@ class Ui_Form(object):
         self.CM_printCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.CM_printCard.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
-"\n"
-"margin-left:100px;\n"
-"margin-right:100px;\n"
-"padding:10px;\n"
+"padding:5px;\n"
 "border-radius:10px;")
         self.CM_printCard.setCheckable(False)
         self.CM_printCard.setObjectName("CM_printCard")
@@ -228,10 +212,7 @@ class Ui_Form(object):
         self.CM_addCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.CM_addCard.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(50, 150, 255);\n"
-"\n"
-"margin-left:100px;\n"
-"margin-right:100px;\n"
-"padding:10px;\n"
+"padding:5px;\n"
 "border-radius:10px;")
         self.CM_addCard.setObjectName("CM_addCard")
         self.CM_footer.addWidget(self.CM_addCard)
@@ -255,7 +236,6 @@ class Ui_Form(object):
         self.label_4.setText(_translate("Form", "故事"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_baseSetting), _translate("Form", "Tab 1"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("Form", "Tab 2"))
-        self.title_2.setText(_translate("Form", "添加新卡片"))
         self.label_2.setText(_translate("Form", "Code代码"))
         self.CM_codeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

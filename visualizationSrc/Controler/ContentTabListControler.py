@@ -25,13 +25,13 @@ class ContentTabList():
     def initTab(self):
         from ..Tabs.CardControlerTab import CardControlerTab
         self.TabNameList = ['CardControler']
-        self.TabNameHash = {
-            'CardControler':{
+        self.TabNameHash = {}
+        try:self.TabNameHash['CardControler'] = {
                 'CN':"卡牌管理",
                 'widget':CardControlerTab(self.mainWindow).Widget,
                 'isAdd':False
-            },
-        }
+            }
+        except Exception as e: print(e)
 
         self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
         self.ContentTabList.setTabText(0, "主页")

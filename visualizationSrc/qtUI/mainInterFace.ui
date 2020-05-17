@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>720</height>
+    <width>1180</width>
+    <height>730</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1200</width>
-    <height>720</height>
+    <width>1180</width>
+    <height>730</height>
    </size>
   </property>
   <property name="font">
@@ -55,8 +55,8 @@
    <widget class="QTabWidget" name="ContentTabList">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>40</y>
+      <x>10</x>
+      <y>50</y>
       <width>1161</width>
       <height>671</height>
      </rect>
@@ -273,9 +273,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1201</width>
+      <x>10</x>
+      <y>10</y>
+      <width>1161</width>
       <height>31</height>
      </rect>
     </property>
@@ -284,7 +284,7 @@ p, li { white-space: pre-wrap; }
       <number>0</number>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="top_right">
+      <layout class="QHBoxLayout" name="top_right" stretch="1">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -297,7 +297,10 @@ p, li { white-space: pre-wrap; }
           </size>
          </property>
          <property name="cursor" stdset="0">
-          <cursorShape>SizeAllCursor</cursorShape>
+          <cursorShape>ArrowCursor</cursorShape>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
@@ -319,29 +322,6 @@ p, li { white-space: pre-wrap; }
         <number>10</number>
        </property>
        <item>
-        <widget class="QGraphicsView" name="max_window">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/ico/Data/qrc/ico/max.png);
-background-size:100%;
-background-repeat: no-repeat;
-background-position: center;
-</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QGraphicsView" name="min_window">
          <property name="maximumSize">
           <size>
@@ -357,6 +337,29 @@ background-position: center;
          </property>
          <property name="styleSheet">
           <string notr="true">border-image: url(:/ico/Data/qrc/ico/min.png);
+background-size:100%;
+background-repeat: no-repeat;
+background-position: center;
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="max_window">
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="cursor" stdset="0">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/ico/Data/qrc/ico/max.png);
 background-size:100%;
 background-repeat: no-repeat;
 background-position: center;

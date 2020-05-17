@@ -23,23 +23,34 @@ class CardControlerTab:
         self.Widget = QWidget()
         self.UI = cardControler.Ui_Form()
         self.UI.setupUi(self.Widget)
-        self.cardControler = CardControler()
 
         self.Tab = self.UI.CardControler_Tabs
         self.CardList = self.UI.CardList
         self.cardEditTabList = []
+        try:
+            self.cardControler = CardControler()
+            self.refreshCardList(self.cardControler.getCardList())
+        except Exception as e: print(e)
 
         self.initTab()
-        self.initCardListTab()
         self.initClick()
-        self.initTabClose()
     def initTab(self):
         self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
         self.Tab.setTabText(0,"卡牌列表")
         for i in range(1,self.Tab.count()):
             self.Tab.removeTab(i)
-    def initCardListTab(self):
-        self.refreshCardList(self.cardControler.getCardList())
+        self.initTabClose()
+    def initTabClose(self):
+        def __closeTab(currentIndex):
+            currentQWidget = self.Tab.widget(currentIndex)
+            if currentQWidget == None: return
+            currentQWidget.deleteLater()
+            self.Tab.removeTab(currentIndex)
+            for cardEditTabDict in self.cardEditTabList:
+                if cardEditTabDict['index'] == currentIndex:
+                    self.cardEditTabList.remove(cardEditTabDict)
+                    break
+        self.Tab.tabCloseRequested.connect(__closeTab)
     def initClick(self):
         makeNewCardBtn = self.UI.makeNewCard
         def makeNewCard():
@@ -68,17 +79,6 @@ class CardControlerTab:
                 self.cardControler.delCardById(cardId)
             self.refreshCardList(self.cardControler.getCardList())
         delBtn.clicked.connect(delSelCard)
-    def initTabClose(self):
-        def __closeTab(currentIndex):
-            currentQWidget = self.Tab.widget(currentIndex)
-            if currentQWidget == None: return
-            currentQWidget.deleteLater()
-            self.Tab.removeTab(currentIndex)
-            for cardEditTabDict in self.cardEditTabList:
-                if cardEditTabDict['index'] == currentIndex:
-                    self.cardEditTabList.remove(cardEditTabDict)
-                    break
-        self.Tab.tabCloseRequested.connect(__closeTab)
 
     def refreshCardList(self,cardList):
         UI = self.UI
@@ -258,11 +258,10 @@ class cardDetail_C:
                         QMessageBox.Yes)
         UI.CM_addCard.clicked.connect(__insertCard)
         def __printCard():
-            UI.CM_printCard.setStyleSheet(
-                "color: rgb(255, 255, 255);background-color: rgb(20, 100, 215);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;")
+            originStyleSheet = UI.CM_printCard.styleSheet()
+            UI.CM_printCard.setStyleSheet(originStyleSheet+"background-color: rgb(20, 100, 215);")
             def CM_printCard_end():
-                QTimer.singleShot(200, lambda: UI.CM_printCard.setStyleSheet(
-                    "color: rgb(255, 255, 255);background-color: rgb(50, 150, 255);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;"))
+                QTimer.singleShot(200, lambda: UI.CM_printCard.setStyleSheet(originStyleSheet))
 
             if self.card['id'] == "newCard":
                 QMessageBox.information(

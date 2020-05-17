@@ -13,9 +13,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1200, 720)
+        MainWindow.resize(1180, 730)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
-        MainWindow.setMaximumSize(QtCore.QSize(1200, 720))
+        MainWindow.setMaximumSize(QtCore.QSize(1180, 730))
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.Main.setStyleSheet("")
         self.Main.setObjectName("Main")
         self.ContentTabList = QtWidgets.QTabWidget(self.Main)
-        self.ContentTabList.setGeometry(QtCore.QRect(20, 40, 1161, 671))
+        self.ContentTabList.setGeometry(QtCore.QRect(10, 50, 1161, 671))
         self.ContentTabList.setTabsClosable(True)
         self.ContentTabList.setObjectName("ContentTabList")
         self.HomeTab = QtWidgets.QWidget()
@@ -126,7 +126,7 @@ class Ui_MainWindow(object):
         self.CardMakeTab.setObjectName("CardMakeTab")
         self.ContentTabList.addTab(self.CardMakeTab, "")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.Main)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1201, 31))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 1161, 31))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.HeadToolBar = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.HeadToolBar.setContentsMargins(0, 0, 0, 0)
@@ -137,24 +137,16 @@ class Ui_MainWindow(object):
         self.top_right.setObjectName("top_right")
         self.EXETitle = QtWidgets.QTextBrowser(self.horizontalLayoutWidget)
         self.EXETitle.setMaximumSize(QtCore.QSize(16777215, 24))
-        self.EXETitle.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.SizeAllCursor))
+        self.EXETitle.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.EXETitle.setFocusPolicy(QtCore.Qt.NoFocus)
         self.EXETitle.setStyleSheet("border: none;")
         self.EXETitle.setObjectName("EXETitle")
         self.top_right.addWidget(self.EXETitle)
+        self.top_right.setStretch(0, 1)
         self.HeadToolBar.addLayout(self.top_right)
         self.top_left = QtWidgets.QHBoxLayout()
         self.top_left.setSpacing(10)
         self.top_left.setObjectName("top_left")
-        self.max_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
-        self.max_window.setMaximumSize(QtCore.QSize(24, 24))
-        self.max_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.max_window.setStyleSheet("border-image: url(:/ico/Data/qrc/ico/max.png);\n"
-"background-size:100%;\n"
-"background-repeat: no-repeat;\n"
-"background-position: center;\n"
-"")
-        self.max_window.setObjectName("max_window")
-        self.top_left.addWidget(self.max_window)
         self.min_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
         self.min_window.setMaximumSize(QtCore.QSize(24, 24))
         self.min_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -165,6 +157,16 @@ class Ui_MainWindow(object):
 "")
         self.min_window.setObjectName("min_window")
         self.top_left.addWidget(self.min_window)
+        self.max_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
+        self.max_window.setMaximumSize(QtCore.QSize(24, 24))
+        self.max_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.max_window.setStyleSheet("border-image: url(:/ico/Data/qrc/ico/max.png);\n"
+"background-size:100%;\n"
+"background-repeat: no-repeat;\n"
+"background-position: center;\n"
+"")
+        self.max_window.setObjectName("max_window")
+        self.top_left.addWidget(self.max_window)
         self.close_window = QtWidgets.QGraphicsView(self.horizontalLayoutWidget)
         self.close_window.setMaximumSize(QtCore.QSize(24, 24))
         self.close_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -218,7 +220,7 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">AL-IDE 1.0.0.1</span></p></body></html>"))
-        self.max_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.min_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.max_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.close_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
 from . import AL_IDE_MainInterFace_rc

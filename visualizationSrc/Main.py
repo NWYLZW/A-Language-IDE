@@ -9,14 +9,13 @@
 @Desciption     :
 '''
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from visualizationSrc import UI
+
+from PyQt5.QtWidgets import QApplication
+from visualizationSrc.MyWindow import MyWindow
 
 def mainWindowStart():
     APP = QApplication(sys.argv)
-    mainWindow = QMainWindow()
-    # 防止触发gc机制
-    ui = UI.init(APP,mainWindow)
+    mainWindow = MyWindow()
     mainWindow.show()
 
     sys._excepthook = sys.excepthook
