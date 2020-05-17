@@ -33,7 +33,7 @@ class Ui_Form(object):
         self.CardList = QtWidgets.QWidget()
         self.CardList.setObjectName("CardList")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.CardList)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 371, 51))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 1101, 51))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.Search.setContentsMargins(0, 0, 0, 0)
@@ -48,6 +48,42 @@ class Ui_Form(object):
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
+        self.horizontalWidget_4 = QtWidgets.QWidget(self.horizontalLayoutWidget_3)
+        self.horizontalWidget_4.setStyleSheet("QPushButton{\n"
+"    background: rgb(50,150,250);\n"
+"    color: #fff;\n"
+"    padding: 10px;\n"
+"    border: none;\n"
+"    border-radius: 8px;\n"
+"    transition: 1s;\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background: rgb(20,110,220);\n"
+"}")
+        self.horizontalWidget_4.setObjectName("horizontalWidget_4")
+        self.btnList = QtWidgets.QHBoxLayout(self.horizontalWidget_4)
+        self.btnList.setContentsMargins(5, 1, 5, 1)
+        self.btnList.setSpacing(5)
+        self.btnList.setObjectName("btnList")
+        self.makeNewCard = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.makeNewCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.makeNewCard.setStyleSheet("")
+        self.makeNewCard.setObjectName("makeNewCard")
+        self.btnList.addWidget(self.makeNewCard)
+        self.delSelCard = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.delSelCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.delSelCard.setStyleSheet("")
+        self.delSelCard.setObjectName("delSelCard")
+        self.btnList.addWidget(self.delSelCard)
+        self.pushButton_3 = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.pushButton_3.setStyleSheet("")
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.btnList.addWidget(self.pushButton_3)
+        self.btnList.setStretch(0, 2)
+        self.btnList.setStretch(1, 2)
+        self.btnList.setStretch(2, 3)
+        self.Search.addWidget(self.horizontalWidget_4)
         self.cardScroll = QtWidgets.QScrollArea(self.CardList)
         self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 571))
         self.cardScroll.setWidgetResizable(True)
@@ -57,43 +93,6 @@ class Ui_Form(object):
         self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
-        self.horizontalLayoutWidget_4 = QtWidgets.QWidget(self.CardList)
-        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(380, 10, 561, 51))
-        self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
-        self.btnList = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
-        self.btnList.setContentsMargins(5, 0, 5, 0)
-        self.btnList.setSpacing(5)
-        self.btnList.setObjectName("btnList")
-        self.makeNewCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.makeNewCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.makeNewCard.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.makeNewCard.setObjectName("makeNewCard")
-        self.btnList.addWidget(self.makeNewCard)
-        self.delSelCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.delSelCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.delSelCard.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.delSelCard.setObjectName("delSelCard")
-        self.btnList.addWidget(self.delSelCard)
-        self.pushButton_3 = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.pushButton_3.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.btnList.addWidget(self.pushButton_3)
-        self.btnList.setStretch(0, 2)
-        self.btnList.setStretch(1, 2)
-        self.btnList.setStretch(2, 3)
         self.CardControler_Tabs.addTab(self.CardList, "")
         self.NoneTab = QtWidgets.QWidget()
         self.NoneTab.setMaximumSize(QtCore.QSize(1127, 651))

@@ -13,9 +13,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1180, 730)
+        MainWindow.resize(1200, 740)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
-        MainWindow.setMaximumSize(QtCore.QSize(1180, 730))
+        MainWindow.setMaximumSize(QtCore.QSize(1200, 740))
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.Main.setStyleSheet("")
         self.Main.setObjectName("Main")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.Main)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 1161, 711))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 1181, 721))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.Interface = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.Interface.setContentsMargins(10, 10, 10, 10)
@@ -72,6 +72,9 @@ class Ui_MainWindow(object):
 "    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
+"}\n"
+"#min_window:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/mined.png);\n"
 "}")
         self.min_window.setObjectName("min_window")
         self.top_left.addWidget(self.min_window)
@@ -83,6 +86,9 @@ class Ui_MainWindow(object):
 "    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
+"}\n"
+"#max_window:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/maxed.png);\n"
 "}")
         self.max_window.setObjectName("max_window")
         self.top_left.addWidget(self.max_window)
@@ -94,6 +100,9 @@ class Ui_MainWindow(object):
 "    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
+"}\n"
+"#close_window:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/closed.png);\n"
 "}")
         self.close_window.setObjectName("close_window")
         self.top_left.addWidget(self.close_window)
@@ -113,7 +122,7 @@ class Ui_MainWindow(object):
         self.HomeTab = QtWidgets.QWidget()
         self.HomeTab.setObjectName("HomeTab")
         self.gridLayoutWidget = QtWidgets.QWidget(self.HomeTab)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1131, 621))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1151, 631))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(10, 10, 10, 10)
@@ -206,8 +215,11 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; font-weight:600;\">AL-IDE 1.0.0.1</span></p></body></html>"))
+        self.min_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>最小化</p></body></html>"))
         self.min_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.max_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>最大化</p></body></html>"))
         self.max_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.close_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>关闭</p></body></html>"))
         self.close_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))

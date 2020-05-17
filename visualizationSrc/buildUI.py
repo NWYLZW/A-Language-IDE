@@ -25,6 +25,7 @@ if __name__ == '__main__':
             f.write(str)
 
     buildUiFile("mainInterFace")
+    buildUiFile("messageBox")
     buildUiFile("CardControler/cardItemModel")
     buildUiFile("CardControler/cardDetailsModel")
     buildUiFile("CardControler/cardControler")

@@ -13,24 +13,14 @@ from PyQt5.QtWidgets import QMainWindow, QGraphicsDropShadowEffect
 from PyQt5.uic.properties import QtWidgets
 
 from . import config
+from .Util import MessageBoxHelper
 from .qtUI import mainInterFace
 
 class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
-        # 去除默认边框
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        # 背景透明（就是ui中黑色背景的那个控件）
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
-
-        # 添加阴影
-        effect = QGraphicsDropShadowEffect(self)
-        effect.setBlurRadius(12)
-        effect.setOffset(0, 0)
-        effect.setColor(Qt.gray)
-        self.setGraphicsEffect(effect)
-
         self.initUI()
+        self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
         from .Controler.ContentTabListControler import ContentTabList
         ContentTabList(self,self)
     def initToolBar(self):
@@ -64,6 +54,39 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         self.setupUi(self)
         self.initToolBar()
         self.EXETitle.setText(config.ExeName +' ' + config.Version)
+        # 去除默认边框
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        # 背景透明（就是ui中黑色背景的那个控件）
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
+
+        # 添加阴影
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(12)
+        effect.setOffset(0, 0)
+        effect.setColor(Qt.gray)
+        self.setGraphicsEffect(effect)
+    def showInfo(self,Title,KindName,Content):
+        self._MessageBox.showMessage(
+            self._MessageBox.MessageBox_Tag.Information,
+            Title="None",
+            KindName="",
+            Content="",
+        )
+    def showWarn(self,Title,KindName,Content):
+        self._MessageBox.showMessage(
+            self._MessageBox.MessageBox_Tag.Warning,
+            Title="None",
+            KindName="",
+            Content="",
+        )
+    def showErr(self,Title,KindName,Content):
+        self._MessageBox.showMessage(
+            self._MessageBox.MessageBox_Tag.Error,
+            Title="None",
+            KindName="",
+            Content="",
+        )
+
     def mousePressEvent(self, event):
         if event.button()== Qt.LeftButton:
             self.m_drag=True

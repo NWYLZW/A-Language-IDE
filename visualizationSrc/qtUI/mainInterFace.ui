@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1180</width>
-    <height>730</height>
+    <width>1200</width>
+    <height>740</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1180</width>
-    <height>730</height>
+    <width>1200</width>
+    <height>740</height>
    </size>
   </property>
   <property name="font">
@@ -64,8 +64,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1161</width>
-      <height>711</height>
+      <width>1181</width>
+      <height>721</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="Interface" stretch="1,20">
@@ -141,6 +141,9 @@ p, li { white-space: pre-wrap; }
            <property name="cursor" stdset="0">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最小化&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -150,6 +153,9 @@ p, li { white-space: pre-wrap; }
 	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+#min_window:hover{
+	border-image: url(:/ico/Data/qrc/ico/mined.png);
 }</string>
            </property>
           </widget>
@@ -165,6 +171,9 @@ p, li { white-space: pre-wrap; }
            <property name="cursor" stdset="0">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;最大化&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -174,6 +183,9 @@ p, li { white-space: pre-wrap; }
 	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+#max_window:hover{
+	border-image: url(:/ico/Data/qrc/ico/maxed.png);
 }</string>
            </property>
           </widget>
@@ -189,6 +201,9 @@ p, li { white-space: pre-wrap; }
            <property name="cursor" stdset="0">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关闭&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="whatsThis">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -198,6 +213,9 @@ p, li { white-space: pre-wrap; }
 	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+#close_window:hover{
+	border-image: url(:/ico/Data/qrc/ico/closed.png);
 }</string>
            </property>
           </widget>
@@ -237,8 +255,8 @@ p, li { white-space: pre-wrap; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>1131</width>
-           <height>621</height>
+           <width>1151</width>
+           <height>631</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1,1" rowminimumheight="1,1" columnminimumwidth="1,1,1">

@@ -20,6 +20,7 @@ class Ui_Form(object):
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.CM_addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.CM_addNewCard.setContentsMargins(0, 0, 0, 0)
+        self.CM_addNewCard.setSpacing(0)
         self.CM_addNewCard.setObjectName("CM_addNewCard")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)

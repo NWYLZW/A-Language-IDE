@@ -29,6 +29,9 @@
     </rect>
    </property>
    <layout class="QHBoxLayout" name="CM_addNewCard" stretch="1,2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">

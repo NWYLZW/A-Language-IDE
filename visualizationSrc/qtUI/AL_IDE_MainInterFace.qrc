@@ -4,6 +4,11 @@
     <file>../Data/qrc/command.png</file>
     <file>../Data/qrc/Card.png</file>
   </qresource>
+  <qresource prefix="message">
+    <file>../Data/qrc/message/error.png</file>
+    <file>../Data/qrc/message/information.png</file>
+    <file>../Data/qrc/message/warning.png</file>
+  </qresource>
   <qresource prefix="ico">
     <file>../Data/qrc/ico/closed.png</file>
     <file>../Data/qrc/ico/maxed.png</file>

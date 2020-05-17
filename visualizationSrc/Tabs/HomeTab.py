@@ -32,7 +32,7 @@ class Home:
         def windowRelease(Element):
             def __windowRelease(event):
                 if Element.clickType == QtCore.Qt.LeftButton:
-                    if Element == UI.CardControler:
+                    if Element == UI.CardControler and Element.down:
                         self.CTL.showTab('CardControler')
                 Element.down = False
             return __windowRelease
