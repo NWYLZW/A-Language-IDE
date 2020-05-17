@@ -90,13 +90,13 @@ class Ui_Form(object):
         self.btnList.setStretch(1, 2)
         self.btnList.setStretch(2, 3)
         self.CardControler_Tabs.addTab(self.CardList, "")
-        self.None = QtWidgets.QWidget()
-        self.None.setMaximumSize(QtCore.QSize(1127, 651))
-        self.None.setObjectName("None")
-        self.CardControler_Tabs.addTab(self.None, "")
+        self.NoneTab = QtWidgets.QWidget()
+        self.NoneTab.setMaximumSize(QtCore.QSize(1127, 651))
+        self.NoneTab.setObjectName("NoneTab")
+        self.CardControler_Tabs.addTab(self.NoneTab, "")
 
         self.retranslateUi(Form)
-        self.CardControler_Tabs.setCurrentIndex(0)
+        self.CardControler_Tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -107,4 +107,4 @@ class Ui_Form(object):
         self.delSelCard.setText(_translate("Form", "删除已选"))
         self.pushButton_3.setText(_translate("Form", "导出信息至Excel"))
         self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "Tab 1"))
-        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.None), _translate("Form", "Tab 2"))
+        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.NoneTab), _translate("Form", "Tab 2"))

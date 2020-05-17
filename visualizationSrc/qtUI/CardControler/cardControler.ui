@@ -41,7 +41,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -203,7 +203,7 @@ border-radius: 8px;</string>
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="None">
+   <widget class="QWidget" name="NoneTab">
     <property name="maximumSize">
      <size>
       <width>1127</width>
