@@ -13,10 +13,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1151, 651)
-        Form.setMaximumSize(QtCore.QSize(1151, 651))
+        Form.resize(1161, 668)
+        Form.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        Form.setStyleSheet("#Form{\n"
+"    padding:10px;\n"
+"}")
         self.CardControler_Tabs = QtWidgets.QTabWidget(Form)
-        self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1151, 651))
+        self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
         self.CardControler_Tabs.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.CardControler_Tabs.setTabPosition(QtWidgets.QTabWidget.West)
         self.CardControler_Tabs.setTabShape(QtWidgets.QTabWidget.Rounded)
@@ -39,16 +42,18 @@ class Ui_Form(object):
         self.Search_label.setObjectName("Search_label")
         self.Search.addWidget(self.Search_label)
         self.Search_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
-        self.Search_Input.setStyleSheet("margin: 5px;\n"
-"padding: 5px;")
+        self.Search_Input.setStyleSheet("#Search_Input{\n"
+"    margin: 5px;\n"
+"    padding: 5px;\n"
+"}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
         self.cardScroll = QtWidgets.QScrollArea(self.CardList)
-        self.cardScroll.setGeometry(QtCore.QRect(10, 70, 1111, 571))
+        self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 571))
         self.cardScroll.setWidgetResizable(True)
         self.cardScroll.setObjectName("cardScroll")
         self.cardScrollWidget = QtWidgets.QWidget()
-        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1109, 569))
+        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1089, 569))
         self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)

@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>1070</width>
-    <height>210</height>
+    <height>223</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1070</width>
-    <height>210</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
      <x>0</x>
      <y>0</y>
      <width>1071</width>
-     <height>211</height>
+     <height>224</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="cardItemModel" stretch="0,0,8">
@@ -110,7 +110,7 @@ border-radius: 8px;</string>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="cardItemModel_Data" stretch="0,0,0">
+     <layout class="QVBoxLayout" name="cardItemModel_Data" stretch="0,0">
       <property name="spacing">
        <number>5</number>
       </property>
@@ -166,19 +166,19 @@ border-radius: 8px;</string>
       <item>
        <layout class="QHBoxLayout" name="cardItemModel_Code_L">
         <property name="spacing">
-         <number>0</number>
+         <number>10</number>
         </property>
         <property name="leftMargin">
-         <number>5</number>
+         <number>10</number>
         </property>
         <property name="topMargin">
-         <number>5</number>
+         <number>10</number>
         </property>
         <property name="rightMargin">
-         <number>5</number>
+         <number>10</number>
         </property>
         <property name="bottomMargin">
-         <number>5</number>
+         <number>10</number>
         </property>
         <item>
          <widget class="QTextBrowser" name="cardItemModel_Code">
@@ -196,25 +196,6 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="cardItemModel_Story_L">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>5</number>
-        </property>
-        <property name="topMargin">
-         <number>5</number>
-        </property>
-        <property name="rightMargin">
-         <number>5</number>
-        </property>
-        <property name="bottomMargin">
-         <number>5</number>
-        </property>
         <item>
          <widget class="QTextBrowser" name="cardItemModel_Story">
           <property name="styleSheet">
@@ -232,7 +213,7 @@ background-color: rgba(255, 255, 255, 0);</string>
   </widget>
  </widget>
  <resources>
-  <include location="AL_IDE_MainInterFace.qrc"/>
+  <include location="../AL_IDE_MainInterFace.qrc"/>
  </resources>
  <connections/>
 </ui>

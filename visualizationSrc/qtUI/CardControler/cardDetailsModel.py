@@ -14,7 +14,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1120, 640)
-        Form.setMinimumSize(QtCore.QSize(1120, 640))
+        Form.setMinimumSize(QtCore.QSize(0, 0))
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Form)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")

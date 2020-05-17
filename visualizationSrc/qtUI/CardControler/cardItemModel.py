@@ -13,10 +13,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1070, 210)
-        Form.setMinimumSize(QtCore.QSize(1070, 210))
+        Form.resize(1070, 223)
+        Form.setMinimumSize(QtCore.QSize(0, 0))
         self.horizontalLayoutWidget_9 = QtWidgets.QWidget(Form)
-        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(0, 0, 1071, 211))
+        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(0, 0, 1071, 224))
         self.horizontalLayoutWidget_9.setObjectName("horizontalLayoutWidget_9")
         self.cardItemModel = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_9)
         self.cardItemModel.setContentsMargins(10, 10, 10, 10)
@@ -65,8 +65,8 @@ class Ui_Form(object):
         self.cardItemModel_BaseData_L.addWidget(self.cardItemModel_Description)
         self.cardItemModel_Data.addLayout(self.cardItemModel_BaseData_L)
         self.cardItemModel_Code_L = QtWidgets.QHBoxLayout()
-        self.cardItemModel_Code_L.setContentsMargins(5, 5, 5, 5)
-        self.cardItemModel_Code_L.setSpacing(0)
+        self.cardItemModel_Code_L.setContentsMargins(10, 10, 10, 10)
+        self.cardItemModel_Code_L.setSpacing(10)
         self.cardItemModel_Code_L.setObjectName("cardItemModel_Code_L")
         self.cardItemModel_Code = QtWidgets.QTextBrowser(self.horizontalLayoutWidget_9)
         self.cardItemModel_Code.setStyleSheet("border:1px solid #afafaf; \n"
@@ -74,18 +74,13 @@ class Ui_Form(object):
 "background-color: rgba(255, 255, 255, 0);")
         self.cardItemModel_Code.setObjectName("cardItemModel_Code")
         self.cardItemModel_Code_L.addWidget(self.cardItemModel_Code)
-        self.cardItemModel_Data.addLayout(self.cardItemModel_Code_L)
-        self.cardItemModel_Story_L = QtWidgets.QHBoxLayout()
-        self.cardItemModel_Story_L.setContentsMargins(5, 5, 5, 5)
-        self.cardItemModel_Story_L.setSpacing(0)
-        self.cardItemModel_Story_L.setObjectName("cardItemModel_Story_L")
         self.cardItemModel_Story = QtWidgets.QTextBrowser(self.horizontalLayoutWidget_9)
         self.cardItemModel_Story.setStyleSheet("border:1px solid #afafaf; \n"
 "border-radius:5px;\n"
 "background-color: rgba(255, 255, 255, 0);")
         self.cardItemModel_Story.setObjectName("cardItemModel_Story")
-        self.cardItemModel_Story_L.addWidget(self.cardItemModel_Story)
-        self.cardItemModel_Data.addLayout(self.cardItemModel_Story_L)
+        self.cardItemModel_Code_L.addWidget(self.cardItemModel_Story)
+        self.cardItemModel_Data.addLayout(self.cardItemModel_Code_L)
         self.cardItemModel.addLayout(self.cardItemModel_Data)
         self.cardItemModel.setStretch(2, 8)
 
