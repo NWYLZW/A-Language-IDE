@@ -269,6 +269,7 @@ class cardDetail_C:
                     QMessageBox.Yes)
             import os
             from ..Util.frozenDir import appPath
+            os.makedirs(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject')
             with open(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject\message.txt','w',encoding='utf-8') as f1:
                 f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
 
