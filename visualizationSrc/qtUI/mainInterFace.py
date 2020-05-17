@@ -44,30 +44,32 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.graphicsView_7 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
-        self.graphicsView_7.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.graphicsView_7.setStyleSheet("border:1px solid #afafaf; \n"
+        self.label_2 = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_2.setStyleSheet("padding:10px;")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.label_2, 0, 0, 1, 2)
+        self.lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.lineEdit.setStyleSheet("padding:5px;")
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout_2.addWidget(self.lineEdit, 1, 0, 1, 2)
+        self.textBrowser = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.textBrowser.setStyleSheet("border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.graphicsView_7.setObjectName("graphicsView_7")
-        self.gridLayout_2.addWidget(self.graphicsView_7, 2, 0, 1, 1)
-        self.graphicsView_8 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
-        self.graphicsView_8.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.graphicsView_8.setStyleSheet("border:1px solid #afafaf; \n"
-"border-radius:10px;")
-        self.graphicsView_8.setObjectName("graphicsView_8")
-        self.gridLayout_2.addWidget(self.graphicsView_8, 0, 0, 1, 2)
+        self.textBrowser.setObjectName("textBrowser")
+        self.gridLayout_2.addWidget(self.textBrowser, 2, 0, 1, 2)
         self.graphicsView_6 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
         self.graphicsView_6.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.graphicsView_6.setStyleSheet("border:1px solid #afafaf; \n"
 "border-radius:10px;")
         self.graphicsView_6.setObjectName("graphicsView_6")
-        self.gridLayout_2.addWidget(self.graphicsView_6, 2, 1, 1, 1)
-        self.graphicsView_9 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
-        self.graphicsView_9.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.graphicsView_9.setStyleSheet("border:1px solid #afafaf; \n"
+        self.gridLayout_2.addWidget(self.graphicsView_6, 3, 1, 1, 1)
+        self.graphicsView_7 = QtWidgets.QGraphicsView(self.gridLayoutWidget)
+        self.graphicsView_7.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.graphicsView_7.setStyleSheet("border:1px solid #afafaf; \n"
 "border-radius:10px;")
-        self.graphicsView_9.setObjectName("graphicsView_9")
-        self.gridLayout_2.addWidget(self.graphicsView_9, 1, 0, 1, 2)
+        self.graphicsView_7.setObjectName("graphicsView_7")
+        self.gridLayout_2.addWidget(self.graphicsView_7, 3, 0, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 1, 1, 1, 1)
         self.graphicsView = QtWidgets.QGraphicsView(self.gridLayoutWidget)
         self.graphicsView.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -266,6 +268,12 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "AL-IDE"))
         self.HomeTab.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "运行指令到游戏"))
+        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">运行结果==&gt;</p></body></html>"))
         self.CardControler.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

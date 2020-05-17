@@ -93,11 +93,11 @@ class CardControler:
                 'price':
                     cardDict.get("price",0),
                 "energyReq":
-                    cardDict.get("energyReq",0),
+                    cardDict.get("energyReq",0.0),
                 "range":
-                    cardDict.get("range",0),
+                    cardDict.get("range",0.0),
                 "spreadRadius":
-                    cardDict.get("spreadRadius",0),
+                    cardDict.get("spreadRadius",0.0),
                 "spreadShapeTextureId":
                     cardDict.get("spreadShapeTextureId",""),
                 "aimTypeCode":
@@ -115,7 +115,7 @@ class CardControler:
                 "remapCode":
                     cardDict.get("remapCode",""),
                 "backgroundId":
-                    cardDict.get("backgroundId",1),
+                    cardDict.get("backgroundId",""),
                 "effectCode":
                     cardDict.get("effectCode","Sound:Shoot"),
                 "characterModelSkinId":
@@ -184,7 +184,7 @@ class CardControler:
         if index == -1: return False
         del self.__cardList[index]
         self.refreshFile()
-        pass
+        return True
     def refreshFile(self):
         with open(self.csvFileName, 'w', encoding="UTF-8-sig", newline='') as f:
             writer = csv.DictWriter(f, self.fieldnames)

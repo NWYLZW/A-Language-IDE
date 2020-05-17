@@ -171,7 +171,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="CM_energyReq"/>
+                  <widget class="QDoubleSpinBox" name="CM_energyReq"/>
                  </item>
                 </layout>
                </item>
@@ -201,7 +201,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="CM_range"/>
+                  <widget class="QDoubleSpinBox" name="CM_range"/>
                  </item>
                 </layout>
                </item>
