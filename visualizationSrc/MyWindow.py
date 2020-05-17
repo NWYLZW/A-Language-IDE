@@ -34,21 +34,23 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         from .Controler.ContentTabListControler import ContentTabList
         ContentTabList(self,self)
     def initToolBar(self):
+        from PyQt5 import QtCore
         def windowClick(Element):
             def __windowClick(event):
-                from PyQt5 import QtCore
                 if event.buttons() == QtCore.Qt.LeftButton:
-                    Element.down = True
+                    Element.clickType = QtCore.Qt.LeftButton
+                Element.down = True
             return __windowClick
         def windowRelease(Element):
             def __windowRelease(event):
-                if Element == self.close_window and Element.down:
-                    self.close()
-                elif Element == self.min_window and Element.down:
-                    self.showMinimized()
-                elif Element == self.max_window and Element.down:
-                    pass
-                else:pass
+                if Element.clickType == QtCore.Qt.LeftButton:
+                    if Element == self.close_window and Element.down:
+                        self.close()
+                    elif Element == self.min_window and Element.down:
+                        self.showMinimized()
+                    elif Element == self.max_window and Element.down:
+                        pass
+                    else:pass
                 Element.down = False
             return __windowRelease
         def connectClick(Ele,fun):
