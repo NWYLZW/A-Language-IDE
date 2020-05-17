@@ -10,7 +10,7 @@
 '''
 
 ExeName = "AL-IDE"
-Version = "1.0.2.5"
+Version = "1.0.2.6"
 Debug = False
 Console = False
 Ico = "AL-IDE.ico"

@@ -126,7 +126,8 @@ class CardControler:
             self.__cardList.append(cardDict)
             self.refreshFile()
             return int(mID)+1
-        except:
+        except Exception as e:
+            print(e)
             return -1
     def updataCard(self,**cardDict):
         mcardDict = self.getCardById(cardDict.get('id',None))

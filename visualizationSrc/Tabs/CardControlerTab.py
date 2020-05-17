@@ -234,7 +234,7 @@ class cardDetail_C:
                     self.cardMake.removeNewCardTab()
                     self.cardMake.toCardDetailTab(newCardId)
                 else:
-                    QMessageBox.ctitical(
+                    QMessageBox.information(
                         mainWindow,
                         '错误', '发送了错误',
                         QMessageBox.Yes)
@@ -254,7 +254,7 @@ class cardDetail_C:
                         QMessageBox.Yes)
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
                 else:
-                    QMessageBox.ctitical(
+                    QMessageBox.information(
                         mainWindow,
                         '错误', '发送了错误',
                         QMessageBox.Yes)
@@ -262,17 +262,24 @@ class cardDetail_C:
         def __printCard():
             UI.CM_printCard.setStyleSheet(
                 "color: rgb(255, 255, 255);background-color: rgb(20, 100, 215);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;")
+            def CM_printCard_end():
+                QTimer.singleShot(200, lambda: UI.CM_printCard.setStyleSheet(
+                    "color: rgb(255, 255, 255);background-color: rgb(50, 150, 255);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;"))
+
             if self.card['id'] == "newCard":
-                QMessageBox.Warning(
+                QMessageBox.information(
                     mainWindow,
                     '失败', '请先添加卡牌',
                     QMessageBox.Yes)
+                CM_printCard_end()
+                return
             import os
             from ..Util.frozenDir import appPath
-            os.makedirs(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject')
-            with open(os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject\message.txt','w',encoding='utf-8') as f1:
+            messageTxtPath = os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject'
+            if not os.path.exists(messageTxtPath):
+                os.makedirs(messageTxtPath)
+            with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
                 f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
+            CM_printCard_end()
 
-            QTimer.singleShot(500, lambda: UI.CM_printCard.setStyleSheet(
-                "color: rgb(255, 255, 255);background-color: rgb(50, 150, 255);margin-left:100px;margin-right:100px;padding:10px;border-radius:10px;"))
         UI.CM_printCard.clicked.connect(__printCard)
