@@ -10,6 +10,8 @@
 '''
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QGraphicsDropShadowEffect
+from PyQt5.uic.properties import QtWidgets
+
 from . import config
 from .qtUI import mainInterFace
 
@@ -29,19 +31,36 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         self.setGraphicsEffect(effect)
 
         self.initUI()
-    def initUI(self):
-        self.setupUi(self)
-        # 初始化工具条
-        def initToolBar():
-            def close_windowClick(event):
-                from PyQt5 import QtCore
-                if event.buttons() == QtCore.Qt.LeftButton:
-                    from time import sleep
-                    sleep(0.1);self.close()
-            self.close_window.mousePressEvent = close_windowClick
-        initToolBar()
         from .Controler.ContentTabListControler import ContentTabList
         ContentTabList(self,self)
+    def initToolBar(self):
+        def windowClick(Element):
+            def __windowClick(event):
+                from PyQt5 import QtCore
+                if event.buttons() == QtCore.Qt.LeftButton:
+                    Element.down = True
+            return __windowClick
+        def windowRelease(Element):
+            def __windowRelease(event):
+                if Element == self.close_window and Element.down:
+                    self.close()
+                elif Element == self.min_window and Element.down:
+                    self.showMinimized()
+                elif Element == self.max_window and Element.down:
+                    pass
+                else:pass
+                Element.down = False
+            return __windowRelease
+        def connectClick(Ele,fun):
+            Ele.mousePressEvent = fun
+        def connectRelease(Ele:QtWidgets,fun):
+            Ele.mouseReleaseEvent = fun
+        for Ele in [self.close_window,self.min_window,self.max_window]:
+            connectClick(Ele,windowClick(Ele))
+            connectRelease(Ele,windowRelease(Ele))
+    def initUI(self):
+        self.setupUi(self)
+        self.initToolBar()
         self.EXETitle.setText(config.ExeName +' ' + config.Version)
     def mousePressEvent(self, event):
         if event.button()== Qt.LeftButton:
