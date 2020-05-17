@@ -8,33 +8,52 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from PyQt5.QtWidgets import QMainWindow
-from ..qtUI.mainInterFace import Ui_MainWindow
+from PyQt5.QtWidgets import QMainWindow, QTabBar
+
+from ..qtUI import mainInterFace
 
 class ContentTabList():
-    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
+    def __init__(self,UI:mainInterFace.Ui_MainWindow,mainWindow:QMainWindow):
         self.UI = UI
-        from ..Tabs.CardControlerTab import CardControlerTab
+        self.mainWindow = mainWindow
+        self.ContentTabList = self.UI.ContentTabList
+
         from ..Tabs.HomeTab import Home
-        self.CardControlerTab_C = CardControlerTab(UI, mainWindow)
-        self.Home_C = Home(UI,mainWindow)
-        for i in range(1,UI.ContentTabList.count()):
-            UI.ContentTabList.removeTab(i)
-        self.initTabName()
-    def initTabName(self):
-        self.UI.ContentTabList.setTabText(0, "主页")
-    def showTab(self,TabName):
-        TabNameList = ['CardControler']
-        if not TabName in TabNameList: return
-        TabNameHash = {
+        self.Home_C = Home(UI,mainWindow,self)
+
+        self.initTab()
+    def initTab(self):
+        from ..Tabs.CardControlerTab import CardControlerTab
+        self.TabNameList = ['CardControler']
+        self.TabNameHash = {
             'CardControler':{
                 'CN':"卡牌管理",
-                'tab':self.UI.CardMakeTab,
-                'isShow':False
+                'widget':CardControlerTab(self.mainWindow).Widget,
+                'isAdd':False
             },
         }
-        if not TabNameHash[TabName]['isShow']:
-            self.UI.ContentTabList\
-                .addTab(TabNameHash[TabName]['tab'],TabNameHash[TabName]['CN'])
-            TabNameHash[TabName]['isShow'] = True
-        self.UI.ContentTabList.setCurrentWidget(TabNameHash[TabName]['tab'])
+
+        self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
+        self.ContentTabList.setTabText(0, "主页")
+        for i in range(1,self.ContentTabList.count()):
+            self.ContentTabList.removeTab(i)
+
+        self.initTabClose()
+    def initTabClose(self):
+        def __closeTab(currentIndex):
+            currentQWidget = self.ContentTabList.widget(currentIndex)
+            if currentQWidget == None: return
+            self.ContentTabList.removeTab(currentIndex)
+            for key in self.TabNameHash:
+                dict = self.TabNameHash[key]
+                if dict['widget'] == currentQWidget:
+                    dict['isAdd'] = False
+        self.ContentTabList.tabCloseRequested.connect(__closeTab)
+    def showTab(self,TabName):
+        if not TabName in self.TabNameList: return
+        TabNameHash = self.TabNameHash
+        if not TabNameHash[TabName]['isAdd']:
+            self.ContentTabList\
+                .addTab(TabNameHash[TabName]['widget'],TabNameHash[TabName]['CN'])
+            TabNameHash[TabName]['isAdd'] = True
+        self.ContentTabList.setCurrentWidget(TabNameHash[TabName]['widget'])

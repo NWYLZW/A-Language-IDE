@@ -96,7 +96,7 @@ class Ui_Form(object):
         self.CardControler_Tabs.addTab(self.NoneTab, "")
 
         self.retranslateUi(Form)
-        self.CardControler_Tabs.setCurrentIndex(1)
+        self.CardControler_Tabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):

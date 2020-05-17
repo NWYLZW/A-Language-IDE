@@ -13,22 +13,20 @@ from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QWidget, QVBoxLay
 
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
-from ..qtUI.CardControler import cardItemModel, cardDetailsModel
-from ..qtUI.mainInterFace import Ui_MainWindow
+from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
 
-class CardDetails_Model:
-    def __init__(self):
-        pass
-
 class CardControlerTab:
-    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
-        self.UI = UI
+    def __init__(self,mainWindow:QMainWindow):
         self.mainWindow = mainWindow
+
+        self.Widget = QWidget()
+        self.UI = cardControler.Ui_Form()
+        self.UI.setupUi(self.Widget)
         self.cardControler = CardControler()
 
-        self.Tab = UI.CMT_Tab
-        self.CardList = UI.CMT_CardList
+        self.Tab = self.UI.CardControler_Tabs
+        self.CardList = self.UI.CardList
         self.cardEditTabList = []
 
         self.initTab()
@@ -48,7 +46,7 @@ class CardControlerTab:
             self.toCardDetailTab("newCard")
         makeNewCardBtn.clicked.connect(makeNewCard)
 
-        Search_Input = self.UI.CMT_C_Search_Input
+        Search_Input = self.UI.Search_Input
         Search_Input.setPlaceholderText("搜索想查找的卡牌名(回车搜索)")
         Search_Input\
             .setCompleter(
@@ -85,7 +83,7 @@ class CardControlerTab:
     def refreshCardList(self,cardList):
         UI = self.UI
         self.cardSelList = []
-        cardScroll =UI.CMT_C_cardScroll
+        cardScroll =UI.cardScroll
         tempWidget = QWidget()
         tempHL = QVBoxLayout()
         tempWidget.setLayout(tempHL)

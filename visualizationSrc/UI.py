@@ -22,8 +22,8 @@ def initFont(editor):
     editor.setFont(font)
     editor.setTabStopWidth(16)
 def init(APP:QApplication,mainWindow:QMainWindow):
-    from .qtUI.mainInterFace import Ui_MainWindow
-    UI = Ui_MainWindow()
+    from .qtUI import mainInterFace
+    UI = mainInterFace.Ui_MainWindow()
     UI.setupUi(mainWindow)
 
     from PyQt5.QtCore import Qt
@@ -38,6 +38,6 @@ def init(APP:QApplication,mainWindow:QMainWindow):
     initToolBar()
 
     from .Controler.ContentTabListControler import ContentTabList
-    UI.ContentTabList_C = ContentTabList(UI,mainWindow)
+    ContentTabList(UI,mainWindow)
     UI.EXETitle.setText(ExeName +' ' + Version)
     return UI

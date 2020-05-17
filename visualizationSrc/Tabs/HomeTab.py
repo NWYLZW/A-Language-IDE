@@ -8,23 +8,20 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   主页
 '''
-from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QMainWindow
 
+from ..Controler.ContentTabListControler import ContentTabList
 from ..qtUI.mainInterFace import Ui_MainWindow
 
 class Home:
-    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow):
+    def __init__(self,UI:Ui_MainWindow,mainWindow:QMainWindow,CTL:ContentTabList):
         self.UI = UI
+        self.CTL = CTL
         self.initCardItemClick()
     def initCardItemClick(self):
         UI = self.UI
         def CardControlerClick(event):
             from PyQt5 import QtCore
             if event.buttons() == QtCore.Qt.LeftButton:
-                UI.ContentTabList_C.showTab('CardControler')
+                self.CTL.showTab('CardControler')
         UI.CardControler.mousePressEvent = CardControlerClick
-        def mouseReleaseEvent(event):
-            UI.EXETitle.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.SizeAllCursor))
-            UI.CardControler.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        UI.CardControler.mouseReleaseEvent = mouseReleaseEvent

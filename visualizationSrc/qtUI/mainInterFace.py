@@ -31,6 +31,7 @@ class Ui_MainWindow(object):
         self.Main.setObjectName("Main")
         self.ContentTabList = QtWidgets.QTabWidget(self.Main)
         self.ContentTabList.setGeometry(QtCore.QRect(20, 40, 1161, 671))
+        self.ContentTabList.setTabsClosable(True)
         self.ContentTabList.setObjectName("ContentTabList")
         self.HomeTab = QtWidgets.QWidget()
         self.HomeTab.setObjectName("HomeTab")
@@ -123,85 +124,6 @@ class Ui_MainWindow(object):
         self.ContentTabList.addTab(self.HomeTab, "")
         self.CardMakeTab = QtWidgets.QWidget()
         self.CardMakeTab.setObjectName("CardMakeTab")
-        self.CMT_Tab = QtWidgets.QTabWidget(self.CardMakeTab)
-        self.CMT_Tab.setGeometry(QtCore.QRect(0, 0, 1151, 651))
-        self.CMT_Tab.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.CMT_Tab.setTabPosition(QtWidgets.QTabWidget.West)
-        self.CMT_Tab.setTabShape(QtWidgets.QTabWidget.Rounded)
-        self.CMT_Tab.setElideMode(QtCore.Qt.ElideNone)
-        self.CMT_Tab.setUsesScrollButtons(True)
-        self.CMT_Tab.setDocumentMode(True)
-        self.CMT_Tab.setTabsClosable(True)
-        self.CMT_Tab.setMovable(True)
-        self.CMT_Tab.setTabBarAutoHide(False)
-        self.CMT_Tab.setObjectName("CMT_Tab")
-        self.CMT_CardList = QtWidgets.QWidget()
-        self.CMT_CardList.setObjectName("CMT_CardList")
-        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.CMT_CardList)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 371, 51))
-        self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
-        self.CMT_C_Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
-        self.CMT_C_Search.setContentsMargins(0, 0, 0, 0)
-        self.CMT_C_Search.setObjectName("CMT_C_Search")
-        self.label = QtWidgets.QLabel(self.horizontalLayoutWidget_3)
-        self.label.setObjectName("label")
-        self.CMT_C_Search.addWidget(self.label)
-        self.CMT_C_Search_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
-        self.CMT_C_Search_Input.setStyleSheet("margin: 5px;\n"
-"padding: 5px;")
-        self.CMT_C_Search_Input.setObjectName("CMT_C_Search_Input")
-        self.CMT_C_Search.addWidget(self.CMT_C_Search_Input)
-        self.CMT_C_cardScroll = QtWidgets.QScrollArea(self.CMT_CardList)
-        self.CMT_C_cardScroll.setGeometry(QtCore.QRect(10, 70, 1111, 571))
-        self.CMT_C_cardScroll.setWidgetResizable(True)
-        self.CMT_C_cardScroll.setObjectName("CMT_C_cardScroll")
-        self.CMT_C_cardScrollWidget = QtWidgets.QWidget()
-        self.CMT_C_cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1109, 569))
-        self.CMT_C_cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
-        self.CMT_C_cardScrollWidget.setObjectName("CMT_C_cardScrollWidget")
-        self.CMT_C_cardScroll.setWidget(self.CMT_C_cardScrollWidget)
-        self.horizontalLayoutWidget_4 = QtWidgets.QWidget(self.CMT_CardList)
-        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(380, 10, 561, 51))
-        self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
-        self.CMT_C_btnList = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
-        self.CMT_C_btnList.setContentsMargins(5, 0, 5, 0)
-        self.CMT_C_btnList.setSpacing(5)
-        self.CMT_C_btnList.setObjectName("CMT_C_btnList")
-        self.makeNewCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.makeNewCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.makeNewCard.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.makeNewCard.setObjectName("makeNewCard")
-        self.CMT_C_btnList.addWidget(self.makeNewCard)
-        self.delSelCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.delSelCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.delSelCard.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.delSelCard.setObjectName("delSelCard")
-        self.CMT_C_btnList.addWidget(self.delSelCard)
-        self.pushButton_3 = QtWidgets.QPushButton(self.horizontalLayoutWidget_4)
-        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.pushButton_3.setStyleSheet("background: #2866bd;\n"
-"color: #fff;\n"
-"padding: 10px;\n"
-"border: none;\n"
-"border-radius: 8px;")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.CMT_C_btnList.addWidget(self.pushButton_3)
-        self.CMT_C_btnList.setStretch(0, 2)
-        self.CMT_C_btnList.setStretch(1, 2)
-        self.CMT_C_btnList.setStretch(2, 3)
-        self.CMT_Tab.addTab(self.CMT_CardList, "")
-        self.CMT_CardDetails_Model = QtWidgets.QWidget()
-        self.CMT_CardDetails_Model.setMaximumSize(QtCore.QSize(1127, 651))
-        self.CMT_CardDetails_Model.setObjectName("CMT_CardDetails_Model")
-        self.CMT_Tab.addTab(self.CMT_CardDetails_Model, "")
         self.ContentTabList.addTab(self.CardMakeTab, "")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.Main)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1201, 31))
@@ -260,7 +182,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.ContentTabList.setCurrentIndex(0)
-        self.CMT_Tab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -291,12 +212,6 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">指令列表</span></p></body></html>"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
-        self.label.setText(_translate("MainWindow", "搜索"))
-        self.makeNewCard.setText(_translate("MainWindow", "制作新卡"))
-        self.delSelCard.setText(_translate("MainWindow", "删除已选"))
-        self.pushButton_3.setText(_translate("MainWindow", "导出信息至Excel"))
-        self.CMT_Tab.setTabText(self.CMT_Tab.indexOf(self.CMT_CardList), _translate("MainWindow", "Tab 1"))
-        self.CMT_Tab.setTabText(self.CMT_Tab.indexOf(self.CMT_CardDetails_Model), _translate("MainWindow", "Tab 2"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.CardMakeTab), _translate("MainWindow", "Tab 2"))
         self.EXETitle.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

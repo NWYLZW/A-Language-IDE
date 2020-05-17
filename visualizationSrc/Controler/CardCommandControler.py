@@ -8,7 +8,7 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from .CSVHelperControler import CSVHelperControler
+from visualizationSrc.Controler.Helper.CSVHelperControler import CSVHelperControler
 
 class CardCommandControler(CSVHelperControler):
     def __init__(self):
