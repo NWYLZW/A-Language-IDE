@@ -9,17 +9,27 @@
 @Desciption     :   初始化UI界面
 '''
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QGraphicsDropShadowEffect
 from . import config
 from .qtUI import mainInterFace
 
 class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
-        self.initUI()
-    def initUI(self):
         # 去除默认边框
         self.setWindowFlags(Qt.FramelessWindowHint)
+        # 背景透明（就是ui中黑色背景的那个控件）
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
+
+        # 添加阴影
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(12)
+        effect.setOffset(0, 0)
+        effect.setColor(Qt.gray)
+        self.setGraphicsEffect(effect)
+
+        self.initUI()
+    def initUI(self):
         self.setupUi(self)
         # 初始化工具条
         def initToolBar():

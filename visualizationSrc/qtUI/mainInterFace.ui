@@ -40,7 +40,14 @@
    <string>AL-IDE</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">#MainWindow{
+	background-color: rgb(0, 0, 0);
+}
+#Main{
+	background-color: rgb(255,255,255);
+	margin:10px;
+	border-radius: 10px;
+}</string>
   </property>
   <widget class="QWidget" name="Main">
    <property name="maximumSize">
@@ -52,180 +59,315 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QTabWidget" name="ContentTabList">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>10</y>
       <width>1161</width>
-      <height>671</height>
+      <height>711</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <property name="tabsClosable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="HomeTab">
-     <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <layout class="QVBoxLayout" name="Interface" stretch="1,20">
+     <property name="spacing">
+      <number>5</number>
      </property>
-     <property name="whatsThis">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <property name="leftMargin">
+      <number>10</number>
      </property>
-     <attribute name="title">
-      <string>Tab 1</string>
-     </attribute>
-     <widget class="QWidget" name="gridLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1161</width>
-        <height>651</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1,1" rowminimumheight="1,1" columnminimumwidth="1,1,1">
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="HeadToolBar" stretch="10,1">
        <property name="spacing">
-        <number>10</number>
+        <number>0</number>
        </property>
-       <item row="1" column="1">
-        <layout class="QGridLayout" name="gridLayout_2">
-         <property name="leftMargin">
+       <item>
+        <layout class="QHBoxLayout" name="top_right" stretch="1">
+         <property name="spacing">
           <number>0</number>
          </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="label_2">
+         <item>
+          <widget class="QTextBrowser" name="EXETitle">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="cursor" stdset="0">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="styleSheet">
-            <string notr="true">padding:10px;</string>
-           </property>
-           <property name="text">
-            <string>运行指令到游戏</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="2">
-          <widget class="QLineEdit" name="lineEdit">
-           <property name="styleSheet">
-            <string notr="true">padding:5px;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="2">
-          <widget class="QTextBrowser" name="textBrowser">
-           <property name="styleSheet">
-            <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
+            <string notr="true">#EXETitle{
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
            </property>
            <property name="html">
             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;运行结果==&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QGraphicsView" name="graphicsView_6">
-           <property name="cursor" stdset="0">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QGraphicsView" name="graphicsView_7">
-           <property name="cursor" stdset="0">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;AL-IDE 1.0.0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="1" column="2">
-        <widget class="QGraphicsView" name="graphicsView">
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
+       <item>
+        <layout class="QHBoxLayout" name="top_left">
+         <property name="spacing">
+          <number>10</number>
          </property>
-         <property name="styleSheet">
-          <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
-         </property>
-        </widget>
+         <item>
+          <widget class="QGraphicsView" name="min_window">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#min_window{
+	border-image: url(:/ico/Data/qrc/ico/min.png);
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGraphicsView" name="max_window">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#max_window{
+	border-image: url(:/ico/Data/qrc/ico/max.png);
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGraphicsView" name="close_window">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="cursor" stdset="0">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#close_window{
+	border-image: url(:/ico/Data/qrc/ico/close.png);
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="2">
-        <widget class="QGraphicsView" name="graphicsView_2">
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTabWidget" name="ContentTabList">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="tabsClosable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="HomeTab">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <attribute name="title">
+         <string>Tab 1</string>
+        </attribute>
+        <widget class="QWidget" name="gridLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1131</width>
+           <height>621</height>
+          </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QGraphicsView" name="graphicsView_4">
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border:1px solid #afafaf; 
-border-radius:10px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QTextBrowser" name="CardControler">
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-image: url(:/picture/Data/qrc/cardPkg.png);
-background-repeat: no-repeat;
-background-position: bottom;
-
-border:1px solid #afafaf; 
-border-radius:10px;</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+         <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1,1" rowminimumheight="1,1" columnminimumwidth="1,1,1">
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item row="1" column="1">
+           <layout class="QGridLayout" name="gridLayout_2">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0" colspan="2">
+             <widget class="QLabel" name="label_2">
+              <property name="styleSheet">
+               <string notr="true">padding:10px;</string>
+              </property>
+              <property name="text">
+               <string>运行指令到游戏</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="styleSheet">
+               <string notr="true">padding:5px;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QTextBrowser" name="textBrowser">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;运行结果==&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QGraphicsView" name="graphicsView_6">
+              <property name="cursor" stdset="0">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QGraphicsView" name="graphicsView_7">
+              <property name="cursor" stdset="0">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="2">
+           <widget class="QGraphicsView" name="graphicsView">
+            <property name="cursor" stdset="0">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QGraphicsView" name="graphicsView_2">
+            <property name="cursor" stdset="0">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGraphicsView" name="graphicsView_4">
+            <property name="cursor" stdset="0">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QTextBrowser" name="CardControler">
+            <property name="cursor" stdset="0">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;卡牌管理&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTextBrowser{
+	background-image: url(:/picture/Data/qrc/cardPkg.png);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	border:1px solid #afafaf; 
+	border-radius:10px;
+}</string>
+            </property>
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -233,24 +375,28 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;卡牌管理&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QTextBrowser" name="CommandList">
-         <property name="cursor" stdset="0">
-          <cursorShape>ForbiddenCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-image: url(:/picture/Data/qrc/command.png);
-background-repeat: no-repeat;
-background-position: bottom;
-
-border:1px solid #afafaf; 
-border-radius:10px;</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTextBrowser" name="CommandList">
+            <property name="cursor" stdset="0">
+             <cursorShape>ForbiddenCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;指令列表&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTextBrowser{
+	background-image: url(:/picture/Data/qrc/command.png);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	border:1px solid #afafaf; 
+	border-radius:10px;
+}</string>
+            </property>
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -258,139 +404,18 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;指令列表&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="CardMakeTab">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>1161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="HeadToolBar" stretch="10,1">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <layout class="QHBoxLayout" name="top_right" stretch="1">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="EXETitle">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="cursor" stdset="0">
-          <cursorShape>ArrowCursor</cursorShape>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border: none;</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;AL-IDE 1.0.0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="top_left">
-       <property name="spacing">
-        <number>10</number>
-       </property>
-       <item>
-        <widget class="QGraphicsView" name="min_window">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/ico/Data/qrc/ico/min.png);
-background-size:100%;
-background-repeat: no-repeat;
-background-position: center;
-</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGraphicsView" name="max_window">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/ico/Data/qrc/ico/max.png);
-background-size:100%;
-background-repeat: no-repeat;
-background-position: center;
-</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGraphicsView" name="close_window">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="cursor" stdset="0">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/ico/Data/qrc/ico/close.png);
-background-size:100%;
-background-repeat: no-repeat;
-background-position: center;
-</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       </widget>
+       <widget class="QWidget" name="CardMakeTab">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
      </item>
     </layout>
    </widget>
