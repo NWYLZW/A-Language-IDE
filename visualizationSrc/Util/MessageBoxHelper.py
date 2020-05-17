@@ -67,11 +67,11 @@ class MessageBox(QWidget,messageBox.Ui_Message_Box):
         animation.setKeyValueAt(0.20, QPoint(posX, posY))
         animation.setKeyValueAt(0.80, QPoint(posX, posY))
         animation.setKeyValueAt(1.00, QPoint(posX, posY+self.HEIGHT+100))
-        animation.setDuration(1500)
+        animation.setDuration(2000)
         animation.start()
         def __animationEndFun():
             if self.isNewShow: pass
             else:
                 self.isNewShow = False
                 self.hide()
-        QTimer.singleShot(1500, __animationEndFun)
+        QTimer.singleShot(2000, __animationEndFun)

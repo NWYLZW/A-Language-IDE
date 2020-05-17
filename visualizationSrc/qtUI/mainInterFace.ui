@@ -150,7 +150,6 @@ p, li { white-space: pre-wrap; }
            <property name="styleSheet">
             <string notr="true">#min_window{
 	border-image: url(:/ico/Data/qrc/ico/min.png);
-	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -180,7 +179,6 @@ p, li { white-space: pre-wrap; }
            <property name="styleSheet">
             <string notr="true">#max_window{
 	border-image: url(:/ico/Data/qrc/ico/max.png);
-	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -210,7 +208,6 @@ p, li { white-space: pre-wrap; }
            <property name="styleSheet">
             <string notr="true">#close_window{
 	border-image: url(:/ico/Data/qrc/ico/close.png);
-	background-size:100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }

@@ -55,7 +55,6 @@ class Ui_Form(object):
 "    padding: 10px;\n"
 "    border: none;\n"
 "    border-radius: 8px;\n"
-"    transition: 1s;\n"
 "}\n"
 "QPushButton:hover{\n"
 "    background: rgb(20,110,220);\n"

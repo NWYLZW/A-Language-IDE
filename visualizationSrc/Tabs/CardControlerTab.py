@@ -9,15 +9,16 @@
 @Desciption     :   卡牌制作界面
 '''
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QWidget, QVBoxLayout, QCompleter
+from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter
 
+from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
 
 class CardControlerTab:
-    def __init__(self,mainWindow:QMainWindow):
+    def __init__(self,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
 
         self.Widget = QWidget()
@@ -30,7 +31,13 @@ class CardControlerTab:
         try:
             self.cardControler = CardControler()
             self.refreshCardList(self.cardControler.getCardList())
-        except Exception as e: print(e)
+        except Exception as e:
+            mainWindow.showErr(
+                "获取列表发生了错误",
+                self.__class__.__name__,
+                str(e)
+            )
+            print(e)
 
         self.initTab()
         self.initClick()
@@ -150,7 +157,7 @@ class CardControlerTab:
             cardMake=self,)
 
 class cardDetail_C:
-    def __init__(self, cardDetailsModel_UI: cardDetailsModel.Ui_Form, card, cardMake):
+    def __init__(self, cardDetailsModel_UI: cardDetailsModel.Ui_Form, card:dict, cardMake:CardControlerTab):
         self.UI = cardDetailsModel_UI
         from ..Util.CompleterUtil import Completer
         self.UI.completer = Completer()
@@ -224,18 +231,22 @@ class cardDetail_C:
                     remapCode=UI.CM_remapCodeSource.toPlainText()
                 ).toDict())
                 if newCardId!=-1:
-                    QMessageBox.information(
-                        mainWindow,
-                        '成功', '添加成功',
-                        QMessageBox.Yes)
+                    self.mainWindow.showInfo(
+                        "添加卡牌",
+                        self.__class__.__name__,
+                        "成功新添ID为:"+newCardId+",\n"+
+                        "名称为:"+UI.CM_displayName.text()+"的卡牌"
+                    )
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
                     self.cardMake.removeNewCardTab()
                     self.cardMake.toCardDetailTab(newCardId)
                 else:
-                    QMessageBox.information(
-                        mainWindow,
-                        '错误', '发送了错误',
-                        QMessageBox.Yes)
+                    self.mainWindow.showWarn(
+                        "添加卡牌",
+                        self.__class__.__name__,
+                        "新添名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
+                        "请保证文件读取权限、卡牌列表最后一张卡牌ID为数字"
+                    )
             else:
                 if self.cardControler.updataCard(**Card(
                     id=self.cardId,
@@ -246,16 +257,21 @@ class cardDetail_C:
                     code=UI.CM_codeSource.toPlainText(),
                     remapCode=UI.CM_remapCodeSource.toPlainText()
                 ).toDict()):
-                    QMessageBox.information(
-                        mainWindow,
-                        '成功', '修改成功',
-                        QMessageBox.Yes)
+                    self.mainWindow.showInfo(
+                        "修改卡牌",
+                        self.__class__.__name__,
+                        "修改ID为:"+self.cardId+",\n"+
+                        "名称为:"+self.card.get('displayName')+"成功"
+                    )
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
                 else:
-                    QMessageBox.information(
-                        mainWindow,
-                        '错误', '发送了错误',
-                        QMessageBox.Yes)
+                    self.mainWindow.showWarn(
+                        "修改卡牌",
+                        self.__class__.__name__,
+                        "修改ID为:"+self.cardId+",\n"+
+                        "名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
+                        "请保证文件读取权限"
+                    )
         UI.CM_addCard.clicked.connect(__insertCard)
         def __printCard():
             originStyleSheet = UI.CM_printCard.styleSheet()
@@ -264,10 +280,12 @@ class cardDetail_C:
                 QTimer.singleShot(200, lambda: UI.CM_printCard.setStyleSheet(originStyleSheet))
 
             if self.card['id'] == "newCard":
-                QMessageBox.information(
-                    mainWindow,
-                    '失败', '请先添加卡牌',
-                    QMessageBox.Yes)
+                mainWindow.showWarn(
+                    "印卡",
+                    self.__class__.__name__,
+                    "印卡时发生了错误"+",\n"+
+                    "请先添加卡牌"
+                )
                 CM_printCard_end()
                 return
             import os
@@ -278,5 +296,4 @@ class cardDetail_C:
             with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
                 f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
             CM_printCard_end()
-
         UI.CM_printCard.clicked.connect(__printCard)

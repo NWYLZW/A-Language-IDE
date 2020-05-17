@@ -8,12 +8,12 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from PyQt5.QtWidgets import QMainWindow, QTabBar
+from PyQt5.QtWidgets import QTabBar
 
-from ..qtUI import mainInterFace
+from .. import MyWindow
 
 class ContentTabList():
-    def __init__(self,UI:mainInterFace.Ui_MainWindow,mainWindow:QMainWindow):
+    def __init__(self,UI:MyWindow.MyWindow,mainWindow:MyWindow.MyWindow):
         self.UI = UI
         self.mainWindow = mainWindow
         self.ContentTabList = self.UI.ContentTabList
@@ -31,7 +31,13 @@ class ContentTabList():
                 'widget':CardControlerTab(self.mainWindow).Widget,
                 'isAdd':False
             }
-        except Exception as e: print(e)
+        except Exception as e:
+            self.mainWindow.showErr(
+                "初始化卡牌管理出现了错误",
+                self.__class__.__name__,
+                str(e)
+            )
+            print(e)
 
         self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
         self.ContentTabList.setTabText(0, "主页")
@@ -52,6 +58,7 @@ class ContentTabList():
     def showTab(self,TabName):
         if not TabName in self.TabNameList: return
         TabNameHash = self.TabNameHash
+        if TabNameHash.get(TabName,None)==None:return
         if not TabNameHash[TabName]['isAdd']:
             self.ContentTabList\
                 .addTab(TabNameHash[TabName]['widget'],TabNameHash[TabName]['CN'])

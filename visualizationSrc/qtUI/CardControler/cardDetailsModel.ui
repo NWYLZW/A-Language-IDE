@@ -19,6 +19,14 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
+	background-color: rgb(50, 150, 255);
+	padding:5px;
+	border-radius:10px;
+}</string>
+  </property>
   <widget class="QWidget" name="horizontalLayoutWidget_2">
    <property name="geometry">
     <rect>
@@ -411,10 +419,7 @@ p, li { white-space: pre-wrap; }
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(50, 150, 255);
-padding:5px;
-border-radius:10px;</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>印卡</string>
@@ -436,10 +441,7 @@ border-radius:10px;</string>
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(50, 150, 255);
-padding:5px;
-border-radius:10px;</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>添加</string>

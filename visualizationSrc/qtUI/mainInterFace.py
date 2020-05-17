@@ -69,7 +69,6 @@ class Ui_MainWindow(object):
         self.min_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.min_window.setStyleSheet("#min_window{\n"
 "    border-image: url(:/ico/Data/qrc/ico/min.png);\n"
-"    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"
@@ -83,7 +82,6 @@ class Ui_MainWindow(object):
         self.max_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.max_window.setStyleSheet("#max_window{\n"
 "    border-image: url(:/ico/Data/qrc/ico/max.png);\n"
-"    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"
@@ -97,7 +95,6 @@ class Ui_MainWindow(object):
         self.close_window.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.close_window.setStyleSheet("#close_window{\n"
 "    border-image: url(:/ico/Data/qrc/ico/close.png);\n"
-"    background-size:100%;\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"

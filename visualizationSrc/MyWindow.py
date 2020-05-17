@@ -68,23 +68,23 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
     def showInfo(self,Title,KindName,Content):
         self._MessageBox.showMessage(
             self._MessageBox.MessageBox_Tag.Information,
-            Title="None",
-            KindName="",
-            Content="",
+            Title=Title,
+            KindName=KindName,
+            Content=Content,
         )
     def showWarn(self,Title,KindName,Content):
         self._MessageBox.showMessage(
             self._MessageBox.MessageBox_Tag.Warning,
-            Title="None",
-            KindName="",
-            Content="",
+            Title=Title,
+            KindName=KindName,
+            Content=Content,
         )
     def showErr(self,Title,KindName,Content):
         self._MessageBox.showMessage(
             self._MessageBox.MessageBox_Tag.Error,
-            Title="None",
-            KindName="",
-            Content="",
+            Title=Title,
+            KindName=KindName,
+            Content=Content,
         )
 
     def mousePressEvent(self, event):

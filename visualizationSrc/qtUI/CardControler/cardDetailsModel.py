@@ -15,6 +15,12 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(1120, 640)
         Form.setMinimumSize(QtCore.QSize(0, 0))
+        Form.setStyleSheet("QPushButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(50, 150, 255);\n"
+"    padding:5px;\n"
+"    border-radius:10px;\n"
+"}")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Form)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
@@ -198,10 +204,7 @@ class Ui_Form(object):
         font.setPointSize(12)
         self.CM_printCard.setFont(font)
         self.CM_printCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CM_printCard.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(50, 150, 255);\n"
-"padding:5px;\n"
-"border-radius:10px;")
+        self.CM_printCard.setStyleSheet("")
         self.CM_printCard.setCheckable(False)
         self.CM_printCard.setObjectName("CM_printCard")
         self.CM_footer.addWidget(self.CM_printCard)
@@ -211,10 +214,7 @@ class Ui_Form(object):
         font.setPointSize(12)
         self.CM_addCard.setFont(font)
         self.CM_addCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CM_addCard.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(50, 150, 255);\n"
-"padding:5px;\n"
-"border-radius:10px;")
+        self.CM_addCard.setStyleSheet("")
         self.CM_addCard.setObjectName("CM_addCard")
         self.CM_footer.addWidget(self.CM_addCard)
         self.CM_main.addLayout(self.CM_footer)
