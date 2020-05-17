@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'qtUI/cardItemModel.ui'
+# Form implementation generated from reading ui file 'qtUI/CardControler/cardItemModel.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -104,4 +104,4 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-from . import AL_IDE_MainInterFace_rc
+from .. import AL_IDE_MainInterFace_rc

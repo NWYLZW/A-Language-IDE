@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QMessageBox, QMainWindow, QTabBar, QWidget, QVBoxLay
 
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
-from ..qtUI import cardItemModel, cardDetailsModel
+from ..qtUI.CardControler import cardItemModel, cardDetailsModel
 from ..qtUI.mainInterFace import Ui_MainWindow
 from ..Util.HighLighterUtil import HighLighter
 
@@ -152,7 +152,7 @@ class CardControlerTab:
             cardMake=self,)
 
 class cardDetail_C:
-    def __init__(self,cardDetailsModel_UI:cardDetailsModel.Ui_Form,card,cardMake):
+    def __init__(self, cardDetailsModel_UI: cardDetailsModel.Ui_Form, card, cardMake):
         self.UI = cardDetailsModel_UI
         from ..Util.CompleterUtil import Completer
         self.UI.completer = Completer()
