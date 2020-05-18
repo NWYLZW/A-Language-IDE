@@ -48,7 +48,12 @@
 	margin:10px;
 	border-radius: 10px;
 }
-
+QTabBar::close-button{
+	image: url(:/ico/Data/qrc/ico/close.png);
+}
+QTabBar::close-button:hover{
+	image: url(:/ico/Data/qrc/ico/closed.png);
+}
 QScrollBar:horizontal
 {
     height: 8px;
@@ -271,7 +276,7 @@ p, li { white-space: pre-wrap; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <attribute name="title">
-         <string>Tab 1</string>
+         <string>主页</string>
         </attribute>
         <widget class="QWidget" name="gridLayoutWidget">
          <property name="geometry">

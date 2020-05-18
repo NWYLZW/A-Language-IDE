@@ -17,6 +17,12 @@ class Ui_Form(object):
         Form.setMaximumSize(QtCore.QSize(16777215, 16777215))
         Form.setStyleSheet("#Form{\n"
 "    padding:10px;\n"
+"}\n"
+"QTabBar::close-button{\n"
+"    image: url(:/ico/Data/qrc/ico/close.png);\n"
+"}\n"
+"QTabBar::close-button:hover{\n"
+"    image: url(:/ico/Data/qrc/ico/closed.png);\n"
 "}")
         self.CardControler_Tabs = QtWidgets.QTabWidget(Form)
         self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
@@ -37,54 +43,88 @@ class Ui_Form(object):
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.Search.setContentsMargins(0, 0, 0, 0)
+        self.Search.setSpacing(10)
         self.Search.setObjectName("Search")
         self.Search_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
         self.Search_Input.setStyleSheet("#Search_Input{\n"
 "    margin: 5px;\n"
 "    padding: 5px;\n"
 "    border: 1px solid gray;\n"
+"    border-radius: 10px;\n"
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
         self.horizontalWidget_4 = QtWidgets.QWidget(self.horizontalLayoutWidget_3)
         self.horizontalWidget_4.setStyleSheet("QPushButton{\n"
-"    background: rgb(50,150,250);\n"
-"    color: #fff;\n"
-"    padding: 10px;\n"
+"    background: rgba(255, 255, 255, 0);\n"
 "    border: none;\n"
-"    border-radius: 8px;\n"
 "}\n"
-"QPushButton:hover{\n"
-"    background: rgb(20,110,220);\n"
+"#setting{\n"
+"    border-image: url(:/ico/Data/qrc/ico/tool.png);\n"
+"}\n"
+"#makeNewCard{\n"
+"    border-image: url(:/ico/Data/qrc/ico/new.png);\n"
+"}\n"
+"#makeNewCard:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/newed.png);\n"
+"}\n"
+"#delSelCard{\n"
+"    border-image: url(:/ico/Data/qrc/ico/delete.png);\n"
+"}\n"
+"#delSelCard:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
+"}\n"
+"#copyCard{\n"
+"    border-image: url(:/ico/Data/qrc/ico/copy.png);\n"
+"}\n"
+"#copyCard:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/copied.png);\n"
+"}\n"
+"#pushToExcel{\n"
+"    border-image: url(:/ico/Data/qrc/ico/excel.png);\n"
 "}")
         self.horizontalWidget_4.setObjectName("horizontalWidget_4")
         self.btnList = QtWidgets.QHBoxLayout(self.horizontalWidget_4)
         self.btnList.setContentsMargins(5, 1, 5, 1)
         self.btnList.setSpacing(5)
         self.btnList.setObjectName("btnList")
+        self.setting = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.setting.setMaximumSize(QtCore.QSize(32, 32))
+        self.setting.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.setting.setText("")
+        self.setting.setObjectName("setting")
+        self.btnList.addWidget(self.setting)
         self.makeNewCard = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.makeNewCard.setMaximumSize(QtCore.QSize(32, 32))
         self.makeNewCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.makeNewCard.setStyleSheet("")
+        self.makeNewCard.setText("")
         self.makeNewCard.setObjectName("makeNewCard")
         self.btnList.addWidget(self.makeNewCard)
         self.delSelCard = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.delSelCard.setMaximumSize(QtCore.QSize(32, 32))
         self.delSelCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.delSelCard.setStyleSheet("")
+        self.delSelCard.setText("")
         self.delSelCard.setObjectName("delSelCard")
         self.btnList.addWidget(self.delSelCard)
         self.copyCard = QtWidgets.QPushButton(self.horizontalWidget_4)
-        self.copyCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.copyCard.setMaximumSize(QtCore.QSize(32, 32))
+        self.copyCard.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.copyCard.setStyleSheet("")
+        self.copyCard.setText("")
         self.copyCard.setObjectName("copyCard")
         self.btnList.addWidget(self.copyCard)
-        self.pushButton_3 = QtWidgets.QPushButton(self.horizontalWidget_4)
-        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.pushButton_3.setStyleSheet("")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.btnList.addWidget(self.pushButton_3)
+        self.pushToExcel = QtWidgets.QPushButton(self.horizontalWidget_4)
+        self.pushToExcel.setMaximumSize(QtCore.QSize(32, 32))
+        self.pushToExcel.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.pushToExcel.setStyleSheet("")
+        self.pushToExcel.setText("")
+        self.pushToExcel.setObjectName("pushToExcel")
+        self.btnList.addWidget(self.pushToExcel)
         self.Search.addWidget(self.horizontalWidget_4)
         self.Search.setStretch(0, 1)
-        self.Search.setStretch(1, 3)
+        self.Search.setStretch(1, 2)
         self.cardScroll = QtWidgets.QScrollArea(self.CardList)
         self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 571))
         self.cardScroll.setWidgetResizable(True)
@@ -104,8 +144,10 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.Search_Input.setPlaceholderText(_translate("Form", "搜索想查找的卡牌的名字(回车搜索)"))
-        self.makeNewCard.setText(_translate("Form", "制作新卡"))
-        self.delSelCard.setText(_translate("Form", "删除已选"))
-        self.copyCard.setText(_translate("Form", "复制已选"))
-        self.pushButton_3.setText(_translate("Form", "导出信息至Excel"))
+        self.setting.setToolTip(_translate("Form", "<html><head/><body><p>设置</p></body></html>"))
+        self.makeNewCard.setToolTip(_translate("Form", "<html><head/><body><p>新建卡牌</p></body></html>"))
+        self.delSelCard.setToolTip(_translate("Form", "<html><head/><body><p>移至回收站</p></body></html>"))
+        self.copyCard.setToolTip(_translate("Form", "<html><head/><body><p>复制卡牌</p></body></html>"))
+        self.pushToExcel.setToolTip(_translate("Form", "<html><head/><body><p>导出至Excel</p></body></html>"))
         self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "Tab 1"))
+from .. import AL_IDE_MainInterFace_rc

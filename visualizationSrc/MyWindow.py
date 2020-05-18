@@ -6,7 +6,7 @@
 @Modify Time    :   2020/5/11 9:45
 @Author         :   Superme
 @Contact        :   yijie4188@gmail.com
-@Desciption     :   初始化UI界面
+@Desciption     :   主窗口类
 '''
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QGraphicsDropShadowEffect

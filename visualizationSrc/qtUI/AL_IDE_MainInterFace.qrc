@@ -1,4 +1,25 @@
 <RCC>
+  <qresource prefix="ico">
+    <file>../Data/qrc/ico/close.png</file>
+    <file>../Data/qrc/ico/closed.png</file>
+    <file>../Data/qrc/ico/copied.png</file>
+    <file>../Data/qrc/ico/copy.png</file>
+    <file>../Data/qrc/ico/excel.png</file>
+    <file>../Data/qrc/ico/delete.png</file>
+    <file>../Data/qrc/ico/deleted.png</file>
+    <file>../Data/qrc/ico/max.png</file>
+    <file>../Data/qrc/ico/maxed.png</file>
+    <file>../Data/qrc/ico/min.png</file>
+    <file>../Data/qrc/ico/mined.png</file>
+    <file>../Data/qrc/ico/new.png</file>
+    <file>../Data/qrc/ico/newed.png</file>
+    <file>../Data/qrc/ico/plusSquare.png</file>
+    <file>../Data/qrc/ico/print.png</file>
+    <file>../Data/qrc/ico/printed.png</file>
+    <file>../Data/qrc/ico/save.png</file>
+    <file>../Data/qrc/ico/saved.png</file>
+    <file>../Data/qrc/ico/tool.png</file>
+  </qresource>
   <qresource prefix="picture">
     <file>../Data/qrc/cardPkg.png</file>
     <file>../Data/qrc/command.png</file>
@@ -8,19 +29,5 @@
     <file>../Data/qrc/message/error.png</file>
     <file>../Data/qrc/message/information.png</file>
     <file>../Data/qrc/message/warning.png</file>
-  </qresource>
-  <qresource prefix="ico">
-    <file>../Data/qrc/ico/close.png</file>
-    <file>../Data/qrc/ico/closed.png</file>
-    <file>../Data/qrc/ico/max.png</file>
-    <file>../Data/qrc/ico/maxed.png</file>
-    <file>../Data/qrc/ico/min.png</file>
-    <file>../Data/qrc/ico/mined.png</file>
-    <file>../Data/qrc/ico/plusSquare.png</file>
-    <file>../Data/qrc/ico/print.png</file>
-    <file>../Data/qrc/ico/printed.png</file>
-    <file>../Data/qrc/ico/save.png</file>
-    <file>../Data/qrc/ico/saved.png</file>
-    <file>../Data/qrc/ico/tool.png</file>
   </qresource>
 </RCC>
