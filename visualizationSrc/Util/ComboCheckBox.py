@@ -36,17 +36,14 @@ class ComboCheckBox(QComboBox):
             index = self.items[:].index(select)
             self.qCheckBox[index].setChecked(True)
         return QComboBox.showPopup(self)
-
     def printResults(self):
         list = self.Selectlist()
         print(list)
-
     def addQCheckBox(self, i):
         self.qCheckBox.append(QCheckBox())
         qItem = QListWidgetItem(self.qListWidget)
         self.qCheckBox[i].setText(self.items[i])
         self.qListWidget.setItemWidget(qItem, self.qCheckBox[i])
-
     def Selectlist(self):
         Outputlist = []
         for i in range(1, self.row_num):
@@ -54,7 +51,6 @@ class ComboCheckBox(QComboBox):
                 Outputlist.append(self.qCheckBox[i].text())
         self.Selectedrow_num = len(Outputlist)
         return Outputlist
-
     def showMessage(self):
         Outputlist = self.Selectlist()
         self.qLineEdit.setReadOnly(False)
@@ -69,7 +65,6 @@ class ComboCheckBox(QComboBox):
             self.qCheckBox[0].setCheckState(1)
         self.qLineEdit.setText(show)
         self.qLineEdit.setReadOnly(True)
-
     def All(self, zhuangtai):
         if zhuangtai == 2:
             for i in range(1, self.row_num):
@@ -79,17 +74,8 @@ class ComboCheckBox(QComboBox):
                 self.qCheckBox[0].setCheckState(2)
         elif zhuangtai == 0:
             self.clear()
-
     def clear(self):
         for i in range(self.row_num):
             self.qCheckBox[i].setChecked(False)
-
     def currentText(self):
-        text = QComboBox.currentText(self).split(';')
-        if text.__len__() == 1:
-            if not text[0]:
-                return []
-            else:
-                return "('{}')".format("','".join(text))
-        else:
-            return "('{}')".format("','".join(text))
+        return QComboBox.currentText(self).split(';')

@@ -214,21 +214,31 @@ class cardDetail_C:
 
         UI.CM_codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.CM_codeSource)
         UI.CM_remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.CM_remapCodeSource)
+    def getCardDict(self):
+        UI = self.UI
+        if UI.CM_displayName.text() == "":
+            UI.CM_displayName.setText("无名")
+        return Card(
+            id=self.cardId,
+            displayName=UI.CM_displayName.text(), price=UI.CM_price.text(), energyReq=UI.CM_energyReq.text(),
+            range=UI.CM_range.text(),
+            description=UI.CM_description.toPlainText(),
+            story=UI.CM_story0.toPlainText(),
+            code=UI.CM_codeSource.toPlainText(),
+            remapCode=UI.CM_remapCodeSource.toPlainText(),
+            spreadRadius=UI.spreadRadius.value(),
+            minUnlockGrade=UI.minUnlockGrade.value(),
+            aimTypeCode=";".join(UI.aimTypeCode.currentText()),
+            perferredTargetTypeCode=";".join(UI.perferredTargetTypeCode.currentText()),
+            tagCode=";".join(UI.tagCode.currentText()),
+            effectCode=UI.effectCode.text(),
+        )
     def initClick(self):
         UI = self.UI
         mainWindow = self.mainWindow
         def __saveCard():
-            if UI.CM_displayName.text() == "":
-                UI.CM_displayName.setText("无名")
             if self.card["id"] == "newCard":
-                newCardId = self.cardControler.addCard(**Card(
-                    displayName=UI.CM_displayName.text(), price=UI.CM_price.text(), energyReq=UI.CM_energyReq.text(),
-                    range=UI.CM_range.text(),
-                    description=UI.CM_description.toPlainText(),
-                    story=UI.CM_story0.toPlainText(),
-                    code=UI.CM_codeSource.toPlainText(),
-                    remapCode=UI.CM_remapCodeSource.toPlainText()
-                ).toDict())
+                newCardId = self.cardControler.addCard(**self.getCardDict().toDict())
                 if newCardId!=-1:
                     self.mainWindow.showInfo(
                         "添加卡牌",
@@ -247,15 +257,7 @@ class cardDetail_C:
                         "请保证文件读取权限、卡牌列表最后一张卡牌ID为数字"
                     )
             else:
-                if self.cardControler.updataCard(**Card(
-                    id=self.cardId,
-                    displayName=UI.CM_displayName.text(), price=UI.CM_price.text(), energyReq=UI.CM_energyReq.text(),
-                    range=UI.CM_range.text(),
-                    description=UI.CM_description.toPlainText(),
-                    story=UI.CM_story0.toPlainText(),
-                    code=UI.CM_codeSource.toPlainText(),
-                    remapCode=UI.CM_remapCodeSource.toPlainText()
-                ).toDict()):
+                if self.cardControler.updataCard(**self.getCardDict().toDict()):
                     self.mainWindow.showInfo(
                         "修改卡牌",
                         self.__class__.__name__,
@@ -313,19 +315,20 @@ class cardDetail_C:
             comboBox.setMinimumSize(this.size())
             comboBox.loadItems(items)
             parent.addWidget(comboBox)
+            return comboBox
 
-        __comboBoxToComboCheckBox([
+        self.UI.aimTypeCode = __comboBoxToComboCheckBox([
             'EnvOnly','Single0nly','AllowOutOfStageBorder',
             'ChaTagExclude','Boss','Trap','Turret',
             'HpLessThanSelf','NotAllowSelf',
             'ChaTagLimit','Machine','ThrougWall',
         ],self.UI.aimTypeCode_L,self.UI.aimTypeCode)
-        __comboBoxToComboCheckBox([
+        self.UI.perferredTargetTypeCode = __comboBoxToComboCheckBox([
             "emy","self","player",
             "died","HasBuff","lowHpP","lowHpPltmt",
             "Breakable","tmt",
         ],self.UI.perferredTargetTypeCode_L,self.UI.perferredTargetTypeCode)
-        __comboBoxToComboCheckBox([
+        self.UI.tagCode = __comboBoxToComboCheckBox([
             "Bomb","Boxing","Bullet","BulletCraft",
             "Craft","CardContainer","CombatonlyPosiBuff","CombatOnly",
             "Dedicated ","Debuff","DebuffProp",

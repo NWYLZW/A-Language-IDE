@@ -4,7 +4,7 @@
     "netId": "",
     "version": 0,
     "displayName": "诡秘之主Mod",
-    "description": "",
+    "description": "// @name:       AL-IDE(Alive Language IDE:原石计划Mod开发工具)&诡秘之主Mod(大雾)\r\n// @version:    1.0.4.2\r\n// @content:    原石计划Mod开发工具，以及我的诡秘之主Mod（等我开发完工具就来做Mod）\r\n// @note:       2020/5/18 AL-IDE_1.0.4.2 美化UI，更好的卡牌体验\r\n// @TODO[N]:    指令管理优化\r\n// @TODO[N]:    卡牌管理优化展示卡牌的信息\r\n// @TODO[N]:    卡牌制作更方便，展示更简单\r\n// @TODO[N]:    代码编辑器优化\r\n// @TODO[N]:    主界面展示常用指令\r\n// @TODO[N]:    角色制作优化\r\n// @TODO[N]:    怪物制作优化\r\n// @TODO[N]:    关卡制作优化\r\n// @TODO[N]:    UI美化\r\n// @TODO[N]:    卡牌广场(消耗服务器积分，使用别人发布的卡牌，下载别人的资源)(PS:在做了)",
     "isTrackingPlaytime": false,
     "completionProgressPercent": 0.0,
     "screenshotLastWriteTimeTicksHashs": [],

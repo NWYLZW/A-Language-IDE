@@ -246,7 +246,7 @@ QTextEdit{
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="doubleSpinBox_L">
+              <layout class="QHBoxLayout" name="spreadRadius_L">
                <property name="spacing">
                 <number>0</number>
                </property>
@@ -258,7 +258,7 @@ QTextEdit{
                 </widget>
                </item>
                <item>
-                <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                <widget class="QDoubleSpinBox" name="spreadRadius">
                  <property name="maximum">
                   <double>999999.989999999990687</double>
                  </property>
@@ -524,7 +524,7 @@ QTextEdit{
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="tagCode_L_2" stretch="1,3">
+            <layout class="QHBoxLayout" name="effectCode_L" stretch="1,3">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -542,7 +542,7 @@ QTextEdit{
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="effectCode"/>
              </item>
             </layout>
            </item>
