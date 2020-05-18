@@ -182,7 +182,6 @@ class cardDetail_C:
         card = self.card
         if card["id"] != "newCard":
             self.cardId = card.get('id','')
-            self.UI.CM_addCard.setText("修改")
             self.UI.CM_displayName.setText(card['displayName'])
             self.UI.CM_price.setValue(int(card['price']))
             self.UI.CM_energyReq.setValue(float(card['energyReq']))
@@ -191,9 +190,6 @@ class cardDetail_C:
             self.UI.CM_story0.setText(card['story'])
             self.UI.CM_codeSource.setText(card['code'])
             self.UI.CM_remapCodeSource.setText(card['remapCode'])
-        self.UI.CM_price.setMaximum(100000)
-        self.UI.CM_energyReq.setMaximum(100000)
-        self.UI.CM_range.setMaximum(100000)
     def initTextEditor(self):
         UI = self.UI
         def initFont(editor):
@@ -221,7 +217,7 @@ class cardDetail_C:
     def initClick(self):
         UI = self.UI
         mainWindow = self.mainWindow
-        def __insertCard():
+        def __saveCard():
             if UI.CM_displayName.text() == "":
                 UI.CM_displayName.setText("无名")
             if self.card["id"] == "newCard":
@@ -275,13 +271,8 @@ class cardDetail_C:
                         "名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
                         "请保证文件读取权限"
                     )
-        UI.CM_addCard.clicked.connect(__insertCard)
+        UI.saveCard.clicked.connect(__saveCard)
         def __printCard():
-            originStyleSheet = UI.CM_printCard.styleSheet()
-            UI.CM_printCard.setStyleSheet(originStyleSheet+"background-color: rgb(20, 100, 215);")
-            def CM_printCard_end():
-                QTimer.singleShot(200, lambda: UI.CM_printCard.setStyleSheet(originStyleSheet))
-
             if self.card['id'] == "newCard":
                 mainWindow.showWarn(
                     "印卡",
@@ -289,7 +280,6 @@ class cardDetail_C:
                     "印卡时发生了错误"+",\n"+
                     "请先添加卡牌"
                 )
-                CM_printCard_end()
                 return
             import os
             from ..Util.frozenDir import appPath
@@ -304,24 +294,23 @@ class cardDetail_C:
                 "扩印ID为:"+self.cardId+",\n"+
                 "名称为:"+UI.CM_displayName.text()+"的卡牌"
             )
-            CM_printCard_end()
-        UI.CM_printCard.clicked.connect(__printCard)
+        UI.printCard.clicked.connect(__printCard)
     def initQuickKey(self):
         def __keyPressEvent(event):
             UI = self.UI
             if (event.key() == Qt.Key_1):
                 if QApplication.keyboardModifiers() == Qt.AltModifier:
-                    UI.CM_printCard.click()
+                    UI.printCard.click()
             if (event.key() == Qt.Key_S):
                 if QApplication.keyboardModifiers() == Qt.ControlModifier:
-                    UI.CM_addCard.click()
+                    UI.saveCard.click()
         self.Widget.keyPressEvent = __keyPressEvent
     def initComboCheckBox(self):
         def __comboBoxToComboCheckBox(items,parent,this):
             parent.removeWidget(this)
             comboBox = ComboCheckBox()
             comboBox.setGeometry(this.geometry())
-            comboBox.setMinimumSize(QtCore.QSize(110, 20))
+            comboBox.setMinimumSize(this.size())
             comboBox.loadItems(items)
             parent.addWidget(comboBox)
 
@@ -336,3 +325,17 @@ class cardDetail_C:
             "died","HasBuff","lowHpP","lowHpPltmt",
             "Breakable","tmt",
         ],self.UI.perferredTargetTypeCode_L,self.UI.perferredTargetTypeCode)
+        __comboBoxToComboCheckBox([
+            "Bomb","Boxing","Bullet","BulletCraft",
+            "Craft","CardContainer","CombatonlyPosiBuff","CombatOnly",
+            "Dedicated ","Debuff","DebuffProp",
+            "Elec","EnvObject","Equipment",
+            "Food",
+            "Hidden",
+            "Ice",
+            "Machine",
+            "NanbaPattern","NotAllowContainerFill","NotAllowDestroy0nUse","NotAllowTakeInteraction",
+            "Prop","PosiBuff",
+            "Turret","Trap",
+            "Unremovable",
+        ],self.UI.tagCode_L,self.UI.tagCode)

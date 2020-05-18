@@ -10,11 +10,17 @@
     <file>../Data/qrc/message/warning.png</file>
   </qresource>
   <qresource prefix="ico">
-    <file>../Data/qrc/ico/closed.png</file>
-    <file>../Data/qrc/ico/maxed.png</file>
-    <file>../Data/qrc/ico/mined.png</file>
     <file>../Data/qrc/ico/close.png</file>
+    <file>../Data/qrc/ico/closed.png</file>
     <file>../Data/qrc/ico/max.png</file>
+    <file>../Data/qrc/ico/maxed.png</file>
     <file>../Data/qrc/ico/min.png</file>
+    <file>../Data/qrc/ico/mined.png</file>
+    <file>../Data/qrc/ico/plusSquare.png</file>
+    <file>../Data/qrc/ico/print.png</file>
+    <file>../Data/qrc/ico/printed.png</file>
+    <file>../Data/qrc/ico/save.png</file>
+    <file>../Data/qrc/ico/saved.png</file>
+    <file>../Data/qrc/ico/tool.png</file>
   </qresource>
 </RCC>

@@ -21,10 +21,25 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton{
-	color: rgb(255, 255, 255);
-	background-color: rgb(50, 150, 255);
-	padding:5px;
-	border-radius:10px;
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}
+QTextEdit{
+	background-color: rgb(255, 255, 255);
+	border:1px solid #afafaf; 
+	border-radius:5px;
+}
+#saveCard{
+	border-image: url(:/ico/Data/qrc/ico/save.png);
+}
+#saveCard:hover{
+	border-image: url(:/ico/Data/qrc/ico/saved.png);
+}
+#printCard{
+	border-image: url(:/ico/Data/qrc/ico/print.png);
+}
+#printCard:hover{
+	border-image: url(:/ico/Data/qrc/ico/printed.png);
 }</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -63,7 +78,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="CMT_baseSetting">
          <attribute name="title">
@@ -101,7 +116,7 @@
              <rect>
               <x>-1</x>
               <y>-1</y>
-              <width>351</width>
+              <width>353</width>
               <height>601</height>
              </rect>
             </property>
@@ -162,7 +177,11 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="CM_price"/>
+                  <widget class="QSpinBox" name="CM_price">
+                   <property name="maximum">
+                    <number>1000000</number>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -182,7 +201,11 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="CM_energyReq"/>
+                  <widget class="QDoubleSpinBox" name="CM_energyReq">
+                   <property name="maximum">
+                    <double>999999.989999999990687</double>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -212,9 +235,136 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="CM_range"/>
+                  <widget class="QDoubleSpinBox" name="CM_range">
+                   <property name="maximum">
+                    <double>999999.989999999990687</double>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="doubleSpinBox_L">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>扩散半径</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                 <property name="maximum">
+                  <double>999999.989999999990687</double>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="minUnlockGrade_L">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_21">
+                 <property name="text">
+                  <string>最小解锁分数(卡牌解锁限制)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="minUnlockGrade">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>1000000</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="aim">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <layout class="QHBoxLayout" name="aimTypeCode_L" stretch="1,2">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_16">
+                   <property name="text">
+                    <string>瞄准类型</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="aimTypeCode"/>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="perferredTargetTypeCode_L" stretch="1,2">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_17">
+                   <property name="text">
+                    <string>目标类型</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="perferredTargetTypeCode"/>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="tagCode_L" stretch="1,0,2">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>卡牌标签</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGraphicsView" name="addMyEffect">
+                 <property name="maximumSize">
+                  <size>
+                   <width>24</width>
+                   <height>24</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;添加自定义标签&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#addMyEffect{
+	border-image: url(:/ico/Data/qrc/ico/plusSquare.png);
+	border:none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="tagCode"/>
                </item>
               </layout>
              </item>
@@ -244,11 +394,7 @@
                  <item>
                   <widget class="QTextEdit" name="CM_description">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);
-
-padding:5px;
-border:1px solid #afafaf; 
-border-radius:10px;</string>
+                    <string notr="true"/>
                    </property>
                   </widget>
                  </item>
@@ -282,11 +428,7 @@ border-radius:10px;</string>
                  <item>
                   <widget class="QTextEdit" name="CM_story0">
                    <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 255, 255);
-
-padding:5px;
-border:1px solid #afafaf; 
-border-radius:10px;</string>
+                    <string notr="true"/>
                    </property>
                   </widget>
                  </item>
@@ -300,6 +442,9 @@ border-radius:10px;</string>
          </widget>
         </widget>
         <widget class="QWidget" name="CMT_greateSetting">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <attribute name="title">
           <string>高级</string>
          </attribute>
@@ -312,7 +457,7 @@ border-radius:10px;</string>
             <height>601</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,0,1">
            <property name="spacing">
             <number>10</number>
            </property>
@@ -329,24 +474,10 @@ border-radius:10px;</string>
             <number>10</number>
            </property>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <layout class="QVBoxLayout" name="verticalLayout_4">
              <property name="spacing">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>spreadRadius</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QLabel" name="label_3">
                <property name="maximumSize">
@@ -356,7 +487,14 @@ border-radius:10px;</string>
                 </size>
                </property>
                <property name="text">
-                <string>扩散作用位置</string>
+                <string>高级扩散(会覆盖基础扩散)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_3">
+               <property name="placeholderText">
+                <string>搜索</string>
                </property>
               </widget>
              </item>
@@ -386,45 +524,33 @@ border-radius:10px;</string>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
+            <layout class="QHBoxLayout" name="tagCode_L_2" stretch="1,3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
-              <layout class="QHBoxLayout" name="aimTypeCode_L" stretch="1,2">
-               <property name="spacing">
-                <number>0</number>
+              <widget class="QLabel" name="label_19">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
                </property>
-               <item>
-                <widget class="QLabel" name="label_16">
-                 <property name="text">
-                  <string>瞄准类型</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="aimTypeCode"/>
-               </item>
-              </layout>
+               <property name="text">
+                <string>特效</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="perferredTargetTypeCode_L" stretch="1,2">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_17">
-                 <property name="text">
-                  <string>目标类型</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="perferredTargetTypeCode"/>
-               </item>
-              </layout>
+              <widget class="QLineEdit" name="lineEdit"/>
              </item>
             </layout>
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_13">
                <property name="maximumSize">
@@ -435,6 +561,13 @@ border-radius:10px;</string>
                </property>
                <property name="text">
                 <string>卡牌背景图</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_2">
+               <property name="placeholderText">
+                <string>搜索</string>
                </property>
               </widget>
              </item>
@@ -471,7 +604,7 @@ border-radius:10px;</string>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="CM_main">
+     <layout class="QVBoxLayout" name="CM_main" stretch="1,0">
       <property name="spacing">
        <number>10</number>
       </property>
@@ -559,56 +692,130 @@ p, li { white-space: pre-wrap; }
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="CM_footer">
+       <layout class="QHBoxLayout" name="CM_footer" stretch="1,10">
         <property name="spacing">
-         <number>200</number>
+         <number>0</number>
         </property>
         <property name="leftMargin">
-         <number>100</number>
+         <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>100</number>
+         <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="CM_printCard">
-          <property name="font">
-           <font>
-            <family>Adobe 黑体 Std R</family>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>印卡</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="head">
+          <item>
+           <widget class="QGraphicsView" name="tools">
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;工具&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#tools{
+	border-image: url(:/ico/Data/qrc/ico/tool.png);
+	border:none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="CM_addCard">
-          <property name="font">
-           <font>
-            <family>Adobe 黑体 Std R</family>
-            <pointsize>12</pointsize>
-           </font>
+         <layout class="QHBoxLayout" name="commonTools">
+          <property name="spacing">
+           <number>10</number>
           </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
+          <property name="leftMargin">
+           <number>10</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>添加</string>
-          </property>
-         </widget>
+          <item>
+           <widget class="QPushButton" name="printCard">
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Adobe 黑体 Std R</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;alt+1&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;印卡&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveCard">
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Adobe 黑体 Std R</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ctrl+s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;保存&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="textBrowser">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTextBrowser{
+	border:none;
+	background-color: rgba(255, 255, 255, 0);
+}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -617,6 +824,8 @@ p, li { white-space: pre-wrap; }
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../AL_IDE_MainInterFace.qrc"/>
+ </resources>
  <connections/>
 </ui>
