@@ -19,10 +19,14 @@ from .qtUI import mainInterFace
 class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
+        # 解决输出窗口打印出“UpdateLayeredWindowIndirect failed for ptDst=xxx”的错误
+        self.setWindowFlag(Qt.FramelessWindowHint)
         self.initUI()
-        self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
-        from .Controler.ContentTabListControler import ContentTabList
-        ContentTabList(self,self)
+        try:
+            self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
+            from .Controler.ContentTabListControler import ContentTabList
+            ContentTabList(self,self)
+        except Exception as e:print(e)
     def initToolBar(self):
         from PyQt5 import QtCore
         def windowClick(Element):

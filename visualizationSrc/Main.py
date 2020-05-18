@@ -10,8 +10,10 @@
 '''
 import sys
 
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication
-from visualizationSrc.MyWindow import MyWindow
+from .MyWindow import MyWindow
+from .Util.frozenDir import appPath
 
 def mainWindowStart():
     APP = QApplication(sys.argv)
@@ -24,5 +26,11 @@ def mainWindowStart():
         sys._excepthook(exctype, value, traceback)
         sys.exit(1)
     sys.excepthook = my_exception_hook
+    # 检验文件夹是否正确
+    from re import search
+    if not search(r".*:\\Users\\.*\\Documents\\TetraProject\\Packages\\.*(?<!\\)$", appPath()):
+        from PyQt5.QtWidgets import QMessageBox
+        QMessageBox.critical(mainWindow, '错误', '请将文件放置于你的Mod文件夹下', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+        QTimer.singleShot(200, lambda: mainWindow.close())
     try: sys.exit(APP.exec_())
     except: print("Exiting")

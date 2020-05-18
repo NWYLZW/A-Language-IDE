@@ -23,6 +23,11 @@ class ContentTabList():
 
         self.initTab()
     def initTab(self):
+        self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
+        self.ContentTabList.setTabText(0, "主页")
+        for i in range(1,self.ContentTabList.count()):
+            self.ContentTabList.removeTab(i)
+
         from ..Tabs.CardControlerTab import CardControlerTab
         self.TabNameList = ['CardControler']
         self.TabNameHash = {}
@@ -38,12 +43,6 @@ class ContentTabList():
                 str(e)
             )
             print(e)
-
-        self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
-        self.ContentTabList.setTabText(0, "主页")
-        for i in range(1,self.ContentTabList.count()):
-            self.ContentTabList.removeTab(i)
-
         self.initTabClose()
     def initTabClose(self):
         def __closeTab(currentIndex):
