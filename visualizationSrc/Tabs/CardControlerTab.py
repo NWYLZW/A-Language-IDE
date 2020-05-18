@@ -10,7 +10,8 @@
 '''
 from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer, Qt
-from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
@@ -178,6 +179,7 @@ class cardDetail_C:
         self.initClick()
         self.initQuickKey()
         self.initComboCheckBox()
+        self.initBetterSettingInterface()
     def initData(self):
         card = self.card
         if card["id"] != "newCard":
@@ -214,7 +216,7 @@ class cardDetail_C:
 
         UI.CM_codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.CM_codeSource)
         UI.CM_remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.CM_remapCodeSource)
-    def getCardDict(self):
+    def getCard(self):
         UI = self.UI
         if UI.CM_displayName.text() == "":
             UI.CM_displayName.setText("无名")
@@ -232,13 +234,14 @@ class cardDetail_C:
             perferredTargetTypeCode=";".join(UI.perferredTargetTypeCode.currentText()),
             tagCode=";".join(UI.tagCode.currentText()),
             effectCode=UI.effectCode.text(),
+            backgroundId=self.selBackgrondImgName,
         )
     def initClick(self):
         UI = self.UI
         mainWindow = self.mainWindow
         def __saveCard():
             if self.card["id"] == "newCard":
-                newCardId = self.cardControler.addCard(**self.getCardDict().toDict())
+                newCardId = self.cardControler.addCard(**self.getCard().toDict())
                 if newCardId!=-1:
                     self.mainWindow.showInfo(
                         "添加卡牌",
@@ -257,7 +260,7 @@ class cardDetail_C:
                         "请保证文件读取权限、卡牌列表最后一张卡牌ID为数字"
                     )
             else:
-                if self.cardControler.updataCard(**self.getCardDict().toDict()):
+                if self.cardControler.updataCard(**self.getCard().toDict()):
                     self.mainWindow.showInfo(
                         "修改卡牌",
                         self.__class__.__name__,
@@ -342,3 +345,65 @@ class cardDetail_C:
             "Turret","Trap",
             "Unremovable",
         ],self.UI.tagCode_L,self.UI.tagCode)
+    def initBetterSettingInterface(self):
+        self.backgrondImgWidgetList = []
+        UI = self.UI
+        tempWidget = QWidget()
+        tempHL = QHBoxLayout()
+        tempWidget.setLayout(tempHL)
+        tempHL.setContentsMargins(0,0,0,0)
+
+        import os
+        from ..Util.frozenDir import appPath
+        backgroundImgPath = appPath()+"/CardBackground"
+        if not os.path.exists(backgroundImgPath):
+            os.makedirs(backgroundImgPath)
+        isFirst = True
+        selStyle = "QWidget{background-color: rgb(255,255,255);border-radius:10px;}"
+        noselStyle = "QWidget:hover{background-color: rgb(255,255,255);border-radius:10px;}"
+        for childDirName in os.listdir(backgroundImgPath):
+            childDirPath = backgroundImgPath+'/'+childDirName+'/'
+
+            backgrondImgWidget = QWidget()
+            self.backgrondImgWidgetList.append(backgrondImgWidget)
+            backgrondImgWidget.setMinimumWidth(100)
+            backgrondImgWidget.setObjectName("backgrondImgWidget_"+childDirName)
+            if isFirst:
+                self.selBackgrondImgName = childDirName;isFirst=False
+                backgrondImgWidget.setStyleSheet(selStyle)
+            else:
+                backgrondImgWidget.setStyleSheet(noselStyle)
+            try:
+                tempVL = QVBoxLayout()
+                tempVL.setContentsMargins(0, 0, 0, 0)
+
+                backgrondName = QLabel(backgrondImgWidget)
+                backgrondName.setGeometry(QtCore.QRect(0, 0, 100, 20))
+                backgrondName.setMinimumSize(100,20)
+                backgrondName.setText(childDirName)
+                backgrondName.setAlignment(Qt.AlignCenter)
+                backgrondName.setStyleSheet("QLabel{font-size:18px;}")
+
+                backgrondImg = QLabel(backgrondImgWidget)
+                backgrondImg.setGeometry(QtCore.QRect(0, 0, 100, 100))
+                backgrondImg.setMinimumSize(100,100)
+                backgrondImg.setPixmap(QPixmap(childDirPath+'Card.png'))
+                tempVL.addWidget(backgrondImgWidget)
+
+                tempHL.addLayout(tempVL)
+            except:pass
+            def selThisImg(childDirName,backgrondImgWidget):
+                def __selThisImg(evt):
+                    if evt.buttons() == QtCore.Qt.LeftButton:
+                        self.selBackgrondImgName = childDirName
+                        for backgrondImgWidgetX in self.backgrondImgWidgetList:
+                            backgrondImgWidgetX.setStyleSheet(noselStyle)
+                        backgrondImgWidget.setStyleSheet(selStyle)
+                return __selThisImg
+
+            backgrondImgWidget.mousePressEvent = selThisImg(childDirName,backgrondImgWidget)
+
+        UI.backgroundImg.setWidget(tempWidget)
+        # 必须加这句，不然没有scrollBar的样式
+        UI.backgroundImg.horizontalScrollBar().setStyleSheet("")
+        pass
