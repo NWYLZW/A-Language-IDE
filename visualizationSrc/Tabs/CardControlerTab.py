@@ -8,8 +8,8 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
-from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter
+from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
@@ -136,30 +136,35 @@ class CardControlerTab:
             card = {
                 "id":"newCard",
                 "displayName":"无名",}
-        cardEditTabEle = QWidget()
+        cardEditTabWidget = QWidget()
         uiForm = cardDetailsModel.Ui_Form()
-        uiForm.setupUi(cardEditTabEle)
+        uiForm.setupUi(cardEditTabWidget)
         cardEditTabDict = {
-            "tab":cardEditTabEle,
+            "tab":cardEditTabWidget,
             "id":cardId,
             "displayName":card['displayName'],
         }
         self.cardEditTabList.append(cardEditTabDict)
         cardEditTabDict['index'] = self.Tab\
-            .addTab(cardEditTabEle,card['displayName']+'('+card['id']+')')
-        self.Tab.setCurrentWidget(cardEditTabEle)
+            .addTab(cardEditTabWidget,card['displayName']+'('+card['id']+')')
+        self.Tab.setCurrentWidget(cardEditTabWidget)
         if cardId == "newCard":
             self.newCardEditTabDict = cardEditTabDict
         cardEditTabDict['cardDetail_C'] = cardDetail_C(
             card=card,
             cardDetailsModel_UI=uiForm,
+            cardDetailsModel_Widget=cardEditTabWidget,
             cardMake=self,)
 
 class cardDetail_C:
-    def __init__(self, cardDetailsModel_UI: cardDetailsModel.Ui_Form, card:dict, cardMake:CardControlerTab):
+    def __init__(self,
+                 cardDetailsModel_UI: cardDetailsModel.Ui_Form,
+                 cardDetailsModel_Widget: QWidget,
+                 card:dict, cardMake:CardControlerTab):
         self.UI = cardDetailsModel_UI
         from ..Util.CompleterUtil import Completer
         self.UI.completer = Completer()
+        self.Widget = cardDetailsModel_Widget
         self.cardMake = cardMake
         self.mainWindow = cardMake.mainWindow
         self.cardControler = cardMake.cardControler
@@ -168,9 +173,10 @@ class cardDetail_C:
         self.settingTab = cardDetailsModel_UI.CMT_settingTab
         self.initTextEditor()
         self.initSettingTab()
-        self.initUI()
+        self.initData()
         self.initClick()
-    def initUI(self):
+        self.initQuickKey()
+    def initData(self):
         card = self.card
         if card["id"] != "newCard":
             self.cardId = card.get('id','')
@@ -294,5 +300,21 @@ class cardDetail_C:
                 os.makedirs(messageTxtPath)
             with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
                 f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
+            self.mainWindow.showInfo(
+                "扩印卡牌",
+                self.__class__.__name__,
+                "扩印ID为:"+self.cardId+",\n"+
+                "名称为:"+UI.CM_displayName.text()+"的卡牌"
+            )
             CM_printCard_end()
         UI.CM_printCard.clicked.connect(__printCard)
+    def initQuickKey(self):
+        self.Widget.keyPressEvent = self.keyPressEvent
+    def keyPressEvent(self, event):
+        UI = self.UI
+        if (event.key() == Qt.Key_1):
+            if QApplication.keyboardModifiers() == Qt.AltModifier:
+                UI.CM_printCard.click()
+        if (event.key() == Qt.Key_S):
+            if QApplication.keyboardModifiers() == Qt.ControlModifier:
+                UI.CM_addCard.click()
