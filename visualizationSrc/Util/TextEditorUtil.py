@@ -24,6 +24,7 @@ class TextEditor(QTextEdit):
             Qt.Key_Escape,
             Qt.Key_Tab,
             Qt.Key_Backtab,
+            Qt.Key_Alt,
         ]
         # excluding `_` as this is often in SQL spatial functions
         self.special_chars = "~!@#$%^&*()+{}|:\"<>?,./;'[]\\-="
@@ -112,6 +113,13 @@ class TextEditor(QTextEdit):
         return
     def keyPressEvent(self, evt):  # noqa: N802
         """Override built-in method to handle user pressing keys."""
+        # 自动生成括号
+        if evt.key() == Qt.Key_ParenLeft:
+            self.insertPlainText("()");return
+        if evt.key() == Qt.Key_BracketLeft:
+            self.insertPlainText("[]");return
+        if evt.key() == Qt.Key_BraceLeft:
+            self.insertPlainText("{}");return
         if self._completer is not None and self._completer.popup().isVisible():
             if evt.key() in self.keys_to_ignore:
                 evt.ignore()
