@@ -27,6 +27,7 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
             from .Controler.ContentTabListControler import ContentTabList
             ContentTabList(self,self)
         except Exception as e:print(e)
+        self.m_drag = False
     def initToolBar(self):
         from PyQt5 import QtCore
         def windowClick(Element):
