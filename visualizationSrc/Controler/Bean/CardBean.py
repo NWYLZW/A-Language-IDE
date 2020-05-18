@@ -22,7 +22,7 @@ class Card(object):
                  # 执行代码、remap代码
                  code="",remapCode="",
                  # 卡牌背景图、使用时特效代码、实体皮肤ID
-                 backgroundId=1,effectCode="Sound:Shoot",characterModelSkinId="",
+                 backgroundId="1",effectCode="Sound:Shoot",characterModelSkinId="",
                  # 最小解锁分数(卡牌解锁限制)
                  minUnlockGrade=1):
         self.id = id

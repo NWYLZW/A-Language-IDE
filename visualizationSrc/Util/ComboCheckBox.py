@@ -44,6 +44,10 @@ class ComboCheckBox(QComboBox):
         qItem = QListWidgetItem(self.qListWidget)
         self.qCheckBox[i].setText(self.items[i])
         self.qListWidget.setItemWidget(qItem, self.qCheckBox[i])
+    def selQCheckBoxByName(self, name):
+        try: index = self.items[:].index(name)
+        except: return
+        self.qCheckBox[index].setChecked(True)
     def Selectlist(self):
         Outputlist = []
         for i in range(1, self.row_num):

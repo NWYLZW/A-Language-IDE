@@ -1,5 +1,5 @@
 ﻿id,displayName,price,energyReq,range,spreadRadius,spreadShapeTextureId,aimTypeCode,perferredTargetTypeCode,tagCode,description,code,remapCode,backgroundId,effectCode,minUnlockGrade,story,characterModelSkinId,//comment,//,//story,10002,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10001,转运咒语,99,0.00,0.00,0.0,,,,,传送至灰雾之上1个回合,Log: 1;,,1,,1,"“福生玄黄仙尊。”
+10001,转运咒语,100,2.00,0.00,2.0,,EnvOnly;Single0nly,self,PosiBuff,传送至灰雾之上1个回合,Log: 1;,,7,,1,"“福生玄黄仙尊。”
 “福生玄黄天君。”
 “福生玄黄上帝。”
 “福生玄黄天尊。”",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

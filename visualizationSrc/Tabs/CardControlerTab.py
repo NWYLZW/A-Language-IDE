@@ -175,15 +175,15 @@ class cardDetail_C:
 
         self.settingTab = cardDetailsModel_UI.CMT_settingTab
         self.initTextEditor()
+        self.initComboCheckBox()
         self.initData()
         self.initClick()
         self.initQuickKey()
-        self.initComboCheckBox()
         self.initBetterSettingInterface()
     def initData(self):
         card = self.card
+        self.cardId = card.get('id','newCard')
         if card["id"] != "newCard":
-            self.cardId = card.get('id','')
             self.UI.CM_displayName.setText(card['displayName'])
             self.UI.CM_price.setValue(int(card['price']))
             self.UI.CM_energyReq.setValue(float(card['energyReq']))
@@ -192,6 +192,16 @@ class cardDetail_C:
             self.UI.CM_story0.setText(card['story'])
             self.UI.CM_codeSource.setText(card['code'])
             self.UI.CM_remapCodeSource.setText(card['remapCode'])
+
+            self.UI.spreadRadius.setValue(float(card['spreadRadius']))
+            self.UI.minUnlockGrade.setValue(int(card['minUnlockGrade']))
+            for sel in card['aimTypeCode'].split(';'):
+                self.UI.aimTypeCode.selQCheckBoxByName(sel.split(':')[0])
+            for sel in card['perferredTargetTypeCode'].split(';'):
+                self.UI.perferredTargetTypeCode.selQCheckBoxByName(sel.split(':')[0])
+            for sel in card['tagCode'].split(';'):
+                self.UI.tagCode.selQCheckBoxByName(sel.split(':')[0])
+
     def initTextEditor(self):
         UI = self.UI
         def initFont(editor):
@@ -358,7 +368,7 @@ class cardDetail_C:
         backgroundImgPath = appPath()+"/CardBackground"
         if not os.path.exists(backgroundImgPath):
             os.makedirs(backgroundImgPath)
-        isFirst = True
+        backgrondImgId = self.card['backgroundId']
         selStyle = "QWidget{background-color: rgb(255,255,255);border-radius:10px;}"
         noselStyle = "QWidget:hover{background-color: rgb(255,255,255);border-radius:10px;}"
         for childDirName in os.listdir(backgroundImgPath):
@@ -368,8 +378,8 @@ class cardDetail_C:
             self.backgrondImgWidgetList.append(backgrondImgWidget)
             backgrondImgWidget.setMinimumWidth(100)
             backgrondImgWidget.setObjectName("backgrondImgWidget_"+childDirName)
-            if isFirst:
-                self.selBackgrondImgName = childDirName;isFirst=False
+            if backgrondImgId==childDirName:
+                self.selBackgrondImgName = childDirName
                 backgrondImgWidget.setStyleSheet(selStyle)
             else:
                 backgrondImgWidget.setStyleSheet(noselStyle)
