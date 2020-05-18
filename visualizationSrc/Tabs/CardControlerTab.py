@@ -309,12 +309,12 @@ class cardDetail_C:
             CM_printCard_end()
         UI.CM_printCard.clicked.connect(__printCard)
     def initQuickKey(self):
-        self.Widget.keyPressEvent = self.keyPressEvent
-    def keyPressEvent(self, event):
-        UI = self.UI
-        if (event.key() == Qt.Key_1):
-            if QApplication.keyboardModifiers() == Qt.AltModifier:
-                UI.CM_printCard.click()
-        if (event.key() == Qt.Key_S):
-            if QApplication.keyboardModifiers() == Qt.ControlModifier:
-                UI.CM_addCard.click()
+        def __keyPressEvent(event):
+            UI = self.UI
+            if (event.key() == Qt.Key_1):
+                if QApplication.keyboardModifiers() == Qt.AltModifier:
+                    UI.CM_printCard.click()
+            if (event.key() == Qt.Key_S):
+                if QApplication.keyboardModifiers() == Qt.ControlModifier:
+                    UI.CM_addCard.click()
+        self.Widget.keyPressEvent = __keyPressEvent
