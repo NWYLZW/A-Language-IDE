@@ -8,6 +8,7 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTabBar
 
 from .. import MyWindow

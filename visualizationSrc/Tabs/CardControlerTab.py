@@ -8,12 +8,14 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
+from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
+from ..Util.ComboCheckBox import ComboCheckBox
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
 
@@ -172,10 +174,10 @@ class cardDetail_C:
 
         self.settingTab = cardDetailsModel_UI.CMT_settingTab
         self.initTextEditor()
-        self.initSettingTab()
         self.initData()
         self.initClick()
         self.initQuickKey()
+        self.initComboCheckBox()
     def initData(self):
         card = self.card
         if card["id"] != "newCard":
@@ -216,10 +218,6 @@ class cardDetail_C:
 
         UI.CM_codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.CM_codeSource)
         UI.CM_remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.CM_remapCodeSource)
-    def initSettingTab(self):
-        tabTextList = ["基础设置","高级设置"]
-        for i in range(tabTextList.__len__()):
-            self.settingTab.setTabText(i,tabTextList[i])
     def initClick(self):
         UI = self.UI
         mainWindow = self.mainWindow
@@ -318,3 +316,23 @@ class cardDetail_C:
                 if QApplication.keyboardModifiers() == Qt.ControlModifier:
                     UI.CM_addCard.click()
         self.Widget.keyPressEvent = __keyPressEvent
+    def initComboCheckBox(self):
+        def __comboBoxToComboCheckBox(items,parent,this):
+            parent.removeWidget(this)
+            comboBox = ComboCheckBox()
+            comboBox.setGeometry(this.geometry())
+            comboBox.setMinimumSize(QtCore.QSize(110, 20))
+            comboBox.loadItems(items)
+            parent.addWidget(comboBox)
+
+        __comboBoxToComboCheckBox([
+            'EnvOnly','Single0nly','AllowOutOfStageBorder',
+            'ChaTagExclude','Boss','Trap','Turret',
+            'HpLessThanSelf','NotAllowSelf',
+            'ChaTagLimit','Machine','ThrougWall',
+        ],self.UI.aimTypeCode_L,self.UI.aimTypeCode)
+        __comboBoxToComboCheckBox([
+            "emy","self","player",
+            "died","HasBuff","lowHpP","lowHpPltmt",
+            "Breakable","tmt",
+        ],self.UI.perferredTargetTypeCode_L,self.UI.perferredTargetTypeCode)

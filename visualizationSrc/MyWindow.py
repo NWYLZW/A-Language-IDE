@@ -22,8 +22,8 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         # 解决输出窗口打印出“UpdateLayeredWindowIndirect failed for ptDst=xxx”的错误
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.initUI()
+        self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
         try:
-            self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
             from .Controler.ContentTabListControler import ContentTabList
             ContentTabList(self,self)
         except Exception as e:print(e)
@@ -92,14 +92,14 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         )
 
     def mousePressEvent(self, event):
+        self.mDragPosition=event.globalPos()-self.pos()
         if event.button()== Qt.LeftButton:
             self.m_drag=True
-            self.m_DragPosition=event.globalPos()-self.pos()
             event.accept()
-    def mouseMoveEvent(self, QMouseEvent):
-        if QMouseEvent.buttons() and Qt.LeftButton:
-            self.move(QMouseEvent.globalPos()-self.m_DragPosition)
-            QMouseEvent.accept()
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.LeftButton and self.m_drag:
+            self.move(event.globalPos()-self.mDragPosition)
+            event.accept()
     def mouseReleaseEvent(self, QMouseEvent):
         self.m_drag=False
 
