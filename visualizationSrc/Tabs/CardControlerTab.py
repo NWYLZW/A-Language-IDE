@@ -312,7 +312,7 @@ class cardDetail_C:
         self.Widget.keyPressEvent = __keyPressEvent
     def initComboCheckBox(self):
         def __comboBoxToComboCheckBox(items,parent,this):
-            parent.removeWidget(this)
+            parent.removeWidget(this);this.setParent(None)
             comboBox = ComboCheckBox()
             comboBox.setGeometry(this.geometry())
             comboBox.setMinimumSize(this.size())

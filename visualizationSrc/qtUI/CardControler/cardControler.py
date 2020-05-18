@@ -95,10 +95,6 @@ class Ui_Form(object):
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
         self.CardControler_Tabs.addTab(self.CardList, "")
-        self.NoneTab = QtWidgets.QWidget()
-        self.NoneTab.setMaximumSize(QtCore.QSize(1127, 651))
-        self.NoneTab.setObjectName("NoneTab")
-        self.CardControler_Tabs.addTab(self.NoneTab, "")
 
         self.retranslateUi(Form)
         self.CardControler_Tabs.setCurrentIndex(0)
@@ -113,4 +109,3 @@ class Ui_Form(object):
         self.copyCard.setText(_translate("Form", "复制已选"))
         self.pushButton_3.setText(_translate("Form", "导出信息至Excel"))
         self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "Tab 1"))
-        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.NoneTab), _translate("Form", "Tab 2"))

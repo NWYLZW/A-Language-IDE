@@ -218,9 +218,6 @@ class Ui_MainWindow(object):
         self.gridLayout.setRowStretch(0, 1)
         self.gridLayout.setRowStretch(1, 1)
         self.ContentTabList.addTab(self.HomeTab, "")
-        self.CardMakeTab = QtWidgets.QWidget()
-        self.CardMakeTab.setObjectName("CardMakeTab")
-        self.ContentTabList.addTab(self.CardMakeTab, "")
         self.Interface.addWidget(self.ContentTabList)
         self.Interface.setStretch(0, 1)
         self.Interface.setStretch(1, 20)
@@ -301,5 +298,4 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">卡牌广场</span></p></body></html>"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "Tab 1"))
-        self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.CardMakeTab), _translate("MainWindow", "Tab 2"))
 from . import AL_IDE_MainInterFace_rc

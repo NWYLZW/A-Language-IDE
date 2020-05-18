@@ -211,17 +211,6 @@ QPushButton:hover{
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="NoneTab">
-    <property name="maximumSize">
-     <size>
-      <width>1127</width>
-      <height>651</height>
-     </size>
-    </property>
-    <attribute name="title">
-     <string>Tab 2</string>
-    </attribute>
-   </widget>
   </widget>
  </widget>
  <resources/>

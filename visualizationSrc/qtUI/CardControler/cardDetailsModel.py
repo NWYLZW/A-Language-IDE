@@ -61,7 +61,7 @@ class Ui_Form(object):
         self.scrollAreaWidgetContents.setMaximumSize(QtCore.QSize(359, 599))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 353, 601))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 357, 601))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
@@ -127,6 +127,7 @@ class Ui_Form(object):
         self.spreadRadius_L.setSpacing(0)
         self.spreadRadius_L.setObjectName("spreadRadius_L")
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.spreadRadius_L.addWidget(self.label)
         self.spreadRadius = QtWidgets.QDoubleSpinBox(self.verticalLayoutWidget)
@@ -138,6 +139,7 @@ class Ui_Form(object):
         self.minUnlockGrade_L.setSpacing(0)
         self.minUnlockGrade_L.setObjectName("minUnlockGrade_L")
         self.label_21 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_21.setAlignment(QtCore.Qt.AlignCenter)
         self.label_21.setObjectName("label_21")
         self.minUnlockGrade_L.addWidget(self.label_21)
         self.minUnlockGrade = QtWidgets.QSpinBox(self.verticalLayoutWidget)
@@ -153,6 +155,7 @@ class Ui_Form(object):
         self.aimTypeCode_L.setSpacing(0)
         self.aimTypeCode_L.setObjectName("aimTypeCode_L")
         self.label_16 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_16.setAlignment(QtCore.Qt.AlignCenter)
         self.label_16.setObjectName("label_16")
         self.aimTypeCode_L.addWidget(self.label_16)
         self.aimTypeCode = QtWidgets.QComboBox(self.verticalLayoutWidget)
@@ -165,6 +168,7 @@ class Ui_Form(object):
         self.perferredTargetTypeCode_L.setSpacing(0)
         self.perferredTargetTypeCode_L.setObjectName("perferredTargetTypeCode_L")
         self.label_17 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_17.setAlignment(QtCore.Qt.AlignCenter)
         self.label_17.setObjectName("label_17")
         self.perferredTargetTypeCode_L.addWidget(self.label_17)
         self.perferredTargetTypeCode = QtWidgets.QComboBox(self.verticalLayoutWidget)
@@ -178,10 +182,12 @@ class Ui_Form(object):
         self.tagCode_L.setSpacing(0)
         self.tagCode_L.setObjectName("tagCode_L")
         self.label_18 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label_18.setAlignment(QtCore.Qt.AlignCenter)
         self.label_18.setObjectName("label_18")
         self.tagCode_L.addWidget(self.label_18)
         self.addMyEffect = QtWidgets.QGraphicsView(self.verticalLayoutWidget)
         self.addMyEffect.setMaximumSize(QtCore.QSize(24, 24))
+        self.addMyEffect.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.addMyEffect.setStyleSheet("#addMyEffect{\n"
 "    border-image: url(:/ico/Data/qrc/ico/plusSquare.png);\n"
 "    border:none;\n"
@@ -300,13 +306,20 @@ class Ui_Form(object):
         self.backgroundImg.setWidget(self.backgroundImg_W)
         self.verticalLayout_7.addWidget(self.backgroundImg)
         self.verticalLayout_3.addLayout(self.verticalLayout_7)
-        self.widget = QtWidgets.QWidget(self.verticalLayoutWidget_2)
-        self.widget.setObjectName("widget")
-        self.verticalLayout_3.addWidget(self.widget)
+        self.setCardArdImg = QtWidgets.QWidget(self.verticalLayoutWidget_2)
+        self.setCardArdImg.setObjectName("setCardArdImg")
+        self.textBrowser_2 = QtWidgets.QTextBrowser(self.setCardArdImg)
+        self.textBrowser_2.setGeometry(QtCore.QRect(30, 10, 256, 161))
+        self.textBrowser_2.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.textBrowser_2.setObjectName("textBrowser_2")
+        self.verticalLayout_3.addWidget(self.setCardArdImg)
         self.verticalLayout_3.setStretch(1, 1)
         self.verticalLayout_3.setStretch(2, 1)
         self.verticalLayout_3.setStretch(3, 1)
         self.CMT_settingTab.addTab(self.CMT_greateSetting, "")
+        self.CMT_previewCard = QtWidgets.QWidget()
+        self.CMT_previewCard.setObjectName("CMT_previewCard")
+        self.CMT_settingTab.addTab(self.CMT_previewCard, "")
         self.verticalLayout.addWidget(self.CMT_settingTab)
         self.CM_addNewCard.addLayout(self.verticalLayout)
         self.CM_main = QtWidgets.QVBoxLayout()
@@ -407,7 +420,7 @@ class Ui_Form(object):
         self.CM_addNewCard.setStretch(1, 2)
 
         self.retranslateUi(Form)
-        self.CMT_settingTab.setCurrentIndex(1)
+        self.CMT_settingTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -431,7 +444,18 @@ class Ui_Form(object):
         self.betterSpread_Search.setPlaceholderText(_translate("Form", "搜索"))
         self.label_13.setText(_translate("Form", "卡牌背景图"))
         self.backgroundImg_Search.setPlaceholderText(_translate("Form", "搜索"))
+        self.textBrowser_2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">拖动安装卡面</span></p></body></html>"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("Form", "高级"))
+        self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_previewCard), _translate("Form", "预览"))
         self.label_2.setText(_translate("Form", "Code代码"))
         self.CM_codeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
