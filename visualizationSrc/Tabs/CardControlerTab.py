@@ -185,15 +185,20 @@ class cardDetail_C:
         self.cardId = card.get('id','newCard')
         if card["id"] != "newCard":
             self.UI.CM_displayName.setText(card['displayName'])
+            if card.get('price')=="":card['price'] = "0"
             self.UI.CM_price.setValue(int(card.get('price','0')))
+            if card.get('energyReq')=="":card['energyReq'] = "0"
             self.UI.CM_energyReq.setValue(float(card.get('energyReq','0')))
+            if card.get('range')=="":card['range'] = "0"
             self.UI.CM_range.setValue(float(card.get('range','0')))
             self.UI.CM_description.setText(card['description'])
             self.UI.CM_story0.setText(card['story'])
             self.UI.CM_codeSource.setText(card['code'])
             self.UI.CM_remapCodeSource.setText(card['remapCode'])
 
+            if card.get('spreadRadius')=="":card['spreadRadius'] = "0"
             self.UI.spreadRadius.setValue(float(card.get('spreadRadius','0')))
+            if card.get('minUnlockGrade')=="":card['minUnlockGrade'] = "0"
             self.UI.minUnlockGrade.setValue(int(card.get('minUnlockGrade','0')))
             for sel in card['aimTypeCode'].split(';'):
                 self.UI.aimTypeCode.selQCheckBoxByName(sel.split(':')[0])
