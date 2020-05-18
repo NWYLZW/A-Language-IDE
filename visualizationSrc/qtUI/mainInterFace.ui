@@ -212,7 +212,7 @@ p, li { white-space: pre-wrap; }
 	background-position: center;
 }
 #close_window:hover{
-	border-image: url(:/ico/Data/qrc/ico/closed.png);
+	border-image: url(:/ico/Data/qrc/ico/closed.png)
 }</string>
            </property>
           </widget>

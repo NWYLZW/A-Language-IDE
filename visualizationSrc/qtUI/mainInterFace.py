@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
 "    background-position: center;\n"
 "}\n"
 "#close_window:hover{\n"
-"    border-image: url(:/ico/Data/qrc/ico/closed.png);\n"
+"    border-image: url(:/ico/Data/qrc/ico/closed.png)\n"
 "}")
         self.close_window.setObjectName("close_window")
         self.top_left.addWidget(self.close_window)

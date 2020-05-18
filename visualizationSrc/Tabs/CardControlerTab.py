@@ -65,7 +65,6 @@ class CardControlerTab:
         makeNewCardBtn.clicked.connect(makeNewCard)
 
         Search_Input = self.UI.Search_Input
-        Search_Input.setPlaceholderText("搜索想查找的卡牌名(回车搜索)")
         Search_Input\
             .setCompleter(
             QCompleter([card['displayName'] for card in self.cardControler.getCardList()])

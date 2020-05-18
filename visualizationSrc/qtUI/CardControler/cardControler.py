@@ -33,18 +33,16 @@ class Ui_Form(object):
         self.CardList = QtWidgets.QWidget()
         self.CardList.setObjectName("CardList")
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.CardList)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 1101, 51))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(20, 10, 1091, 51))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.Search.setContentsMargins(0, 0, 0, 0)
         self.Search.setObjectName("Search")
-        self.Search_label = QtWidgets.QLabel(self.horizontalLayoutWidget_3)
-        self.Search_label.setObjectName("Search_label")
-        self.Search.addWidget(self.Search_label)
         self.Search_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
         self.Search_Input.setStyleSheet("#Search_Input{\n"
 "    margin: 5px;\n"
 "    padding: 5px;\n"
+"    border: 1px solid gray;\n"
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
@@ -105,7 +103,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.Search_label.setText(_translate("Form", "搜索"))
+        self.Search_Input.setPlaceholderText(_translate("Form", "搜索想查找的卡牌的名字(回车搜索)"))
         self.makeNewCard.setText(_translate("Form", "制作新卡"))
         self.delSelCard.setText(_translate("Form", "删除已选"))
         self.pushButton_3.setText(_translate("Form", "导出信息至Excel"))
