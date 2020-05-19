@@ -51,3 +51,14 @@ class CardControler(CSVHelperControler):
         return self._getRowByfieldName('id', cardId)
     def delCardById(self,cardId):
         return self._delRowByfieldName('id', cardId)
+    def printCard(self,cardId):
+        if cardId == "newCard":
+            return False
+        import os
+        from ..Util.frozenDir import appPath
+        messageTxtPath = os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject'
+        if not os.path.exists(messageTxtPath):
+            os.makedirs(messageTxtPath)
+        with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
+            f1.write("Card:'"+cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
+        return True

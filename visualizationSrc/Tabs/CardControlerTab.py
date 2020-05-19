@@ -9,15 +9,16 @@
 @Desciption     :   卡牌制作界面
 '''
 from PyQt5 import QtCore
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
     QGraphicsDropShadowEffect
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
-from ..Controler.CardControler import CardControler, CardControler
+from ..Controler.CardControler import CardControler
 from ..Util.ComboCheckBox import ComboCheckBox
+from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
 
@@ -160,6 +161,7 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
     def refeshData(self,cardDict:dict):
         if self.CCT == None:
             raise ValueError("未设置CCT")
+        self.cardDict = cardDict
 
         self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
         self.price.setText(cardDict['price'])
@@ -185,7 +187,10 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                 self.cardArt.setScaledContents(True)
                 self.cardArt.setStyleSheet("border-image: none;")
             except Exception as e:print(e)
-        def clickCardItem(cardDict,tag):
+        self.initClick()
+    def initClick(self):
+        cardDict = self.cardDict
+        def clickCardItem(tag):
             def __clickCardItem():
                 if tag == 'edit':
                     self.CCT.toCardDetailTab(cardDict['id'])
@@ -194,9 +199,12 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                     if self.isSel: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
                     else: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
                     self.CCT.cardSelList.append(cardDict['id'])
+                elif tag == 'print':
+                    self.printCard()
             return __clickCardItem
-        self.cardEdit.clicked.connect(clickCardItem(cardDict,'edit'))
-        self.cardSelect.clicked.connect(clickCardItem(cardDict,'sel'))
+        self.cardEdit.clicked.connect(clickCardItem('edit'))
+        self.cardSelect.clicked.connect(clickCardItem('sel'))
+        self.cardPrint.clicked.connect(clickCardItem('print'))
     def _initUI(self):
         # 背景透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)
@@ -206,6 +214,23 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
         effect.setOffset(0, 0)
         effect.setColor(Qt.gray)
         self.setGraphicsEffect(effect)
+    def printCard(self):
+        mainWindow = self.CCT.mainWindow
+        if self.CCT.cardControler.printCard(self.cardDict.get('id','newCard')):
+            mainWindow.showInfo(
+                "扩印卡牌",
+                self.__class__.__name__,
+                "扩印ID为:"+str(self.cardDict.get('id','newCard'))+",\n"+
+                "名称为:"+self.cardDict.get('displayName','无名')+"的卡牌"
+            )
+            openTetraProject()
+        else:
+            mainWindow.showWarn(
+                "印卡",
+                self.__class__.__name__,
+                "印卡时发生了错误"+",\n"+
+                "请先添加卡牌"
+            )
 
 class cardDetail_C:
     def __init__(self,
@@ -341,27 +366,21 @@ class cardDetail_C:
                     )
         UI.saveCard.clicked.connect(__saveCard)
         def __printCard():
-            if self.card['id'] == "newCard":
+            if self.cardControler.printCard(self.card.get('id','newCard')):
+                mainWindow.showInfo(
+                    "扩印卡牌",
+                    self.__class__.__name__,
+                    "扩印ID为:"+str(self.cardId)+",\n"+
+                    "名称为:"+UI.CM_displayName.text()+"的卡牌"
+                )
+                openTetraProject()
+            else:
                 mainWindow.showWarn(
                     "印卡",
                     self.__class__.__name__,
                     "印卡时发生了错误"+",\n"+
                     "请先添加卡牌"
                 )
-                return
-            import os
-            from ..Util.frozenDir import appPath
-            messageTxtPath = os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject'
-            if not os.path.exists(messageTxtPath):
-                os.makedirs(messageTxtPath)
-            with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
-                f1.write("Card:'"+self.cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
-            self.mainWindow.showInfo(
-                "扩印卡牌",
-                self.__class__.__name__,
-                "扩印ID为:"+self.cardId+",\n"+
-                "名称为:"+UI.CM_displayName.text()+"的卡牌"
-            )
         UI.printCard.clicked.connect(__printCard)
     def initQuickKey(self):
         def __keyPressEvent(event):
