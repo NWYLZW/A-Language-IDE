@@ -45,13 +45,13 @@ class Ui_main(object):
         self.NameAndId = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(-1)
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.NameAndId.setFont(font)
         self.NameAndId.setStyleSheet("QLabel{\n"
 "    padding:5px;\n"
-"    font-size:16px;\n"
+"    font-size:12pt;\n"
 "    font-weight:600;\n"
 "}")
         self.NameAndId.setObjectName("NameAndId")

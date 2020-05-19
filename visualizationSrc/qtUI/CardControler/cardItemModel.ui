@@ -79,7 +79,7 @@ QTextEdit{
          <property name="font">
           <font>
            <family>Adobe 黑体 Std R</family>
-           <pointsize>-1</pointsize>
+           <pointsize>12</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -87,7 +87,7 @@ QTextEdit{
          <property name="styleSheet">
           <string notr="true">QLabel{
 	padding:5px;
-	font-size:16px;
+	font-size:12pt;
 	font-weight:600;
 }</string>
          </property>

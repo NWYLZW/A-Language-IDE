@@ -27,11 +27,11 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='AL-IDE_1.0.5.1',
+          name='AL-IDE_1.0.5.2-withConsole',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           upx_exclude=['./upx-3.96'],
           runtime_tmpdir=None,
-          console=False, icon='AL-IDE.ico')
+          console=True, icon='AL-IDE.ico')

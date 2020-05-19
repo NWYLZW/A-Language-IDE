@@ -34,5 +34,11 @@ if __name__ == '__main__':
     for file in glob('./AL-IDE_*.exe'):
         os.remove(file)
     shutil.copy('./dist/'+fileName+'.exe','./'+fileName+'.exe')
-    # 添加文件到测试文件夹，方便测试环境
+    # 添加文件到测试文件夹
+    for file in glob('../test/AL-IDE_*.exe'):
+        os.remove(file)
     shutil.copy('./'+fileName+'.exe','../test/'+fileName+'.exe')
+    # 添加文件到老版本文件夹
+    for file in glob('../怪物猎人Android/AL-IDE_*.exe'):
+        os.remove(file)
+    shutil.copy('./'+fileName+'.exe','../怪物猎人Android/'+fileName+'.exe')

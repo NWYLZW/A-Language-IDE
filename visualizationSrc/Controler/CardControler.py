@@ -40,7 +40,7 @@ class CardControler(CSVHelperControler):
         # 自动管理ID
         mID = self._rowList[len(self._rowList) - 1].get('id', '10000')
         newCard = self._addRow(cardDict)
-        newCard['id'] = str(int(mID)+1)
+        if newCard != {}: newCard['id'] = str(int(mID)+1)
         return newCard
     def updataCard(self,**cardDict):
         cardID = cardDict.get('id','')
