@@ -11,7 +11,8 @@
 from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel
+from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
+    QGraphicsDropShadowEffect
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
@@ -94,30 +95,17 @@ class CardControlerTab:
         self.cardSelList = []
         cardScroll =UI.cardScroll
         tempWidget = QWidget()
-        tempHL = QVBoxLayout()
-        tempWidget.setLayout(tempHL)
+        tempVL = QVBoxLayout()
         for index in range(len(cardList)):
             card = cardList[index]
-            cardItemEle = QWidget()
-            cardItemUI = cardItemModel.Ui_Form()
-            cardItemUI.setupUi(cardItemEle)
-
-            cardItemUI.cardItemModel_ID.setText('id:  '+card['id'])
-            cardItemUI.cardItemModel_DisplayName.setText('卡牌名:  '+card['displayName'])
-            cardItemUI.cardItemModel_Description.setText('卡牌简介:  '+card['description'])
-            cardItemUI.cardItemModel_Code.setText(card['code'])
-            cardItemUI.cardItemModel_Story.setText(card['story'])
-            def clickCardItem(index,tag):
-                def __editCard():
-                    if tag == 'edit':
-                        self.toCardDetailTab(cardList[index]['id'])
-                    elif tag == 'sel':
-                        self.cardSelList.append(cardList[index]['id'])
-                return __editCard
-            cardItemUI.cardItemModel_edit.clicked.connect(clickCardItem(index,'edit'))
-            cardItemUI.cardItemModel_sel.clicked.connect(clickCardItem(index,'sel'))
-
+            cardItemEle = cradItem_C()
+            cardItemEle.setCardControlerTab(self)
+            cardItemEle.refeshData(card)
+            if index%2 == 0:
+                tempHL = QHBoxLayout()
+                tempVL.addLayout(tempHL)
             tempHL.addWidget(cardItemEle)
+        tempWidget.setLayout(tempVL)
         cardScroll.setWidget(tempWidget)
     def removeNewCardTab(self):
         currentQWidget = self.newCardEditTabDict['tab']
@@ -158,6 +146,66 @@ class CardControlerTab:
             cardDetailsModel_UI=uiForm,
             cardDetailsModel_Widget=cardEditTabWidget,
             cardMake=self,)
+
+class cradItem_C(QWidget,cardItemModel.Ui_main):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.WIDTH = 470;self.HEIGHT = 370
+        self.BlurRadius = 10
+        self.isSel = False
+        self.setupUi(self)
+        self._initUI()
+    def setCardControlerTab(self,CCT:CardControlerTab):
+        self.CCT = CCT
+    def refeshData(self,cardDict:dict):
+        if self.CCT == None:
+            raise ValueError("未设置CCT")
+
+        self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
+        self.price.setText(cardDict['price'])
+        self.description.setText(cardDict['description'])
+        self.description.setReadOnly(True)
+        self.story.setText(cardDict['story'])
+        self.story.setReadOnly(True)
+        import os
+        from ..Util.frozenDir import appPath
+        backgroundImgPath = appPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
+        cardArtImgPath = appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
+        if os.path.exists(backgroundImgPath):
+            try:
+                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath))
+                # QPixmap图片大小自适应
+                self.backgroundImg.setScaledContents(True)
+                self.backgroundImg.setStyleSheet("border-image: none;")
+            except Exception as e:print(e)
+        if os.path.exists(cardArtImgPath):
+            try:
+                self.cardArt.setPixmap(QPixmap(cardArtImgPath))
+                # QPixmap图片大小自适应
+                self.cardArt.setScaledContents(True)
+                self.cardArt.setStyleSheet("border-image: none;")
+            except Exception as e:print(e)
+        def clickCardItem(cardDict,tag):
+            def __clickCardItem():
+                if tag == 'edit':
+                    self.CCT.toCardDetailTab(cardDict['id'])
+                elif tag == 'sel':
+                    self.isSel = not self.isSel
+                    if self.isSel: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
+                    else: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
+                    self.CCT.cardSelList.append(cardDict['id'])
+            return __clickCardItem
+        self.cardEdit.clicked.connect(clickCardItem(cardDict,'edit'))
+        self.cardSelect.clicked.connect(clickCardItem(cardDict,'sel'))
+    def _initUI(self):
+        # 背景透明
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
+        # 添加阴影
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(self.BlurRadius)
+        effect.setOffset(0, 0)
+        effect.setColor(Qt.gray)
+        self.setGraphicsEffect(effect)
 
 class cardDetail_C:
     def __init__(self,
@@ -261,7 +309,7 @@ class cardDetail_C:
                     self.mainWindow.showInfo(
                         "添加卡牌",
                         self.__class__.__name__,
-                        "成功新添ID为:"+newCardId+",\n"+
+                        "成功新添ID为:"+str(newCardId)+",\n"+
                         "名称为:"+UI.CM_displayName.text()+"的卡牌"
                     )
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
@@ -373,7 +421,7 @@ class cardDetail_C:
         backgroundImgPath = appPath()+"/CardBackground"
         if not os.path.exists(backgroundImgPath):
             os.makedirs(backgroundImgPath)
-        backgrondImgId = self.card['backgroundId']
+        backgrondImgId = self.card.get('backgroundId','1')
         selStyle = "QWidget{background-color: rgb(255,255,255);border-radius:10px;}"
         noselStyle = "QWidget:hover{background-color: rgb(255,255,255);border-radius:10px;}"
         for childDirName in os.listdir(backgroundImgPath):
@@ -392,17 +440,17 @@ class cardDetail_C:
                 tempVL = QVBoxLayout()
                 tempVL.setContentsMargins(0, 0, 0, 0)
 
-                backgrondName = QLabel(backgrondImgWidget)
-                backgrondName.setGeometry(QtCore.QRect(0, 0, 100, 20))
-                backgrondName.setMinimumSize(100,20)
-                backgrondName.setText(childDirName)
-                backgrondName.setAlignment(Qt.AlignCenter)
-                backgrondName.setStyleSheet("QLabel{font-size:18px;}")
+                backgroundImgName = QLabel(backgrondImgWidget)
+                backgroundImgName.setGeometry(QtCore.QRect(0, 0, 100, 20))
+                backgroundImgName.setMinimumSize(100,20)
+                backgroundImgName.setText(childDirName)
+                backgroundImgName.setAlignment(Qt.AlignCenter)
+                backgroundImgName.setStyleSheet("QLabel{font-size:18px;}")
 
-                backgrondImg = QLabel(backgrondImgWidget)
-                backgrondImg.setGeometry(QtCore.QRect(0, 0, 100, 100))
-                backgrondImg.setMinimumSize(100,100)
-                backgrondImg.setPixmap(QPixmap(childDirPath+'Card.png'))
+                backgroundImg = QLabel(backgrondImgWidget)
+                backgroundImg.setGeometry(QtCore.QRect(0, 0, 100, 100))
+                backgroundImg.setMinimumSize(100,100)
+                backgroundImg.setPixmap(QPixmap(childDirPath+'Card.png'))
                 tempVL.addWidget(backgrondImgWidget)
 
                 tempHL.addLayout(tempVL)

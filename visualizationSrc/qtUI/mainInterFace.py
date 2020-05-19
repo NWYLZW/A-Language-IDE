@@ -24,15 +24,7 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setMouseTracking(False)
-        MainWindow.setStyleSheet("#MainWindow{\n"
-"    background-color: rgb(0, 0, 0);\n"
-"}\n"
-"#Main{\n"
-"    background-color: rgb(255,255,255);\n"
-"    margin:10px;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"QTabBar::close-button{\n"
+        MainWindow.setStyleSheet("QTabBar::close-button{\n"
 "    image: url(:/ico/Data/qrc/ico/close.png);\n"
 "}\n"
 "QTabBar::close-button:hover{\n"
@@ -62,7 +54,15 @@ class Ui_MainWindow(object):
 "}")
         self.Main = QtWidgets.QWidget(MainWindow)
         self.Main.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.Main.setStyleSheet("")
+        self.Main.setStyleSheet("#MainWindow{\n"
+"    background-color: rgb(0, 0, 0);\n"
+"}\n"
+"#Main{\n"
+"    background-color: rgb(255,255,255);\n"
+"    margin:10px;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"")
         self.Main.setObjectName("Main")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.Main)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 1181, 721))

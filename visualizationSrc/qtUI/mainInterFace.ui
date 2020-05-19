@@ -40,15 +40,7 @@
    <string>AL-IDE</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#MainWindow{
-	background-color: rgb(0, 0, 0);
-}
-#Main{
-	background-color: rgb(255,255,255);
-	margin:10px;
-	border-radius: 10px;
-}
-QTabBar::close-button{
+   <string notr="true">QTabBar::close-button{
 	image: url(:/ico/Data/qrc/ico/close.png);
 }
 QTabBar::close-button:hover{
@@ -85,7 +77,15 @@ QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">#MainWindow{
+	background-color: rgb(0, 0, 0);
+}
+#Main{
+	background-color: rgb(255,255,255);
+	margin:10px;
+	border-radius: 10px;
+}
+</string>
    </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">

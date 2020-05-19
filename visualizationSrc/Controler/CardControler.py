@@ -187,8 +187,14 @@ class CardControler:
         self.refreshFile()
         return True
     def refreshFile(self):
-        with open(self.csvFileName, 'w', encoding="UTF-8-sig", newline='') as f:
+        f = None
+        try:
+            f = open(self.csvFileName, 'w', encoding="UTF-8-sig", newline='')
             writer = csv.DictWriter(f, self.fieldnames)
             writer.writeheader()
             for row in self.__cardList:
                 if row != None: writer.writerow(row)
+        except Exception as e:
+            try:f.close()
+            except:pass
+            print(e)

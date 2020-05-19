@@ -4,9 +4,15 @@
     <file>../Data/qrc/ico/closed.png</file>
     <file>../Data/qrc/ico/copied.png</file>
     <file>../Data/qrc/ico/copy.png</file>
-    <file>../Data/qrc/ico/excel.png</file>
     <file>../Data/qrc/ico/delete.png</file>
     <file>../Data/qrc/ico/deleted.png</file>
+    <file>../Data/qrc/ico/edit.png</file>
+    <file>../Data/qrc/ico/edited.png</file>
+    <file>../Data/qrc/ico/excel.png</file>
+    <file>../Data/qrc/ico/export.png</file>
+    <file>../Data/qrc/ico/exported.png</file>
+    <file>../Data/qrc/ico/import.png</file>
+    <file>../Data/qrc/ico/imported.png</file>
     <file>../Data/qrc/ico/max.png</file>
     <file>../Data/qrc/ico/maxed.png</file>
     <file>../Data/qrc/ico/min.png</file>
@@ -16,11 +22,17 @@
     <file>../Data/qrc/ico/plusSquare.png</file>
     <file>../Data/qrc/ico/print.png</file>
     <file>../Data/qrc/ico/printed.png</file>
+    <file>../Data/qrc/ico/release.png</file>
+    <file>../Data/qrc/ico/released.png</file>
     <file>../Data/qrc/ico/save.png</file>
     <file>../Data/qrc/ico/saved.png</file>
+    <file>../Data/qrc/ico/select.png</file>
+    <file>../Data/qrc/ico/selected.png</file>
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/Unknown.png</file>
+    <file>../Data/qrc/tetra.png</file>
     <file>../Data/qrc/cardPkg.png</file>
     <file>../Data/qrc/command.png</file>
     <file>../Data/qrc/Card.png</file>
