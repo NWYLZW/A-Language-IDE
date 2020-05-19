@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplicat
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
-from ..Controler.CardControler import CardControler
+from ..Controler.CardControler import CardControler, CardControler
 from ..Util.ComboCheckBox import ComboCheckBox
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
@@ -304,17 +304,17 @@ class cardDetail_C:
         mainWindow = self.mainWindow
         def __saveCard():
             if self.card["id"] == "newCard":
-                newCardId = self.cardControler.addCard(**self.getCard().toDict())
-                if newCardId!=-1:
+                newCard = self.cardControler.addCard(**self.getCard().toDict())
+                if newCard!={}:
                     self.mainWindow.showInfo(
                         "添加卡牌",
                         self.__class__.__name__,
-                        "成功新添ID为:"+str(newCardId)+",\n"+
+                        "成功新添ID为:"+str(newCard.get('id','newCard'))+",\n"+
                         "名称为:"+UI.CM_displayName.text()+"的卡牌"
                     )
                     self.cardMake.refreshCardList(self.cardControler.getCardList())
                     self.cardMake.removeNewCardTab()
-                    self.cardMake.toCardDetailTab(newCardId)
+                    self.cardMake.toCardDetailTab(str(newCard.get('id','newCard')))
                 else:
                     self.mainWindow.showWarn(
                         "添加卡牌",

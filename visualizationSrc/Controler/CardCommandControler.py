@@ -13,7 +13,7 @@ from visualizationSrc.Controler.Helper.CSVHelperControler import CSVHelperContro
 class CardCommandControler(CSVHelperControler):
     def __init__(self):
         super().__init__("CardCommand")
-    def _setRodictDefaultValue(self):
+    def _setRowDictDefaultValue(self):
         self.DefaultValue = {
             "id":"无名指令",
             "description":"没有设置介绍",
