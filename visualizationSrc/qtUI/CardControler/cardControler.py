@@ -258,5 +258,6 @@ class Ui_Form(object):
         self.delSelCard.setToolTip(_translate("Form", "<html><head/><body><p>移至回收站</p></body></html>"))
         self.copyCard.setToolTip(_translate("Form", "<html><head/><body><p>复制卡牌</p></body></html>"))
         self.pushToExcel.setToolTip(_translate("Form", "<html><head/><body><p>导出至Excel</p></body></html>"))
+        self.toFirstBtn.setToolTip(_translate("Form", "<html><head/><body><p>第一页</p></body></html>"))
         self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "卡库"))
 from .. import AL_IDE_MainInterFace_rc

@@ -221,11 +221,11 @@ class PageControler:
         font.setPointSize(12)
         count = 0;continueFlag = False
         start = self._currentPageNum
-        if self.pageCount-1 - start<5:
-            start = self.pageCount-1-5
+        if self.pageCount - start<5:
+            start = self.pageCount - 5
         for i in range(start, self.pageCount):
             if i < 0 or i == self.pageCount:continue
-            if continueFlag and i != self.pageCount-2:continue
+            if continueFlag and i != self.pageCount-1:continue
             count += 1
             numBTN = QPushButton(self._UI.horizontalLayoutWidget)
             self._UI.pageBTN_List.insertWidget(count, numBTN)
