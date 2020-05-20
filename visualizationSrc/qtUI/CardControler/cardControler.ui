@@ -28,6 +28,45 @@ QTabBar::close-button{
 }
 QTabBar::close-button:hover{
 	image: url(:/ico/Data/qrc/ico/closed.png);
+}
+#cardScrollWidget{background-color: rgba(255, 255, 255);}
+QScrollBar:vertical
+{
+    background-color: rgba(255, 255, 255, 0);
+    width: 10px;
+    margin: 0px;
+    border: none;
+}
+QScrollBar::handle:vertical
+{
+    background-color: rgb(216, 216, 216);
+    min-height: 5px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover
+{
+    background-color: rgb(181, 181, 181);
+}
+QScrollBar::sub-line:vertical
+,QScrollBar::add-line:vertical
+{
+    margin: 0px;
+    height: 0;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
+,QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
+{
+    height: 0px;
+    width: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
+,QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+{
+    background: none;
 }</string>
   </property>
   <widget class="QTabWidget" name="CardControler_Tabs">
@@ -273,6 +312,9 @@ QTabBar::close-button:hover{
        <height>521</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -281,14 +323,14 @@ QTabBar::close-button:hover{
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1089</width>
-        <height>519</height>
+        <width>1072</width>
+        <height>2000</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>0</height>
+        <height>2000</height>
        </size>
       </property>
      </widget>
@@ -337,7 +379,7 @@ QPushButton:hover{
         <height>41</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="pageBTN_List">
        <item>
         <widget class="QPushButton" name="leftBTN">
          <property name="minimumSize">

@@ -32,8 +32,9 @@ class CardControlerTab:
 
         self.Tab = self.UI.CardControler_Tabs
         self.CardList = self.UI.CardList
-        self.PC = PageControler(mainWindow,self)
+        self.cardSelList = []
         self.cardEditTabList = []
+        self.PC = PageControler(mainWindow,self)
         try:
             self.cardControler = CardControler()
             self.PC.toPage()
@@ -76,6 +77,7 @@ class CardControlerTab:
         def delSelCard():
             for cardId in self.cardSelList:
                 self.cardControler.delCardById(cardId)
+            self.cardSelList = []
             self.PC.toPage()
         delBtn.clicked.connect(delSelCard)
 
@@ -151,6 +153,7 @@ class PageControler:
         return int(len(self.cardList) / self._PageItemNum) + 1
     def _initClick(self):
         pass
+
     def _refreshEle(self):
         while len(self._tempHL_List)>0:
             tempHL = self._tempHL_List[0]           # type: QHBoxLayout
@@ -233,9 +236,12 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                     self.CCT.toCardDetailTab(cardDict['id'])
                 elif tag == 'sel':
                     self.isSel = not self.isSel
-                    if self.isSel: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
-                    else: self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
-                    self.CCT.cardSelList.append(cardDict['id'])
+                    if self.isSel:
+                        self.CCT.cardSelList.append(cardDict['id'])
+                        self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
+                    else:
+                        self.CCT.cardSelList.remove(cardDict['id'])
+                        self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
                 elif tag == 'print':
                     self.printCard()
             return __clickCardItem

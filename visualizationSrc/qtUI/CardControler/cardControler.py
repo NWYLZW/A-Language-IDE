@@ -23,6 +23,45 @@ class Ui_Form(object):
 "}\n"
 "QTabBar::close-button:hover{\n"
 "    image: url(:/ico/Data/qrc/ico/closed.png);\n"
+"}\n"
+"#cardScrollWidget{background-color: rgba(255, 255, 255);}\n"
+"QScrollBar:vertical\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    width: 10px;\n"
+"    margin: 0px;\n"
+"    border: none;\n"
+"}\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-height: 5px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover\n"
+"{\n"
+"    background-color: rgb(181, 181, 181);\n"
+"}\n"
+"QScrollBar::sub-line:vertical\n"
+",QScrollBar::add-line:vertical\n"
+"{\n"
+"    margin: 0px;\n"
+"    height: 0;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on\n"
+",QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on\n"
+"{\n"
+"    height: 0px;\n"
+"    width: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical\n"
+",QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical\n"
+"{\n"
+"    background: none;\n"
 "}")
         self.CardControler_Tabs = QtWidgets.QTabWidget(Form)
         self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
@@ -127,11 +166,12 @@ class Ui_Form(object):
         self.Search.setStretch(1, 2)
         self.cardScroll = QtWidgets.QScrollArea(self.CardList)
         self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 521))
+        self.cardScroll.setStyleSheet("")
         self.cardScroll.setWidgetResizable(True)
         self.cardScroll.setObjectName("cardScroll")
         self.cardScrollWidget = QtWidgets.QWidget()
-        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1089, 519))
-        self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1072, 2000))
+        self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 2000))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
         self.widget = QtWidgets.QWidget(self.CardList)
@@ -164,15 +204,15 @@ class Ui_Form(object):
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.widget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 341, 41))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pageBTN_List = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.pageBTN_List.setContentsMargins(0, 0, 0, 0)
+        self.pageBTN_List.setObjectName("pageBTN_List")
         self.leftBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.leftBTN.setMinimumSize(QtCore.QSize(32, 32))
         self.leftBTN.setMaximumSize(QtCore.QSize(32, 32))
         self.leftBTN.setText("")
         self.leftBTN.setObjectName("leftBTN")
-        self.horizontalLayout.addWidget(self.leftBTN)
+        self.pageBTN_List.addWidget(self.leftBTN)
         self.firstBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.firstBTN.setMinimumSize(QtCore.QSize(28, 28))
         self.firstBTN.setMaximumSize(QtCore.QSize(28, 28))
@@ -181,13 +221,13 @@ class Ui_Form(object):
         font.setPointSize(12)
         self.firstBTN.setFont(font)
         self.firstBTN.setObjectName("firstBTN")
-        self.horizontalLayout.addWidget(self.firstBTN)
+        self.pageBTN_List.addWidget(self.firstBTN)
         self.rightBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.rightBTN.setMinimumSize(QtCore.QSize(32, 32))
         self.rightBTN.setMaximumSize(QtCore.QSize(32, 32))
         self.rightBTN.setText("")
         self.rightBTN.setObjectName("rightBTN")
-        self.horizontalLayout.addWidget(self.rightBTN)
+        self.pageBTN_List.addWidget(self.rightBTN)
         self.CardControler_Tabs.addTab(self.CardList, "")
 
         self.retranslateUi(Form)
