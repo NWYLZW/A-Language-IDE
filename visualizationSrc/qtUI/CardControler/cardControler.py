@@ -66,6 +66,14 @@ class Ui_Form(object):
         self.CardControler_Tabs = QtWidgets.QTabWidget(Form)
         self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
         self.CardControler_Tabs.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.CardControler_Tabs.setStyleSheet("#toFirstBtn{\n"
+"    border-image: url(:/ico/Data/qrc/ico/first.png);\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"#toFirstBtn:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/firsted.png);\n"
+"}")
         self.CardControler_Tabs.setTabPosition(QtWidgets.QTabWidget.West)
         self.CardControler_Tabs.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.CardControler_Tabs.setElideMode(QtCore.Qt.ElideNone)
@@ -170,7 +178,7 @@ class Ui_Form(object):
         self.cardScroll.setWidgetResizable(True)
         self.cardScroll.setObjectName("cardScroll")
         self.cardScrollWidget = QtWidgets.QWidget()
-        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1072, 2000))
+        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1079, 2000))
         self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 2000))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
@@ -221,6 +229,20 @@ class Ui_Form(object):
         self.rightBTN.setText("")
         self.rightBTN.setObjectName("rightBTN")
         self.pageBTN_List.addWidget(self.rightBTN)
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.CardList)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(730, 600, 41, 41))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(5, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.toFirstBtn = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.toFirstBtn.setMinimumSize(QtCore.QSize(32, 32))
+        self.toFirstBtn.setMaximumSize(QtCore.QSize(32, 32))
+        self.toFirstBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.toFirstBtn.setText("")
+        self.toFirstBtn.setObjectName("toFirstBtn")
+        self.verticalLayout.addWidget(self.toFirstBtn)
         self.CardControler_Tabs.addTab(self.CardList, "")
 
         self.retranslateUi(Form)

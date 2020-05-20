@@ -161,14 +161,17 @@ class PageControler:
             if self._currentPageNum<self.pageCount-2:
                 self.toPage(self._currentPageNum+1)
         self._UI.rightBTN.clicked.connect(rightClick)
-        pass
+        def toFirst(evt):
+            if self._currentPageNum!=0:
+                self.toPage(0)
+        self._UI.toFirstBtn.clicked.connect(toFirst)
 
     def _refreshEle(self):
+        # 生成卡牌列表
+        oldCardList = self.cardList
         endValue = (self._currentPageNum + 1) * self._PageItemNum
-        newCardList = self.cardList[
-                      self._currentPageNum * self._PageItemNum:
-                      endValue if endValue < self.pageCount-1 else (self.pageCount-1)]
-        print(newCardList)
+        if endValue>len(oldCardList):endValue=len(oldCardList)
+        newCardList = oldCardList[self._currentPageNum * self._PageItemNum:endValue]
         while len(self._tempHL_List)>0:
             tempHL = self._tempHL_List[0]           # type: QHBoxLayout
             self._tempHL_List.remove(tempHL)
@@ -178,7 +181,6 @@ class PageControler:
                     child.widget().setParent(None)
                     del child
             tempHL.deleteLater();del tempHL
-
         for index in range(len(newCardList)):
             card = newCardList[index]
             cardItemEle = cradItem_C()
@@ -189,6 +191,8 @@ class PageControler:
                 self._VL.addLayout(tempHL)
                 self._tempHL_List.append(tempHL)
             tempHL.addWidget(cardItemEle)
+
+        # 生成按钮列表
         while len(self._numBTN_List)>0:
             numBTN = self._numBTN_List[0]           # type: QPushButton
             self._numBTN_List.remove(numBTN)
@@ -197,10 +201,25 @@ class PageControler:
         font = QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
-        for i in range(0, self.pageCount-1):
+        count = 0;continueFlag = False
+        start = self._currentPageNum
+        if self.pageCount-1 - start<5:
+            start = self.pageCount-1-5
+
+        for i in range(start, self.pageCount-1):
+            if continueFlag and i != self.pageCount-2:continue
+            count += 1
             numBTN = QPushButton(self._UI.horizontalLayoutWidget)
+            self._UI.pageBTN_List.insertWidget(count, numBTN)
+            self._numBTN_List.append(numBTN)
             numBTN.setMinimumSize(QtCore.QSize(28, 28));numBTN.setMaximumSize(QtCore.QSize(28, 28))
-            numBTN.setFont(font);numBTN.setText(str(i + 1))
+            numBTN.setFont(font)
+
+            if count == 4 and self.pageCount-1-start>5:
+                numBTN.setText("...")
+                continueFlag=True;continue
+            else:
+                numBTN.setText(str(i + 1))
             def numBTNClick(index):
                 def __numBTNClick():
                     self.toPage(index)
@@ -211,9 +230,6 @@ class PageControler:
                 numBTN.setStyleSheet("background-color:rgb(69, 138, 202);")
             else:
                 numBTN.setStyleSheet("")
-
-            self._UI.pageBTN_List.insertWidget(i + 1, numBTN)
-            self._numBTN_List.append(numBTN)
 
         if self._currentPageNum==0: self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
         else:self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
