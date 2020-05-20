@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1161, 668)
+        Form.resize(1161, 655)
         Form.setMaximumSize(QtCore.QSize(16777215, 16777215))
         Form.setStyleSheet("#Form{\n"
 "    padding:10px;\n"
@@ -126,14 +126,68 @@ class Ui_Form(object):
         self.Search.setStretch(0, 1)
         self.Search.setStretch(1, 2)
         self.cardScroll = QtWidgets.QScrollArea(self.CardList)
-        self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 571))
+        self.cardScroll.setGeometry(QtCore.QRect(20, 70, 1091, 521))
         self.cardScroll.setWidgetResizable(True)
         self.cardScroll.setObjectName("cardScroll")
         self.cardScrollWidget = QtWidgets.QWidget()
-        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1089, 569))
+        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1089, 519))
         self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 0))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
+        self.widget = QtWidgets.QWidget(self.CardList)
+        self.widget.setGeometry(QtCore.QRect(770, 600, 341, 41))
+        self.widget.setStyleSheet("QPushButton{\n"
+"    background: rgba(205, 205, 205);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"    color: white;\n"
+"    background: rgba(44, 44, 44);\n"
+"}\n"
+"#leftBTN{\n"
+"    background: rgba(255, 255, 255, 0);\n"
+"    border: none;\n"
+"    border-image: url(:/ico/Data/qrc/ico/left-square.png);\n"
+"}\n"
+"#leftBTN:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/left-squared.png);\n"
+"}\n"
+"#rightBTN{\n"
+"    background: rgba(255, 255, 255, 0);\n"
+"    border: none;\n"
+"    border-image: url(:/ico/Data/qrc/ico/right-square.png);\n"
+"}\n"
+"#rightBTN:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/right-squared.png);\n"
+"}")
+        self.widget.setObjectName("widget")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.widget)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 341, 41))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.leftBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.leftBTN.setMinimumSize(QtCore.QSize(32, 32))
+        self.leftBTN.setMaximumSize(QtCore.QSize(32, 32))
+        self.leftBTN.setText("")
+        self.leftBTN.setObjectName("leftBTN")
+        self.horizontalLayout.addWidget(self.leftBTN)
+        self.firstBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.firstBTN.setMinimumSize(QtCore.QSize(28, 28))
+        self.firstBTN.setMaximumSize(QtCore.QSize(28, 28))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        self.firstBTN.setFont(font)
+        self.firstBTN.setObjectName("firstBTN")
+        self.horizontalLayout.addWidget(self.firstBTN)
+        self.rightBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.rightBTN.setMinimumSize(QtCore.QSize(32, 32))
+        self.rightBTN.setMaximumSize(QtCore.QSize(32, 32))
+        self.rightBTN.setText("")
+        self.rightBTN.setObjectName("rightBTN")
+        self.horizontalLayout.addWidget(self.rightBTN)
         self.CardControler_Tabs.addTab(self.CardList, "")
 
         self.retranslateUi(Form)
@@ -149,5 +203,6 @@ class Ui_Form(object):
         self.delSelCard.setToolTip(_translate("Form", "<html><head/><body><p>移至回收站</p></body></html>"))
         self.copyCard.setToolTip(_translate("Form", "<html><head/><body><p>复制卡牌</p></body></html>"))
         self.pushToExcel.setToolTip(_translate("Form", "<html><head/><body><p>导出至Excel</p></body></html>"))
-        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "Tab 1"))
+        self.firstBTN.setText(_translate("Form", "1"))
+        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "所有卡牌"))
 from .. import AL_IDE_MainInterFace_rc

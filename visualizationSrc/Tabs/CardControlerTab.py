@@ -32,25 +32,21 @@ class CardControlerTab:
 
         self.Tab = self.UI.CardControler_Tabs
         self.CardList = self.UI.CardList
+        self.PC = PageControler(mainWindow,self)
         self.cardEditTabList = []
         try:
             self.cardControler = CardControler()
-            self.refreshCardList(self.cardControler.getCardList())
-        except Exception as e:
-            mainWindow.showErr(
+            self.PC.toPage()
+        except Exception as e: mainWindow.showErr(
                 "获取列表发生了错误",
                 self.__class__.__name__,
                 str(e)
-            )
-            print(e)
+            );print(e)
 
         self.initTab()
         self.initClick()
     def initTab(self):
         self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
-        self.Tab.setTabText(0,"卡牌列表")
-        for i in range(1,self.Tab.count()):
-            self.Tab.removeTab(i)
         self.initTabClose()
     def initTabClose(self):
         def __closeTab(currentIndex):
@@ -74,40 +70,15 @@ class CardControlerTab:
             .setCompleter(
             QCompleter([card['displayName'] for card in self.cardControler.getCardList()])
         )
-        def searchCard():
-            inputStr = Search_Input.text()
-            if inputStr=='': self.refreshCardList(self.cardControler.getCardList())
-            newCardList = []
-            for card in self.cardControler.getCardList():
-                if card['displayName'].find(inputStr)!=-1:
-                    newCardList.append(card)
-            self.refreshCardList(newCardList)
-        Search_Input.returnPressed.connect(searchCard)
+        Search_Input.returnPressed.connect(lambda : self.PC.filter(Search_Input.text()))
 
         delBtn = self.UI.delSelCard
         def delSelCard():
             for cardId in self.cardSelList:
                 self.cardControler.delCardById(cardId)
-            self.refreshCardList(self.cardControler.getCardList())
+            self.PC.toPage()
         delBtn.clicked.connect(delSelCard)
 
-    def refreshCardList(self,cardList):
-        UI = self.UI
-        self.cardSelList = []
-        cardScroll =UI.cardScroll
-        tempWidget = QWidget()
-        tempVL = QVBoxLayout()
-        for index in range(len(cardList)):
-            card = cardList[index]
-            cardItemEle = cradItem_C()
-            cardItemEle.setCardControlerTab(self)
-            cardItemEle.refeshData(card)
-            if index%2 == 0:
-                tempHL = QHBoxLayout()
-                tempVL.addLayout(tempHL)
-            tempHL.addWidget(cardItemEle)
-        tempWidget.setLayout(tempVL)
-        cardScroll.setWidget(tempWidget)
     def removeNewCardTab(self):
         currentQWidget = self.newCardEditTabDict['tab']
         currentQWidget.deleteLater()
@@ -147,6 +118,72 @@ class CardControlerTab:
             cardDetailsModel_UI=uiForm,
             cardDetailsModel_Widget=cardEditTabWidget,
             cardMake=self,)
+
+class PageControler:
+    def __init__(self,mainWindow:MyWindow.MyWindow,CCT:CardControlerTab):
+        self.mainWindow = mainWindow
+        self._CCT = CCT
+        self._UI = CCT.UI
+        self._PageItemNum = 50
+        self._currentPageNum = 0
+        self._isFilter = False
+        self._tempHL_List = []
+
+        widget = QWidget()
+        self._VL = QVBoxLayout()
+        self._cardScroll = CCT.UI.cardScroll
+        self._cardScroll.setWidget(widget)
+        widget.setLayout(self._VL)
+        self._initClick()
+    @property
+    def cardList(self):
+        if not self._isFilter:
+            self._cardList = self._CCT.cardControler.getCardList()
+            return self._cardList
+        else:
+            newCardList = []
+            for card in self._cardList:
+                if card['displayName'].find(self.filterStr)!=-1:
+                    newCardList.append(card)
+            return newCardList
+    @property
+    def pageCount(self):
+        return int(len(self.cardList) / self._PageItemNum) + 1
+    def _initClick(self):
+        pass
+    def _refreshEle(self):
+        while len(self._tempHL_List)>0:
+            tempHL = self._tempHL_List[0]           # type: QHBoxLayout
+            self._tempHL_List.remove(tempHL)
+            while tempHL.count()>0:
+                child = tempHL.takeAt(0)
+                if child.widget():
+                    child.widget().setParent(None)
+                    del child
+            tempHL.deleteLater();del tempHL
+        for index in range(len(self.cardList[
+                               self._currentPageNum * self._PageItemNum:
+                               (self._currentPageNum + 1) * self._PageItemNum]
+                           )):
+            card = self.cardList[index]
+            cardItemEle = cradItem_C()
+            cardItemEle.setCardControlerTab(self._CCT)
+            cardItemEle.refeshData(card)
+            if index%2 == 0:
+                tempHL = QHBoxLayout()
+                self._VL.addLayout(tempHL)
+                self._tempHL_List.append(tempHL)
+            tempHL.addWidget(cardItemEle)
+    def filter(self,filterStr):
+        self.filterStr = filterStr
+        if self.filterStr == "":
+            self._isFilter = False
+        else:
+            self._isFilter = True
+        self._refreshEle()
+    def toPage(self,pageNum:int=0):
+        self._currentPageNum = pageNum
+        self._refreshEle()
 
 class cradItem_C(QWidget,cardItemModel.Ui_main):
     def __init__(self, parent=None):
@@ -337,7 +374,7 @@ class cardDetail_C:
                         "成功新添ID为:"+str(newCard.get('id','newCard'))+",\n"+
                         "名称为:"+UI.CM_displayName.text()+"的卡牌"
                     )
-                    self.cardMake.refreshCardList(self.cardControler.getCardList())
+                    self.cardMake.PC.toPage(self.cardMake.PC.pageCount)
                     self.cardMake.removeNewCardTab()
                     self.cardMake.toCardDetailTab(str(newCard.get('id','newCard')))
                 else:
@@ -355,7 +392,7 @@ class cardDetail_C:
                         "修改ID为:"+self.cardId+",\n"+
                         "名称为:"+self.card.get('displayName')+"成功"
                     )
-                    self.cardMake.refreshCardList(self.cardControler.getCardList())
+                    self.cardMake.PC.toPage()
                 else:
                     self.mainWindow.showWarn(
                         "修改卡牌",

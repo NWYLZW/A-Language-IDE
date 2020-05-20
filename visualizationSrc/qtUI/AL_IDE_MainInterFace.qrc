@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/left-square.png</file>
+    <file>../Data/qrc/ico/left-squared.png</file>
+    <file>../Data/qrc/ico/right-square.png</file>
+    <file>../Data/qrc/ico/right-squared.png</file>
     <file>../Data/qrc/ico/close.png</file>
     <file>../Data/qrc/ico/closed.png</file>
     <file>../Data/qrc/ico/copied.png</file>
@@ -31,6 +35,7 @@
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/store.png</file>
     <file>../Data/qrc/Unknown.png</file>
     <file>../Data/qrc/tetra.png</file>
     <file>../Data/qrc/cardPkg.png</file>
