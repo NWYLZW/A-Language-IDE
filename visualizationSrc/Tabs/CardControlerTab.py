@@ -20,6 +20,7 @@ from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
 from ..Util.ComboCheckBox import ComboCheckBox
+from ..Util.ImportExportCardUtil import *
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
@@ -273,6 +274,7 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
         self.WIDTH = 470;self.HEIGHT = 370
         self.BlurRadius = 10
         self.isSel = False
+        self.clipboard = QApplication.clipboard()
         self.setupUi(self)
         self._initUI()
         self._initClick()
@@ -326,10 +328,41 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                     self.refeshData(self.cardDict,self.isSel)
                 elif tag == 'print':
                     self.printCard()
+                elif tag == 'import':
+                    importDict = importCard(self.clipboard.text())
+                    if importDict == {}:
+                        self.CCT.mainWindow.showWarn(
+                            "导入卡牌",
+                            self.__class__.__name__,
+                            "导入名称为:" + str(importDict.get('displayName', '无名'))+
+                            "\n发生了错误，请检验剪切板字符串格式(win + v)"
+                        )
+                    else:
+                        self.CCT.mainWindow.showInfo(
+                            "导入卡牌",
+                            self.__class__.__name__,
+                            "导入名称为:" + str(importDict.get('displayName', '无名'))+
+                            "\n成功"
+                        )
+                        importDict['id'] = self.cardDict.get('id','100000000')
+                        self.refeshData(importDict)
+                        try:
+                            self.CCT.cardControler.updataCard(**importDict)
+                        except Exception as e:print(e)
+                elif tag == 'export':
+                    self.clipboard.setText(exportCard(self.cardDict))
+                    self.CCT.mainWindow.showInfo(
+                        "导出卡牌",
+                        self.__class__.__name__,
+                        "导出名称为:" + str(self.cardDict.get('displayName', '无名'))+
+                        "\n成功"
+                    )
             return __clickCardItem
         self.cardEdit.clicked.connect(clickCardItem('edit'))
         self.cardSelect.clicked.connect(clickCardItem('sel'))
         self.cardPrint.clicked.connect(clickCardItem('print'))
+        self.cardImport.clicked.connect(clickCardItem('import'))
+        self.cardExport.clicked.connect(clickCardItem('export'))
     def _initUI(self):
         # 背景透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)
