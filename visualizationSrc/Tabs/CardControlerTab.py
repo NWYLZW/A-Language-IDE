@@ -8,6 +8,8 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
+from math import ceil
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QFont, QCursor
@@ -126,7 +128,7 @@ class PageControler:
         self.mainWindow = mainWindow
         self._CCT = CCT
         self._UI = CCT.UI
-        self._PageItemNum = 1
+        self._PageItemNum = 30
         self._currentPageNum = 0
         self._isFilter = False
         self._tempHL_List = []
@@ -151,14 +153,14 @@ class PageControler:
             return newCardList
     @property
     def pageCount(self):
-        return int(len(self.cardList) / self._PageItemNum) + 1
+        return ceil((len(self.cardList) / self._PageItemNum))
     def _initClick(self):
         def leftClick(evt):
             if self._currentPageNum>0:
                 self.toPage(self._currentPageNum-1)
         self._UI.leftBTN.clicked.connect(leftClick)
         def rightClick(evt):
-            if self._currentPageNum<self.pageCount-2:
+            if self._currentPageNum<self.pageCount-1:
                 self.toPage(self._currentPageNum+1)
         self._UI.rightBTN.clicked.connect(rightClick)
         def toFirst(evt):
@@ -192,12 +194,12 @@ class PageControler:
                 self._tempHL_List.append(tempHL)
             tempHL.addWidget(cardItemEle)
 
-        # 生成按钮列表
         while len(self._numBTN_List)>0:
             numBTN = self._numBTN_List[0]           # type: QPushButton
             self._numBTN_List.remove(numBTN)
             numBTN.setParent(None)
             numBTN.deleteLater();del numBTN
+        # 生成按钮列表
         font = QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
@@ -205,8 +207,8 @@ class PageControler:
         start = self._currentPageNum
         if self.pageCount-1 - start<5:
             start = self.pageCount-1-5
-
-        for i in range(start, self.pageCount-1):
+        for i in range(start, self.pageCount):
+            if i < 0 or i == self.pageCount:continue
             if continueFlag and i != self.pageCount-2:continue
             count += 1
             numBTN = QPushButton(self._UI.horizontalLayoutWidget)
@@ -231,9 +233,9 @@ class PageControler:
             else:
                 numBTN.setStyleSheet("")
 
-        if self._currentPageNum==0: self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
+        if self._currentPageNum<=0: self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
         else:self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
-        if self._currentPageNum==self.pageCount-2: self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
+        if self._currentPageNum>=self.pageCount-1: self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
         else:self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
 
     def filter(self,filterStr):
@@ -244,6 +246,7 @@ class PageControler:
             self._isFilter = True
         self._refreshEle()
     def toPage(self,pageNum:int=0):
+        if pageNum<0: return
         self._currentPageNum = pageNum
         self._refreshEle()
 
@@ -439,7 +442,7 @@ class cardDetail_C:
                         "成功新添ID为:"+str(newCard.get('id','newCard'))+",\n"+
                         "名称为:"+UI.CM_displayName.text()+"的卡牌"
                     )
-                    self.cardMake.PC.toPage(self.cardMake.PC.pageCount)
+                    self.cardMake.PC.toPage(self.cardMake.PC.pageCount-1)
                     self.cardMake.removeNewCardTab()
                     self.cardMake.toCardDetailTab(str(newCard.get('id','newCard')))
                 else:
