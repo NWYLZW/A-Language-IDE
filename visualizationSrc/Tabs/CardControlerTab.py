@@ -77,10 +77,26 @@ class CardControlerTab:
 
         delBtn = self.UI.delSelCard
         def delSelCard():
+            if len(self.cardSelList)==0:
+                self.mainWindow.showWarn(
+                    "删除卡牌",
+                    self.__class__.__name__,
+                    "还没有选择卡牌"
+                );return
+            tempList = []
             for cardId in self.cardSelList:
+                tempList.append(self.cardControler.getCardById(cardId))
                 self.cardControler.delCardById(cardId)
             self.cardSelList = []
             self.PC.toPage()
+            self.mainWindow.showInfo(
+                "删除卡牌",
+                self.__class__.__name__,
+                "删除:"+','.join([
+                "ID为:"+str(card.get('id','NoID'))+","+
+                "名称为:"+str(card.get('displayName','无名'))+"的卡牌" for card in tempList
+                ])
+            )
         delBtn.clicked.connect(delSelCard)
 
     def removeNewCardTab(self):
@@ -187,7 +203,7 @@ class PageControler:
             card = newCardList[index]
             cardItemEle = cradItem_C()
             cardItemEle.setCardControlerTab(self._CCT)
-            cardItemEle.refeshData(card)
+            cardItemEle.refeshData(card,card.get('id','newCard') in self._CCT.cardSelList)
             if index%2 == 0:
                 tempHL = QHBoxLayout()
                 self._VL.addLayout(tempHL)
@@ -233,6 +249,7 @@ class PageControler:
             else:
                 numBTN.setStyleSheet("")
 
+        # 刷新指针状态
         if self._currentPageNum<=0: self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
         else:self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         if self._currentPageNum>=self.pageCount-1: self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
@@ -258,12 +275,14 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
         self.isSel = False
         self.setupUi(self)
         self._initUI()
+        self._initClick()
     def setCardControlerTab(self,CCT:CardControlerTab):
         self.CCT = CCT
-    def refeshData(self,cardDict:dict):
+    def refeshData(self,cardDict:dict,isSel:bool=False):
         if self.CCT == None:
             raise ValueError("未设置CCT")
         self.cardDict = cardDict
+        self.isSel = isSel
 
         self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
         self.price.setText(cardDict['price'])
@@ -289,21 +308,22 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                 self.cardArt.setScaledContents(True)
                 self.cardArt.setStyleSheet("border-image: none;")
             except Exception as e:print(e)
-        self.initClick()
-    def initClick(self):
-        cardDict = self.cardDict
+        if self.isSel:
+            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
+        else:
+            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
+    def _initClick(self):
         def clickCardItem(tag):
             def __clickCardItem():
                 if tag == 'edit':
-                    self.CCT.toCardDetailTab(cardDict['id'])
+                    self.CCT.toCardDetailTab(self.cardDict['id'])
                 elif tag == 'sel':
                     self.isSel = not self.isSel
                     if self.isSel:
-                        self.CCT.cardSelList.append(cardDict['id'])
-                        self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
+                        self.CCT.cardSelList.append(self.cardDict['id'])
                     else:
-                        self.CCT.cardSelList.remove(cardDict['id'])
-                        self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
+                        self.CCT.cardSelList.remove(self.cardDict['id'])
+                    self.refeshData(self.cardDict,self.isSel)
                 elif tag == 'print':
                     self.printCard()
             return __clickCardItem
