@@ -10,9 +10,9 @@
 '''
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QFont, QCursor
 from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
-    QGraphicsDropShadowEffect
+    QGraphicsDropShadowEffect, QPushButton
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
@@ -126,10 +126,11 @@ class PageControler:
         self.mainWindow = mainWindow
         self._CCT = CCT
         self._UI = CCT.UI
-        self._PageItemNum = 50
+        self._PageItemNum = 1
         self._currentPageNum = 0
         self._isFilter = False
         self._tempHL_List = []
+        self._numBTN_List = []
 
         widget = QWidget()
         self._VL = QVBoxLayout()
@@ -152,9 +153,22 @@ class PageControler:
     def pageCount(self):
         return int(len(self.cardList) / self._PageItemNum) + 1
     def _initClick(self):
+        def leftClick(evt):
+            if self._currentPageNum>0:
+                self.toPage(self._currentPageNum-1)
+        self._UI.leftBTN.clicked.connect(leftClick)
+        def rightClick(evt):
+            if self._currentPageNum<self.pageCount-2:
+                self.toPage(self._currentPageNum+1)
+        self._UI.rightBTN.clicked.connect(rightClick)
         pass
 
     def _refreshEle(self):
+        endValue = (self._currentPageNum + 1) * self._PageItemNum
+        newCardList = self.cardList[
+                      self._currentPageNum * self._PageItemNum:
+                      endValue if endValue < self.pageCount-1 else (self.pageCount-1)]
+        print(newCardList)
         while len(self._tempHL_List)>0:
             tempHL = self._tempHL_List[0]           # type: QHBoxLayout
             self._tempHL_List.remove(tempHL)
@@ -164,11 +178,9 @@ class PageControler:
                     child.widget().setParent(None)
                     del child
             tempHL.deleteLater();del tempHL
-        for index in range(len(self.cardList[
-                               self._currentPageNum * self._PageItemNum:
-                               (self._currentPageNum + 1) * self._PageItemNum]
-                           )):
-            card = self.cardList[index]
+
+        for index in range(len(newCardList)):
+            card = newCardList[index]
             cardItemEle = cradItem_C()
             cardItemEle.setCardControlerTab(self._CCT)
             cardItemEle.refeshData(card)
@@ -177,6 +189,37 @@ class PageControler:
                 self._VL.addLayout(tempHL)
                 self._tempHL_List.append(tempHL)
             tempHL.addWidget(cardItemEle)
+        while len(self._numBTN_List)>0:
+            numBTN = self._numBTN_List[0]           # type: QPushButton
+            self._numBTN_List.remove(numBTN)
+            numBTN.setParent(None)
+            numBTN.deleteLater();del numBTN
+        font = QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        for i in range(0, self.pageCount-1):
+            numBTN = QPushButton(self._UI.horizontalLayoutWidget)
+            numBTN.setMinimumSize(QtCore.QSize(28, 28));numBTN.setMaximumSize(QtCore.QSize(28, 28))
+            numBTN.setFont(font);numBTN.setText(str(i + 1))
+            def numBTNClick(index):
+                def __numBTNClick():
+                    self.toPage(index)
+                return __numBTNClick
+            numBTN.clicked.connect(numBTNClick(i))
+            numBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+            if i == self._currentPageNum:
+                numBTN.setStyleSheet("background-color:rgb(69, 138, 202);")
+            else:
+                numBTN.setStyleSheet("")
+
+            self._UI.pageBTN_List.insertWidget(i + 1, numBTN)
+            self._numBTN_List.append(numBTN)
+
+        if self._currentPageNum==0: self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
+        else:self._UI.leftBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+        if self._currentPageNum==self.pageCount-2: self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.ForbiddenCursor))
+        else:self._UI.rightBTN.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
+
     def filter(self,filterStr):
         self.filterStr = filterStr
         if self.filterStr == "":
