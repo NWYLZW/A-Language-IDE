@@ -14,13 +14,13 @@ class Ui_main(object):
     def setupUi(self, main):
         main.setObjectName("main")
         main.resize(470, 360)
-        main.setMinimumSize(QtCore.QSize(470, 360))
+        main.setMinimumSize(QtCore.QSize(0, 360))
         main.setMaximumSize(QtCore.QSize(470, 360))
         main.setStyleSheet("#main{\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
 "}")
         self.cardItem = QtWidgets.QWidget(main)
-        self.cardItem.setGeometry(QtCore.QRect(10, 10, 450, 341))
+        self.cardItem.setGeometry(QtCore.QRect(10, 10, 261, 341))
         self.cardItem.setMaximumSize(QtCore.QSize(450, 350))
         self.cardItem.setStyleSheet("#cardItem{\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -42,6 +42,9 @@ class Ui_main(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.head = QtWidgets.QHBoxLayout()
+        self.head.setSpacing(10)
+        self.head.setObjectName("head")
         self.NameAndId = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
@@ -55,14 +58,28 @@ class Ui_main(object):
 "    font-weight:600;\n"
 "}")
         self.NameAndId.setObjectName("NameAndId")
-        self.verticalLayout.addWidget(self.NameAndId)
+        self.head.addWidget(self.NameAndId)
+        self.detailsBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.detailsBTN.setMinimumSize(QtCore.QSize(30, 30))
+        self.detailsBTN.setMaximumSize(QtCore.QSize(30, 30))
+        self.detailsBTN.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.detailsBTN.setStyleSheet("QPushButton{\n"
+"    border-image: url(:/ico/Data/qrc/ico/details.png);\n"
+"}\n"
+"QPushButton:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/detailsed.png);\n"
+"}")
+        self.detailsBTN.setText("")
+        self.detailsBTN.setObjectName("detailsBTN")
+        self.head.addWidget(self.detailsBTN)
+        self.verticalLayout.addLayout(self.head)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.cardShow = QtWidgets.QWidget(self.horizontalLayoutWidget)
-        self.cardShow.setMaximumSize(QtCore.QSize(180, 180))
+        self.cardShow.setMaximumSize(QtCore.QSize(180, 2000))
         self.cardShow.setStyleSheet("#cardShow{\n"
 "    border-radius: 10px;\n"
 "}\n"
@@ -71,17 +88,29 @@ class Ui_main(object):
 "}")
         self.cardShow.setObjectName("cardShow")
         self.backgroundImg = QtWidgets.QLabel(self.cardShow)
-        self.backgroundImg.setGeometry(QtCore.QRect(0, 0, 181, 181))
+        self.backgroundImg.setGeometry(QtCore.QRect(-70, -30, 311, 311))
         self.backgroundImg.setMinimumSize(QtCore.QSize(0, 0))
         self.backgroundImg.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.backgroundImg.setStyleSheet("border-image: url(:/picture/Data/qrc/Card.png);")
         self.backgroundImg.setText("")
         self.backgroundImg.setObjectName("backgroundImg")
         self.cardArt = QtWidgets.QLabel(self.cardShow)
-        self.cardArt.setGeometry(QtCore.QRect(70, 50, 51, 51))
+        self.cardArt.setGeometry(QtCore.QRect(50, 40, 81, 81))
         self.cardArt.setStyleSheet("border-image: url(:/picture/Data/qrc/Unknown.png);")
         self.cardArt.setText("")
         self.cardArt.setObjectName("cardArt")
+        self.description = QtWidgets.QTextBrowser(self.cardShow)
+        self.description.setGeometry(QtCore.QRect(40, 140, 111, 71))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.description.setFont(font)
+        self.description.setStyleSheet("QTextBrowser{\n"
+"    color: white;\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    border: none;\n"
+"}")
+        self.description.setObjectName("description")
         self.gridLayout.addWidget(self.cardShow, 0, 0, 1, 1)
         self.horizontalLayout_2.addLayout(self.gridLayout)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
@@ -206,12 +235,6 @@ class Ui_main(object):
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_4 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        self.description = QtWidgets.QTextEdit(self.horizontalLayoutWidget)
-        self.description.setObjectName("description")
-        self.verticalLayout_2.addWidget(self.description)
         self.label_5 = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_2.addWidget(self.label_5)
@@ -229,6 +252,12 @@ class Ui_main(object):
         _translate = QtCore.QCoreApplication.translate
         main.setWindowTitle(_translate("main", "Form"))
         self.NameAndId.setText(_translate("main", "无名(ID:10001)"))
+        self.detailsBTN.setToolTip(_translate("main", "<html><head/><body><p>展开详情</p></body></html>"))
+        self.description.setHtml(_translate("main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'SimSun\'; font-size:9pt;\"><br /></p></body></html>"))
         self.cardSelect.setToolTip(_translate("main", "<html><head/><body><p>选择卡牌</p></body></html>"))
         self.cardEdit.setToolTip(_translate("main", "<html><head/><body><p>编辑卡牌</p></body></html>"))
         self.cardExport.setToolTip(_translate("main", "<html><head/><body><p>导出卡牌</p></body></html>"))
@@ -237,6 +266,5 @@ class Ui_main(object):
         self.cardRelease.setToolTip(_translate("main", "<html><head/><body><p>发布</p></body></html>"))
         self.label_2.setText(_translate("main", "标准卡包"))
         self.price.setText(_translate("main", "∞"))
-        self.label_4.setText(_translate("main", "简介"))
         self.label_5.setText(_translate("main", "故事"))
 from .. import AL_IDE_MainInterFace_rc

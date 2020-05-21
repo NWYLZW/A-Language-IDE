@@ -12,7 +12,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>470</width>
+    <width>0</width>
     <height>360</height>
    </size>
   </property>
@@ -35,7 +35,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>450</width>
+     <width>261</width>
      <height>341</height>
     </rect>
    </property>
@@ -75,26 +75,66 @@ QTextEdit{
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="NameAndId">
-         <property name="font">
-          <font>
-           <family>Adobe 黑体 Std R</family>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
+        <layout class="QHBoxLayout" name="head">
+         <property name="spacing">
+          <number>10</number>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QLabel{
+         <item>
+          <widget class="QLabel" name="NameAndId">
+           <property name="font">
+            <font>
+             <family>Adobe 黑体 Std R</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{
 	padding:5px;
 	font-size:12pt;
 	font-weight:600;
 }</string>
-         </property>
-         <property name="text">
-          <string>无名(ID:10001)</string>
-         </property>
-        </widget>
+           </property>
+           <property name="text">
+            <string>无名(ID:10001)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="detailsBTN">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;展开详情&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/details.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/detailsed.png);
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
@@ -108,7 +148,7 @@ QTextEdit{
              <property name="maximumSize">
               <size>
                <width>180</width>
-               <height>180</height>
+               <height>2000</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -122,10 +162,10 @@ QTextEdit{
              <widget class="QLabel" name="backgroundImg">
               <property name="geometry">
                <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>181</width>
-                <height>181</height>
+                <x>-70</x>
+                <y>-30</y>
+                <width>311</width>
+                <height>311</height>
                </rect>
               </property>
               <property name="minimumSize">
@@ -150,10 +190,10 @@ QTextEdit{
              <widget class="QLabel" name="cardArt">
               <property name="geometry">
                <rect>
-                <x>70</x>
-                <y>50</y>
-                <width>51</width>
-                <height>51</height>
+                <x>50</x>
+                <y>40</y>
+                <width>81</width>
+                <height>81</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -161,6 +201,36 @@ QTextEdit{
               </property>
               <property name="text">
                <string/>
+              </property>
+             </widget>
+             <widget class="QTextBrowser" name="description">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>140</y>
+                <width>111</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QTextBrowser{
+	color: white;
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+}</string>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe 黑体 Std R'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </widget>
@@ -498,16 +568,6 @@ QTextEdit{
        <property name="bottomMargin">
         <number>10</number>
        </property>
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>简介</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTextEdit" name="description"/>
-       </item>
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">

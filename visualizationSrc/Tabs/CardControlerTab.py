@@ -11,7 +11,7 @@
 from math import ceil
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QPixmap, QFont, QCursor
 from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
     QGraphicsDropShadowEffect, QPushButton
@@ -205,11 +205,14 @@ class PageControler:
             cardItemEle = cradItem_C()
             cardItemEle.setCardControlerTab(self._CCT)
             cardItemEle.refeshData(card,card.get('id','newCard') in self._CCT.cardSelList)
-            if index%2 == 0:
+            if index%3 == 0:
                 tempHL = QHBoxLayout()
+                tempHL.cardItemEleList = []
                 self._VL.addLayout(tempHL)
                 self._tempHL_List.append(tempHL)
+            cardItemEle.parentLayout = tempHL
             tempHL.addWidget(cardItemEle)
+            tempHL.cardItemEleList.append(cardItemEle)
 
         while len(self._numBTN_List)>0:
             numBTN = self._numBTN_List[0]           # type: QPushButton
@@ -274,6 +277,7 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
         self.WIDTH = 470;self.HEIGHT = 370
         self.BlurRadius = 10
         self.isSel = False
+        self.isShowDetails = False
         self.clipboard = QApplication.clipboard()
         self.setupUi(self)
         self._initUI()
@@ -363,6 +367,26 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
         self.cardPrint.clicked.connect(clickCardItem('print'))
         self.cardImport.clicked.connect(clickCardItem('import'))
         self.cardExport.clicked.connect(clickCardItem('export'))
+        def showDetails():
+            parentLayout = self.parentLayout
+            for item in parentLayout.cardItemEleList:
+                if item != self:
+                    item.isShowDetails = False
+                    item.details()
+                    item._initUI()
+
+            self.isShowDetails = not self.isShowDetails
+            self.details()
+            self._initUI()
+        self.detailsBTN.clicked.connect(showDetails)
+    def details(self):
+        if self.isShowDetails:
+            self.setMinimumWidth(470)
+            self.cardItem.setGeometry(10,10,450,340)
+        else:
+            self.setMinimumWidth(280)
+            self.cardItem.setGeometry(10,10,260,340)
+        self._initUI()
     def _initUI(self):
         # 背景透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)

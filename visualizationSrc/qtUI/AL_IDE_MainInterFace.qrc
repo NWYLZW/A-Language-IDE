@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/details.png</file>
+    <file>../Data/qrc/ico/detailsed.png</file>
     <file>../Data/qrc/ico/first.png</file>
     <file>../Data/qrc/ico/firsted.png</file>
     <file>../Data/qrc/ico/left-square.png</file>
@@ -37,6 +39,7 @@
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/userSetting.png</file>
     <file>../Data/qrc/store.png</file>
     <file>../Data/qrc/Unknown.png</file>
     <file>../Data/qrc/tetra.png</file>
