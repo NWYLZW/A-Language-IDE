@@ -11,11 +11,16 @@
 from . import GameCore
 class CompileHelper:
     def __init__(self):
-        self.GameCoreCommand = GameCore.Command
+        if GameCore:
+            self.GameCoreCommand = GameCore.Command
+            self.canCompile = True
+        else:
+            self.canCompile = False
         pass
     def _compileCommand(self, commandStr):
         Command = self.GameCoreCommand.Parse(commandStr)
         return Command
     def isCommand(self,commandStr)\
             ->bool:
-        return self._compileCommand(commandStr).isCommand
+        if self.canCompile: return self._compileCommand(commandStr).isCommand
+        else: return True

@@ -11,6 +11,10 @@
 __all__ = ['compileHelper']
 from ...config import GamePath
 TetraProject_Data_Managed_DLL_PATH = GamePath + "TetraProject_Data\\Managed\\Assembly-CSharp"
-import clr
-temp = clr.AddReference(TetraProject_Data_Managed_DLL_PATH)
-import GameCore
+import os
+if os.path.isfile(TetraProject_Data_Managed_DLL_PATH+".dll"):
+    import clr
+    temp = clr.AddReference(TetraProject_Data_Managed_DLL_PATH)
+    import GameCore
+else:
+    GameCore = None

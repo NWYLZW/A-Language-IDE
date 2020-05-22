@@ -21,6 +21,7 @@ from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
 from ..Util.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
+from ..Util.UserUtil import UserUtil
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
@@ -352,6 +353,13 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                         self.refeshData(importDict)
                         try:
                             self.CCT.cardControler.updataCard(**importDict)
+                            # 记录导入卡牌数据至用户数据中
+                            u = UserUtil()
+                            if importDict.get("author","") == "": author = u.userName
+                            else: author = importDict.get("author","")
+                            if importDict.get("reprintedAuthor","") == "": reprintedAuthor = []
+                            else: reprintedAuthor = importDict.get("reprintedAuthor","")
+                            u.addCard(author, importDict, reprintedAuthor)
                         except Exception as e:print(e)
                 elif tag == 'export':
                     self.clipboard.setText(exportCard(self.cardDict))

@@ -9,6 +9,9 @@
 @Desciption     :   导入导出卡牌帮助文件
 '''
 __all__ = ["importCard","exportCard"]
+
+from visualizationSrc.Util.UserUtil import UserUtil
+
 modelStr=\
 """// @author:                         {author}
 // @reprintedAuthor:                {reprintedAuthor}
@@ -74,22 +77,24 @@ def importCard(import_card_str:str="",)\
             if key == "code":
                 allList = re.findall(r'(?<=\/\/ \@code\:\n)(.*(\n))*(?=\/\/ \@.*\:\n)', import_card_str, re.M | re.I)  # type: list[str]
             elif key == "remapCode":
-                allList = re.findall(r'(?<=\/\/ \@code\:\n)(.*(\n))*((?=\/\/ \@.*\:\n)|.*)', import_card_str, re.M | re.I)  # type: list[str]
+                allList = re.findall(r'(?<=\/\/ \@remapCode\:\n)(.*(\n))*((?=\/\/ \@.*\:\n)|.*)', import_card_str, re.M | re.I)  # type: list[str]
             else:
                 allList = re.findall(r'(?<=\/\/ \@'+key+'\: ).*', import_card_str, re.M | re.I)  # type: list[str]
 
             if len(allList) > 0:
                 if key != "note":
-                    if key in ["code","remapConde"]:
+                    if key in ["code","remapCode"]:
                         dictx[key] = "".join(allList[0])
                     elif key in ["story","description"]:
                         dictx[key] = allList[0].replace('\\n', '\n').replace(' ','')
+                    elif key == "reprintedAuthor":
+                        dictx[key] = allList[0].replace(' ','').split('&')
                     else:
                         dictx[key] = allList[0].replace(' ','')
                 else:
                     dictx[key] = [note.replace(' ','') for note in allList]
             else: continue
-    except Exception as e:print(e);
+    except Exception as e:print(e)
     return dictx
 def exportCard(export_card_dict:dict={},)\
         ->str:
@@ -100,6 +105,19 @@ def exportCard(export_card_dict:dict={},)\
     '''
     newDict = DefaultDict.copy()
     temp_export_card_dict = export_card_dict.copy()
+
+    u = UserUtil()
+    cardImportData = u.getCardImportDataByCard(temp_export_card_dict)
+    if cardImportData:
+        reprintedAuthor = '&'.join(cardImportData["reprintedAuthorList"])
+        if cardImportData["author"] != "MYSELF_CARD_PKG":
+            reprintedAuthor += u.userName
+            temp_export_card_dict["author"] = cardImportData["author"]
+        else:
+            temp_export_card_dict["author"] = u.userName
+        temp_export_card_dict['reprintedAuthor'] = reprintedAuthor
+    else: temp_export_card_dict["author"] = u.userName
+
     temp_export_card_dict['story'] = export_card_dict['story'].replace('\n', '\\n')
     temp_export_card_dict['description'] = export_card_dict['description'].replace('\n', '\\n')
     newDict.update(**temp_export_card_dict)
