@@ -8,11 +8,14 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from visualizationSrc.Controler.Helper.CSVHelperControler import CSVHelperControler
+from .Helper.CSVHelperControler import CSVHelperControler
+from ..Util.AL_Util.compileHelper import CompileHelper
 
 class CardControler(CSVHelperControler):
     def __init__(self):
         super().__init__("Card")
+        # 编译帮助类
+        self.CompileHelper = CompileHelper()
     def _setRowDictDefaultValue(self):
         self.DefaultValue = {
                 'id': '10000',
@@ -53,6 +56,24 @@ class CardControler(CSVHelperControler):
         return self._getRowByfieldName('id', cardId)
     def delCardById(self,cardId):
         return self._delRowByfieldName('id', cardId)
+    def checkCode(self,cardId):
+        '''
+        :param cardId:
+        :return: [
+        0: 无误
+        1: code部分有误
+        2: remapCode部分有误
+        3: 未找到id对应的卡牌字典
+        ]
+        '''
+        card = self.getCardById(cardId)
+        if card == {}: return 3
+        if card.get('code', 'Error')=="" \
+                or self.CompileHelper.isCommand(card.get('code','Error')):
+            if card.get('remapCode', 'Error')==""\
+                    or self.CompileHelper.isCommand(card.get('remapCode', 'Error')): return 0
+            else: return 2
+        else: return 1
     def printCard(self,cardId):
         if cardId == "newCard":
             return False

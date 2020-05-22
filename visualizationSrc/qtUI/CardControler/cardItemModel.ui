@@ -157,6 +157,44 @@ QPushButton:hover{
 }
 #cardShow:hover{
 	background-color: rgb(240,240,240);
+}
+QScrollBar:vertical
+{
+    background-color: rgba(255, 255, 255, 0);
+    width: 6px;
+    margin: 0px;
+    border: none;
+}
+QScrollBar::handle:vertical
+{
+    background-color: rgb(216, 216, 216);
+    min-height: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:vertical:hover
+{
+    background-color: rgb(181, 181, 181);
+}
+QScrollBar::sub-line:vertical
+,QScrollBar::add-line:vertical
+{
+    margin: 0px;
+    height: 0;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
+,QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
+{
+    height: 0px;
+    width: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
+,QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+{
+    background: none;
 }</string>
              </property>
              <widget class="QLabel" name="backgroundImg">
@@ -230,7 +268,7 @@ QPushButton:hover{
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe 黑体 Std R'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </widget>

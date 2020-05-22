@@ -85,6 +85,44 @@ class Ui_main(object):
 "}\n"
 "#cardShow:hover{\n"
 "    background-color: rgb(240,240,240);\n"
+"}\n"
+"QScrollBar:vertical\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    width: 6px;\n"
+"    margin: 0px;\n"
+"    border: none;\n"
+"}\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-height: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover\n"
+"{\n"
+"    background-color: rgb(181, 181, 181);\n"
+"}\n"
+"QScrollBar::sub-line:vertical\n"
+",QScrollBar::add-line:vertical\n"
+"{\n"
+"    margin: 0px;\n"
+"    height: 0;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on\n"
+",QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on\n"
+"{\n"
+"    height: 0px;\n"
+"    width: 0px;\n"
+"    subcontrol-position: bottom;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical\n"
+",QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical\n"
+"{\n"
+"    background: none;\n"
 "}")
         self.cardShow.setObjectName("cardShow")
         self.backgroundImg = QtWidgets.QLabel(self.cardShow)
@@ -257,7 +295,7 @@ class Ui_main(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'SimSun\'; font-size:9pt;\"><br /></p></body></html>"))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.cardSelect.setToolTip(_translate("main", "<html><head/><body><p>选择卡牌</p></body></html>"))
         self.cardEdit.setToolTip(_translate("main", "<html><head/><body><p>编辑卡牌</p></body></html>"))
         self.cardExport.setToolTip(_translate("main", "<html><head/><body><p>导出卡牌</p></body></html>"))

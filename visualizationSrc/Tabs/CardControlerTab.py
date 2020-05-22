@@ -374,7 +374,6 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                     item.isShowDetails = False
                     item.details()
                     item._initUI()
-
             self.isShowDetails = not self.isShowDetails
             self.details()
             self._initUI()
@@ -522,6 +521,7 @@ class cardDetail_C:
                     self.cardMake.PC.toPage(self.cardMake.PC.pageCount-1)
                     self.cardMake.removeNewCardTab()
                     self.cardMake.toCardDetailTab(str(newCard.get('id','newCard')))
+                    return True
                 else:
                     self.mainWindow.showWarn(
                         "添加卡牌",
@@ -529,6 +529,7 @@ class cardDetail_C:
                         "新添名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
                         "请保证文件读取权限、卡牌列表最后一张卡牌ID为数字"
                     )
+                    return False
             else:
                 if self.cardControler.updataCard(**self.getCard().toDict()):
                     self.mainWindow.showInfo(
@@ -538,6 +539,7 @@ class cardDetail_C:
                         "名称为:"+self.card.get('displayName')+"成功"
                     )
                     self.cardMake.PC.toPage()
+                    return True
                 else:
                     self.mainWindow.showWarn(
                         "修改卡牌",
@@ -546,8 +548,27 @@ class cardDetail_C:
                         "名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
                         "请保证文件读取权限"
                     )
+                    return False
         UI.saveCard.clicked.connect(__saveCard)
         def __printCard():
+            if not __saveCard(): return
+            result = self.cardControler.checkCode(self.card.get('id','newCard'))
+            if result == 0:pass
+            elif result == 1: mainWindow.showWarn(
+                    "印卡",
+                    self.__class__.__name__,
+                    "code部分出现了语法错误"
+                );return
+            elif result == 2: mainWindow.showWarn(
+                    "印卡",
+                    self.__class__.__name__,
+                    "remapCode部分出现了语法错误"
+                );return
+            elif result == 3: mainWindow.showWarn(
+                    "印卡",
+                    self.__class__.__name__,
+                    "未找到对应id卡牌字典"
+                );return
             if self.cardControler.printCard(self.card.get('id','newCard')):
                 mainWindow.showInfo(
                     "扩印卡牌",
