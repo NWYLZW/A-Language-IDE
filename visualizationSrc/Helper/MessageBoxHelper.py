@@ -13,7 +13,7 @@ import time
 from PyQt5.QtCore import Qt, QPropertyAnimation, QPoint, QTimer
 from PyQt5.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
-from ..qtUI import messageBox
+from visualizationSrc.qtUI import messageBox
 
 class MessageBox(QWidget,messageBox.Ui_Message_Box):
     from enum import Enum, unique

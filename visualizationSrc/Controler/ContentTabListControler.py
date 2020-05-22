@@ -8,7 +8,6 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTabBar
 
 from .. import MyWindow
@@ -43,7 +42,8 @@ class ContentTabList():
                 self.__class__.__name__,
                 str(e)
             )
-            print(e)
+            from ..Util.LogUtil import log, logLevel
+            log.record(logLevel.ERROR, 'ContentTabList.initTab', e)
         self.initTabClose()
     def initTabClose(self):
         def __closeTab(currentIndex):

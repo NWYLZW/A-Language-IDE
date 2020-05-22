@@ -5,13 +5,14 @@ block_cipher = None
 # 外置文件
 addedFiles = [
     ('./visualizationSrc/Data/','./visualizationSrc/Data/'),
+    ('C:\\Users\\Superme\\AppData\\Roaming\\Python\\Python37\\site-packages\\Python.Runtime.dll','.'),
 ]
 
 a = Analysis(['start.py'],
              pathex=['./'],
              binaries=[],
              datas=addedFiles,
-             hiddenimports=[],
+             hiddenimports=['clr'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -27,7 +28,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='AL-IDE_1.0.6.1',
+          name='AL-IDE_1.0.6.2',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

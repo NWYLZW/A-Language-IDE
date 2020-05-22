@@ -80,5 +80,6 @@ class CSVHelperControler(object):
             self._refreshFile()
             return newRowDict
         except Exception as e:
-            print(e)
+            from ...Util.LogUtil import log, logLevel
+            log.record(logLevel.ERROR, 'CSVHelperControler._addRow', e)
             return {}

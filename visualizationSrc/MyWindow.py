@@ -13,7 +13,8 @@ from PyQt5.QtWidgets import QMainWindow, QGraphicsDropShadowEffect
 from PyQt5.uic.properties import QtWidgets
 
 from . import config
-from .Util import MessageBoxHelper
+from .Helper import MessageBoxHelper
+from .Util.LogUtil import log, logLevel
 from .qtUI import mainInterFace
 
 class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
@@ -26,7 +27,7 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         try:
             from .Controler.ContentTabListControler import ContentTabList
             ContentTabList(self,self)
-        except Exception as e:print(e)
+        except Exception as e:log.record(logLevel.ERROR, 'import_module("clr")', e)
         self.m_drag = False
     def initToolBar(self):
         from PyQt5 import QtCore

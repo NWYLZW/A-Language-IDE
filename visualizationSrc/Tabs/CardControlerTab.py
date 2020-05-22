@@ -21,6 +21,7 @@ from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
 from ..Util.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
+from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
@@ -46,7 +47,7 @@ class CardControlerTab:
                 "获取列表发生了错误",
                 self.__class__.__name__,
                 str(e)
-            );print(e)
+            );log.record(logLevel.ERROR, 'import_module("clr")', e)
 
         self.initTab()
         self.initClick()
@@ -307,14 +308,14 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                 # QPixmap图片大小自适应
                 self.backgroundImg.setScaledContents(True)
                 self.backgroundImg.setStyleSheet("border-image: none;")
-            except Exception as e:print(e)
+            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData backgroundImg', e)
         if os.path.exists(cardArtImgPath):
             try:
                 self.cardArt.setPixmap(QPixmap(cardArtImgPath))
                 # QPixmap图片大小自适应
                 self.cardArt.setScaledContents(True)
                 self.cardArt.setStyleSheet("border-image: none;")
-            except Exception as e:print(e)
+            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData cardArt', e)
         if self.isSel:
             self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
         else:
@@ -360,7 +361,7 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                             if importDict.get("reprintedAuthor","") == "": reprintedAuthor = []
                             else: reprintedAuthor = importDict.get("reprintedAuthor","")
                             u.addCard(author, importDict, reprintedAuthor)
-                        except Exception as e:print(e)
+                        except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.clickCardItem', e)
                 elif tag == 'export':
                     self.clipboard.setText(exportCard(self.cardDict))
                     self.CCT.mainWindow.showInfo(
