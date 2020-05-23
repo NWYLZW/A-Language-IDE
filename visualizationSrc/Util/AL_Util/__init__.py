@@ -15,8 +15,8 @@ TetraProject_Data_Managed_DLL_PATH = GamePath + "TetraProject_Data\\Managed\\Ass
 import os
 try:
     if os.path.isfile(TetraProject_Data_Managed_DLL_PATH+".dll"):
-        # 不能使用 import clr直接引入clr
-        # 会导致无法打包程序
+        # 处理clr的引入时出现了找不到python.runtime.dll的错误
+        # 最后把个人文件夹下的dll放到系统环境python 中便可打包了
         import clr
         temp = clr.AddReference(TetraProject_Data_Managed_DLL_PATH)
         import GameCore
