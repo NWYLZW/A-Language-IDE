@@ -14,6 +14,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(483, 221)
+        Form.setMinimumSize(QtCore.QSize(0, 220))
         Form.setStyleSheet("#From{\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
 "}")
@@ -66,13 +67,13 @@ class Ui_Form(object):
         self.roomNameAndId.setFont(font)
         self.roomNameAndId.setObjectName("roomNameAndId")
         self.verticalLayout.addWidget(self.roomNameAndId)
-        self.roomNameAndId_2 = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        self.roomerName = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(10)
-        self.roomNameAndId_2.setFont(font)
-        self.roomNameAndId_2.setObjectName("roomNameAndId_2")
-        self.verticalLayout.addWidget(self.roomNameAndId_2)
+        self.roomerName.setFont(font)
+        self.roomerName.setObjectName("roomerName")
+        self.verticalLayout.addWidget(self.roomerName)
         self.textBrowser = QtWidgets.QTextBrowser(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
@@ -128,7 +129,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.roomNameAndId.setText(_translate("Form", "无名(ID:1)"))
-        self.roomNameAndId_2.setText(_translate("Form", "房主"))
+        self.roomerName.setText(_translate("Form", "房主"))
         self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

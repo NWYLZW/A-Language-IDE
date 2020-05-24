@@ -9,7 +9,7 @@
 @Desciption     :   
 '''
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGraphicsDropShadowEffect, QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QGraphicsDropShadowEffect, QWidget, QHBoxLayout, QCompleter
 
 from ..Helper.PageHelper import PageHelper
 from ..Util.LogUtil import log, logLevel
@@ -22,10 +22,11 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
         self.setupUi(self)
         self.initData()
         self.initUI()
+        self.initClick()
 
         try:
             self.roomPC = roomPageControler(self)
-            self.roomPC.toPage()
+            self._refreshRoomListFromServer()
         except Exception as e: mainWindow.showErr(
                 "获取列表发生了错误",
                 self.__class__.__name__,
@@ -39,20 +40,37 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
                 "dateTime": "2020-06-05 01:50:20",
                 "users": [1,2,3],
             },
+            {
+                "id": 0,
+                "roomName": "开黑c小房间",
+                "dateTime": "2020-06-05 01:50:20",
+                "users": [1,2,3],
+            },
         ]
         # self.roomList = self.server.room.list()
+        self.roomPC.toPage()
     def initData(self):
         self.roomList = []
         from visualizationSrc import server
         self.server = server
-
-        self._refreshRoomListFromServer()
     def initUI(self):
         pass
+    def initClick(self):
+        Search_Input = self.Search_Input
+        Search_Input\
+            .setCompleter(
+            QCompleter([card['roomName'] for card in self.roomList])
+        )
+        Search_Input.returnPressed.connect(lambda : self.roomPC.filter(Search_Input.text()))
+
+        def refreshRoom():
+            self._refreshRoomListFromServer()
+            self.roomPC.filter(Search_Input.text())
+        self.refreshRoom.clicked.connect(refreshRoom)
 
 class roomPageControler(PageHelper):
     def __init__(self, OST:OnlineServerTab):
-        super().__init__(OST, 5)
+        super().__init__(OST, 6)
         self._OST = OST
         self._initScrollArea(OST.roomScroll)
     def dataList(self):
@@ -69,7 +87,6 @@ class roomPageControler(PageHelper):
         for index in range(len(newDataList)):
             roomDict = newDataList[index]
             intemEle = roomItemModel()
-            # intemEle.setCardControlerTab(self._OST)
             intemEle.refeshData(roomDict)
             if index%2 == 0:
                 tempHL = QHBoxLayout()
@@ -86,6 +103,9 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
         self.initUI()
     def refeshData(self,roomDict):
         self.roomDict = roomDict
+        self.roomNameAndId.setText(roomDict.get("roomName","无名")+'(ID:'+str(roomDict.get("id","XXX"))+')')
+        self.roomerName.setText("房主名"+roomDict.get("roomerName","****"))
+        self.roomUsersCount.setText("人数: " + str(len(roomDict.get("users", []))) + "/10")
         pass
     def initUI(self):
         # 背景透明
