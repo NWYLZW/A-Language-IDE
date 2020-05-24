@@ -125,7 +125,7 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
      <height>52</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="Search" stretch="1,2">
+   <layout class="QHBoxLayout" name="Search" stretch="1,0,2">
     <property name="spacing">
      <number>10</number>
     </property>
@@ -141,6 +141,27 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
       </property>
       <property name="placeholderText">
        <string>搜索想查找的房间的名字(回车搜索)</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="serverHost_Input">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#serverHost{
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid gray;
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>伺服娘Host(回车确定)</string>
       </property>
      </widget>
     </item>

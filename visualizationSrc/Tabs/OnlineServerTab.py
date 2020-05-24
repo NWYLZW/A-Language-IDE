@@ -96,6 +96,11 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
             QCompleter([card['roomName'] for card in self.roomList])
         )
         Search_Input.returnPressed.connect(lambda : self.roomPC.filter(Search_Input.text()))
+        def setServerHost():
+            server.serverRoot = self.serverHost_Input.text()
+            self.refreshRoomListFromServer()
+            self.roomPC.filter(Search_Input.text())
+        self.serverHost_Input.returnPressed.connect(setServerHost)
 
         def refreshRoom():
             self.refreshRoomListFromServer()

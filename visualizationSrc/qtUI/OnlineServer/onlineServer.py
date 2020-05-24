@@ -93,6 +93,16 @@ class Ui_main(object):
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
+        self.serverHost_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
+        self.serverHost_Input.setMinimumSize(QtCore.QSize(200, 0))
+        self.serverHost_Input.setStyleSheet("#serverHost{\n"
+"    margin: 5px;\n"
+"    padding: 5px;\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 10px;\n"
+"}")
+        self.serverHost_Input.setObjectName("serverHost_Input")
+        self.Search.addWidget(self.serverHost_Input)
         self.horizontalWidget_7 = QtWidgets.QWidget(self.horizontalLayoutWidget_3)
         self.horizontalWidget_7.setStyleSheet("QPushButton{\n"
 "    background: rgba(255, 255, 255, 0);\n"
@@ -131,7 +141,7 @@ class Ui_main(object):
         self.btnList_4.addWidget(self.refreshRoom)
         self.Search.addWidget(self.horizontalWidget_7)
         self.Search.setStretch(0, 1)
-        self.Search.setStretch(1, 2)
+        self.Search.setStretch(2, 2)
         self.widget = QtWidgets.QWidget(main)
         self.widget.setGeometry(QtCore.QRect(750, 590, 391, 41))
         self.widget.setStyleSheet("QPushButton{\n"
@@ -198,6 +208,7 @@ class Ui_main(object):
         main.setWindowTitle(_translate("main", "Form"))
         self.toFirstBtn.setToolTip(_translate("main", "<html><head/><body><p>第一页</p></body></html>"))
         self.Search_Input.setPlaceholderText(_translate("main", "搜索想查找的房间的名字(回车搜索)"))
+        self.serverHost_Input.setPlaceholderText(_translate("main", "伺服娘Host(回车确定)"))
         self.buildRoom.setToolTip(_translate("main", "<html><head/><body><p>建房</p></body></html>"))
         self.refreshRoom.setToolTip(_translate("main", "<html><head/><body><p>刷新</p></body></html>"))
 from .. import AL_IDE_MainInterFace_rc
