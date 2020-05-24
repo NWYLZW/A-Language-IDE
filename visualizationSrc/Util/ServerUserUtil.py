@@ -78,21 +78,20 @@ class user(httpUtil):
 class room(httpUtil):
     def __init__(self, session, serverAPI_Url):
         super().__init__(session, serverAPI_Url, "/room")
-        self.inRoom = -1
+        self.inRoom = False
+        self.roomId = -1
     def list(self):
         rspJson = self._getJsonByRoute("/list")
         return rspJson
     def create(self,roomName):
-        rspJson = self._postJsonByRoute("/register", {
+        rspJson = self._postJsonByRoute("/create", {
             'roomName': roomName,
         })
-        self.roomName = roomName
         return rspJson
     def join(self,roomId):
         rspJson = self._postJsonByRoute("/join", {
             'roomId': roomId,
         })
-        self.roomId = roomId
         return rspJson
     def exit(self,roomId):
         rspJson = self._postJsonByRoute("/exit", {

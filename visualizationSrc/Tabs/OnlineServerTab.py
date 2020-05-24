@@ -8,16 +8,62 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QGraphicsDropShadowEffect, QWidget, QHBoxLayout, QCompleter
+from PyQt5 import QtCore
+from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
+from PyQt5.QtWidgets import QGraphicsDropShadowEffect, QWidget, QHBoxLayout, QCompleter, QDialog
 
 from ..Helper.PageHelper import PageHelper
 from ..Util.LogUtil import log, logLevel
+from ..Util.ServerUserUtil import server
 from ..qtUI.OnlineServer import onlineServer
 from ..qtUI.OnlineServer import roomItemModel as roomItemModelUI
 
+class createRoomThread(QThread):
+    signal = pyqtSignal()
+    def __init__(self):
+        super().__init__()
+    def __del__(self):
+        self.wait()
+    def run(self):
+        self.signal.emit()
+
+from ..qtUI.OnlineServer.dialog import createRoomDialog
+class createRoomDialogHelper(QDialog, createRoomDialog.Ui_Dialog):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle("创建房间")
+        self.setWindowModality(QtCore.Qt.ApplicationModal)
+
+        self.isCLickCreate = False
+        self._initClick()
+        self._initThread()
+    def _initThread(self):
+        def createRoomThreadFun():
+            rsp = server.room.create(self.roomName.text())
+            typeX = rsp.get('type',None)
+            if typeX and typeX > 0:
+                server.room.inRoom = True
+                server.room.roomId = rsp.get('message',-1)
+                self.close()
+            else:
+                self.createRoom.setText(rsp.get("content"))
+            self.isCLickCreate = False
+            QTimer.singleShot(1000, lambda: self.createRoom.setText("创建"))
+        self.createRoomThreadX = createRoomThread()
+        self.createRoomThreadX.signal.connect(createRoomThreadFun)
+    def _initClick(self):
+        def createRoom():
+            self.isCLickCreate = True
+            if not self.isCLickCreate:return
+            if self.roomName.text() != "":
+                self.createRoom.setText("伺服娘正在处理你的请求...")
+                self.createRoomThreadX.start()
+        self.createRoom.clicked.connect(createRoom)
+
 class OnlineServerTab(QWidget, onlineServer.Ui_main):
     def __init__(self, mainWindow=None):
+        self.mainWindow = mainWindow
         super().__init__(None)
         self.setupUi(self)
         self.initData()
@@ -26,28 +72,16 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
 
         try:
             self.roomPC = roomPageControler(self)
-            self._refreshRoomListFromServer()
+            self.refreshRoomListFromServer()
         except Exception as e: mainWindow.showErr(
                 "获取列表发生了错误",
                 self.__class__.__name__,
                 str(e)
             );log.record(logLevel.ERROR, 'OnlineServerTab.__init__', e)
-    def _refreshRoomListFromServer(self):
+    def refreshRoomListFromServer(self):
         self.roomList = [
-            {
-                "id": 0,
-                "roomName": "开黑快乐小房间",
-                "dateTime": "2020-06-05 01:50:20",
-                "users": [1,2,3],
-            },
-            {
-                "id": 0,
-                "roomName": "开黑c小房间",
-                "dateTime": "2020-06-05 01:50:20",
-                "users": [1,2,3],
-            },
         ]
-        # self.roomList = self.server.room.list()
+        self.roomList = self.server.room.list()
         self.roomPC.toPage()
     def initData(self):
         self.roomList = []
@@ -64,9 +98,29 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
         Search_Input.returnPressed.connect(lambda : self.roomPC.filter(Search_Input.text()))
 
         def refreshRoom():
-            self._refreshRoomListFromServer()
+            self.refreshRoomListFromServer()
             self.roomPC.filter(Search_Input.text())
         self.refreshRoom.clicked.connect(refreshRoom)
+
+        def buildRoom():
+            if not server.user.isLogin:
+                self.mainWindow.showWarn(
+                    "创建房间",
+                    self.__class__.__name__,
+                    "还未登陆"
+                );return
+            if server.room.inRoom:
+                self.mainWindow.showWarn(
+                    "创建房间",
+                    self.__class__.__name__,
+                    "已在房间中，请先退出房间再创建房间"
+                );return
+
+            tempDialog = createRoomDialogHelper()
+            tempDialog.exec_()
+            if server.room.inRoom:
+                self.refreshRoomListFromServer()
+        self.buildRoom.clicked.connect(buildRoom)
 
 class roomPageControler(PageHelper):
     def __init__(self, OST:OnlineServerTab):
@@ -86,28 +140,39 @@ class roomPageControler(PageHelper):
     def _generatePage(self,newDataList):
         for index in range(len(newDataList)):
             roomDict = newDataList[index]
-            intemEle = roomItemModel()
-            intemEle.refeshData(roomDict)
+            itemEle = roomItemModel(self._OST)
+            itemEle.refeshData(roomDict)
             if index%2 == 0:
                 tempHL = QHBoxLayout()
                 self._VL.addLayout(tempHL)
                 self._tempHL_List.append(tempHL)
-            intemEle.parentLayout = tempHL
-            tempHL.addWidget(intemEle)
+            itemEle.parentLayout = tempHL
+            tempHL.addWidget(itemEle)
 
 class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, OST:OnlineServerTab=None):
+        super().__init__(None)
         self.BlurRadius = 10
+        self._OST = OST
+        self.mainWindow = OST.mainWindow
         self.setupUi(self)
-        self.initUI()
+        self._initUI()
     def refeshData(self,roomDict):
         self.roomDict = roomDict
         self.roomNameAndId.setText(roomDict.get("roomName","无名")+'(ID:'+str(roomDict.get("id","XXX"))+')')
         self.roomerName.setText("房主名"+roomDict.get("roomerName","****"))
         self.roomUsersCount.setText("人数: " + str(len(roomDict.get("users", []))) + "/10")
-        pass
-    def initUI(self):
+        inRoom = False
+        for user in roomDict.get('users', []):
+            if user.get('inRoom', False): inRoom = True;break
+        if inRoom:
+            self.joinRoom.setToolTip("断开连接")
+            self.joinRoom.setStyleSheet("#joinRoom{border-image: url(:/ico/Data/qrc/ico/join_green.png);}")
+        else:
+            self.joinRoom.setToolTip("连接")
+            self.joinRoom.setStyleSheet("#joinRoom{border-image: url(:/ico/Data/qrc/ico/join.png);}")
+        self._initClick(inRoom)
+    def _initUI(self):
         # 背景透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         # 添加阴影
@@ -116,3 +181,36 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
         effect.setOffset(0, 0)
         effect.setColor(Qt.gray)
         self.setGraphicsEffect(effect)
+    def _initClick(self, inRoom):
+        if inRoom:
+            def exitRoom():
+                rsp = server.room.exit(self.roomDict.get('id','None'))
+                typeX = rsp.get('type',None)
+                if typeX and typeX > 0:
+                    self.mainWindow.showInfo(
+                    "退出房间",self.__class__.__name__,
+                    rsp.get('content'))
+                    server.room.roomId = self.roomDict.get('id','None')
+                    server.room.inRoom = False
+                    self._OST.refreshRoomListFromServer()
+                else:
+                    self.mainWindow.showWarn(
+                    "退出房间",self.__class__.__name__,
+                    rsp.get('content'))
+            self.joinRoom.clicked.connect(exitRoom)
+        else:
+            def joinRoom():
+                rsp = server.room.join(self.roomDict.get('id','None'))
+                typeX = rsp.get('type',None)
+                if typeX and typeX > 0:
+                    self.mainWindow.showInfo(
+                    "加入房间",self.__class__.__name__,
+                    rsp.get('content'))
+                    server.room.roomId = -1
+                    server.room.inRoom = True
+                    self._OST.refreshRoomListFromServer()
+                else:
+                    self.mainWindow.showWarn(
+                    "加入房间",self.__class__.__name__,
+                    rsp.get('content'))
+            self.joinRoom.clicked.connect(joinRoom)

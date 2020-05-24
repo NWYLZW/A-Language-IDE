@@ -39,13 +39,25 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
         self.setWindowModality(QtCore.Qt.ApplicationModal)
 
         self.isCLickLogin = False
+        self._initUI()
         self._initClick()
         self._initThread()
+    def _initUI(self):
+        self._initData()
+        self.userName.setText(self.userName_Data)
+        if self.PWD_Data != "***": self.PWD.setText(self.PWD_Data)
+    def _initData(self):
+        u = UserUtil()
+        self.userName_Data = u.userName
+        self.PWD_Data = u.PWD
     def _initThread(self):
         def loginThreadFun():
             rsp = server.user.login(self.userName.text(),self.PWD.text())
             typeX = rsp.get('type',None)
             if typeX and typeX > 0:
+                u = UserUtil()
+                u.userName = self.userName_Data
+                u.PWD = self.PWD_Data
                 self.close()
             else:
                 self.loginBTN.setText(rsp.get("content"))
@@ -57,8 +69,8 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
         def login():
             self.isCLickLogin = True
             if not self.isCLickLogin:return
-            self.loginBTN.setText("伺服娘正在处理你的请求...")
             if self.userName.text() and self.PWD.text():
+                self.loginBTN.setText("伺服娘正在处理你的请求...")
                 self.loginThreadX.start()
         self.loginBTN.clicked.connect(login)
 
@@ -106,7 +118,7 @@ class Home:
             rsp = server.user.logout()
             typeX = rsp.get('type',None)
             if typeX and typeX > 0:
-                self.mainWindow.showWarn(
+                self.mainWindow.showInfo(
                 "登出",self.__class__.__name__,
                 rsp.get('content'))
                 server.user.isLogin = False

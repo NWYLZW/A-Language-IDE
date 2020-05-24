@@ -17,6 +17,7 @@ import os,json
 
 defaultUserDict = {
     "UserName":"无名",
+    "PWD":"***",
     "GamePath":"D:\\Steam\\steamapps\\common\\Tetra Project\\",
 }
 cardPKGs = {
@@ -56,6 +57,12 @@ class user(base):
     @userName.setter
     def userName(self,value):
         self._setUserValue("UserName",value)
+    @property
+    def PWD(self):
+        return self._getUserValue("PWD")
+    @PWD.setter
+    def PWD(self,value):
+        self._setUserValue("PWD",value)
     def _getUserValue(self,key):
         return self.userDict.get(
             key,
