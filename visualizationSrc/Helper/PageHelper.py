@@ -99,7 +99,7 @@ class PageHelper:
             if i < 0 or i == self.pageCount:continue
             if continueFlag and i != self.pageCount-1:continue
             count += 1
-            numBTN = QPushButton(self._UI.horizontalLayoutWidget)
+            numBTN = QPushButton(None)
             self._UI.pageBTN_List.insertWidget(count, numBTN)
             self._numBTN_List.append(numBTN)
             numBTN.setMinimumSize(QtCore.QSize(28, 28));numBTN.setMaximumSize(QtCore.QSize(28, 28))

@@ -31,7 +31,7 @@ class CardControlerTab:
         self.mainWindow = mainWindow
 
         self.Widget = QWidget()
-        self.UI = cardControler.Ui_Form()
+        self.UI = cardControler.Ui_main()
         self.UI.setupUi(self.Widget)
 
         self.Tab = self.UI.CardControler_Tabs

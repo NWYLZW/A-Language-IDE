@@ -10,11 +10,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(1152, 651)
-        Form.setStyleSheet("#ScrollWidget{\n"
+class Ui_main(object):
+    def setupUi(self, main):
+        main.setObjectName("main")
+        main.resize(1152, 651)
+        main.setStyleSheet("#ScrollWidget{\n"
 "    background-color: rgba(255, 255, 255);\n"
 "}\n"
 "#toFirstBtn{\n"
@@ -63,7 +63,7 @@ class Ui_Form(object):
 "{\n"
 "    background: none;\n"
 "}")
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget = QtWidgets.QWidget(main)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(710, 590, 41, 41))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
@@ -77,7 +77,7 @@ class Ui_Form(object):
         self.toFirstBtn.setText("")
         self.toFirstBtn.setObjectName("toFirstBtn")
         self.verticalLayout.addWidget(self.toFirstBtn)
-        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(Form)
+        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(main)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 1131, 52))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.Search = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
@@ -132,7 +132,7 @@ class Ui_Form(object):
         self.Search.addWidget(self.horizontalWidget_7)
         self.Search.setStretch(0, 1)
         self.Search.setStretch(1, 2)
-        self.widget = QtWidgets.QWidget(Form)
+        self.widget = QtWidgets.QWidget(main)
         self.widget.setGeometry(QtCore.QRect(750, 590, 391, 41))
         self.widget.setStyleSheet("QPushButton{\n"
 "    background: rgba(205, 205, 205);\n"
@@ -179,7 +179,7 @@ class Ui_Form(object):
         self.rightBTN.setText("")
         self.rightBTN.setObjectName("rightBTN")
         self.pageBTN_List.addWidget(self.rightBTN)
-        self.roomScroll = QtWidgets.QScrollArea(Form)
+        self.roomScroll = QtWidgets.QScrollArea(main)
         self.roomScroll.setGeometry(QtCore.QRect(10, 70, 1131, 511))
         self.roomScroll.setStyleSheet("")
         self.roomScroll.setWidgetResizable(True)
@@ -190,14 +190,14 @@ class Ui_Form(object):
         self.ScrollWidget.setObjectName("ScrollWidget")
         self.roomScroll.setWidget(self.ScrollWidget)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(main)
+        QtCore.QMetaObject.connectSlotsByName(main)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, main):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.toFirstBtn.setToolTip(_translate("Form", "<html><head/><body><p>第一页</p></body></html>"))
-        self.Search_Input.setPlaceholderText(_translate("Form", "搜索想查找的房间的名字(回车搜索)"))
-        self.buildRoom.setToolTip(_translate("Form", "<html><head/><body><p>建房</p></body></html>"))
-        self.refreshRoom.setToolTip(_translate("Form", "<html><head/><body><p>刷新</p></body></html>"))
+        main.setWindowTitle(_translate("main", "Form"))
+        self.toFirstBtn.setToolTip(_translate("main", "<html><head/><body><p>第一页</p></body></html>"))
+        self.Search_Input.setPlaceholderText(_translate("main", "搜索想查找的房间的名字(回车搜索)"))
+        self.buildRoom.setToolTip(_translate("main", "<html><head/><body><p>建房</p></body></html>"))
+        self.refreshRoom.setToolTip(_translate("main", "<html><head/><body><p>刷新</p></body></html>"))
 from .. import AL_IDE_MainInterFace_rc

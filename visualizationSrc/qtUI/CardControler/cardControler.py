@@ -10,12 +10,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(1161, 655)
-        Form.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        Form.setStyleSheet("#Form{\n"
+class Ui_main(object):
+    def setupUi(self, main):
+        main.setObjectName("main")
+        main.resize(1161, 655)
+        main.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        main.setStyleSheet("#Form{\n"
 "    padding:10px;\n"
 "}\n"
 "QTabBar::close-button{\n"
@@ -63,7 +63,7 @@ class Ui_Form(object):
 "{\n"
 "    background: none;\n"
 "}")
-        self.CardControler_Tabs = QtWidgets.QTabWidget(Form)
+        self.CardControler_Tabs = QtWidgets.QTabWidget(main)
         self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
         self.CardControler_Tabs.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.CardControler_Tabs.setStyleSheet("#toFirstBtn{\n"
@@ -245,19 +245,19 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.toFirstBtn)
         self.CardControler_Tabs.addTab(self.CardList, "")
 
-        self.retranslateUi(Form)
+        self.retranslateUi(main)
         self.CardControler_Tabs.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        QtCore.QMetaObject.connectSlotsByName(main)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, main):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.Search_Input.setPlaceholderText(_translate("Form", "搜索想查找的卡牌的名字(回车搜索)"))
-        self.setting.setToolTip(_translate("Form", "<html><head/><body><p>设置</p></body></html>"))
-        self.makeNewCard.setToolTip(_translate("Form", "<html><head/><body><p>新建卡牌</p></body></html>"))
-        self.delSelCard.setToolTip(_translate("Form", "<html><head/><body><p>移至回收站</p></body></html>"))
-        self.copyCard.setToolTip(_translate("Form", "<html><head/><body><p>复制卡牌</p></body></html>"))
-        self.pushToExcel.setToolTip(_translate("Form", "<html><head/><body><p>导出至Excel</p></body></html>"))
-        self.toFirstBtn.setToolTip(_translate("Form", "<html><head/><body><p>第一页</p></body></html>"))
-        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("Form", "卡库"))
+        main.setWindowTitle(_translate("main", "Form"))
+        self.Search_Input.setPlaceholderText(_translate("main", "搜索想查找的卡牌的名字(回车搜索)"))
+        self.setting.setToolTip(_translate("main", "<html><head/><body><p>设置</p></body></html>"))
+        self.makeNewCard.setToolTip(_translate("main", "<html><head/><body><p>新建卡牌</p></body></html>"))
+        self.delSelCard.setToolTip(_translate("main", "<html><head/><body><p>移至回收站</p></body></html>"))
+        self.copyCard.setToolTip(_translate("main", "<html><head/><body><p>复制卡牌</p></body></html>"))
+        self.pushToExcel.setToolTip(_translate("main", "<html><head/><body><p>导出至Excel</p></body></html>"))
+        self.toFirstBtn.setToolTip(_translate("main", "<html><head/><body><p>第一页</p></body></html>"))
+        self.CardControler_Tabs.setTabText(self.CardControler_Tabs.indexOf(self.CardList), _translate("main", "卡库"))
 from .. import AL_IDE_MainInterFace_rc
