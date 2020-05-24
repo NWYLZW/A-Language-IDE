@@ -21,31 +21,30 @@ class ContentTabList():
         from ..Tabs.HomeTab import Home
         self.Home_C = Home(UI,mainWindow,self)
 
-        self.initTab()
-    def initTab(self):
-        self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
-        self.ContentTabList.setTabText(0, "主页")
-        for i in range(1,self.ContentTabList.count()):
-            self.ContentTabList.removeTab(i)
-
-        from ..Tabs.CardControlerTab import CardControlerTab
-        self.TabNameList = ['CardControler']
-        self.TabNameHash = {}
-        try:self.TabNameHash['CardControler'] = {
-                'CN':"卡牌管理",
-                'widget':CardControlerTab(self.mainWindow).Widget,
-                'isAdd':False
+        self._initTabs()
+    def _initTab(self, TabName, TabCNName, widget):
+        try:self.TabNameHash[TabName] = {
+                'CN': TabCNName,
+                'widget': widget,
+                'isAdd': False
             }
         except Exception as e:
             self.mainWindow.showErr(
-                "初始化卡牌管理出现了错误",
+                "初始化"+TabCNName+"页面出现了错误",
                 self.__class__.__name__,
                 str(e)
             )
             from ..Util.LogUtil import log, logLevel
-            log.record(logLevel.ERROR, 'ContentTabList.initTab', e)
-        self.initTabClose()
-    def initTabClose(self):
+            log.record(logLevel.ERROR, TabName+'._initTab', e)
+    def _initTabs(self):
+        self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
+
+        from ..Tabs.CardControlerTab import CardControlerTab
+        self.TabNameList = ['CardControler']
+        self.TabNameHash = {}
+        self._initTab("CardControler","卡牌管理",CardControlerTab(self.mainWindow).Widget)
+        self._initTabClose()
+    def _initTabClose(self):
         def __closeTab(currentIndex):
             currentQWidget = self.ContentTabList.widget(currentIndex)
             if currentQWidget == None: return

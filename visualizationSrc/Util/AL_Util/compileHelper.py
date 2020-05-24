@@ -13,14 +13,16 @@ class CompileHelper:
     def __init__(self):
         if GameCore:
             self.GameCoreCommand = GameCore.Command
-            self.canCompile = True
+            self._canCompile = True
         else:
-            self.canCompile = False
+            self._canCompile = False
         pass
     def _compileCommand(self, commandStr):
         Command = self.GameCoreCommand.Parse(commandStr)
         return Command
-    def isCommand(self,commandStr)\
+    def canCompile(self, commandStr)\
             ->bool:
-        if self.canCompile: return self._compileCommand(commandStr).isCommand
+        if self._canCompile and\
+                (self._compileCommand(commandStr).isCommand
+                 or self._compileCommand(commandStr).isGroup): return True
         else: return True

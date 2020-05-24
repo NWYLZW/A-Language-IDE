@@ -24,11 +24,12 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.initUI()
         self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
+        self.m_drag = False
+    def initContentTabList(self):
         try:
             from .Controler.ContentTabListControler import ContentTabList
             ContentTabList(self,self)
-        except Exception as e:log.record(logLevel.ERROR, 'import_module("clr")', e)
-        self.m_drag = False
+        except Exception as e:log.record(logLevel.ERROR, 'MyWindow.__init__', e)
     def initToolBar(self):
         from PyQt5 import QtCore
         def windowClick(Element):

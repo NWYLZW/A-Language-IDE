@@ -8,4 +8,5 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   
 '''
-__all__ = ['Main']
+__all__ = ['Main', 'server']
+from .Util.ServerUserUtil import server

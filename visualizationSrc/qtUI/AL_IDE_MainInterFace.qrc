@@ -1,5 +1,14 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/refresh.png</file>
+    <file>../Data/qrc/ico/refreshed.png</file>
+    <file>../Data/qrc/ico/join_green.png</file>
+    <file>../Data/qrc/ico/build.png</file>
+    <file>../Data/qrc/ico/builded.png</file>
+    <file>../Data/qrc/ico/report.png</file>
+    <file>../Data/qrc/ico/reported.png</file>
+    <file>../Data/qrc/ico/join.png</file>
+    <file>../Data/qrc/ico/joined.png</file>
     <file>../Data/qrc/ico/set.png</file>
     <file>../Data/qrc/ico/seted.png</file>
     <file>../Data/qrc/ico/user.png</file>
@@ -43,6 +52,8 @@
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/roomImg.jpg</file>
+    <file>../Data/qrc/server.png</file>
     <file>../Data/qrc/userSetting.png</file>
     <file>../Data/qrc/store.png</file>
     <file>../Data/qrc/Unknown.png</file>

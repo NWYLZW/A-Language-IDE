@@ -26,6 +26,10 @@ if __name__ == '__main__':
 
     buildUiFile("mainInterFace")
     buildUiFile("messageBox")
+
     buildUiFile("CardControler/cardItemModel")
     buildUiFile("CardControler/cardDetailsModel")
     buildUiFile("CardControler/cardControler")
+
+    buildUiFile("OnlineServer/onlineServer")
+    buildUiFile("OnlineServer/roomItemModel")

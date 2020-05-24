@@ -23,5 +23,5 @@ try:
     else:
         GameCore = None
 except Exception as e:
-    log.record(logLevel.ERROR, 'import_module("clr")', e)
+    log.record(logLevel.ERROR, 'import clr', e)
     GameCore = None

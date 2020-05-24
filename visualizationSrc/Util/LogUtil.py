@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Time: 2020/03/29
 # 日志记录模块
+import logging
 import os
 import time
 from enum import Enum, unique
@@ -30,6 +31,7 @@ class LOG:
         if not level in self.__ignoreLevelDict:
             if level.value >= self.__ignoreLevel.value:
                 head = "[" + self.__logLevelName.get(level.value) + "]" + "\t" + time.strftime("%Y-%m-%d %H:%M:%S  ", time.localtime()) + "\t"
+                if isinstance(message,Exception): logging.exception(message)
                 if TAG != "": print(head+TAG+'\t'+str(message))
                 else: print(head+str(message))
                 try:

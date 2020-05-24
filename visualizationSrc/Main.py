@@ -19,6 +19,7 @@ from .Util.frozenDir import appPath
 def mainWindowStart():
     APP = QApplication(sys.argv)
     mainWindow = MyWindow()
+    mainWindow.initContentTabList()
     mainWindow.show()
 
     sys._excepthook = sys.excepthook

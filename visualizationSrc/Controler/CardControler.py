@@ -69,9 +69,9 @@ class CardControler(CSVHelperControler):
         card = self.getCardById(cardId)
         if card == {}: return 3
         if card.get('code', 'Error')=="" \
-                or self.CompileHelper.isCommand(card.get('code','Error')):
+                or self.CompileHelper.canCompile(card.get('code', 'Error')):
             if card.get('remapCode', 'Error')==""\
-                    or self.CompileHelper.isCommand(card.get('remapCode', 'Error')): return 0
+                    or self.CompileHelper._canCompile(card.get('remapCode', 'Error')): return 0
             else: return 2
         else: return 1
     def printCard(self,cardId):
