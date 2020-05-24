@@ -327,7 +327,7 @@ QPushButton:hover{
     </layout>
    </widget>
   </widget>
-  <widget class="QScrollArea" name="cardScroll">
+  <widget class="QScrollArea" name="roomScroll">
    <property name="geometry">
     <rect>
      <x>10</x>

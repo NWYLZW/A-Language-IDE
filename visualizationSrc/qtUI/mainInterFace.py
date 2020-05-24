@@ -177,15 +177,7 @@ class Ui_MainWindow(object):
         self.CommandList_2.setObjectName("CommandList_2")
         self.gridLayout.addWidget(self.CommandList_2, 0, 2, 1, 1)
         self.widget = QtWidgets.QWidget(self.gridLayoutWidget)
-        self.widget.setStyleSheet("QPushButton{\n"
-"    border: none;\n"
-"    border-radius: 8px;\n"
-"    background-color: rgba(240, 240, 240);\n"
-"}\n"
-"QPushButton:hover{\n"
-"    background-color: rgba(205, 205, 205);\n"
-"}\n"
-"#userSetting{\n"
+        self.widget.setStyleSheet("#userSetting{\n"
 "    border-image: url(:/ico/Data/qrc/ico/set.png);\n"
 "}\n"
 "#userSetting:hover{\n"
@@ -196,6 +188,18 @@ class Ui_MainWindow(object):
 "}\n"
 "#userData:hover{\n"
 "    border-image: url(:/ico/Data/qrc/ico/usered.png);\n"
+"}\n"
+"#userLogin{\n"
+"    border-image: url(:/ico/Data/qrc/ico/login.png);\n"
+"}\n"
+"#userLogin:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logined.png);\n"
+"}\n"
+"#userLogout{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logout.png);\n"
+"}\n"
+"#userLogout:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logouted.png);\n"
 "}")
         self.widget.setObjectName("widget")
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.widget)
@@ -205,20 +209,20 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setSpacing(0)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.xxxxx1 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.xxxxx1.setMinimumSize(QtCore.QSize(64, 64))
-        self.xxxxx1.setMaximumSize(QtCore.QSize(64, 64))
-        self.xxxxx1.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.xxxxx1.setText("")
-        self.xxxxx1.setObjectName("xxxxx1")
-        self.gridLayout_3.addWidget(self.xxxxx1, 2, 0, 1, 1)
-        self.pushButton_6 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.pushButton_6.setMinimumSize(QtCore.QSize(64, 64))
-        self.pushButton_6.setMaximumSize(QtCore.QSize(64, 64))
-        self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.pushButton_6.setText("")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.gridLayout_3.addWidget(self.pushButton_6, 2, 1, 1, 1)
+        self.userLogin = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userLogin.setMinimumSize(QtCore.QSize(64, 64))
+        self.userLogin.setMaximumSize(QtCore.QSize(64, 64))
+        self.userLogin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.userLogin.setText("")
+        self.userLogin.setObjectName("userLogin")
+        self.gridLayout_3.addWidget(self.userLogin, 2, 0, 1, 1)
+        self.userLogout = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userLogout.setMinimumSize(QtCore.QSize(64, 64))
+        self.userLogout.setMaximumSize(QtCore.QSize(64, 64))
+        self.userLogout.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.userLogout.setText("")
+        self.userLogout.setObjectName("userLogout")
+        self.gridLayout_3.addWidget(self.userLogout, 2, 1, 1, 1)
         self.userData = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.userData.setMinimumSize(QtCore.QSize(64, 64))
         self.userData.setMaximumSize(QtCore.QSize(64, 64))
@@ -279,6 +283,8 @@ class Ui_MainWindow(object):
         self.sel_GamePath.setMaximumSize(QtCore.QSize(20, 20))
         self.sel_GamePath.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.sel_GamePath.setStyleSheet("QPushButton{\n"
+"    border: none;\n"
+"    border-radius: 8px;\n"
 "    background-color: rgb(170, 255, 255);\n"
 "}\n"
 "QPushButton:hover{\n"
@@ -410,7 +416,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.xxxxx1_13, 2, 2, 1, 1)
         self.gridLayout.addWidget(self.widget_2, 1, 1, 1, 1)
         self.OnlineServer = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.OnlineServer.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.OnlineServer.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.OnlineServer.setStyleSheet("QTextBrowser{\n"
 "    background-image:url(:/picture/Data/qrc/server.png);\n"
 "}")

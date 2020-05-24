@@ -40,9 +40,11 @@ class ContentTabList():
         self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
 
         from ..Tabs.CardControlerTab import CardControlerTab
-        self.TabNameList = ['CardControler']
+        from ..Tabs.OnlineServerTab import OnlineServerTab
+        self.TabNameList = ['CardControler','OnlineServer']
         self.TabNameHash = {}
         self._initTab("CardControler","卡牌管理",CardControlerTab(self.mainWindow).Widget)
+        self._initTab("OnlineServer","联机大厅",OnlineServerTab(self.mainWindow))
         self._initTabClose()
     def _initTabClose(self):
         def __closeTab(currentIndex):

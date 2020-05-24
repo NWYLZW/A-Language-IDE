@@ -33,3 +33,5 @@ if __name__ == '__main__':
 
     buildUiFile("OnlineServer/onlineServer")
     buildUiFile("OnlineServer/roomItemModel")
+
+    buildUiFile("dialog/loginDialog")

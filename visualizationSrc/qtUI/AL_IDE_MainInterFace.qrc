@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/login.png</file>
+    <file>../Data/qrc/ico/logined.png</file>
+    <file>../Data/qrc/ico/logout.png</file>
+    <file>../Data/qrc/ico/logouted.png</file>
     <file>../Data/qrc/ico/refresh.png</file>
     <file>../Data/qrc/ico/refreshed.png</file>
     <file>../Data/qrc/ico/join_green.png</file>

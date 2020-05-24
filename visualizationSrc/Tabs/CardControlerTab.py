@@ -8,13 +8,11 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
-from math import ceil
-
 from PyQt5 import QtCore
-from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QPixmap, QFont, QCursor
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
-    QGraphicsDropShadowEffect, QPushButton
+    QGraphicsDropShadowEffect
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card

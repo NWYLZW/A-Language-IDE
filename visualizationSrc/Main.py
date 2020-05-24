@@ -8,6 +8,7 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :
 '''
+__all__ = ["mainWindowStart"]
 import sys
 
 from PyQt5.QtCore import QTimer
