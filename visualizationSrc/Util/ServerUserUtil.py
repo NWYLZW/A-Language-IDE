@@ -28,20 +28,26 @@ class httpUtil:
         pass
     def _postJsonByRoute(self, route, json):
         url = self._serverAPI_Url + self._childUrl + route
-        content = self._session.post(url, headers=self.headersBase, json=json)
         try:
+            content = self._session.post(url, headers=self.headersBase, json=json, timeout=3)
             return content.json()
+        except requests.exceptions.RequestException as e:
+            log.record(logLevel.ERROR, 'httpUtil._postJsonByRoute', e)
+            return {}
         except Exception as e:
             log.record(logLevel.ERROR, 'httpUtil._postJsonByRoute', e)
             return {}
     def _getJsonByRoute(self, route):
         url = self._serverAPI_Url + self._childUrl + route
-        content = self._session.get(url)
         try:
+            content = self._session.get(url, timeout=3)
             return content.json()
+        except requests.exceptions.RequestException as e:
+            log.record(logLevel.ERROR, 'httpUtil._postJsonByRoute', e)
+            return None
         except Exception as e:
             log.record(logLevel.ERROR, 'httpUtil._getJsonByRoute', e)
-            return {}
+            return None
 
 class user(httpUtil):
     def __init__(self, session, serverAPI_Url):
@@ -52,6 +58,7 @@ class user(httpUtil):
             'userName': userName,
             'PWD': PWD,
         })
+        if rspJson == {}: return rspJson
         self.userName = userName
         self.PWD = PWD
         self.isLogin = True
@@ -82,7 +89,9 @@ class room(httpUtil):
         self.roomId = -1
     def list(self):
         rspJson = self._getJsonByRoute("/list")
-        return rspJson
+        if rspJson:
+            return rspJson
+        else:return []
     def create(self,roomName):
         rspJson = self._postJsonByRoute("/create", {
             'roomName': roomName,

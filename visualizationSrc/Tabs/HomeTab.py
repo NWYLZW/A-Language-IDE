@@ -60,7 +60,7 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
                 u.PWD = self.PWD_Data
                 self.close()
             else:
-                self.loginBTN.setText(rsp.get("content"))
+                self.loginBTN.setText(rsp.get("content", "好像与伺服娘断连了哦"))
             self.isCLickLogin = False
             QTimer.singleShot(1000, lambda: self.loginBTN.setText("登陆"))
         self.loginThreadX = loginThread()
@@ -120,11 +120,11 @@ class Home:
             if typeX and typeX > 0:
                 self.mainWindow.showInfo(
                 "登出",self.__class__.__name__,
-                rsp.get('content'))
+                rsp.get('content', "好像与伺服娘断连了哦"))
                 server.user.isLogin = False
             else: self.mainWindow.showWarn(
                 "登出",self.__class__.__name__,
-                rsp.get('content'))
+                rsp.get('content', "好像与伺服娘断连了哦"))
         self.UI.userLogout.clicked.connect(userLogout)
     def initCardItemClick(self):
         UI = self.UI

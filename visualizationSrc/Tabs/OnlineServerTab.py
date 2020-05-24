@@ -47,7 +47,7 @@ class createRoomDialogHelper(QDialog, createRoomDialog.Ui_Dialog):
                 server.room.roomId = rsp.get('message',-1)
                 self.close()
             else:
-                self.createRoom.setText(rsp.get("content"))
+                self.createRoom.setText(rsp.get("content"), "好像与伺服娘断连了哦")
             self.isCLickCreate = False
             QTimer.singleShot(1000, lambda: self.createRoom.setText("创建"))
         self.createRoomThreadX = createRoomThread()
@@ -189,14 +189,14 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
                 if typeX and typeX > 0:
                     self.mainWindow.showInfo(
                     "退出房间",self.__class__.__name__,
-                    rsp.get('content'))
+                    rsp.get('content', "好像与伺服娘断连了哦"))
                     server.room.roomId = self.roomDict.get('id','None')
                     server.room.inRoom = False
                     self._OST.refreshRoomListFromServer()
                 else:
                     self.mainWindow.showWarn(
                     "退出房间",self.__class__.__name__,
-                    rsp.get('content'))
+                    rsp.get('content', "好像与伺服娘断连了哦"))
             self.joinRoom.clicked.connect(exitRoom)
         else:
             def joinRoom():
@@ -205,12 +205,12 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
                 if typeX and typeX > 0:
                     self.mainWindow.showInfo(
                     "加入房间",self.__class__.__name__,
-                    rsp.get('content'))
+                    rsp.get('content', "好像与伺服娘断连了哦"))
                     server.room.roomId = -1
                     server.room.inRoom = True
                     self._OST.refreshRoomListFromServer()
                 else:
                     self.mainWindow.showWarn(
                     "加入房间",self.__class__.__name__,
-                    rsp.get('content'))
+                    rsp.get('content', "好像与伺服娘断连了哦"))
             self.joinRoom.clicked.connect(joinRoom)
