@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'qtUI/OnlineServer/roomItemModel.ui'
+# Form implementation generated from reading ui file '.\qtUI\OnlineServer\roomItemModel.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #

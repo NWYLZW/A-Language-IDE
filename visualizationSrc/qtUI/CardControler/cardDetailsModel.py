@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'qtUI/CardControler/cardDetailsModel.ui'
+# Form implementation generated from reading ui file '.\qtUI\CardControler\cardDetailsModel.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -24,6 +24,16 @@ class Ui_Form(object):
 "    border:1px solid #afafaf; \n"
 "    border-radius:5px;\n"
 "}\n"
+"QLineEdit{\n"
+"    height:25px;\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border:1px solid #afafaf; \n"
+"    border-radius:4px;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"    border:1px solid rgb(0, 170, 255); \n"
+"    border-radius:6px;\n"
+"}\n"
 "#saveCard{\n"
 "    border-image: url(:/ico/Data/qrc/ico/save.png);\n"
 "}\n"
@@ -35,6 +45,12 @@ class Ui_Form(object):
 "}\n"
 "#printCard:hover{\n"
 "    border-image: url(:/ico/Data/qrc/ico/printed.png);\n"
+"}\n"
+"#delCard{\n"
+"    border-image: url(:/ico/Data/qrc/ico/delete.png);\n"
+"}\n"
+"#delCard:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
 "}")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Form)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
@@ -266,7 +282,8 @@ class Ui_Form(object):
         self.effectCode_L.setStretch(1, 3)
         self.verticalLayout_3.addLayout(self.effectCode_L)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setContentsMargins(-1, 5, -1, 5)
+        self.verticalLayout_4.setSpacing(5)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label_3.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -288,7 +305,8 @@ class Ui_Form(object):
         self.verticalLayout_4.addWidget(self.betterSpread)
         self.verticalLayout_3.addLayout(self.verticalLayout_4)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_7.setSpacing(0)
+        self.verticalLayout_7.setContentsMargins(-1, 5, -1, 5)
+        self.verticalLayout_7.setSpacing(5)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_13 = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label_13.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -311,9 +329,21 @@ class Ui_Form(object):
         self.setCardArdImg = QtWidgets.QWidget(self.verticalLayoutWidget_2)
         self.setCardArdImg.setObjectName("setCardArdImg")
         self.dragInstallCardArt = QtWidgets.QTextBrowser(self.setCardArdImg)
-        self.dragInstallCardArt.setGeometry(QtCore.QRect(40, 10, 250, 250))
-        self.dragInstallCardArt.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.dragInstallCardArt.setGeometry(QtCore.QRect(60, 0, 200, 200))
+        self.dragInstallCardArt.setMinimumSize(QtCore.QSize(200, 200))
+        self.dragInstallCardArt.setMaximumSize(QtCore.QSize(200, 200))
+        self.dragInstallCardArt.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.OpenHandCursor))
         self.dragInstallCardArt.setObjectName("dragInstallCardArt")
+        self.pushButton = QtWidgets.QPushButton(self.setCardArdImg)
+        self.pushButton.setGeometry(QtCore.QRect(280, 0, 51, 51))
+        self.pushButton.setStyleSheet("QPushButton{\n"
+"    border-image: url(:/ico/Data/qrc/ico/delete.png);\n"
+"}\n"
+"QPushButton:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
+"}")
+        self.pushButton.setText("")
+        self.pushButton.setObjectName("pushButton")
         self.verticalLayout_3.addWidget(self.setCardArdImg)
         self.verticalLayout_3.setStretch(3, 1)
         self.CMT_settingTab.addTab(self.CMT_greateSetting, "")
@@ -400,6 +430,17 @@ class Ui_Form(object):
         self.saveCard.setText("")
         self.saveCard.setObjectName("saveCard")
         self.commonTools.addWidget(self.saveCard)
+        self.delCard = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.delCard.setMaximumSize(QtCore.QSize(32, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        self.delCard.setFont(font)
+        self.delCard.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.delCard.setStyleSheet("")
+        self.delCard.setText("")
+        self.delCard.setObjectName("delCard")
+        self.commonTools.addWidget(self.delCard)
         self.textBrowser = QtWidgets.QTextBrowser(self.horizontalLayoutWidget_2)
         self.textBrowser.setMaximumSize(QtCore.QSize(16777215, 32))
         self.textBrowser.setStyleSheet("QTextBrowser{\n"
@@ -450,6 +491,7 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.pushButton.setToolTip(_translate("Form", "<html><head/><body><p>删除卡面</p></body></html>"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("Form", "高级"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_previewCard), _translate("Form", "预览"))
         self.CM_codeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -464,9 +506,11 @@ class Ui_Form(object):
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.RemapCode_Tab), _translate("Form", "RemapCode"))
-        self.tools.setToolTip(_translate("Form", "<html><head/><body><p>工具</p></body></html>"))
+        self.tools.setToolTip(_translate("Form", "<html><head/><body><p>设置</p></body></html>"))
         self.printCard.setToolTip(_translate("Form", "<html><head/><body><p>alt+1</p></body></html>"))
         self.printCard.setWhatsThis(_translate("Form", "<html><head/><body><p>印卡</p></body></html>"))
         self.saveCard.setToolTip(_translate("Form", "<html><head/><body><p>ctrl+s</p></body></html>"))
         self.saveCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
+        self.delCard.setToolTip(_translate("Form", "<html><head/><body><p>ctrl+s</p></body></html>"))
+        self.delCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
 from .. import AL_IDE_MainInterFace_rc

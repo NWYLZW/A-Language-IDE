@@ -26,23 +26,24 @@ if __name__ == '__main__':
         buildUI_Dict = json.loads(f.read())
 
     def buildUiFile(path=""):
-        uiPath = "qtUI/"+path+".ui"
+        uiPath = path+".ui"
         filePreData = buildUI_Dict.get(uiPath,None)
         mtime = time.ctime(os.path.getmtime(uiPath))
         if filePreData:
-            if filePreData == mtime: return
+            if filePreData == mtime: return False
         else:
             buildUI_Dict[uiPath] = "%s" % mtime
 
-        os.system("python -m PyQt5.uic.pyuic "+uiPath+" -o qtUI/"+path+".py")
-        with open('qtUI/'+path+'.py', 'r+', encoding="utf-8") as f:
+        os.system("python -m PyQt5.uic.pyuic "+uiPath+" -o "+path+".py")
+        with open(path+'.py', 'r+', encoding="utf-8") as f:
             str = f.read()
         regex = r'(?<!from\ \.[1-100]\ )import\ .*_rc'
         result = re.findall(regex, str)
         for r in result:
-            str = re.sub(regex, "from "+"."*(path.count('/')+1)+" " + r, str)
-        with open('qtUI/'+path+'.py', 'w+', encoding="utf-8") as f:
+            str = re.sub(regex, "from "+"."*(path.count('\\')-1)+" " + r, str)
+        with open(path+'.py', 'w+', encoding="utf-8") as f:
             f.write(str)
+        return True
 
     def record(folder):
         for name in os.listdir(folder):
@@ -51,9 +52,12 @@ if __name__ == '__main__':
             elif name.endswith(".ui"):
                 uiFileName = os.path\
                     .join(folder, name)\
-                    .replace(".\\qtUI\\","")\
                     .replace(".ui","")
-                buildUiFile(uiFileName)
+                print("正在构建===>",uiFileName)
+                if buildUiFile(uiFileName):
+                    print("[构建完成]")
+                else:
+                    print("[ignore]")
     record(".")
 
     with open(buildUI_DATA_PATH, 'w', encoding="utf-8-sig") as f:
