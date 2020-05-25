@@ -136,7 +136,7 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
 	margin: 5px;
 	padding: 5px;
 	border: 1px solid gray;
-	border-radius: 10px;
+	border-radius: 5px;
 }</string>
       </property>
       <property name="placeholderText">
@@ -153,11 +153,11 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#serverHost{
+       <string notr="true">#serverHost_Input{
 	margin: 5px;
 	padding: 5px;
 	border: 1px solid gray;
-	border-radius: 10px;
+	border-radius: 5px;
 }</string>
       </property>
       <property name="placeholderText">

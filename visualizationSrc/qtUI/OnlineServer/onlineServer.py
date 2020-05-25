@@ -89,17 +89,17 @@ class Ui_main(object):
 "    margin: 5px;\n"
 "    padding: 5px;\n"
 "    border: 1px solid gray;\n"
-"    border-radius: 10px;\n"
+"    border-radius: 5px;\n"
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
         self.serverHost_Input = QtWidgets.QLineEdit(self.horizontalLayoutWidget_3)
         self.serverHost_Input.setMinimumSize(QtCore.QSize(200, 0))
-        self.serverHost_Input.setStyleSheet("#serverHost{\n"
+        self.serverHost_Input.setStyleSheet("#serverHost_Input{\n"
 "    margin: 5px;\n"
 "    padding: 5px;\n"
 "    border: 1px solid gray;\n"
-"    border-radius: 10px;\n"
+"    border-radius: 5px;\n"
 "}")
         self.serverHost_Input.setObjectName("serverHost_Input")
         self.Search.addWidget(self.serverHost_Input)

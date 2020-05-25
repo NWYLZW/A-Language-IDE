@@ -74,13 +74,13 @@ class Ui_Form(object):
         self.roomerName.setFont(font)
         self.roomerName.setObjectName("roomerName")
         self.verticalLayout.addWidget(self.roomerName)
-        self.textBrowser = QtWidgets.QTextBrowser(self.horizontalLayoutWidget)
+        self.roomerDsp = QtWidgets.QTextBrowser(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(8)
-        self.textBrowser.setFont(font)
-        self.textBrowser.setObjectName("textBrowser")
-        self.verticalLayout.addWidget(self.textBrowser)
+        self.roomerDsp.setFont(font)
+        self.roomerDsp.setObjectName("roomerDsp")
+        self.verticalLayout.addWidget(self.roomerDsp)
         self.roomUsersCount = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
@@ -130,7 +130,7 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.roomNameAndId.setText(_translate("Form", "无名(ID:1)"))
         self.roomerName.setText(_translate("Form", "房主"))
-        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.roomerDsp.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"

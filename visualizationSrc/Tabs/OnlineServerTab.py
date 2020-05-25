@@ -79,9 +79,37 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
                 str(e)
             );log.record(logLevel.ERROR, 'OnlineServerTab.__init__', e)
     def refreshRoomListFromServer(self):
-        self.roomList = [
-        ]
-        self.roomList = self.server.room.list()
+        self.roomList = [{
+            "id":10001,
+            "roomName":"伺服娘的小黑屋",
+            "homeOwnerId":10001,
+            "dateTime":"0000-00-00 00:00:00",
+            "dsp":"联机已死，有事烧钱，没事烧纸",
+            "users":[{
+                "roomId":10001,
+                "inRoom":True,
+                "userId":10001,
+                "isHomeOwners":True,
+            },{
+                "roomId":10001,
+                "inRoom":False,
+                "userId":10002,
+                "isHomeOwners":False,
+            },],
+            },{
+            "id":10002,
+            "roomName":"Alive的小房间",
+            "homeOwnerId":10003,
+            "dateTime":"0000-00-00 00:00:00",
+            "dsp":"这个人好懒，什么都没有写",
+            "users":[{
+                "roomId":10002,
+                "inRoom":False,
+                "userId":10003,
+                "isHomeOwners":True,
+            },],
+            },]
+        # self.roomList = self.server.room.list()
         self.roomPC.toPage()
     def initData(self):
         self.roomList = []
@@ -103,6 +131,7 @@ class OnlineServerTab(QWidget, onlineServer.Ui_main):
         self.serverHost_Input.returnPressed.connect(setServerHost)
 
         def refreshRoom():
+            if not server.user.isLogin:return
             self.refreshRoomListFromServer()
             self.roomPC.filter(Search_Input.text())
         self.refreshRoom.clicked.connect(refreshRoom)
@@ -145,7 +174,7 @@ class roomPageControler(PageHelper):
     def _generatePage(self,newDataList):
         for index in range(len(newDataList)):
             roomDict = newDataList[index]
-            itemEle = roomItemModel(self._OST)
+            itemEle = roomItemModel(self._scrollArea.widget(), self._OST)
             itemEle.refeshData(roomDict)
             if index%2 == 0:
                 tempHL = QHBoxLayout()
@@ -155,8 +184,8 @@ class roomPageControler(PageHelper):
             tempHL.addWidget(itemEle)
 
 class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
-    def __init__(self, OST:OnlineServerTab=None):
-        super().__init__(None)
+    def __init__(self,parent = None, OST:OnlineServerTab = None):
+        super().__init__(parent)
         self.BlurRadius = 10
         self._OST = OST
         self.mainWindow = OST.mainWindow
@@ -166,6 +195,7 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
         self.roomDict = roomDict
         self.roomNameAndId.setText(roomDict.get("roomName","无名")+'(ID:'+str(roomDict.get("id","XXX"))+')')
         self.roomerName.setText("房主名"+roomDict.get("roomerName","****"))
+        self.roomerDsp.setText(roomDict.get("dsp",""))
         self.roomUsersCount.setText("人数: " + str(len(roomDict.get("users", []))) + "/10")
         inRoom = False
         for user in roomDict.get('users', []):
@@ -189,6 +219,7 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
     def _initClick(self, inRoom):
         if inRoom:
             def exitRoom():
+                if not server.user.isLogin: return
                 rsp = server.room.exit(self.roomDict.get('id','None'))
                 typeX = rsp.get('type',None)
                 if typeX and typeX > 0:
@@ -205,6 +236,7 @@ class roomItemModel(QWidget, roomItemModelUI.Ui_Form):
             self.joinRoom.clicked.connect(exitRoom)
         else:
             def joinRoom():
+                if not server.user.isLogin: return
                 rsp = server.room.join(self.roomDict.get('id','None'))
                 typeX = rsp.get('type',None)
                 if typeX and typeX > 0:

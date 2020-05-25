@@ -136,7 +136,7 @@ QPushButton{
         </widget>
        </item>
        <item>
-        <widget class="QTextBrowser" name="textBrowser">
+        <widget class="QTextBrowser" name="roomerDsp">
          <property name="font">
           <font>
            <family>Adobe 黑体 Std R</family>
