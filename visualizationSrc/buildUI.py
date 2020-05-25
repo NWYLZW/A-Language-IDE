@@ -44,8 +44,11 @@ if __name__ == '__main__':
         with open(path+'.py', 'w+', encoding="utf-8") as f:
             f.write(str)
         return True
-
+    ignoreFolder = [
+        # ".\\qtUI\\CardControler",
+    ]
     def record(folder):
+        if folder in ignoreFolder:return
         for name in os.listdir(folder):
             if os.path.isdir(os.path.join(folder, name)):
                 record(os.path.join(folder, name))
