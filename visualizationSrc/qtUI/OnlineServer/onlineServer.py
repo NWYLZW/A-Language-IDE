@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_main(object):
     def setupUi(self, main):
         main.setObjectName("main")
-        main.resize(1152, 651)
+        main.resize(1152, 640)
         main.setStyleSheet("#ScrollWidget{\n"
 "    background-color: rgba(255, 255, 255);\n"
 "}\n"

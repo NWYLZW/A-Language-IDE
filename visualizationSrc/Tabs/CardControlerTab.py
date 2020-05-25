@@ -382,6 +382,7 @@ class cardDetail_C:
         from visualizationSrc.Util.TextEditorUtil import TextEditor
         def QTextEditToTextEditor(parent,mQTextEdit):
             parent.removeWidget(mQTextEdit);mQTextEdit.setParent(None)
+            mQTextEdit.deleteLater();del mQTextEdit
             mQTextEdit = TextEditor()
             parent.addWidget(mQTextEdit)
             initFont(mQTextEdit)
@@ -390,8 +391,8 @@ class cardDetail_C:
             mQTextEdit.HL = HighLighter(mQTextEdit.document())
             return mQTextEdit
 
-        UI.CM_codeSource = QTextEditToTextEditor(UI.cardMakeTap_code,UI.CM_codeSource)
-        UI.CM_remapCodeSource = QTextEditToTextEditor(UI.cardMakeTap_remap,UI.CM_remapCodeSource)
+        UI.CM_codeSource = QTextEditToTextEditor(UI.CM_codeSource_L,UI.CM_codeSource)
+        UI.CM_remapCodeSource = QTextEditToTextEditor(UI.CM_remapCodeSource_L,UI.CM_remapCodeSource)
     def getCard(self):
         UI = self.UI
         if UI.CM_displayName.text() == "":
