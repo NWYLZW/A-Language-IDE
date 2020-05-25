@@ -6,7 +6,7 @@ Log: thisSelPos=>{$selPos};
 
 SetVar: preCardId,{get_cardId:};
 Log: thisPosition=>{$position};
-Log: ""</serverCard>"";",,3,,1,"“福生玄黄仙尊。”
+Log: ""</serverCard>"";",,6,,1,"“福生玄黄仙尊。”
 “福生玄黄天君。”
 “福生玄黄上帝。”
 “福生玄黄天尊。”",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

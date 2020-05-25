@@ -25,6 +25,7 @@ from ..Util.UserUtil import UserUtil
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
 from ..Util.HighLighterUtil import HighLighter
+from ..Util.CompleterUtil import Completer
 
 class CardControlerTab:
     def __init__(self,mainWindow:MyWindow.MyWindow):
@@ -121,9 +122,10 @@ class CardControlerTab:
             card = {
                 "id":"newCard",
                 "displayName":"无名",}
-        cardEditTabWidget = QWidget()
-        uiForm = cardDetailsModel.Ui_Form()
-        uiForm.setupUi(cardEditTabWidget)
+
+        cardEditTabWidget = cardDetailTab(
+            parent=None,CCT=self,initCardDict=card
+        )
         cardEditTabDict = {
             "tab":cardEditTabWidget,
             "id":cardId,
@@ -135,11 +137,7 @@ class CardControlerTab:
         self.Tab.setCurrentWidget(cardEditTabWidget)
         if cardId == "newCard":
             self.newCardEditTabDict = cardEditTabDict
-        cardEditTabDict['cardDetail_C'] = cardDetail_C(
-            card=card,
-            cardDetailsModel_UI=uiForm,
-            cardDetailsModel_Widget=cardEditTabWidget,
-            cardMake=self,)
+        cardEditTabDict['cardDetail_C'] = cardEditTabWidget
 
 class cardPageControler(PageHelper):
     def __init__(self, UI, CCT):
@@ -320,56 +318,49 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                 "请先添加卡牌"
             )
 
-class cardDetail_C:
-    def __init__(self,
-                 cardDetailsModel_UI: cardDetailsModel.Ui_Form,
-                 cardDetailsModel_Widget: QWidget,
-                 card:dict, cardMake:CardControlerTab):
-        self.UI = cardDetailsModel_UI
-        from ..Util.CompleterUtil import Completer
-        self.UI.completer = Completer()
-        self.Widget = cardDetailsModel_Widget
-        self.cardMake = cardMake
-        self.mainWindow = cardMake.mainWindow
-        self.cardControler = cardMake.cardControler
-        self.card = card
+class cardDetailTab(cardDetailsModel.Ui_Form,QWidget):
+    def __init__(self, parent=None, CCT:CardControlerTab=None, initCardDict:dict={}):
+        super().__init__(parent)
+        self.setupUi(self)
+        self._CCT = CCT
+        self.cardDict = initCardDict
+        self._completer = Completer()
 
-        self.settingTab = cardDetailsModel_UI.CMT_settingTab
-        self.initTextEditor()
-        self.initComboCheckBox()
-        self.initData()
-        self.initClick()
-        self.initQuickKey()
-        self.initBetterSettingInterface()
-    def initData(self):
-        card = self.card
-        self.cardId = card.get('id','newCard')
-        if card["id"] != "newCard":
-            self.UI.CM_displayName.setText(card['displayName'])
-            if card.get('price')=="":card['price'] = "0"
-            self.UI.CM_price.setValue(int(card.get('price','0')))
-            if card.get('energyReq')=="":card['energyReq'] = "0"
-            self.UI.CM_energyReq.setValue(float(card.get('energyReq','0')))
-            if card.get('range')=="":card['range'] = "0"
-            self.UI.CM_range.setValue(float(card.get('range','0')))
-            self.UI.CM_description.setText(card['description'])
-            self.UI.CM_story0.setText(card['story'])
-            self.UI.CM_codeSource.setText(card['code'])
-            self.UI.CM_remapCodeSource.setText(card['remapCode'])
+        self._initTextEditor()
+        self._initComboCheckBox()
+        self._initBetterSettingInterface()
+        self._initClick()
+        self._initQuickKey()
 
-            if card.get('spreadRadius')=="":card['spreadRadius'] = "0"
-            self.UI.spreadRadius.setValue(float(card.get('spreadRadius','0')))
-            if card.get('minUnlockGrade')=="":card['minUnlockGrade'] = "0"
-            self.UI.minUnlockGrade.setValue(int(card.get('minUnlockGrade','0')))
-            for sel in card['aimTypeCode'].split(';'):
-                self.UI.aimTypeCode.selQCheckBoxByName(sel.split(':')[0])
-            for sel in card['perferredTargetTypeCode'].split(';'):
-                self.UI.perferredTargetTypeCode.selQCheckBoxByName(sel.split(':')[0])
-            for sel in card['tagCode'].split(';'):
-                self.UI.tagCode.selQCheckBoxByName(sel.split(':')[0])
+        self.refreshData()
+    def refreshData(self,cardDict=None):
+        if cardDict: self.cardDict = cardDict
+        else:cardDict = self.cardDict
+        self.cardId = cardDict.get('id','newCard')
+        if cardDict["id"] != "newCard":
+            self.CM_displayName.setText(cardDict['displayName'])
+            if cardDict.get('price')=="":cardDict['price'] = "0"
+            self.CM_price.setValue(int(cardDict.get('price','0')))
+            if cardDict.get('energyReq')=="":cardDict['energyReq'] = "0"
+            self.CM_energyReq.setValue(float(cardDict.get('energyReq','0')))
+            if cardDict.get('range')=="":cardDict['range'] = "0"
+            self.CM_range.setValue(float(cardDict.get('range','0')))
+            self.CM_description.setText(cardDict['description'])
+            self.CM_story0.setText(cardDict['story'])
+            self.CM_codeSource.setText(cardDict['code'])
+            self.CM_remapCodeSource.setText(cardDict['remapCode'])
 
-    def initTextEditor(self):
-        UI = self.UI
+            if cardDict.get('spreadRadius')=="":cardDict['spreadRadius'] = "0"
+            self.spreadRadius.setValue(float(cardDict.get('spreadRadius','0')))
+            if cardDict.get('minUnlockGrade')=="":cardDict['minUnlockGrade'] = "0"
+            self.minUnlockGrade.setValue(int(cardDict.get('minUnlockGrade','0')))
+            for sel in cardDict['aimTypeCode'].split(';'):
+                self.aimTypeCode.selQCheckBoxByName(sel.split(':')[0])
+            for sel in cardDict['perferredTargetTypeCode'].split(';'):
+                self.perferredTargetTypeCode.selQCheckBoxByName(sel.split(':')[0])
+            for sel in cardDict['tagCode'].split(';'):
+                self.tagCode.selQCheckBoxByName(sel.split(':')[0])
+    def _initTextEditor(self):
         def initFont(editor):
             from PyQt5.QtGui import QFont
             editor.setPlainText('')
@@ -387,80 +378,60 @@ class cardDetail_C:
             parent.addWidget(mQTextEdit)
             initFont(mQTextEdit)
 
-            mQTextEdit.set_completer(UI.completer.completer)
+            mQTextEdit.set_completer(self._completer.completer)
             mQTextEdit.HL = HighLighter(mQTextEdit.document())
             return mQTextEdit
 
-        UI.CM_codeSource = QTextEditToTextEditor(UI.CM_codeSource_L,UI.CM_codeSource)
-        UI.CM_remapCodeSource = QTextEditToTextEditor(UI.CM_remapCodeSource_L,UI.CM_remapCodeSource)
-    def getCard(self):
-        UI = self.UI
-        if UI.CM_displayName.text() == "":
-            UI.CM_displayName.setText("无名")
-        return Card(
-            id=self.cardId,
-            displayName=UI.CM_displayName.text(), price=UI.CM_price.text(), energyReq=UI.CM_energyReq.text(),
-            range=UI.CM_range.text(),
-            description=UI.CM_description.toPlainText(),
-            story=UI.CM_story0.toPlainText(),
-            code=UI.CM_codeSource.toPlainText(),
-            remapCode=UI.CM_remapCodeSource.toPlainText(),
-            spreadRadius=UI.spreadRadius.value(),
-            minUnlockGrade=UI.minUnlockGrade.value(),
-            aimTypeCode=";".join(UI.aimTypeCode.currentText()),
-            perferredTargetTypeCode=";".join(UI.perferredTargetTypeCode.currentText()),
-            tagCode=";".join(UI.tagCode.currentText()),
-            effectCode=UI.effectCode.text(),
-            backgroundId=self.selBackgrondImgName,
-        )
-    def initClick(self):
-        UI = self.UI
-        mainWindow = self.mainWindow
+        self.CM_codeSource = QTextEditToTextEditor(self.CM_codeSource_L,self.CM_codeSource)
+        self.CM_remapCodeSource = QTextEditToTextEditor(self.CM_remapCodeSource_L,self.CM_remapCodeSource)
+    def _initClick(self):
+        mainWindow = self._CCT.mainWindow
+        cardControler = self._CCT.cardControler
         def __saveCard():
-            if self.card["id"] == "newCard":
-                newCard = self.cardControler.addCard(**self.getCard().toDict())
+            if self.cardDict["id"] == "newCard":
+                newCard = cardControler.addCard(**self.getCard().toDict())
                 if newCard!={}:
                     self.mainWindow.showInfo(
                         "添加卡牌",
                         self.__class__.__name__,
                         "成功新添ID为:"+str(newCard.get('id','newCard'))+",\n"+
-                        "名称为:"+UI.CM_displayName.text()+"的卡牌"
+                        "名称为:"+self.CM_displayName.text()+"的卡牌"
                     )
-                    self.cardMake.cardPC.toPage(self.cardMake.cardPC.pageCount - 1)
-                    self.cardMake.removeNewCardTab()
-                    self.cardMake.toCardDetailTab(str(newCard.get('id','newCard')))
+                    self._CCT.cardPC.toPage(self._CCT.cardPC.pageCount - 1)
+                    self._CCT.removeNewCardTab()
+                    self._CCT.toCardDetailTab(str(newCard.get('id','newCard')))
                     return True
                 else:
-                    self.mainWindow.showWarn(
+                    mainWindow.showWarn(
                         "添加卡牌",
                         self.__class__.__name__,
-                        "新添名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
+                        "新添名称为:" + self.cardDict.get('displayName') + "发生了错误" + ",\n" +
                         "请保证文件读取权限、卡牌列表最后一张卡牌ID为数字"
                     )
                     return False
             else:
-                if self.cardControler.updataCard(**self.getCard().toDict()):
-                    self.mainWindow.showInfo(
+                if cardControler.updataCard(**self.getCard().toDict()):
+                    mainWindow.showInfo(
                         "修改卡牌",
                         self.__class__.__name__,
-                        "修改ID为:"+self.cardId+",\n"+
-                        "名称为:"+self.card.get('displayName')+"成功"
+                        "修改ID为:" + self.cardId +",\n" +
+                        "名称为:" + self.cardDict.get('displayName') + "成功"
                     )
-                    self.cardMake.cardPC.toPage()
+                    self._CCT.cardPC.toPage()
                     return True
                 else:
-                    self.mainWindow.showWarn(
+                    mainWindow.showWarn(
                         "修改卡牌",
                         self.__class__.__name__,
-                        "修改ID为:"+self.cardId+",\n"+
-                        "名称为:"+self.card.get('displayName')+"发生了错误"+",\n"+
+                        "修改ID为:" + self.cardId +",\n" +
+                        "名称为:" + self.cardDict.get('displayName') + "发生了错误" + ",\n" +
                         "请保证文件读取权限"
                     )
                     return False
-        UI.saveCard.clicked.connect(__saveCard)
+        self.saveCard.clicked.connect(__saveCard)
         def __printCard():
             if not __saveCard(): return
-            result = self.cardControler.checkCode(self.card.get('id','newCard'))
+            result = cardControler.checkCode(self.cardDict.get('id', 'newCard'))
             if result == 0:pass
             elif result == 1: mainWindow.showWarn(
                     "印卡",
@@ -477,12 +448,12 @@ class cardDetail_C:
                     self.__class__.__name__,
                     "未找到对应id卡牌字典"
                 );return
-            if self.cardControler.printCard(self.card.get('id','newCard')):
+            if cardControler.printCard(self.cardDict.get('id', 'newCard')):
                 mainWindow.showInfo(
                     "扩印卡牌",
                     self.__class__.__name__,
                     "扩印ID为:"+str(self.cardId)+",\n"+
-                    "名称为:"+UI.CM_displayName.text()+"的卡牌"
+                    "名称为:"+self.CM_displayName.text()+"的卡牌"
                 )
                 openTetraProject()
             else:
@@ -492,18 +463,17 @@ class cardDetail_C:
                     "印卡时发生了错误"+",\n"+
                     "请先添加卡牌"
                 )
-        UI.printCard.clicked.connect(__printCard)
-    def initQuickKey(self):
+        self.printCard.clicked.connect(__printCard)
+    def _initQuickKey(self):
         def __keyPressEvent(event):
-            UI = self.UI
             if (event.key() == Qt.Key_1):
                 if QApplication.keyboardModifiers() == Qt.AltModifier:
-                    UI.printCard.click()
+                    self.printCard.click()
             if (event.key() == Qt.Key_S):
                 if QApplication.keyboardModifiers() == Qt.ControlModifier:
-                    UI.saveCard.click()
-        self.Widget.keyPressEvent = __keyPressEvent
-    def initComboCheckBox(self):
+                    self.saveCard.click()
+        self.keyPressEvent = __keyPressEvent
+    def _initComboCheckBox(self):
         def __comboBoxToComboCheckBox(items,parent,this):
             parent.removeWidget(this);this.setParent(None)
             comboBox = ComboCheckBox()
@@ -513,18 +483,18 @@ class cardDetail_C:
             parent.addWidget(comboBox)
             return comboBox
 
-        self.UI.aimTypeCode = __comboBoxToComboCheckBox([
+        self.aimTypeCode = __comboBoxToComboCheckBox([
             'EnvOnly','Single0nly','AllowOutOfStageBorder',
             'ChaTagExclude','Boss','Trap','Turret',
             'HpLessThanSelf','NotAllowSelf',
             'ChaTagLimit','Machine','ThrougWall',
-        ],self.UI.aimTypeCode_L,self.UI.aimTypeCode)
-        self.UI.perferredTargetTypeCode = __comboBoxToComboCheckBox([
+        ],self.aimTypeCode_L,self.aimTypeCode)
+        self.perferredTargetTypeCode = __comboBoxToComboCheckBox([
             "emy","self","player",
             "died","HasBuff","lowHpP","lowHpPltmt",
             "Breakable","tmt",
-        ],self.UI.perferredTargetTypeCode_L,self.UI.perferredTargetTypeCode)
-        self.UI.tagCode = __comboBoxToComboCheckBox([
+        ],self.perferredTargetTypeCode_L,self.perferredTargetTypeCode)
+        self.tagCode = __comboBoxToComboCheckBox([
             "Bomb","Boxing","Bullet","BulletCraft",
             "Craft","CardContainer","CombatonlyPosiBuff","CombatOnly",
             "Dedicated ","Debuff","DebuffProp",
@@ -537,10 +507,9 @@ class cardDetail_C:
             "Prop","PosiBuff",
             "Turret","Trap",
             "Unremovable",
-        ],self.UI.tagCode_L,self.UI.tagCode)
-    def initBetterSettingInterface(self):
+        ],self.tagCode_L,self.tagCode)
+    def _initBetterSettingInterface(self):
         self.backgrondImgWidgetList = []
-        UI = self.UI
         tempWidget = QWidget()
         tempHL = QHBoxLayout()
         tempWidget.setLayout(tempHL)
@@ -551,7 +520,7 @@ class cardDetail_C:
         backgroundImgPath = appPath()+"/CardBackground"
         if not os.path.exists(backgroundImgPath):
             os.makedirs(backgroundImgPath)
-        backgrondImgId = self.card.get('backgroundId','1')
+        backgrondImgId = self.cardDict.get('backgroundId', '1')
         selStyle = "QWidget{background-color: rgb(255,255,255);border-radius:10px;}"
         noselStyle = "QWidget:hover{background-color: rgb(255,255,255);border-radius:10px;}"
         for childDirName in os.listdir(backgroundImgPath):
@@ -585,6 +554,7 @@ class cardDetail_C:
 
                 tempHL.addLayout(tempVL)
             except:pass
+
             def selThisImg(childDirName,backgrondImgWidget):
                 def __selThisImg(evt):
                     if evt.buttons() == QtCore.Qt.LeftButton:
@@ -593,10 +563,28 @@ class cardDetail_C:
                             backgrondImgWidgetX.setStyleSheet(noselStyle)
                         backgrondImgWidget.setStyleSheet(selStyle)
                 return __selThisImg
-
             backgrondImgWidget.mousePressEvent = selThisImg(childDirName,backgrondImgWidget)
 
-        UI.backgroundImg.setWidget(tempWidget)
+        self.backgroundImg.setWidget(tempWidget)
         # 必须加这句，不然没有scrollBar的样式
-        UI.backgroundImg.horizontalScrollBar().setStyleSheet("")
+        self.backgroundImg.horizontalScrollBar().setStyleSheet("")
         pass
+    def getCard(self):
+        if self.CM_displayName.text() == "":
+            self.CM_displayName.setText("无名")
+        return Card(
+            id=self.cardId,
+            displayName=self.CM_displayName.text(), price=self.CM_price.text(), energyReq=self.CM_energyReq.text(),
+            range=self.CM_range.text(),
+            description=self.CM_description.toPlainText(),
+            story=self.CM_story0.toPlainText(),
+            code=self.CM_codeSource.toPlainText(),
+            remapCode=self.CM_remapCodeSource.toPlainText(),
+            spreadRadius=self.spreadRadius.value(),
+            minUnlockGrade=self.minUnlockGrade.value(),
+            aimTypeCode=";".join(self.aimTypeCode.currentText()),
+            perferredTargetTypeCode=";".join(self.perferredTargetTypeCode.currentText()),
+            tagCode=";".join(self.tagCode.currentText()),
+            effectCode=self.effectCode.text(),
+            backgroundId=self.selBackgrondImgName,
+        )

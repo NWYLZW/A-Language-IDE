@@ -618,10 +618,10 @@ QTextEdit{
              <widget class="QTextBrowser" name="dragInstallCardArt">
               <property name="geometry">
                <rect>
-                <x>30</x>
-                <y>20</y>
-                <width>271</width>
-                <height>231</height>
+                <x>40</x>
+                <y>10</y>
+                <width>250</width>
+                <height>250</height>
                </rect>
               </property>
               <property name="cursor" stdset="0">
@@ -672,7 +672,7 @@ p, li { white-space: pre-wrap; }
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="CodeTab">
          <attribute name="title">

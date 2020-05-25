@@ -290,7 +290,7 @@ class Ui_Form(object):
         self.setCardArdImg = QtWidgets.QWidget(self.verticalLayoutWidget_2)
         self.setCardArdImg.setObjectName("setCardArdImg")
         self.dragInstallCardArt = QtWidgets.QTextBrowser(self.setCardArdImg)
-        self.dragInstallCardArt.setGeometry(QtCore.QRect(30, 20, 271, 231))
+        self.dragInstallCardArt.setGeometry(QtCore.QRect(40, 10, 250, 250))
         self.dragInstallCardArt.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.dragInstallCardArt.setObjectName("dragInstallCardArt")
         self.verticalLayout_3.addWidget(self.setCardArdImg)
@@ -399,7 +399,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         self.CMT_settingTab.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
