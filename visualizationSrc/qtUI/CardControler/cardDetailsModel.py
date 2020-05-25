@@ -222,7 +222,28 @@ class Ui_Form(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.CMT_settingTab.addTab(self.CMT_baseSetting, "")
         self.CMT_greateSetting = QtWidgets.QWidget()
-        self.CMT_greateSetting.setStyleSheet("")
+        self.CMT_greateSetting.setStyleSheet("QScrollBar:horizontal\n"
+"{\n"
+"    height: 8px;\n"
+"    margin: 0px;\n"
+"    border: none;\n"
+"    border-radius: 4px;\n"
+"    background-color: rgb(200,200,200);\n"
+"}\n"
+"QScrollBar::handle:horizontal\n"
+"{\n"
+"    background-color: rgb(100,100,100);\n"
+"    min-width: 5px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"QScrollBar::handle:horizontal:hover\n"
+"{\n"
+"    background-color: rgb(150,150,150);\n"
+"}\n"
+"QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal,\n"
+"QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {\n"
+"    border: none;background: none;color: none;\n"
+"}")
         self.CMT_greateSetting.setObjectName("CMT_greateSetting")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.CMT_greateSetting)
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 351, 601))
@@ -397,7 +418,7 @@ class Ui_Form(object):
         self.CM_addNewCard.setStretch(1, 2)
 
         self.retranslateUi(Form)
-        self.CMT_settingTab.setCurrentIndex(0)
+        self.CMT_settingTab.setCurrentIndex(1)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)

@@ -169,7 +169,10 @@ class cardPageControler(PageHelper):
             tempHL.addWidget(cardItemEle)
             tempHL.cardItemEleList.append(cardItemEle)
 
-class cradItem_C(QWidget,cardItemModel.Ui_main):
+class cradItem_C(
+    cardItemModel.Ui_main,
+    QWidget
+):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.WIDTH = 470;self.HEIGHT = 370
@@ -318,7 +321,10 @@ class cradItem_C(QWidget,cardItemModel.Ui_main):
                 "请先添加卡牌"
             )
 
-class cardDetailTab(cardDetailsModel.Ui_Form,QWidget):
+class cardDetailTab(
+    cardDetailsModel.Ui_Form,
+    QWidget
+):
     def __init__(self, parent=None, CCT:CardControlerTab=None, initCardDict:dict={}):
         super().__init__(parent)
         self.setupUi(self)

@@ -29,6 +29,16 @@ QTextEdit{
 	border:1px solid #afafaf; 
 	border-radius:5px;
 }
+QLineEdit{
+	height:25px;
+	background-color: rgb(255, 255, 255);
+	border:1px solid #afafaf; 
+	border-radius:4px;
+}
+QLineEdit:hover{
+	border:1px solid rgb(0, 170, 255); 
+	border-radius:6px;
+}
 #saveCard{
 	border-image: url(:/ico/Data/qrc/ico/save.png);
 }
@@ -40,6 +50,12 @@ QTextEdit{
 }
 #printCard:hover{
 	border-image: url(:/ico/Data/qrc/ico/printed.png);
+}
+#delCard{
+	border-image: url(:/ico/Data/qrc/ico/delete.png);
+}
+#delCard:hover{
+	border-image: url(:/ico/Data/qrc/ico/deleted.png);
 }</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -81,7 +97,7 @@ QTextEdit{
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="CMT_baseSetting">
          <attribute name="title">
@@ -445,7 +461,28 @@ QTextEdit{
         </widget>
         <widget class="QWidget" name="CMT_greateSetting">
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">QScrollBar:horizontal
+{
+    height: 8px;
+    margin: 0px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(200,200,200);
+}
+QScrollBar::handle:horizontal
+{
+    background-color: rgb(100,100,100);
+    min-width: 5px;
+    border-radius: 4px;
+}
+QScrollBar::handle:horizontal:hover
+{
+    background-color: rgb(150,150,150);
+}
+QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal,
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;background: none;color: none;
+}</string>
          </property>
          <attribute name="title">
           <string>高级</string>
@@ -501,7 +538,13 @@ QTextEdit{
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0">
              <property name="spacing">
-              <number>0</number>
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>5</number>
              </property>
              <item>
               <widget class="QLabel" name="label_3">
@@ -560,7 +603,13 @@ QTextEdit{
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <property name="spacing">
-              <number>0</number>
+              <number>5</number>
+             </property>
+             <property name="topMargin">
+              <number>5</number>
+             </property>
+             <property name="bottomMargin">
+              <number>5</number>
              </property>
              <item>
               <widget class="QLabel" name="label_13">
@@ -618,14 +667,26 @@ QTextEdit{
              <widget class="QTextBrowser" name="dragInstallCardArt">
               <property name="geometry">
                <rect>
-                <x>40</x>
-                <y>10</y>
-                <width>250</width>
-                <height>250</height>
+                <x>60</x>
+                <y>0</y>
+                <width>200</width>
+                <height>200</height>
                </rect>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>200</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>200</height>
+               </size>
+              </property>
               <property name="cursor" stdset="0">
-               <cursorShape>ForbiddenCursor</cursorShape>
+               <cursorShape>OpenHandCursor</cursorShape>
               </property>
               <property name="toolTip">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;拖动安放卡面&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -636,6 +697,30 @@ QTextEdit{
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton">
+              <property name="geometry">
+               <rect>
+                <x>280</x>
+                <y>0</y>
+                <width>51</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;删除卡面&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/delete.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/deleted.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </widget>
@@ -790,7 +875,7 @@ p, li { white-space: pre-wrap; }
              </size>
             </property>
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;工具&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="styleSheet">
              <string notr="true">#tools{
@@ -847,6 +932,37 @@ p, li { white-space: pre-wrap; }
           </item>
           <item>
            <widget class="QPushButton" name="saveCard">
+            <property name="maximumSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Adobe 黑体 Std R</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ctrl+s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;保存&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="delCard">
             <property name="maximumSize">
              <size>
               <width>32</width>
