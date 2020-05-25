@@ -45,7 +45,7 @@ if __name__ == '__main__':
             f.write(str)
         return True
     ignoreFolder = [
-        # ".\\qtUI\\CardControler",
+        ".\\qtUI\\MyWidgets",
     ]
     def record(folder):
         if folder in ignoreFolder:return

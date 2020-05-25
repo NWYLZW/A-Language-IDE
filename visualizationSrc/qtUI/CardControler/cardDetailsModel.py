@@ -315,35 +315,38 @@ class Ui_Form(object):
         self.backgroundImg_Search = QtWidgets.QLineEdit(self.verticalLayoutWidget_2)
         self.backgroundImg_Search.setObjectName("backgroundImg_Search")
         self.verticalLayout_7.addWidget(self.backgroundImg_Search)
-        self.backgroundImg = QtWidgets.QScrollArea(self.verticalLayoutWidget_2)
-        self.backgroundImg.setMinimumSize(QtCore.QSize(0, 100))
-        self.backgroundImg.setMaximumSize(QtCore.QSize(16777215, 100))
-        self.backgroundImg.setWidgetResizable(True)
-        self.backgroundImg.setObjectName("backgroundImg")
+        self.backgroundImgScroll = QtWidgets.QScrollArea(self.verticalLayoutWidget_2)
+        self.backgroundImgScroll.setMinimumSize(QtCore.QSize(0, 100))
+        self.backgroundImgScroll.setMaximumSize(QtCore.QSize(16777215, 100))
+        self.backgroundImgScroll.setWidgetResizable(True)
+        self.backgroundImgScroll.setObjectName("backgroundImgScroll")
         self.backgroundImg_W = QtWidgets.QWidget()
         self.backgroundImg_W.setGeometry(QtCore.QRect(0, 0, 327, 98))
         self.backgroundImg_W.setObjectName("backgroundImg_W")
-        self.backgroundImg.setWidget(self.backgroundImg_W)
-        self.verticalLayout_7.addWidget(self.backgroundImg)
+        self.backgroundImgScroll.setWidget(self.backgroundImg_W)
+        self.verticalLayout_7.addWidget(self.backgroundImgScroll)
         self.verticalLayout_3.addLayout(self.verticalLayout_7)
         self.setCardArdImg = QtWidgets.QWidget(self.verticalLayoutWidget_2)
         self.setCardArdImg.setObjectName("setCardArdImg")
-        self.dragInstallCardArt = QtWidgets.QTextBrowser(self.setCardArdImg)
-        self.dragInstallCardArt.setGeometry(QtCore.QRect(60, 0, 200, 200))
-        self.dragInstallCardArt.setMinimumSize(QtCore.QSize(200, 200))
-        self.dragInstallCardArt.setMaximumSize(QtCore.QSize(200, 200))
-        self.dragInstallCardArt.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.OpenHandCursor))
-        self.dragInstallCardArt.setObjectName("dragInstallCardArt")
-        self.pushButton = QtWidgets.QPushButton(self.setCardArdImg)
-        self.pushButton.setGeometry(QtCore.QRect(280, 0, 51, 51))
-        self.pushButton.setStyleSheet("QPushButton{\n"
+        self.deleteSelCardArt = QtWidgets.QPushButton(self.setCardArdImg)
+        self.deleteSelCardArt.setGeometry(QtCore.QRect(280, 0, 51, 51))
+        self.deleteSelCardArt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.deleteSelCardArt.setStyleSheet("QPushButton{\n"
 "    border-image: url(:/ico/Data/qrc/ico/delete.png);\n"
 "}\n"
 "QPushButton:hover{\n"
 "    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
 "}")
-        self.pushButton.setText("")
-        self.pushButton.setObjectName("pushButton")
+        self.deleteSelCardArt.setText("")
+        self.deleteSelCardArt.setObjectName("deleteSelCardArt")
+        self.selCardArtImg = DragLabel(self.setCardArdImg)
+        self.selCardArtImg.setGeometry(QtCore.QRect(60, 0, 200, 200))
+        self.selCardArtImg.setMinimumSize(QtCore.QSize(200, 200))
+        self.selCardArtImg.setMaximumSize(QtCore.QSize(200, 200))
+        self.selCardArtImg.setAcceptDrops(True)
+        self.selCardArtImg.setStyleSheet("border-image: url(:/picture/Data/qrc/Unknown.png);")
+        self.selCardArtImg.setText("")
+        self.selCardArtImg.setObjectName("selCardArtImg")
         self.verticalLayout_3.addWidget(self.setCardArdImg)
         self.verticalLayout_3.setStretch(3, 1)
         self.CMT_settingTab.addTab(self.CMT_greateSetting, "")
@@ -485,13 +488,7 @@ class Ui_Form(object):
         self.betterSpread_Search.setPlaceholderText(_translate("Form", "搜索"))
         self.label_13.setText(_translate("Form", "卡牌背景图"))
         self.backgroundImg_Search.setPlaceholderText(_translate("Form", "搜索"))
-        self.dragInstallCardArt.setToolTip(_translate("Form", "<html><head/><body><p>拖动安放卡面</p></body></html>"))
-        self.dragInstallCardArt.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.pushButton.setToolTip(_translate("Form", "<html><head/><body><p>删除卡面</p></body></html>"))
+        self.deleteSelCardArt.setToolTip(_translate("Form", "<html><head/><body><p>删除卡面</p></body></html>"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_greateSetting), _translate("Form", "高级"))
         self.CMT_settingTab.setTabText(self.CMT_settingTab.indexOf(self.CMT_previewCard), _translate("Form", "预览"))
         self.CM_codeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -513,4 +510,5 @@ class Ui_Form(object):
         self.saveCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
         self.delCard.setToolTip(_translate("Form", "<html><head/><body><p>ctrl+s</p></body></html>"))
         self.delCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
+from ..MyWidgets.DragLabel import DragLabel
 from .. import AL_IDE_MainInterFace_rc

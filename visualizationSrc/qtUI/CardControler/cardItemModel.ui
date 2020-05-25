@@ -202,8 +202,8 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
                <rect>
                 <x>-70</x>
                 <y>-30</y>
-                <width>311</width>
-                <height>311</height>
+                <width>310</width>
+                <height>310</height>
                </rect>
               </property>
               <property name="minimumSize">
@@ -214,8 +214,8 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
               </property>
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
-                <height>16777215</height>
+                <width>310</width>
+                <height>310</height>
                </size>
               </property>
               <property name="styleSheet">

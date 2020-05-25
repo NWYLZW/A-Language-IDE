@@ -109,7 +109,7 @@ class CardControlerTab:
         self.cardEditTabList.remove(self.newCardEditTabDict)
         self.newCardEditTabDict = None
         return
-    def toCardDetailTab(self, cardId):
+    def toCardDetailTab(self, cardId, cradItem=None):
         for cardEditTabItem in self.cardEditTabList:
             if cardEditTabItem["id"]==cardId:
                 self.Tab \
@@ -124,7 +124,8 @@ class CardControlerTab:
                 "displayName":"无名",}
 
         cardEditTabWidget = cardDetailTab(
-            parent=None,CCT=self,initCardDict=card
+            parent=None,CCT=self,initCardDict=card,
+            cradItem=cradItem
         )
         cardEditTabDict = {
             "tab":cardEditTabWidget,
@@ -185,11 +186,11 @@ class cradItem_C(
         self._initClick()
     def setCardControlerTab(self,CCT:CardControlerTab):
         self.CCT = CCT
-    def refeshData(self,cardDict:dict,isSel:bool=False):
+    def refeshData(self,cardDict:dict,isSel:bool=None):
         if self.CCT == None:
             raise ValueError("未设置CCT")
         self.cardDict = cardDict
-        self.isSel = isSel
+        if isSel: self.isSel = isSel
 
         self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
         self.price.setText(cardDict['price'])
@@ -203,16 +204,14 @@ class cradItem_C(
         cardArtImgPath = appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
         if os.path.exists(backgroundImgPath):
             try:
-                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath))
+                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
                 # QPixmap图片大小自适应
                 self.backgroundImg.setScaledContents(True)
                 self.backgroundImg.setStyleSheet("border-image: none;")
             except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData backgroundImg', e)
         if os.path.exists(cardArtImgPath):
             try:
-                self.cardArt.setPixmap(QPixmap(cardArtImgPath))
-                # QPixmap图片大小自适应
-                self.cardArt.setScaledContents(True)
+                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(80,80))
                 self.cardArt.setStyleSheet("border-image: none;")
             except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData cardArt', e)
         if self.isSel:
@@ -223,7 +222,7 @@ class cradItem_C(
         def clickCardItem(tag):
             def __clickCardItem():
                 if tag == 'edit':
-                    self.CCT.toCardDetailTab(self.cardDict['id'])
+                    self.CCT.toCardDetailTab(self.cardDict['id'],self)
                 elif tag == 'sel':
                     self.isSel = not self.isSel
                     if self.isSel:
@@ -325,11 +324,17 @@ class cardDetailTab(
     cardDetailsModel.Ui_Form,
     QWidget
 ):
-    def __init__(self, parent=None, CCT:CardControlerTab=None, initCardDict:dict={}):
+    def __init__(self,
+                 parent=None,
+                 CCT:CardControlerTab=None,
+                 initCardDict:dict={},
+                 cradItem:cradItem_C=None
+                 ):
         super().__init__(parent)
         self.setupUi(self)
         self._CCT = CCT
         self.cardDict = initCardDict
+        self.cradItem = cradItem
         self._completer = Completer()
 
         self._initTextEditor()
@@ -366,6 +371,12 @@ class cardDetailTab(
                 self.perferredTargetTypeCode.selQCheckBoxByName(sel.split(':')[0])
             for sel in cardDict['tagCode'].split(';'):
                 self.tagCode.selQCheckBoxByName(sel.split(':')[0])
+            import os
+            from ..Util.frozenDir import appPath
+            cardArtPath = appPath()+"/CardArt/"+str(self.cardId)+".png"
+            if os.path.isfile(cardArtPath):
+                self.selCardArtImg.path = cardArtPath
+                self.selCardArtImg.setStyleSheet("")
     def _initTextEditor(self):
         def initFont(editor):
             from PyQt5.QtGui import QFont
@@ -394,6 +405,12 @@ class cardDetailTab(
         mainWindow = self._CCT.mainWindow
         cardControler = self._CCT.cardControler
         def __saveCard():
+            def cpSelCardArtToModCardArt():
+                # 复制选择card art到指定cardArt目录中
+                import os, shutil
+                from ..Util.frozenDir import appPath
+                if os.path.isfile(self.selCardArtImg.path):
+                    shutil.copyfile(self.selCardArtImg.path, appPath() + "/CardArt/" + str(self.cardId) + ".png")
             if self.cardDict["id"] == "newCard":
                 newCard = cardControler.addCard(**self.getCard().toDict())
                 if newCard!={}:
@@ -406,6 +423,9 @@ class cardDetailTab(
                     self._CCT.cardPC.toPage(self._CCT.cardPC.pageCount - 1)
                     self._CCT.removeNewCardTab()
                     self._CCT.toCardDetailTab(str(newCard.get('id','newCard')))
+
+                    cpSelCardArtToModCardArt()
+                    if self.cradItem: self.cradItem.refeshData(self.cardDict)
                     return True
                 else:
                     mainWindow.showWarn(
@@ -424,6 +444,8 @@ class cardDetailTab(
                         "名称为:" + self.cardDict.get('displayName') + "成功"
                     )
                     self._CCT.cardPC.toPage()
+                    cpSelCardArtToModCardArt()
+                    if self.cradItem: self.cradItem.refeshData(self.cardDict)
                     return True
                 else:
                     mainWindow.showWarn(
@@ -571,10 +593,7 @@ class cardDetailTab(
                 return __selThisImg
             backgrondImgWidget.mousePressEvent = selThisImg(childDirName,backgrondImgWidget)
 
-        self.backgroundImg.setWidget(tempWidget)
-        # 必须加这句，不然没有scrollBar的样式
-        self.backgroundImg.horizontalScrollBar().setStyleSheet("")
-        pass
+        self.backgroundImgScroll.setWidget(tempWidget)
     def getCard(self):
         if self.CM_displayName.text() == "":
             self.CM_displayName.setText("无名")
