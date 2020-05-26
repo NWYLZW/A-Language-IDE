@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File           :   HighLighterUtil.py
+@File           :   HighLighter.py
 @License        :   (C)Copyright 2020
 @Modify Time    :   2020/5/11 6:50
 @Author         :   Superme

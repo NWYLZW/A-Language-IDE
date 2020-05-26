@@ -370,7 +370,7 @@ class Ui_Form(object):
         self.CM_codeSource_L.setContentsMargins(10, 10, 10, 10)
         self.CM_codeSource_L.setSpacing(0)
         self.CM_codeSource_L.setObjectName("CM_codeSource_L")
-        self.CM_codeSource = QtWidgets.QTextEdit(self.verticalLayoutWidget_3)
+        self.CM_codeSource = CodeTextEditor(self.verticalLayoutWidget_3)
         self.CM_codeSource.setStyleSheet("")
         self.CM_codeSource.setObjectName("CM_codeSource")
         self.CM_codeSource_L.addWidget(self.CM_codeSource)
@@ -384,7 +384,7 @@ class Ui_Form(object):
         self.CM_remapCodeSource_L.setContentsMargins(10, 10, 10, 10)
         self.CM_remapCodeSource_L.setSpacing(0)
         self.CM_remapCodeSource_L.setObjectName("CM_remapCodeSource_L")
-        self.CM_remapCodeSource = QtWidgets.QTextEdit(self.verticalLayoutWidget_4)
+        self.CM_remapCodeSource = CodeTextEditor(self.verticalLayoutWidget_4)
         self.CM_remapCodeSource.setStyleSheet("")
         self.CM_remapCodeSource.setObjectName("CM_remapCodeSource")
         self.CM_remapCodeSource_L.addWidget(self.CM_remapCodeSource)
@@ -462,9 +462,9 @@ class Ui_Form(object):
         self.CM_addNewCard.setStretch(1, 2)
 
         self.retranslateUi(Form)
-        self.CMT_settingTab.setCurrentIndex(1)
+        self.CMT_settingTab.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -510,5 +510,6 @@ class Ui_Form(object):
         self.saveCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
         self.delCard.setToolTip(_translate("Form", "<html><head/><body><p>ctrl+s</p></body></html>"))
         self.delCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
+from ..MyWidgets.CodeTextEditor import CodeTextEditor
 from ..MyWidgets.DragLabel import DragLabel
 from .. import AL_IDE_MainInterFace_rc

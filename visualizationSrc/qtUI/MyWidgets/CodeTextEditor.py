@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File           :   TextEditorUtil.py
+@File           :   CodeTextEditor.py
 @License        :   (C)Copyright 2020
 @Modify Time    :   2020/5/11 7:09
 @Author         :   Superme
@@ -12,11 +12,11 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QTextCursor, QTextFormat, QColor)
 from PyQt5.QtWidgets import (QApplication, QCompleter, QTextEdit)
 
-class TextEditor(QTextEdit):
+class CodeTextEditor(QTextEdit):
     """Text editor with text completion for writing queries."""
     def __init__(self, parent=None):
         """Initialize TextEditor with basic properties."""
-        super(TextEditor, self).__init__(parent)
+        super(CodeTextEditor, self).__init__(parent)
         self._completer = None
         self.keys_to_ignore = [
             Qt.Key_Enter,
@@ -101,7 +101,7 @@ class TextEditor(QTextEdit):
         """Built-in method to handle focusing event."""
         if self._completer is not None:
             self._completer.setWidget(self)
-        super(TextEditor, self).focusInEvent(evt)
+        super(CodeTextEditor, self).focusInEvent(evt)
         return
     def highlight_line(self):
         """Highlight the whole line the cursor is on."""
@@ -128,7 +128,7 @@ class TextEditor(QTextEdit):
         is_shortcut = ((evt.modifiers() & Qt.ControlModifier) != 0
                        and evt.key() == Qt.Key_F1)
         if self._completer is None or not is_shortcut:
-            super(TextEditor, self).keyPressEvent(evt)
+            super(CodeTextEditor, self).keyPressEvent(evt)
 
         ctrl_shift = evt.modifiers() & (Qt.ControlModifier | Qt.ShiftModifier)
         if self._completer is None or (ctrl_shift and len(evt.text()) == 0):

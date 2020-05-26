@@ -24,7 +24,7 @@ from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
-from ..Util.HighLighterUtil import HighLighter
+from visualizationSrc.qtUI.MyWidgets.HighLighter import HighLighter
 from ..Util.CompleterUtil import Completer
 
 class CardControlerTab:
@@ -387,20 +387,13 @@ class cardDetailTab(
             font.setPointSize(14)
             editor.setFont(font)
             editor.setTabStopWidth(16)
-        from visualizationSrc.Util.TextEditorUtil import TextEditor
-        def QTextEditToTextEditor(parent,mQTextEdit):
-            parent.removeWidget(mQTextEdit);mQTextEdit.setParent(None)
-            mQTextEdit.deleteLater();del mQTextEdit
-            mQTextEdit = TextEditor()
-            parent.addWidget(mQTextEdit)
+        def QTextEditToTextEditor(mQTextEdit):
             initFont(mQTextEdit)
-
             mQTextEdit.set_completer(self._completer.completer)
             mQTextEdit.HL = HighLighter(mQTextEdit.document())
             return mQTextEdit
-
-        self.CM_codeSource = QTextEditToTextEditor(self.CM_codeSource_L,self.CM_codeSource)
-        self.CM_remapCodeSource = QTextEditToTextEditor(self.CM_remapCodeSource_L,self.CM_remapCodeSource)
+        self.CM_codeSource = QTextEditToTextEditor(self.CM_codeSource)
+        self.CM_remapCodeSource = QTextEditToTextEditor(self.CM_remapCodeSource)
     def _initClick(self):
         mainWindow = self._CCT.mainWindow
         cardControler = self._CCT.cardControler
@@ -409,7 +402,8 @@ class cardDetailTab(
                 # 复制选择card art到指定cardArt目录中
                 import os, shutil
                 from ..Util.frozenDir import appPath
-                if os.path.isfile(self.selCardArtImg.path):
+                if os.path.isfile(self.selCardArtImg.path) \
+                        and self.selCardArtImg.path != appPath() + "/CardArt/" + str(self.cardId) + ".png":
                     shutil.copyfile(self.selCardArtImg.path, appPath() + "/CardArt/" + str(self.cardId) + ".png")
             if self.cardDict["id"] == "newCard":
                 newCard = cardControler.addCard(**self.getCard().toDict())

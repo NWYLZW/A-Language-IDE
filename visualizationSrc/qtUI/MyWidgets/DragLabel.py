@@ -18,6 +18,7 @@ class DragLabel(QLabel):
         self._path = ""
         self._fill = True
         self.endswith = ".png"
+    def _DragEndCallback(self): pass
     def setEndswith(self,endswith:str=".png"):
         self.endswith = endswith
     def setDragEndCallback(self,DragEndCallback):
@@ -29,8 +30,7 @@ class DragLabel(QLabel):
             e.ignore()
     def dropEvent(self, e):
         self.path = e.mimeData().text().replace('file:///', '')
-        try: self._DragEndCallback()
-        except Exception as e:print(e)
+        self._DragEndCallback()
     def _showImg(self):
         if self.path == "":return
         try:

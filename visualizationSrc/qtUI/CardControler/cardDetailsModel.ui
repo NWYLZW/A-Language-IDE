@@ -97,7 +97,7 @@ QLineEdit:hover{
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="CMT_baseSetting">
          <attribute name="title">
@@ -756,7 +756,7 @@ QPushButton:hover{
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="CodeTab">
          <attribute name="title">
@@ -788,7 +788,7 @@ QPushButton:hover{
             <number>10</number>
            </property>
            <item>
-            <widget class="QTextEdit" name="CM_codeSource">
+            <widget class="CodeTextEditor" name="CM_codeSource">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -834,7 +834,7 @@ p, li { white-space: pre-wrap; }
             <number>10</number>
            </property>
            <item>
-            <widget class="QTextEdit" name="CM_remapCodeSource">
+            <widget class="CodeTextEditor" name="CM_remapCodeSource">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -1021,6 +1021,11 @@ p, li { white-space: pre-wrap; }
    <class>DragLabel</class>
    <extends>QLabel</extends>
    <header>..MyWidgets.DragLabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CodeTextEditor</class>
+   <extends>QTextEdit</extends>
+   <header>..MyWidgets.CodeTextEditor.h</header>
   </customwidget>
  </customwidgets>
  <resources>
