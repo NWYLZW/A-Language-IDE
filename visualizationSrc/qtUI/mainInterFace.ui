@@ -240,6 +240,12 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
      </item>
      <item>
       <widget class="QTabWidget" name="ContentTabList">
+       <property name="maximumSize">
+        <size>
+         <width>1160</width>
+         <height>660</height>
+        </size>
+       </property>
        <property name="styleSheet">
         <string notr="true">QTextBrowser{
 	background-repeat: no-repeat;

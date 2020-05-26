@@ -13,8 +13,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_main(object):
     def setupUi(self, main):
         main.setObjectName("main")
-        main.resize(1149, 668)
-        main.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        main.resize(1160, 630)
+        main.setMaximumSize(QtCore.QSize(1160, 630))
         main.setStyleSheet("#Form{\n"
 "    padding:10px;\n"
 "}\n"
@@ -64,8 +64,8 @@ class Ui_main(object):
 "    background: none;\n"
 "}")
         self.CardControler_Tabs = QtWidgets.QTabWidget(main)
-        self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1141, 651))
-        self.CardControler_Tabs.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.CardControler_Tabs.setGeometry(QtCore.QRect(0, 0, 1160, 631))
+        self.CardControler_Tabs.setMaximumSize(QtCore.QSize(1160, 16777215))
         self.CardControler_Tabs.setStyleSheet("#toFirstBtn{\n"
 "    border-image: url(:/ico/Data/qrc/ico/first.png);\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
@@ -86,24 +86,28 @@ class Ui_main(object):
         self.CardList = QtWidgets.QWidget()
         self.CardList.setObjectName("CardList")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.CardList)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1111, 651))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1131, 631))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
         self.verticalLayout_2.setSpacing(10)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.Search = QtWidgets.QHBoxLayout()
-        self.Search.setSpacing(10)
+        self.Search.setSpacing(0)
         self.Search.setObjectName("Search")
         self.Search_Input = QtWidgets.QLineEdit(self.verticalLayoutWidget_2)
+        self.Search_Input.setMinimumSize(QtCore.QSize(400, 0))
+        self.Search_Input.setMaximumSize(QtCore.QSize(400, 16777215))
         self.Search_Input.setStyleSheet("#Search_Input{\n"
 "    margin: 5px;\n"
 "    padding: 5px;\n"
 "    border: 1px solid gray;\n"
-"    border-radius: 10px;\n"
+"    border-radius: 5px;\n"
 "}")
         self.Search_Input.setObjectName("Search_Input")
         self.Search.addWidget(self.Search_Input)
+        spacerItem = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.Search.addItem(spacerItem)
         self.horizontalWidget_4 = QtWidgets.QWidget(self.verticalLayoutWidget_2)
         self.horizontalWidget_4.setStyleSheet("QPushButton{\n"
 "    background: rgba(255, 255, 255, 0);\n"
@@ -174,14 +178,21 @@ class Ui_main(object):
         self.btnList.addWidget(self.pushToExcel)
         self.Search.addWidget(self.horizontalWidget_4)
         self.Search.setStretch(0, 1)
-        self.Search.setStretch(1, 2)
+        self.Search.setStretch(2, 2)
         self.verticalLayout_2.addLayout(self.Search)
         self.cardScroll = QtWidgets.QScrollArea(self.verticalLayoutWidget_2)
-        self.cardScroll.setStyleSheet("")
+        self.cardScroll.setStyleSheet("#cardScroll{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"#cardScrollWidget{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}")
         self.cardScroll.setWidgetResizable(True)
         self.cardScroll.setObjectName("cardScroll")
         self.cardScrollWidget = QtWidgets.QWidget()
-        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1079, 2000))
+        self.cardScrollWidget.setGeometry(QtCore.QRect(0, 0, 1099, 2000))
         self.cardScrollWidget.setMinimumSize(QtCore.QSize(0, 2000))
         self.cardScrollWidget.setObjectName("cardScrollWidget")
         self.cardScroll.setWidget(self.cardScrollWidget)
@@ -189,8 +200,8 @@ class Ui_main(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem = QtWidgets.QSpacerItem(600, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
+        spacerItem1 = QtWidgets.QSpacerItem(600, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(5, 0, 0, 0)
         self.verticalLayout.setSpacing(0)

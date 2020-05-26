@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1149</width>
-    <height>668</height>
+    <width>1160</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>16777215</height>
+    <width>1160</width>
+    <height>630</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -74,13 +74,13 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1141</width>
-     <height>651</height>
+     <width>1160</width>
+     <height>631</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
-     <width>16777215</width>
+     <width>1160</width>
      <height>16777215</height>
     </size>
    </property>
@@ -130,8 +130,8 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1111</width>
-       <height>651</height>
+       <width>1131</width>
+       <height>631</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -151,24 +151,49 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
        <number>10</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="Search" stretch="1,2">
+       <layout class="QHBoxLayout" name="Search" stretch="1,0,2">
         <property name="spacing">
-         <number>10</number>
+         <number>0</number>
         </property>
         <item>
          <widget class="QLineEdit" name="Search_Input">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>400</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">#Search_Input{
 	margin: 5px;
 	padding: 5px;
 	border: 1px solid gray;
-	border-radius: 10px;
+	border-radius: 5px;
 }</string>
           </property>
           <property name="placeholderText">
            <string>搜索想查找的卡牌的名字(回车搜索)</string>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>400</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QWidget" name="horizontalWidget_4" native="true">
@@ -333,7 +358,14 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
       <item>
        <widget class="QScrollArea" name="cardScroll">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">#cardScroll{
+	background-color: rgba(255, 255, 255, 0);
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+#cardScrollWidget{
+	background-color: rgba(255, 255, 255, 0);
+}</string>
         </property>
         <property name="widgetResizable">
          <bool>true</bool>
@@ -343,7 +375,7 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>1079</width>
+           <width>1099</width>
            <height>2000</height>
           </rect>
          </property>

@@ -118,6 +118,7 @@ class Ui_MainWindow(object):
         self.HeadToolBar.setStretch(2, 1)
         self.Interface.addLayout(self.HeadToolBar)
         self.ContentTabList = QtWidgets.QTabWidget(self.verticalLayoutWidget)
+        self.ContentTabList.setMaximumSize(QtCore.QSize(1160, 660))
         self.ContentTabList.setStyleSheet("QTextBrowser{\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
