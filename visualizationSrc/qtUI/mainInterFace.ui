@@ -91,45 +91,56 @@ QTabBar::close-button:hover{
       <number>10</number>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="HeadToolBar" stretch="10,1">
+      <layout class="QHBoxLayout" name="HeadToolBar" stretch="1,0,1">
        <property name="spacing">
         <number>0</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" name="top_right" stretch="1">
+        <layout class="QHBoxLayout" name="top_right" stretch="0,0">
          <property name="spacing">
           <number>0</number>
          </property>
          <item>
-          <widget class="QTextBrowser" name="EXETitle">
+          <widget class="QGraphicsView" name="graphicsView">
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
-             <height>24</height>
+             <width>20</width>
+             <height>20</height>
             </size>
            </property>
-           <property name="cursor" stdset="0">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
            <property name="styleSheet">
-            <string notr="true">#EXETitle{
-	border: none;
-	background-color: rgba(255, 255, 255, 0);
-}</string>
+            <string notr="true">border:none;
+border-image: url(:/picture/Data/qrc/tetra.png);</string>
            </property>
-           <property name="html">
-            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;AL-IDE 1.0.0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="EXETitle">
+           <property name="font">
+            <font>
+             <family>Adobe 黑体 Std R</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>AL-IDE_1.0.0.0</string>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>800</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <layout class="QHBoxLayout" name="top_left">
