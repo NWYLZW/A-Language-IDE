@@ -20,13 +20,7 @@ class Completer(object):
     """Comleter class to use in the query text editor."""
 
     def __init__(self):
-        """Initialize Completer class with the keywords and functions."""
-        with io.open(
-                tempPath()+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
-            lowercase_keywords = [k.rstrip().lower() for k in f.readlines()]
-            uppercase_keywords = [k.upper() for k in lowercase_keywords]
-            titlecase_keywords = [k.title() for k in lowercase_keywords]
-
+        """Initialize Completer class with the functions."""
         with io.open(
                 tempPath()+r'\visualizationSrc\Data\completer_data\functions.txt', 'r', encoding='utf-8') as f:
             titlecase_funcs = [f.rstrip() for f in f.readlines()]
@@ -34,9 +28,6 @@ class Completer(object):
             lowercase_funcs = [f.lower() for f in titlecase_funcs]
 
         all_keywords_and_funcs = [
-            lowercase_keywords,
-            uppercase_keywords,
-            titlecase_keywords,
             lowercase_funcs,
             uppercase_funcs,
             titlecase_funcs,

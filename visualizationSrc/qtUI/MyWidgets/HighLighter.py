@@ -20,9 +20,14 @@ class HighLighter(QSyntaxHighlighter):
         """Initialize Highlighter with basic highlight options."""
         super(HighLighter, self).__init__(parent)
 
-        self.setHighlightRulesKeywords()
+        self.highlight_rules = []
+
+        # self.setHighlightRulesKeywords()
         self.setHighlightRulesNumeric()
         self.setHighlightRulesComments()
+        self.setHighlightRulesBrackets()
+        self.setHighlightRulesVar()
+        self.setHighlightRulesObj()
         self.setHighlightRulesTODO()
         self.setHighlightRulesSTR()
         self.setHighlightRulesFunction()
@@ -32,24 +37,23 @@ class HighLighter(QSyntaxHighlighter):
         self.comment_start_expression = QRegExp('/\*')
         self.comment_end_expression = QRegExp('\*/')
         return
-    def setHighlightRulesKeywords(self):
-        """关键词代码高亮"""
-        keyword_format = QTextCharFormat()
-        keyword_format.setForeground(Qt.darkBlue)
-        keyword_format.setFontWeight(QFont.Bold)
-        with io.open(
-                tempPath()+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
-            self.plain_keywords = [k.rstrip() for k in f.readlines()]
-        keyword_patterns = [
-            '\\b{0}\\b'.format(plain_keyword)
-            for plain_keyword in self.plain_keywords
-        ]
-
-        self.highlight_rules = []
-        for pattern in keyword_patterns:
-            regexp = QRegExp(pattern)
-            regexp.setCaseSensitivity(Qt.CaseInsensitive)
-            self.highlight_rules.append((regexp, keyword_format))
+    # def setHighlightRulesKeywords(self):
+    #     """关键词代码高亮"""
+    #     keyword_format = QTextCharFormat()
+    #     keyword_format.setForeground(Qt.darkBlue)
+    #     keyword_format.setFontWeight(QFont.Bold)
+    #     with io.open(
+    #             tempPath()+r'\visualizationSrc\Data\completer_data\keywords.txt', 'r', encoding='utf-8') as f:
+    #         self.plain_keywords = [k.rstrip() for k in f.readlines()]
+    #     keyword_patterns = [
+    #         '\\b{0}\\b'.format(plain_keyword)
+    #         for plain_keyword in self.plain_keywords
+    #     ]
+    #
+    #     for pattern in keyword_patterns:
+    #         regexp = QRegExp(pattern)
+    #         regexp.setCaseSensitivity(Qt.CaseInsensitive)
+    #         self.highlight_rules.append((regexp, keyword_format))
     def setHighlightRulesNumeric(self):
         """数字代码高亮"""
         numeric_format = QTextCharFormat()
@@ -63,12 +67,44 @@ class HighLighter(QSyntaxHighlighter):
         self.highlight_rules.append((QRegExp('//.*'),
                                      single_line_comment_format))
         return
+    def setHighlightRulesVar(self):
+        """变量高亮"""
+        format = QTextCharFormat()
+        format.setFontItalic(True)
+        format.setFontWeight(QFont.Bold)
+        format.setForeground(QColor(177, 84, 176))
+        self.highlight_rules.append((QRegExp('\$[a-z|A-Z][a-z|A-Z|0-9]*'),
+                                     format))
+        return
+    def setHighlightRulesObj(self):
+        """对象高亮"""
+        format = QTextCharFormat()
+        format.setFontItalic(True)
+        format.setFontWeight(QFont.Bold)
+        format.setForeground(QColor(29, 116, 217))
+        self.highlight_rules.append((QRegExp('[a-z|A-Z][a-z|A-Z|0-9]*\.'),
+                                     format))
+        return
+    def setHighlightRulesBrackets(self):
+        """括号高亮"""
+        format = QTextCharFormat()
+        format.setForeground(QColor(87, 144, 201))
+        self.highlight_rules.append((QRegExp(
+            '\{|\[|\(|'+
+            '\}|\]|\)'),format))
+        return
     def setHighlightRulesTODO(self):
         """TODO代码高亮"""
         single_line_comment_format = QTextCharFormat()
         single_line_comment_format.setForeground(QColor(0, 121, 196))
         self.highlight_rules.append((QRegExp('// TODO.*'),
                                      single_line_comment_format))
+        return
+    def setHighlightRulesSTR(self):
+        quote_format = QTextCharFormat()
+        quote_format.setForeground(QColor(0, 127, 132))
+        self.highlight_rules.append((QRegExp('\".*\"'), quote_format))
+        self.highlight_rules.append((QRegExp('\'.*\''), quote_format))
         return
     def setHighlightRulesFunction(self):
         """函数代码高亮"""
@@ -77,12 +113,6 @@ class HighLighter(QSyntaxHighlighter):
         function_format.setForeground(QColor(237, 162, 0))
         self.highlight_rules.append((QRegExp('\\b[A-Za-z0-9_]+:'),
                                      function_format))
-    def setHighlightRulesSTR(self):
-        quote_format = QTextCharFormat()
-        quote_format.setForeground(QColor(0, 127, 132))
-        self.highlight_rules.append((QRegExp('\".*\"'), quote_format))
-        self.highlight_rules.append((QRegExp('\'.*\''), quote_format))
-        return
     def highlightBlock(self, text):  # noqa: N802
         """Reimplementation of the built-in method."""
         for pattern, format_ in self.highlight_rules:

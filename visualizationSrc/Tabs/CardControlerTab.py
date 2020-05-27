@@ -368,14 +368,16 @@ class cardDetailTab(
                 self.selCardArtImg.setStyleSheet("")
     def _initTextEditor(self):
         def initFont(editor):
-            from PyQt5.QtGui import QFont
+            from PyQt5.QtGui import QFont,QFontMetrics
             editor.setPlainText('')
             font = editor.font()
             font.setFamily('Consolas')
             font.setStyleHint(QFont.Monospace)
             font.setPointSize(14)
             editor.setFont(font)
-            editor.setTabStopWidth(16)
+
+            metrics = QFontMetrics(editor.font())
+            editor.setTabStopWidth(metrics.width(' ')*4)
         def QTextEditToTextEditor(mQTextEdit):
             initFont(mQTextEdit)
             mQTextEdit.set_completer(Completer().completer)

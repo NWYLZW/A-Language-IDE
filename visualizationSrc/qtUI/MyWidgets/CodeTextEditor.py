@@ -78,7 +78,7 @@ class CodeTextEditor(QTextEdit):
         extra_length = len(completion) - len(self._completer.completionPrefix())
         cur.movePosition(QTextCursor.Left)
         cur.movePosition(QTextCursor.EndOfWord)
-        cur.insertText(completion[-extra_length:])
+        cur.insertText(completion[-extra_length:]+':')
         self.setTextCursor(cur)
     def get_text_under_cursor(self):
         """Get the text currently under cursor."""
@@ -113,13 +113,22 @@ class CodeTextEditor(QTextEdit):
         return
     def keyPressEvent(self, evt):  # noqa: N802
         """Override built-in method to handle user pressing keys."""
-        # 自动生成括号
-        if evt.key() == Qt.Key_ParenLeft:
-            self.insertPlainText("()");return
-        if evt.key() == Qt.Key_BracketLeft:
-            self.insertPlainText("[]");return
-        if evt.key() == Qt.Key_BraceLeft:
-            self.insertPlainText("{}");return
+        brackets = [[
+            Qt.Key_ParenLeft,
+            Qt.Key_BracketLeft,
+            Qt.Key_BraceLeft,],["()","[]","{}"]]
+        for i in range(len(brackets[0])):
+            if evt.key() == brackets[0][i]:
+                self.insertPlainText(brackets[1][i])
+                cursor = self.textCursor()
+                cursor.movePosition(QTextCursor.Left)
+                self.setTextCursor(cursor)
+                return
+        # 忽略印卡快捷键
+        if evt.key() == Qt.Key_1:
+            if QApplication.keyboardModifiers() == Qt.AltModifier:
+                evt.ignore();return
+
         if self._completer is not None and self._completer.popup().isVisible():
             if evt.key() in self.keys_to_ignore:
                 evt.ignore()
