@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1150</width>
+    <height>630</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1151</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="MainL" stretch="0,0">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QScrollArea" name="tabsScrollArea">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tabsScrollArea{
+	border: none;
+	border-right: 1px solid gray;
+    background-color: rgba(255, 255, 255);
+}
+QScrollBar:vertical
+{
+    background-color: rgba(255, 255, 255);
+    width: 6px;
+    margin: 0px;
+    border: none;
+}
+QScrollBar::handle:vertical
+{
+    background-color: rgb(216, 216, 216);
+    min-height: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:vertical:hover
+{
+    background-color: rgb(181, 181, 181);
+}
+QScrollBar::sub-line:vertical
+,QScrollBar::add-line:vertical
+{
+    margin: 0px;
+    height: 0;
+}
+QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
+,QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
+{
+    height: 0px;
+    width: 0px;
+}
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical
+,QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+{
+    background: none;
+}</string>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="tabsScrollAreaWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>150</width>
+         <height>629</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="mainContent"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
