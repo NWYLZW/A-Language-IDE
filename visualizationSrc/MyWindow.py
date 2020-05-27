@@ -28,7 +28,7 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
     def initContentTabList(self):
         try:
             from .Controler.ContentTabListControler import ContentTabList
-            ContentTabList(self,self)
+            ContentTabList(self)
         except Exception as e:log.record(logLevel.ERROR, 'MyWindow.__init__', e)
     def initToolBar(self):
         from PyQt5 import QtCore

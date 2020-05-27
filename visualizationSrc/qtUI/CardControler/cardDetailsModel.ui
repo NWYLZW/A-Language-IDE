@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1120</width>
-    <height>640</height>
+    <width>1000</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -63,8 +63,8 @@ QLineEdit:hover{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1121</width>
-     <height>641</height>
+     <width>1001</width>
+     <height>611</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="CM_addNewCard" stretch="1,2">
@@ -133,10 +133,10 @@ QLineEdit:hover{
            <widget class="QWidget" name="verticalLayoutWidget">
             <property name="geometry">
              <rect>
-              <x>-1</x>
-              <y>-1</y>
-              <width>353</width>
-              <height>601</height>
+              <x>0</x>
+              <y>0</y>
+              <width>311</width>
+              <height>561</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,1">
@@ -425,8 +425,8 @@ QLineEdit:hover{
                   <rect>
                    <x>10</x>
                    <y>10</y>
-                   <width>310</width>
-                   <height>301</height>
+                   <width>271</width>
+                   <height>261</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -443,8 +443,8 @@ QLineEdit:hover{
                   <rect>
                    <x>10</x>
                    <y>10</y>
-                   <width>310</width>
-                   <height>301</height>
+                   <width>271</width>
+                   <height>261</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -461,7 +461,7 @@ QLineEdit:hover{
         </widget>
         <widget class="QWidget" name="CMT_greateSetting">
          <property name="styleSheet">
-          <string notr="true">QScrollBar:horizontal
+          <string notr="true">QScrollBar
 {
     height: 8px;
     margin: 0px;
@@ -469,18 +469,19 @@ QLineEdit:hover{
     border-radius: 4px;
     background-color: rgb(200,200,200);
 }
-QScrollBar::handle:horizontal
+QScrollBar::handle
 {
     background-color: rgb(100,100,100);
     min-width: 5px;
     border-radius: 4px;
 }
-QScrollBar::handle:horizontal:hover
+QScrollBar::handle:hover
 {
     background-color: rgb(150,150,150);
 }
-QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal,
-QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+QScrollBar::right-arrow, QScrollBar::left-arrow,
+QScrollBar::add-line, QScrollBar::sub-line
+{
     border: none;background: none;color: none;
 }</string>
          </property>
@@ -492,8 +493,8 @@ QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>351</width>
-            <height>601</height>
+            <width>311</width>
+            <height>571</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,1">
@@ -591,7 +592,7 @@ QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
+                  <width>287</width>
                   <height>98</height>
                  </rect>
                 </property>
@@ -653,7 +654,7 @@ QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
+                  <width>287</width>
                   <height>98</height>
                  </rect>
                 </property>
@@ -667,7 +668,7 @@ QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
              <widget class="QPushButton" name="deleteSelCardArt">
               <property name="geometry">
                <rect>
-                <x>280</x>
+                <x>240</x>
                 <y>0</y>
                 <width>51</width>
                 <height>51</height>
@@ -696,14 +697,14 @@ QPushButton:hover{
                <rect>
                 <x>60</x>
                 <y>0</y>
-                <width>200</width>
-                <height>200</height>
+                <width>160</width>
+                <height>160</height>
                </rect>
               </property>
               <property name="minimumSize">
                <size>
-                <width>200</width>
-                <height>200</height>
+                <width>160</width>
+                <height>160</height>
                </size>
               </property>
               <property name="maximumSize">
@@ -767,8 +768,8 @@ QPushButton:hover{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>721</width>
-            <height>551</height>
+            <width>641</width>
+            <height>521</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="CM_codeSource_L">
@@ -813,8 +814,8 @@ p, li { white-space: pre-wrap; }
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>721</width>
-            <height>551</height>
+            <width>641</width>
+            <height>521</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="CM_remapCodeSource_L">

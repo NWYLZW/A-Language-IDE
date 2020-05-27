@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1120, 640)
+        Form.resize(1000, 610)
         Form.setMinimumSize(QtCore.QSize(0, 0))
         Form.setStyleSheet("QPushButton{\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
@@ -53,7 +53,7 @@ class Ui_Form(object):
 "    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
 "}")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Form)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1121, 641))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1001, 611))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.CM_addNewCard = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.CM_addNewCard.setContentsMargins(0, 0, 0, 0)
@@ -77,7 +77,7 @@ class Ui_Form(object):
         self.scrollAreaWidgetContents.setMaximumSize(QtCore.QSize(359, 599))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.scrollAreaWidgetContents)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, -1, 353, 601))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 311, 561))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_2.setContentsMargins(10, 10, 10, 10)
@@ -222,14 +222,14 @@ class Ui_Form(object):
         self.cardDes_Tab = QtWidgets.QWidget()
         self.cardDes_Tab.setObjectName("cardDes_Tab")
         self.CM_description = QtWidgets.QTextEdit(self.cardDes_Tab)
-        self.CM_description.setGeometry(QtCore.QRect(10, 10, 310, 301))
+        self.CM_description.setGeometry(QtCore.QRect(10, 10, 271, 261))
         self.CM_description.setStyleSheet("")
         self.CM_description.setObjectName("CM_description")
         self.tabWidget_2.addTab(self.cardDes_Tab, "")
         self.cardStory_Tab = QtWidgets.QWidget()
         self.cardStory_Tab.setObjectName("cardStory_Tab")
         self.CM_story0 = QtWidgets.QTextEdit(self.cardStory_Tab)
-        self.CM_story0.setGeometry(QtCore.QRect(10, 10, 310, 301))
+        self.CM_story0.setGeometry(QtCore.QRect(10, 10, 271, 261))
         self.CM_story0.setStyleSheet("")
         self.CM_story0.setObjectName("CM_story0")
         self.tabWidget_2.addTab(self.cardStory_Tab, "")
@@ -238,7 +238,7 @@ class Ui_Form(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.CMT_settingTab.addTab(self.CMT_baseSetting, "")
         self.CMT_greateSetting = QtWidgets.QWidget()
-        self.CMT_greateSetting.setStyleSheet("QScrollBar:horizontal\n"
+        self.CMT_greateSetting.setStyleSheet("QScrollBar\n"
 "{\n"
 "    height: 8px;\n"
 "    margin: 0px;\n"
@@ -246,23 +246,24 @@ class Ui_Form(object):
 "    border-radius: 4px;\n"
 "    background-color: rgb(200,200,200);\n"
 "}\n"
-"QScrollBar::handle:horizontal\n"
+"QScrollBar::handle\n"
 "{\n"
 "    background-color: rgb(100,100,100);\n"
 "    min-width: 5px;\n"
 "    border-radius: 4px;\n"
 "}\n"
-"QScrollBar::handle:horizontal:hover\n"
+"QScrollBar::handle:hover\n"
 "{\n"
 "    background-color: rgb(150,150,150);\n"
 "}\n"
-"QScrollBar::right-arrow:horizontal, QScrollBar::left-arrow:horizontal,\n"
-"QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {\n"
+"QScrollBar::right-arrow, QScrollBar::left-arrow,\n"
+"QScrollBar::add-line, QScrollBar::sub-line\n"
+"{\n"
 "    border: none;background: none;color: none;\n"
 "}")
         self.CMT_greateSetting.setObjectName("CMT_greateSetting")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.CMT_greateSetting)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 351, 601))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 311, 571))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_3.setContentsMargins(10, 10, 10, 10)
@@ -299,7 +300,7 @@ class Ui_Form(object):
         self.betterSpread.setWidgetResizable(True)
         self.betterSpread.setObjectName("betterSpread")
         self.betterSpread_W = QtWidgets.QWidget()
-        self.betterSpread_W.setGeometry(QtCore.QRect(0, 0, 327, 98))
+        self.betterSpread_W.setGeometry(QtCore.QRect(0, 0, 287, 98))
         self.betterSpread_W.setObjectName("betterSpread_W")
         self.betterSpread.setWidget(self.betterSpread_W)
         self.verticalLayout_4.addWidget(self.betterSpread)
@@ -321,7 +322,7 @@ class Ui_Form(object):
         self.backgroundImgScroll.setWidgetResizable(True)
         self.backgroundImgScroll.setObjectName("backgroundImgScroll")
         self.backgroundImg_W = QtWidgets.QWidget()
-        self.backgroundImg_W.setGeometry(QtCore.QRect(0, 0, 327, 98))
+        self.backgroundImg_W.setGeometry(QtCore.QRect(0, 0, 287, 98))
         self.backgroundImg_W.setObjectName("backgroundImg_W")
         self.backgroundImgScroll.setWidget(self.backgroundImg_W)
         self.verticalLayout_7.addWidget(self.backgroundImgScroll)
@@ -329,7 +330,7 @@ class Ui_Form(object):
         self.setCardArdImg = QtWidgets.QWidget(self.verticalLayoutWidget_2)
         self.setCardArdImg.setObjectName("setCardArdImg")
         self.deleteSelCardArt = QtWidgets.QPushButton(self.setCardArdImg)
-        self.deleteSelCardArt.setGeometry(QtCore.QRect(280, 0, 51, 51))
+        self.deleteSelCardArt.setGeometry(QtCore.QRect(240, 0, 51, 51))
         self.deleteSelCardArt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.deleteSelCardArt.setStyleSheet("QPushButton{\n"
 "    border-image: url(:/ico/Data/qrc/ico/delete.png);\n"
@@ -340,8 +341,8 @@ class Ui_Form(object):
         self.deleteSelCardArt.setText("")
         self.deleteSelCardArt.setObjectName("deleteSelCardArt")
         self.selCardArtImg = DragLabel(self.setCardArdImg)
-        self.selCardArtImg.setGeometry(QtCore.QRect(60, 0, 200, 200))
-        self.selCardArtImg.setMinimumSize(QtCore.QSize(200, 200))
+        self.selCardArtImg.setGeometry(QtCore.QRect(60, 0, 160, 160))
+        self.selCardArtImg.setMinimumSize(QtCore.QSize(160, 160))
         self.selCardArtImg.setMaximumSize(QtCore.QSize(200, 200))
         self.selCardArtImg.setAcceptDrops(True)
         self.selCardArtImg.setStyleSheet("border-image: url(:/picture/Data/qrc/Unknown.png);")
@@ -364,7 +365,7 @@ class Ui_Form(object):
         self.CodeTab = QtWidgets.QWidget()
         self.CodeTab.setObjectName("CodeTab")
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.CodeTab)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(0, 0, 721, 551))
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(0, 0, 641, 521))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
         self.CM_codeSource_L = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
         self.CM_codeSource_L.setContentsMargins(10, 10, 10, 10)
@@ -378,7 +379,7 @@ class Ui_Form(object):
         self.RemapCode_Tab = QtWidgets.QWidget()
         self.RemapCode_Tab.setObjectName("RemapCode_Tab")
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.RemapCode_Tab)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, 0, 721, 551))
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, 0, 641, 521))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
         self.CM_remapCodeSource_L = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
         self.CM_remapCodeSource_L.setContentsMargins(10, 10, 10, 10)

@@ -11,74 +11,103 @@
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QTabBar, QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QCompleter, QApplication, QHBoxLayout, QLabel, \
     QGraphicsDropShadowEffect
 
 from .. import MyWindow
 from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
+from ..Helper.ListTabHelper import ListTabHelper
 from ..Helper.PageHelper import PageHelper
 from ..Util.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
 from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
+from ..Util.frozenDir import tempPath, appPath
 from ..Util.windowsHelp import openTetraProject
-from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardControler
-from visualizationSrc.qtUI.MyWidgets.HighLighter import HighLighter
+from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardLibWidget
+from ..qtUI.MyWidgets.HighLighter import HighLighter
 from ..Util.CompleterUtil import Completer
 
-class CardControlerTab:
-    def __init__(self,mainWindow:MyWindow.MyWindow):
+class CardControlerTab(ListTabHelper):
+    def __init__(self, mainWindow: MyWindow.MyWindow):
+        super().__init__(None)
         self.mainWindow = mainWindow
-
-        self.Widget = QWidget()
-        self.UI = cardControler.Ui_main()
-        self.UI.setupUi(self.Widget)
-
-        self.Tab = self.UI.CardControler_Tabs
-        self.CardList = self.UI.CardList
-        self.cardSelList = []
-        self.cardEditTabList = []
+        self._initData()
+        self._initTab()
+    def _initData(self):
         self.cardControler = CardControler()
+        self.CLT = cardLibTab(self)
+    def _initTab(self):
+        imgPath = tempPath()+"\\visualizationSrc\\Data\\qrc\\cardPkg.png"
+        self.addWidgetTab(
+            widget=self.CLT,
+            title="卡库",
+            content="当前卡库共有"+str(len(self.cardControler.getCardList()))+"张卡牌",
+            icoImage=QPixmap(imgPath),
+            isShowClose=False,
+        )
+        self.setCurrentIndex(0)
+    def _addCardDatailTab(self, cardDict):
+        if cardDict != "newCard":
+            index = self.addWidgetTab(
+                widget=cardDetailTab(self,cardDict),
+                title= cardDict['displayName']+'(ID:'+cardDict['id']+')',
+                content=cardDict['description'],
+                icoImage=QPixmap(appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'),
+                isShowClose=True,
+            )
+            return index
+        else:
+            index = self.addWidgetTab(
+                widget=cardDetailTab(self, {}),
+                title= "新建卡牌*",
+                content="还没有设置描述哦~",
+                icoImage=None,
+                isShowClose=True,
+            )
+            return index
+    def removeNewCardTab(self, newCardTabWidget):
+        self.removeWidgetTab(self.widgetIndex(newCardTabWidget))
+    def toCardDetailTab(self, cardDict):
+        return self.setCurrentIndex(self._addCardDatailTab(cardDict))
+    def _initClick(self):
+        pass
+
+class cardLibTab(QWidget,cardLibWidget.Ui_main):
+    def __init__(self, CCT: CardControlerTab):
+        super().__init__(None)
+        self.CCT = CCT
+        self.mainWindow = CCT.mainWindow
+        self.setupUi(self)
+        self._initData()
+
         try:
-            self.cardPC = cardPageControler(self.UI, self)
+            self.cardPC = cardPageControler(self)
             self.cardPC.toPage()
-        except Exception as e: mainWindow.showErr(
+        except Exception as e: self.mainWindow.showErr(
                 "获取列表发生了错误",
                 self.__class__.__name__,
                 str(e)
             );log.record(logLevel.ERROR, 'CardControlerTab.__init__', e)
 
-        self.initTab()
-        self.initClick()
-    def initTab(self):
-        self.Tab.tabBar().setTabButton(0,QTabBar.RightSide,None)
-        self.initTabClose()
-    def initTabClose(self):
-        def __closeTab(currentIndex):
-            currentQWidget = self.Tab.widget(currentIndex)
-            if currentQWidget == None: return
-            currentQWidget.deleteLater()
-            self.Tab.removeTab(currentIndex)
-            for cardEditTabDict in self.cardEditTabList:
-                if cardEditTabDict['index'] == currentIndex:
-                    self.cardEditTabList.remove(cardEditTabDict)
-                    break
-        self.Tab.tabCloseRequested.connect(__closeTab)
-    def initClick(self):
-        makeNewCardBtn = self.UI.makeNewCard
+        self._initClick()
+    def _initData(self):
+        self.cardSelList = []
+    def _initClick(self):
+        makeNewCardBtn = self.makeNewCard
         def makeNewCard():
             self.toCardDetailTab("newCard")
         makeNewCardBtn.clicked.connect(makeNewCard)
 
-        Search_Input = self.UI.Search_Input
+        Search_Input = self.Search_Input
         Search_Input\
             .setCompleter(
-            QCompleter([card['displayName'] for card in self.cardControler.getCardList()])
+            QCompleter([card['displayName'] for card in self.CCT.cardControler.getCardList()])
         )
         Search_Input.returnPressed.connect(lambda : self.cardPC.filter(Search_Input.text()))
 
-        delBtn = self.UI.delSelCard
+        delBtn = self.delSelCard
         def delSelCard():
             if len(self.cardSelList)==0:
                 self.mainWindow.showWarn(
@@ -88,8 +117,8 @@ class CardControlerTab:
                 );return
             tempList = []
             for cardId in self.cardSelList:
-                tempList.append(self.cardControler.getCardById(cardId))
-                self.cardControler.delCardById(cardId)
+                tempList.append(self.CCT.cardControler.getCardById(cardId))
+                self.CCT.cardControler.delCardById(cardId)
             self.cardSelList = []
             self.cardPC.toPage()
             self.mainWindow.showInfo(
@@ -101,53 +130,17 @@ class CardControlerTab:
                 ])
             )
         delBtn.clicked.connect(delSelCard)
-
-    def removeNewCardTab(self):
-        currentQWidget = self.newCardEditTabDict['tab']
-        currentQWidget.deleteLater()
-        self.Tab.removeTab(self.newCardEditTabDict['index'])
-        self.cardEditTabList.remove(self.newCardEditTabDict)
-        self.newCardEditTabDict = None
-        return
-    def toCardDetailTab(self, cardId, cradItem=None):
-        for cardEditTabItem in self.cardEditTabList:
-            if cardEditTabItem["id"]==cardId:
-                self.Tab \
-                    .addTab(cardEditTabItem["tab"], cardEditTabItem['displayName']+'('+cardEditTabItem['id']+')')
-                self.Tab.setCurrentWidget(cardEditTabItem["tab"])
-                return
-        if cardId != "newCard":
-            card = self.cardControler.getCardById(cardId)
-        else:
-            card = {
-                "id":"newCard",
-                "displayName":"无名",}
-
-        cardEditTabWidget = cardDetailTab(
-            parent=None,CCT=self,initCardDict=card,
-            cradItem=cradItem
-        )
-        cardEditTabDict = {
-            "tab":cardEditTabWidget,
-            "id":cardId,
-            "displayName":card['displayName'],
-        }
-        self.cardEditTabList.append(cardEditTabDict)
-        cardEditTabDict['index'] = self.Tab\
-            .addTab(cardEditTabWidget,card['displayName']+'('+card['id']+')')
-        self.Tab.setCurrentWidget(cardEditTabWidget)
-        if cardId == "newCard":
-            self.newCardEditTabDict = cardEditTabDict
-        cardEditTabDict['cardDetail_C'] = cardEditTabWidget
+    def toCardDetailTab(self, cardDict):
+        return self.CCT.toCardDetailTab(cardDict)
 
 class cardPageControler(PageHelper):
-    def __init__(self, UI, CCT):
-        super().__init__(UI, 30)
-        self._CCT = CCT
-        self._initScrollArea(UI.cardScroll)
+    def __init__(self, CLT:cardLibTab):
+        super().__init__(CLT, 30)
+        self.CLT = CLT
+        self._initScrollArea(CLT.cardScroll)
     def dataList(self):
         if not self._isFilter:
-            self._cardList = self._CCT.cardControler.getCardList()
+            self._cardList = self.CLT.CCT.cardControler.getCardList()
             return self._cardList
         else:
             newCardList = []
@@ -158,9 +151,8 @@ class cardPageControler(PageHelper):
     def _generatePage(self,newDataList):
         for index in range(len(newDataList)):
             card = newDataList[index]
-            cardItemEle = cradItem_C()
-            cardItemEle.setCardControlerTab(self._CCT)
-            cardItemEle.refeshData(card,card.get('id','newCard') in self._CCT.cardSelList)
+            cardItemEle = scrollCradItem(self.CLT)
+            cardItemEle.refeshData(card, card.get('id','newCard') in self.CLT.cardSelList)
             if index%3 == 0:
                 tempHL = QHBoxLayout()
                 tempHL.cardItemEleList = []
@@ -170,79 +162,58 @@ class cardPageControler(PageHelper):
             tempHL.addWidget(cardItemEle)
             tempHL.cardItemEleList.append(cardItemEle)
 
-class cradItem_C(
+class scrollCradItem(
     cardItemModel.Ui_main,
     QWidget
 ):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, CLT:cardLibTab=None):
+        super().__init__(None)
+        self.CLT = CLT
+        self._initData()
+
+        self.setupUi(self)
+        self._initUI()
+        self._initClick()
+    def _initData(self):
         self.WIDTH = 470;self.HEIGHT = 370
         self.BlurRadius = 10
         self.isSel = False
         self.isShowDetails = False
         self.clipboard = QApplication.clipboard()
-        self.setupUi(self)
-        self._initUI()
-        self._initClick()
-    def setCardControlerTab(self,CCT:CardControlerTab):
-        self.CCT = CCT
-    def refeshData(self,cardDict:dict,isSel:bool=None):
-        if self.CCT == None:
-            raise ValueError("未设置CCT")
-        self.cardDict = cardDict
-        if isSel: self.isSel = isSel
-
-        self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
-        self.price.setText(cardDict['price'])
-        self.description.setText(cardDict['description'])
-        self.description.setReadOnly(True)
-        self.story.setText(cardDict['story'])
-        self.story.setReadOnly(True)
-        import os
-        from ..Util.frozenDir import appPath
-        backgroundImgPath = appPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
-        cardArtImgPath = appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
-        if os.path.exists(backgroundImgPath):
-            try:
-                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
-                # QPixmap图片大小自适应
-                self.backgroundImg.setScaledContents(True)
-                self.backgroundImg.setStyleSheet("border-image: none;")
-            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData backgroundImg', e)
-        if os.path.exists(cardArtImgPath):
-            try:
-                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(80,80))
-                self.cardArt.setStyleSheet("border-image: none;")
-            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData cardArt', e)
-        if self.isSel:
-            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
-        else:
-            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
+    def _initUI(self):
+        # 背景透明
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
+        # 添加阴影
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(self.BlurRadius)
+        effect.setOffset(0, 0)
+        effect.setColor(Qt.gray)
+        self.setGraphicsEffect(effect)
     def _initClick(self):
         def clickCardItem(tag):
             def __clickCardItem():
                 if tag == 'edit':
-                    self.CCT.toCardDetailTab(self.cardDict['id'],self)
+                    self.index = self.CLT.toCardDetailTab(self.cardDict)
                 elif tag == 'sel':
                     self.isSel = not self.isSel
                     if self.isSel:
-                        self.CCT.cardSelList.append(self.cardDict['id'])
+                        self.CLT.cardSelList.append(self.cardDict['id'])
                     else:
-                        self.CCT.cardSelList.remove(self.cardDict['id'])
+                        self.CLT.cardSelList.remove(self.cardDict['id'])
                     self.refeshData(self.cardDict,self.isSel)
                 elif tag == 'print':
                     self.printCard()
                 elif tag == 'import':
                     importDict = importCard(self.clipboard.text())
                     if importDict == {}:
-                        self.CCT.mainWindow.showWarn(
+                        self.CLT.mainWindow.showWarn(
                             "导入卡牌",
                             self.__class__.__name__,
                             "导入名称为:" + str(importDict.get('displayName', '无名'))+
                             "\n发生了错误，请检验剪切板字符串格式(win + v)"
                         )
                     else:
-                        self.CCT.mainWindow.showInfo(
+                        self.CLT.mainWindow.showInfo(
                             "导入卡牌",
                             self.__class__.__name__,
                             "导入名称为:" + str(importDict.get('displayName', '无名'))+
@@ -251,7 +222,7 @@ class cradItem_C(
                         importDict['id'] = self.cardDict.get('id','100000000')
                         self.refeshData(importDict)
                         try:
-                            self.CCT.cardControler.updataCard(**importDict)
+                            self.CLT.cardControler.updataCard(**importDict)
                             # 记录导入卡牌数据至用户数据中
                             u = UserUtil()
                             if importDict.get("author","") == "": author = u.userName
@@ -262,7 +233,7 @@ class cradItem_C(
                         except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.clickCardItem', e)
                 elif tag == 'export':
                     self.clipboard.setText(exportCard(self.cardDict))
-                    self.CCT.mainWindow.showInfo(
+                    self.CLT.mainWindow.showInfo(
                         "导出卡牌",
                         self.__class__.__name__,
                         "导出名称为:" + str(self.cardDict.get('displayName', '无名'))+
@@ -285,6 +256,36 @@ class cradItem_C(
             self.details()
             self._initUI()
         self.detailsBTN.clicked.connect(showDetails)
+
+    def refeshData(self,cardDict:dict,isSel:bool=None):
+        self.cardDict = cardDict
+        if isSel: self.isSel = isSel
+
+        self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
+        self.price.setText(cardDict['price'])
+        self.description.setText(cardDict['description'])
+        self.description.setReadOnly(True)
+        self.story.setText(cardDict['story'])
+        self.story.setReadOnly(True)
+        import os
+        backgroundImgPath = appPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
+        cardArtImgPath = appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
+        if os.path.exists(backgroundImgPath):
+            try:
+                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
+                # QPixmap图片大小自适应
+                self.backgroundImg.setScaledContents(True)
+                self.backgroundImg.setStyleSheet("border-image: none;")
+            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData backgroundImg', e)
+        if os.path.exists(cardArtImgPath):
+            try:
+                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(80,80))
+                self.cardArt.setStyleSheet("border-image: none;")
+            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData cardArt', e)
+        if self.isSel:
+            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
+        else:
+            self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
     def details(self):
         if self.isShowDetails:
             self.setMinimumWidth(470)
@@ -293,18 +294,9 @@ class cradItem_C(
             self.setMinimumWidth(280)
             self.cardItem.setGeometry(10,10,260,340)
         self._initUI()
-    def _initUI(self):
-        # 背景透明
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
-        # 添加阴影
-        effect = QGraphicsDropShadowEffect(self)
-        effect.setBlurRadius(self.BlurRadius)
-        effect.setOffset(0, 0)
-        effect.setColor(Qt.gray)
-        self.setGraphicsEffect(effect)
     def printCard(self):
-        mainWindow = self.CCT.mainWindow
-        if self.CCT.cardControler.printCard(self.cardDict.get('id','newCard')):
+        mainWindow = self.CLT.mainWindow
+        if self.CLT.CCT.cardControler.printCard(self.cardDict.get('id', 'newCard')):
             mainWindow.showInfo(
                 "扩印卡牌",
                 self.__class__.__name__,
@@ -325,17 +317,14 @@ class cardDetailTab(
     QWidget
 ):
     def __init__(self,
-                 parent=None,
                  CCT:CardControlerTab=None,
-                 initCardDict:dict={},
-                 cradItem:cradItem_C=None
+                 cardDict={}
                  ):
-        super().__init__(parent)
+        super().__init__(None)
         self.setupUi(self)
-        self._CCT = CCT
-        self.cardDict = initCardDict
-        self.cradItem = cradItem
-        self._completer = Completer()
+        self.CCT = CCT
+        self.mainWindow = CCT.mainWindow
+        self.cardDict = cardDict
 
         self._initTextEditor()
         self._initComboCheckBox()
@@ -348,7 +337,7 @@ class cardDetailTab(
         if cardDict: self.cardDict = cardDict
         else:cardDict = self.cardDict
         self.cardId = cardDict.get('id','newCard')
-        if cardDict["id"] != "newCard":
+        if self.cardId != "newCard":
             self.CM_displayName.setText(cardDict['displayName'])
             if cardDict.get('price')=="":cardDict['price'] = "0"
             self.CM_price.setValue(int(cardDict.get('price','0')))
@@ -389,14 +378,13 @@ class cardDetailTab(
             editor.setTabStopWidth(16)
         def QTextEditToTextEditor(mQTextEdit):
             initFont(mQTextEdit)
-            mQTextEdit.set_completer(self._completer.completer)
+            mQTextEdit.set_completer(Completer().completer)
             mQTextEdit.HL = HighLighter(mQTextEdit.document())
-            return mQTextEdit
-        self.CM_codeSource = QTextEditToTextEditor(self.CM_codeSource)
-        self.CM_remapCodeSource = QTextEditToTextEditor(self.CM_remapCodeSource)
+        QTextEditToTextEditor(self.CM_codeSource)
+        QTextEditToTextEditor(self.CM_remapCodeSource)
     def _initClick(self):
-        mainWindow = self._CCT.mainWindow
-        cardControler = self._CCT.cardControler
+        mainWindow = self.CCT.mainWindow
+        cardControler = self.CCT.cardControler
         def __saveCard():
             def cpSelCardArtToModCardArt():
                 # 复制选择card art到指定cardArt目录中
@@ -405,7 +393,7 @@ class cardDetailTab(
                 if os.path.isfile(self.selCardArtImg.path) \
                         and self.selCardArtImg.path != appPath() + "/CardArt/" + str(self.cardId) + ".png":
                     shutil.copyfile(self.selCardArtImg.path, appPath() + "/CardArt/" + str(self.cardId) + ".png")
-            if self.cardDict["id"] == "newCard":
+            if self.cardDict == {}:
                 newCard = cardControler.addCard(**self.getCard().toDict())
                 if newCard!={}:
                     self.mainWindow.showInfo(
@@ -414,12 +402,11 @@ class cardDetailTab(
                         "成功新添ID为:"+str(newCard.get('id','newCard'))+",\n"+
                         "名称为:"+self.CM_displayName.text()+"的卡牌"
                     )
-                    self._CCT.cardPC.toPage(self._CCT.cardPC.pageCount - 1)
-                    self._CCT.removeNewCardTab()
-                    self._CCT.toCardDetailTab(str(newCard.get('id','newCard')))
+                    self.CCT.CLT.cardPC.toPage(self.CCT.CLT.cardPC.pageCount - 1)
+                    self.CCT.removeNewCardTab(self)
+                    self.CCT.toCardDetailTab(newCard)
 
                     cpSelCardArtToModCardArt()
-                    if self.cradItem: self.cradItem.refeshData(self.cardDict)
                     return True
                 else:
                     mainWindow.showWarn(
@@ -437,9 +424,8 @@ class cardDetailTab(
                         "修改ID为:" + self.cardId +",\n" +
                         "名称为:" + self.cardDict.get('displayName') + "成功"
                     )
-                    self._CCT.cardPC.toPage()
+                    self.CCT.CLT.cardPC.toPage()
                     cpSelCardArtToModCardArt()
-                    if self.cradItem: self.cradItem.refeshData(self.cardDict)
                     return True
                 else:
                     mainWindow.showWarn(

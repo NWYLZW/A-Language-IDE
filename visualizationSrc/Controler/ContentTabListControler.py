@@ -13,14 +13,12 @@ from PyQt5.QtWidgets import QTabBar
 from .. import MyWindow
 
 class ContentTabList():
-    def __init__(self,UI:MyWindow.MyWindow,mainWindow:MyWindow.MyWindow):
-        self.UI = UI
+    def __init__(self,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
-        self.ContentTabList = self.UI.ContentTabList
+        self.ContentTabList = self.mainWindow.ContentTabList
 
         from ..Tabs.HomeTab import Home
-        self.Home_C = Home(UI,mainWindow,self)
-
+        self.Home_C = Home(mainWindow,mainWindow,self)
         self._initTabs()
     def _initTab(self, TabName, TabCNName, widget):
         try:self.TabNameHash[TabName] = {
@@ -43,7 +41,7 @@ class ContentTabList():
         from ..Tabs.OnlineServerTab import OnlineServerTab
         self.TabNameList = ['CardControler','OnlineServer']
         self.TabNameHash = {}
-        self._initTab("CardControler","卡牌管理",CardControlerTab(self.mainWindow).Widget)
+        self._initTab("CardControler","卡牌管理",CardControlerTab(self.mainWindow))
         self._initTab("OnlineServer","联机大厅",OnlineServerTab(self.mainWindow))
         self._initTabClose()
     def _initTabClose(self):
