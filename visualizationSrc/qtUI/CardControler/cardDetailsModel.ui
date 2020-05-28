@@ -220,11 +220,7 @@ QLineEdit:hover{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="CM_energyReq">
-                   <property name="maximum">
-                    <double>999999.989999999990687</double>
-                   </property>
-                  </widget>
+                  <widget class="QSpinBox" name="CM_energyReq"/>
                  </item>
                 </layout>
                </item>
@@ -255,8 +251,11 @@ QLineEdit:hover{
                  </item>
                  <item>
                   <widget class="QDoubleSpinBox" name="CM_range">
+                   <property name="decimals">
+                    <number>1</number>
+                   </property>
                    <property name="maximum">
-                    <double>999999.989999999990687</double>
+                    <double>1000000.000000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -281,8 +280,11 @@ QLineEdit:hover{
                </item>
                <item>
                 <widget class="QDoubleSpinBox" name="spreadRadius">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
                  <property name="maximum">
-                  <double>999999.989999999990687</double>
+                  <double>1000000.000000000000000</double>
                  </property>
                 </widget>
                </item>

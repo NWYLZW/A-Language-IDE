@@ -40,7 +40,7 @@ class Completer(object):
         self.completer = QCompleter(self.standard_items)
 
         self.completer.setModelSorting(QCompleter.CaseInsensitivelySortedModel)
-        self.completer.setCaseSensitivity(Qt.CaseInsensitive)
+        self.completer.setCaseSensitivity(Qt.CaseSensitive)
         self.completer.setWrapAround(False)
         return
     def update_completer_string_list(self, items):

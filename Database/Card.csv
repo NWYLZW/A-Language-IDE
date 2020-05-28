@@ -1,5 +1,5 @@
 ﻿id,displayName,price,energyReq,range,spreadRadius,spreadShapeTextureId,aimTypeCode,perferredTargetTypeCode,tagCode,description,code,remapCode,backgroundId,effectCode,minUnlockGrade,story,characterModelSkinId,//comment,//,//story,10002,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10001,转运咒语,100,0.00,0.00,0.0,,,,,传送至灰雾之上1个回合,"Log: ""<serverCard>"";
+10001,转运咒语,100,0,0.0,0.0,,,,,传送至灰雾之上1个回合,"Log: ""<serverCard>"";
 Log: preCardId=>{GetVar:preCardId};
 Log: thisCardId=>{get_cardId:};
 Log: thisSelPos=>{$selPos};
@@ -10,8 +10,21 @@ Log: ""</serverCard>"";",,3,,1,"“福生玄黄仙尊。”
 “福生玄黄天君。”
 “福生玄黄上帝。”
 “福生玄黄天尊。”",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-10002,量子定位仪,100,2.00,0.00,0.0,,,self,Equipment,"用于服务器定位的量子(大雾)定位仪
+10002,量子定位仪,100,2,0.0,0.0,,,self,Equipment,"用于服务器定位的量子(大雾)定位仪
 能够实现远程定位角色的位置","evt.PreSetPosition:{
 	Log: thisPosition=>{$position};
 };",,6,,1,"经过了多日的研制
 总算是将这个奇奇怪怪的定位仪给做出来了",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+10003,测试哈,0,0,0.0,0.0,,,,,,"SetLocalVar:fun,{
+	Log:{
+		ListGetElem:{{GetVar:argv;}, 0};
+	};
+};
+
+SetVar: argv, { NewList:; };
+ListAdd:{GetVar: argv;}, 1;
+ListAdd:{GetVar: argv;}, 2;
+ListAdd:{GetVar: argv;}, 3;
+
+Log:{GetLocalVar:fun;};
+{GetLocalVar:fun;}:;",,1,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -17,7 +17,7 @@ class CodeTextEditor(QTextEdit):
     def __init__(self, parent=None):
         """Initialize TextEditor with basic properties."""
         super(CodeTextEditor, self).__init__(parent)
-        self._completer = None
+        self._completer = None                      # type: QCompleter
         self.keys_to_ignore = [
             Qt.Key_Enter,
             Qt.Key_Return,
@@ -28,12 +28,7 @@ class CodeTextEditor(QTextEdit):
         ]
         # excluding `_` as this is often in SQL spatial functions
         self.special_chars = "~!@#$%^&*()+{}|:\"<>?,./;'[]\\-="
-        self.completion_after_chars = 3
-        return
-    def insertFromMimeData(self, source):  # noqa: N802
-        """Override built-in method to convert rich text to plain text."""
-        self.insertPlainText(source.text())
-        return
+        self.completion_after_chars = 1
     def wheelEvent(self, event):  # noqa: N802
         """Override built-in method to handle mouse wheel scrolling.
         Required when doing mouse scrolling with the query panel focused.
@@ -51,7 +46,6 @@ class CodeTextEditor(QTextEdit):
                 self.verticalScrollBar().setValue(cur_val - step_size)
             else:
                 self.verticalScrollBar().setValue(cur_val + step_size)
-        return
     def completer(self):
         """Get internal completer."""
         return self._completer
@@ -66,9 +60,7 @@ class CodeTextEditor(QTextEdit):
 
             # PyQt bug? Qt.CaseInsensitive will leave some keywords out;
             # need to use Qt.CaseSensitive and have duplicates of words
-            completer.setCaseSensitivity(Qt.CaseSensitive)
             completer.activated.connect(self.insert_completion)
-        return
     def insert_completion(self, completion):
         """Insert complete word after user accepted a suggestion."""
         if self._completer.widget() is not self:
@@ -78,25 +70,15 @@ class CodeTextEditor(QTextEdit):
         extra_length = len(completion) - len(self._completer.completionPrefix())
         cur.movePosition(QTextCursor.Left)
         cur.movePosition(QTextCursor.EndOfWord)
-        cur.insertText(completion[-extra_length:]+':')
+        if extra_length == 0: cur.insertText(':')
+        else:
+            cur.insertText(completion[-extra_length:]+':')
         self.setTextCursor(cur)
     def get_text_under_cursor(self):
         """Get the text currently under cursor."""
         cur = self.textCursor()
         cur.select(QTextCursor.WordUnderCursor)
         return cur.selectedText()
-    def is_parens_char_near(self):
-        """Search for the parens chars around the text cursor."""
-        cur = self.textCursor()
-        try:
-            cur.select(QTextCursor.WordUnderCursor)
-            print(cur.selectedText())
-            if cur.selectedText() == ')':
-                return ')'
-            if cur.selectedText() == '(':
-                return '('
-        except Exception:
-            pass
     def focusInEvent(self, evt):  # noqa: N802
         """Built-in method to handle focusing event."""
         if self._completer is not None:
@@ -138,6 +120,8 @@ class CodeTextEditor(QTextEdit):
                        and evt.key() == Qt.Key_F1)
         if self._completer is None or not is_shortcut:
             super(CodeTextEditor, self).keyPressEvent(evt)
+        if evt.key() in [Qt.Key_Tab,Qt.Key_Enter]:
+            return
 
         ctrl_shift = evt.modifiers() & (Qt.ControlModifier | Qt.ShiftModifier)
         if self._completer is None or (ctrl_shift and len(evt.text()) == 0):
