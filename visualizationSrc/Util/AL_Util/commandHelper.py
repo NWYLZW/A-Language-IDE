@@ -19,52 +19,12 @@ class CommandHelper:
             os.makedirs(self.messageTxtPath)
 
         self.commandStrList = []
-        self.serverCardCommandWrraper = \
-"""Log: "<serverCard>";
-Log: preCardId=>{GetVar:preCardId};
-Log: thisCardId=>{get_cardId:};
-Log: thisSelPos=>{$selPos};
-commands
-SetVar: preCardId,{get_cardId:};
-Log: thisPosition=>{$position};
-Log: "</serverCard>";"""
         self.commandGroupWrraper = \
 """
 If:{True:}{
 {commandGroupListStr}
 }{}
 """
-    def createUserInPostion(self,userVarName,x,y):
-        c = """
-        With:{
-            CreateCha:
-                40,
-                {NewVector3:{pos_x},0,{pos_y}}
-            ;
-        }{
-            SetStageVar: {userVarName},$user;
-        };
-        """
-        CH.addCommand(c
-                      .replace("{pos_x}",str(x))
-                      .replace("{pos_y}",str(y))
-                      .replace("{userVarName}",userVarName)
-                      )
-    def moveUserToPostion(self,userVarName,x,y):
-        c = """
-        With:{GetStageVar:{userVarName}}{
-            Log: $user;
-            $user.MoveTo:{
-                NewVector3:{pos_x},0,{pos_y};
-            };
-            Log: $userPosition;
-        };
-        """
-        CH.addCommand(c
-                      .replace("{pos_x}",str(x))
-                      .replace("{pos_y}",str(y))
-                      .replace("{userVarName}",userVarName)
-                      )
     def getCommandResultFromLog(self):
         userGameLogPath = "C:\\Users\\Superme\\AppData\\LocalLow\\AliveGameStudio\\TetraProject\\Player.log"
         with open(userGameLogPath,mode="r+",encoding="utf-8")as f:
@@ -93,12 +53,6 @@ If:{True:}{
                     .replace('\n', '').replace('\t', '').replace(' ', '')
             )
         self.commandStrList = []
-    def runServerCardToGame(self,commandStr:str):
-        commandStr = self.serverCardCommandWrraper.replace("commands",commandStr)
-        self.addCommand(commandStr)
 if __name__ == '__main__':
     CH = CommandHelper()
-    CH.createUserInPostion("tester01",3,17)
-    CH.moveUserToPostion("tester01",3,20)
-    CH.moveUserToPostion("tester01",3,18)
     CH.commit()

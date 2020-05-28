@@ -51,6 +51,12 @@ class Ui_Form(object):
 "}\n"
 "#delCard:hover{\n"
 "    border-image: url(:/ico/Data/qrc/ico/deleted.png);\n"
+"}\n"
+"#buildScript{\n"
+"    border-image: url(:/ico/Data/qrc/ico/buildScript.png);\n"
+"}\n"
+"#buildScript:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/buildScripted.png);\n"
 "}")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Form)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 1001, 611))
@@ -365,32 +371,25 @@ class Ui_Form(object):
         self.tabWidget.setObjectName("tabWidget")
         self.CodeTab = QtWidgets.QWidget()
         self.CodeTab.setObjectName("CodeTab")
-        self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.CodeTab)
-        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(0, 0, 641, 521))
-        self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
-        self.CM_codeSource_L = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
-        self.CM_codeSource_L.setContentsMargins(10, 10, 10, 10)
-        self.CM_codeSource_L.setSpacing(0)
-        self.CM_codeSource_L.setObjectName("CM_codeSource_L")
-        self.CM_codeSource = CodeTextEditor(self.verticalLayoutWidget_3)
+        self.CM_codeSource = CodeTextEditor(self.CodeTab)
+        self.CM_codeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
         self.CM_codeSource.setStyleSheet("")
         self.CM_codeSource.setObjectName("CM_codeSource")
-        self.CM_codeSource_L.addWidget(self.CM_codeSource)
         self.tabWidget.addTab(self.CodeTab, "")
         self.RemapCode_Tab = QtWidgets.QWidget()
         self.RemapCode_Tab.setObjectName("RemapCode_Tab")
-        self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.RemapCode_Tab)
-        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, 0, 641, 521))
-        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
-        self.CM_remapCodeSource_L = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
-        self.CM_remapCodeSource_L.setContentsMargins(10, 10, 10, 10)
-        self.CM_remapCodeSource_L.setSpacing(0)
-        self.CM_remapCodeSource_L.setObjectName("CM_remapCodeSource_L")
-        self.CM_remapCodeSource = CodeTextEditor(self.verticalLayoutWidget_4)
+        self.CM_remapCodeSource = CodeTextEditor(self.RemapCode_Tab)
+        self.CM_remapCodeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
         self.CM_remapCodeSource.setStyleSheet("")
         self.CM_remapCodeSource.setObjectName("CM_remapCodeSource")
-        self.CM_remapCodeSource_L.addWidget(self.CM_remapCodeSource)
         self.tabWidget.addTab(self.RemapCode_Tab, "")
+        self.AliveScriptCodeTab = QtWidgets.QWidget()
+        self.AliveScriptCodeTab.setObjectName("AliveScriptCodeTab")
+        self.AliveScriptCodeSource = CodeTextEditor(self.AliveScriptCodeTab)
+        self.AliveScriptCodeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
+        self.AliveScriptCodeSource.setStyleSheet("")
+        self.AliveScriptCodeSource.setObjectName("AliveScriptCodeSource")
+        self.tabWidget.addTab(self.AliveScriptCodeTab, "")
         self.CM_main.addWidget(self.tabWidget)
         self.CM_footer = QtWidgets.QHBoxLayout()
         self.CM_footer.setContentsMargins(0, -1, 0, -1)
@@ -446,6 +445,17 @@ class Ui_Form(object):
         self.delCard.setText("")
         self.delCard.setObjectName("delCard")
         self.commonTools.addWidget(self.delCard)
+        self.buildScript = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.buildScript.setMaximumSize(QtCore.QSize(32, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        self.buildScript.setFont(font)
+        self.buildScript.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.buildScript.setStyleSheet("构建AliveScript文件")
+        self.buildScript.setText("")
+        self.buildScript.setObjectName("buildScript")
+        self.commonTools.addWidget(self.buildScript)
         self.textBrowser = QtWidgets.QTextBrowser(self.horizontalLayoutWidget_2)
         self.textBrowser.setMaximumSize(QtCore.QSize(16777215, 32))
         self.textBrowser.setStyleSheet("QTextBrowser{\n"
@@ -505,6 +515,12 @@ class Ui_Form(object):
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.RemapCode_Tab), _translate("Form", "RemapCode"))
+        self.AliveScriptCodeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.AliveScriptCodeTab), _translate("Form", "AliveScript-Beta"))
         self.tools.setToolTip(_translate("Form", "<html><head/><body><p>设置</p></body></html>"))
         self.printCard.setToolTip(_translate("Form", "<html><head/><body><p>alt+1</p></body></html>"))
         self.printCard.setWhatsThis(_translate("Form", "<html><head/><body><p>印卡</p></body></html>"))
@@ -512,6 +528,8 @@ class Ui_Form(object):
         self.saveCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
         self.delCard.setToolTip(_translate("Form", "<html><head/><body><p>ctrl+s</p></body></html>"))
         self.delCard.setWhatsThis(_translate("Form", "<html><head/><body><p>保存</p></body></html>"))
+        self.buildScript.setToolTip(_translate("Form", "<html><head/><body><p>构建AliveScript文件</p></body></html>"))
+        self.buildScript.setWhatsThis(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
 from ..MyWidgets.CodeTextEditor import CodeTextEditor
 from ..MyWidgets.DragLabel import DragLabel
 from .. import AL_IDE_MainInterFace_rc

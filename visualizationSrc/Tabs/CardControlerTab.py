@@ -19,6 +19,7 @@ from ..Controler.Bean.CardBean import Card
 from ..Controler.CardControler import CardControler
 from ..Helper.ListTabHelper import ListTabHelper
 from ..Helper.PageHelper import PageHelper
+from ..Util.AliveScriptCompile import AliveScriptCompile
 from ..Util.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
 from ..Util.LogUtil import logLevel, log
@@ -373,7 +374,7 @@ class cardDetailTab(
             font = editor.font()
             font.setFamily('Consolas')
             font.setStyleHint(QFont.Monospace)
-            font.setPointSize(14)
+            font.setPointSize(12)
             editor.setFont(font)
 
             metrics = QFontMetrics(editor.font())
@@ -384,6 +385,7 @@ class cardDetailTab(
             mQTextEdit.HL = HighLighter(mQTextEdit.document())
         QTextEditToTextEditor(self.CM_codeSource)
         QTextEditToTextEditor(self.CM_remapCodeSource)
+        QTextEditToTextEditor(self.AliveScriptCodeSource)
     def _initClick(self):
         mainWindow = self.CCT.mainWindow
         cardControler = self.CCT.cardControler
@@ -474,14 +476,20 @@ class cardDetailTab(
                     "请先添加卡牌"
                 )
         self.printCard.clicked.connect(__printCard)
+        def __buildScript():
+            ASC = AliveScriptCompile(self.AliveScriptCodeSource.toPlainText())
+            self.CM_codeSource.setText(ASC.to_A_Command())
+        self.buildScript.clicked.connect(__buildScript)
     def _initQuickKey(self):
         def __keyPressEvent(event):
             if (event.key() == Qt.Key_1):
                 if QApplication.keyboardModifiers() == Qt.AltModifier:
                     self.printCard.click()
-            if (event.key() == Qt.Key_S):
-                if QApplication.keyboardModifiers() == Qt.ControlModifier:
+            if QApplication.keyboardModifiers() == Qt.ControlModifier:
+                if (event.key() == Qt.Key_S):
                     self.saveCard.click()
+                if (event.key() == Qt.Key_Q):
+                    self.buildScript.click()
         self.keyPressEvent = __keyPressEvent
     def _initComboCheckBox(self):
         def __comboBoxToComboCheckBox(items,parent,this):
