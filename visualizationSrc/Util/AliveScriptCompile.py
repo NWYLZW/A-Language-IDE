@@ -29,16 +29,38 @@ class funUnit(object):
             "content":self.content,
         }
     def to_A_Command(self, argv):
-        A_Command = "{setLocalVarPos}\n{setCommandPos}"
+        A_Command = "{setLocalVarPos}{setCommandPos}"
+        import random
+        order_number = ''.join(random.sample('zyxwvutsrqponmlkjihgfedcba1234567890',6))
         tempStr = ""
+        tempContentStr = self.content
         if len(argv)>0:
             for i in range(len(self.argv)):
                 arg = self.argv[i]          # type: str
-                tempStr += "SetLocalVar: "+arg.replace("$","")+", "+str(argv[i])+";"
-        return ("If:{True:}{"+A_Command.format(**{
-            "setLocalVarPos":tempStr,
-            "setCommandPos":"If:{True:}"+self.content+"{}",
-        })+"}{}").replace('\n', '').replace('\t', '').replace(' ', '')
+                # 处理字符串
+                isSTR = False
+                for charX in argv[i]:
+                    if charX == "\"" or charX == "\'":
+                        isSTR = True
+                if not isSTR: argv[i] = argv[i].replace(' ','')
+                else:
+                    argv[i] = "\""+re.findall(
+                        r"(?<=\").*(?=\")"
+                        , argv[i])[0]+"\""
+                tempStr += \
+                    "SetLocalVar: "+\
+                    arg.replace("$","")+"_"+str(order_number)+\
+                    ", "+str(argv[i])\
+                    +";"
+                tempContentStr = tempContentStr.replace(arg, arg + "_" + str(order_number))
+        return (
+                "If:{True:}{"+
+                    A_Command.format(**{
+                    "setLocalVarPos":tempStr,
+                    "setCommandPos":"If:{True:}"+
+                        tempContentStr
+                    +"{}",})+
+                "}{};").replace('\n', '').replace('\t', '')
 class AliveScriptCompile:
     def __init__(self,AliveScriptStr):
         self.AliveScriptStr = AliveScriptStr
@@ -60,8 +82,6 @@ class AliveScriptCompile:
         rspStr = re.sub(
             self.funNameRe + self.funArgvRe + self.funMainRe
             ,"", self.AliveScriptStr)
-        # 删除空行
-        rspStr = re.sub('\n(\n)*( )*(\n)*\n','',rspStr)
         # 搜索已使用的函数
         useFuns = re.findall(
             self.funNameRe + self.funArgvRe + ';',
@@ -72,7 +92,7 @@ class AliveScriptCompile:
                 useFun.split('(')[0]
             ]
             argv = re.findall(
-                        r"(?<=\()\S+(?=\))"
+                        r"(?<=\().*(?=\))"
                         , useFun)
             loadCommand = funUintx.to_A_Command(
                 argv[0].split(',') if len(argv)>0 else []
@@ -90,7 +110,7 @@ class AliveScriptCompile:
                 "const\ *([a-z,A-Z,\_][a-z,A-Z,0-9,\_]*)\ *=\ *(.*);",
                 constItem)
             self.AliveScriptStr = re.sub(
-                constItem,"SetVar: "+temp[0][0]+", {"+temp[0][1]+'};',self.AliveScriptStr)
+                constItem,"SetVar: "+temp[0][0]+", "+temp[0][1]+';',self.AliveScriptStr)
         let_re = "let\ *[a-z,A-Z,\_][a-z,A-Z,0-9,\_]*\ *=\ *.*;"
         letList = re.findall(
             let_re,self.AliveScriptStr)
@@ -99,23 +119,20 @@ class AliveScriptCompile:
                 "let\ *([a-z,A-Z,\_][a-z,A-Z,0-9,\_]*)\ *=\ *(.*);",
                 letItem)
             self.AliveScriptStr = re.sub(
-                letItem,"SetLocalVar: "+temp[0][0]+", {"+temp[0][1]+'};',self.AliveScriptStr)
+                letItem,"SetLocalVar: "+temp[0][0]+", "+temp[0][1]+';',self.AliveScriptStr)
     def to_A_Command(self):
         self.parsingKeywords()
         rspStr = self.parsingFunction()
+        rspStr = rspStr.strip()
         return rspStr
 
 if __name__ == '__main__':
     testScript = """\
-fun0($a,$b,$c){
-    Log: $a;
-    Log: $b;
-    Log: $c;
+record($x,$y){
+	Log: $x, $y;
 }
-const x = 4;
-let y = 1;
-Log: $x;
-fun0(1,2,3);\
+record( 1, "Hello World");
+record( 2, "Hello World");\
 """
     ASC = AliveScriptCompile(testScript)
-    print(ASC.to_A_Command())
+    print(ASC.to_A_Command(),end='')

@@ -479,6 +479,7 @@ class cardDetailTab(
         def __buildScript():
             ASC = AliveScriptCompile(self.AliveScriptCodeSource.toPlainText())
             self.CM_codeSource.setText(ASC.to_A_Command())
+            self.codeWidget.setCurrentIndex(0)
         self.buildScript.clicked.connect(__buildScript)
     def _initQuickKey(self):
         def __keyPressEvent(event):

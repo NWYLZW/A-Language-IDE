@@ -367,30 +367,67 @@ class Ui_Form(object):
         self.CM_main.setContentsMargins(10, 10, 10, 10)
         self.CM_main.setSpacing(10)
         self.CM_main.setObjectName("CM_main")
-        self.tabWidget = QtWidgets.QTabWidget(self.horizontalLayoutWidget_2)
-        self.tabWidget.setObjectName("tabWidget")
+        self.codeWidget = QtWidgets.QTabWidget(self.horizontalLayoutWidget_2)
+        self.codeWidget.setStyleSheet("QScrollBar:vertical\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    width: 6px;\n"
+"    margin: 0px;border: none;\n"
+"}\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-height: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{background-color: rgb(181, 181, 181);}\n"
+"QScrollBar:horizontal\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    height: 6px;\n"
+"    margin: 0px;border: none;\n"
+"}\n"
+"QScrollBar::handle:horizontal\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-width: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QScrollBar::handle:horizontal:hover{background-color: rgb(181, 181, 181);}\n"
+"\n"
+"QScrollBar::up-arrow, QScrollBar::down-arrow,\n"
+"QScrollBar::right-arrow, QScrollBar::left-arrow,\n"
+"QScrollBar::add-page, QScrollBar::sub-page,\n"
+"QScrollBar::add-line, QScrollBar::sub-line\n"
+"{\n"
+"    border: none;background: none;color: none;height: 0;\n"
+"}")
+        self.codeWidget.setObjectName("codeWidget")
         self.CodeTab = QtWidgets.QWidget()
         self.CodeTab.setObjectName("CodeTab")
         self.CM_codeSource = CodeTextEditor(self.CodeTab)
         self.CM_codeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
         self.CM_codeSource.setStyleSheet("")
+        self.CM_codeSource.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
         self.CM_codeSource.setObjectName("CM_codeSource")
-        self.tabWidget.addTab(self.CodeTab, "")
+        self.codeWidget.addTab(self.CodeTab, "")
         self.RemapCode_Tab = QtWidgets.QWidget()
         self.RemapCode_Tab.setObjectName("RemapCode_Tab")
         self.CM_remapCodeSource = CodeTextEditor(self.RemapCode_Tab)
         self.CM_remapCodeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
         self.CM_remapCodeSource.setStyleSheet("")
+        self.CM_remapCodeSource.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
         self.CM_remapCodeSource.setObjectName("CM_remapCodeSource")
-        self.tabWidget.addTab(self.RemapCode_Tab, "")
+        self.codeWidget.addTab(self.RemapCode_Tab, "")
         self.AliveScriptCodeTab = QtWidgets.QWidget()
         self.AliveScriptCodeTab.setObjectName("AliveScriptCodeTab")
         self.AliveScriptCodeSource = CodeTextEditor(self.AliveScriptCodeTab)
         self.AliveScriptCodeSource.setGeometry(QtCore.QRect(10, 10, 621, 501))
         self.AliveScriptCodeSource.setStyleSheet("")
+        self.AliveScriptCodeSource.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
         self.AliveScriptCodeSource.setObjectName("AliveScriptCodeSource")
-        self.tabWidget.addTab(self.AliveScriptCodeTab, "")
-        self.CM_main.addWidget(self.tabWidget)
+        self.codeWidget.addTab(self.AliveScriptCodeTab, "")
+        self.CM_main.addWidget(self.codeWidget)
         self.CM_footer = QtWidgets.QHBoxLayout()
         self.CM_footer.setContentsMargins(0, -1, 0, -1)
         self.CM_footer.setSpacing(0)
@@ -476,7 +513,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         self.CMT_settingTab.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.codeWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -508,19 +545,19 @@ class Ui_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.CodeTab), _translate("Form", "Code"))
+        self.codeWidget.setTabText(self.codeWidget.indexOf(self.CodeTab), _translate("Form", "Code"))
         self.CM_remapCodeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RemapCode_Tab), _translate("Form", "RemapCode"))
+        self.codeWidget.setTabText(self.codeWidget.indexOf(self.RemapCode_Tab), _translate("Form", "RemapCode"))
         self.AliveScriptCodeSource.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.AliveScriptCodeTab), _translate("Form", "AliveScript-Beta"))
+        self.codeWidget.setTabText(self.codeWidget.indexOf(self.AliveScriptCodeTab), _translate("Form", "AliveScript-Beta"))
         self.tools.setToolTip(_translate("Form", "<html><head/><body><p>设置</p></body></html>"))
         self.printCard.setToolTip(_translate("Form", "<html><head/><body><p>alt+1</p></body></html>"))
         self.printCard.setWhatsThis(_translate("Form", "<html><head/><body><p>印卡</p></body></html>"))

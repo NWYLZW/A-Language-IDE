@@ -763,7 +763,43 @@ QPushButton:hover{
        <number>10</number>
       </property>
       <item>
-       <widget class="QTabWidget" name="tabWidget">
+       <widget class="QTabWidget" name="codeWidget">
+        <property name="styleSheet">
+         <string notr="true">QScrollBar:vertical
+{
+    background-color: rgba(255, 255, 255, 0);
+    width: 6px;
+    margin: 0px;border: none;
+}
+QScrollBar::handle:vertical
+{
+    background-color: rgb(216, 216, 216);
+    min-height: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:vertical:hover{background-color: rgb(181, 181, 181);}
+QScrollBar:horizontal
+{
+    background-color: rgba(255, 255, 255, 0);
+    height: 6px;
+    margin: 0px;border: none;
+}
+QScrollBar::handle:horizontal
+{
+    background-color: rgb(216, 216, 216);
+    min-width: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:horizontal:hover{background-color: rgb(181, 181, 181);}
+
+QScrollBar::up-arrow, QScrollBar::down-arrow,
+QScrollBar::right-arrow, QScrollBar::left-arrow,
+QScrollBar::add-page, QScrollBar::sub-page,
+QScrollBar::add-line, QScrollBar::sub-line
+{
+    border: none;background: none;color: none;height: 0;
+}</string>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -782,6 +818,9 @@ QPushButton:hover{
           </property>
           <property name="styleSheet">
            <string notr="true"/>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
           </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -808,6 +847,9 @@ p, li { white-space: pre-wrap; }
           <property name="styleSheet">
            <string notr="true"/>
           </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -832,6 +874,9 @@ p, li { white-space: pre-wrap; }
           </property>
           <property name="styleSheet">
            <string notr="true"/>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
           </property>
           <property name="html">
            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
