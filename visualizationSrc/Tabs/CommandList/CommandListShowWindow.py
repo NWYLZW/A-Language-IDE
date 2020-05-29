@@ -40,6 +40,7 @@ class CommandListShowWindow( QWidget, CommandListShowTab.Ui_Form):
         self.isTop = True
         self.CCC = CardCommandControler()
     def _initUI(self):
+        # TODO 添加默认设置，去除外边框，优化UI
         self._TopHint()
     def _initClick(self):
         def ClickTopHint():
@@ -48,6 +49,7 @@ class CommandListShowWindow( QWidget, CommandListShowTab.Ui_Form):
         self.topLayer.clicked.connect(ClickTopHint)
 
         self.Search_Input.returnPressed.connect(lambda : self.cardCommandPC.filter(self.Search_Input.text()))
+        # TODO 分类筛选
     def _TopHint(self):
         if self.isTop:
             self.topLayer.setToolTip("取消置顶")
@@ -90,6 +92,11 @@ class cardCommandPageControler(PageHelper):
             cardItemEle.parentLayout = tempHL
             tempHL.addWidget(cardItemEle)
             tempHL.cardItemEleList.append(cardItemEle)
+        if len(newDataList) > 0:
+            self._scrollArea.widget()\
+                .setMaximumHeight(
+                len(newDataList)*cardItemEle.height()
+            )
 
 class scrollCardCommandItem(QWidget, ShowScrollItem.Ui_Form):
     def __init__(self, CLSW:CommandListShowWindow):
@@ -97,9 +104,12 @@ class scrollCardCommandItem(QWidget, ShowScrollItem.Ui_Form):
         self.CLSW = CLSW
 
         self.setupUi(self)
+        self._initData()
         self._initUI()
-    def _initUI(self):
+        self._initClick()
+    def _initData(self):
         self.BlurRadius = 10
+    def _initUI(self):
         # 背景透明
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         # 添加阴影
@@ -108,6 +118,9 @@ class scrollCardCommandItem(QWidget, ShowScrollItem.Ui_Form):
         effect.setOffset(0, 0)
         effect.setColor(Qt.gray)
         self.setGraphicsEffect(effect)
+    def _initClick(self):
+        # TODO 展示更多、编辑与删除按钮的点击事件
+        pass
     def refeshData(self, cardCommandDict):
         self.cardCommandDict = cardCommandDict
         self.name.setText(cardCommandDict.get('id'))

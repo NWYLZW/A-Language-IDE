@@ -13,7 +13,7 @@ from math import ceil
 
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont, QCursor
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QScrollArea
 
 class PageHelper:
     def __init__(self, UI, PageItemNum):
@@ -38,7 +38,7 @@ class PageHelper:
             if self._currentPageNum!=0:
                 self.toPage(0)
         self._UI.toFirstBtn.clicked.connect(toFirst)
-    def _initScrollArea(self, scrollArea):
+    def _initScrollArea(self, scrollArea:QScrollArea):
         widget = QWidget()
         self._VL = QVBoxLayout()
         self._VL.setContentsMargins(0,0,0,0)
