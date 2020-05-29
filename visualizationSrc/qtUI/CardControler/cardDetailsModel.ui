@@ -344,7 +344,7 @@ QLineEdit:hover{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="aimTypeCode"/>
+                  <widget class="ComboCheckBox" name="aimTypeCode"/>
                  </item>
                 </layout>
                </item>
@@ -364,7 +364,7 @@ QLineEdit:hover{
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="perferredTargetTypeCode"/>
+                  <widget class="ComboCheckBox" name="perferredTargetTypeCode"/>
                  </item>
                 </layout>
                </item>
@@ -409,7 +409,7 @@ QLineEdit:hover{
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="tagCode"/>
+                <widget class="ComboCheckBox" name="tagCode"/>
                </item>
               </layout>
              </item>
@@ -600,7 +600,7 @@ QScrollBar::add-line, QScrollBar::sub-line
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>287</width>
+                  <width>98</width>
                   <height>98</height>
                  </rect>
                 </property>
@@ -662,7 +662,7 @@ QScrollBar::add-line, QScrollBar::sub-line
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>287</width>
+                  <width>98</width>
                   <height>98</height>
                  </rect>
                 </property>
@@ -1094,6 +1094,11 @@ p, li { white-space: pre-wrap; }
    <class>CodeTextEditor</class>
    <extends>QTextEdit</extends>
    <header>..MyWidgets.CodeTextEditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboCheckBox</class>
+   <extends>QComboBox</extends>
+   <header>..MyWidgets.ComboCheckBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -20,7 +20,7 @@ from ..Controler.CardControler import CardControler
 from ..Helper.ListTabHelper import ListTabHelper
 from ..Helper.PageHelper import PageHelper
 from ..Util.AliveScriptCompile import AliveScriptCompile
-from ..Util.ComboCheckBox import ComboCheckBox
+from visualizationSrc.qtUI.MyWidgets.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
 from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
@@ -493,27 +493,18 @@ class cardDetailTab(
                     self.buildScript.click()
         self.keyPressEvent = __keyPressEvent
     def _initComboCheckBox(self):
-        def __comboBoxToComboCheckBox(items,parent,this):
-            parent.removeWidget(this);this.setParent(None)
-            comboBox = ComboCheckBox()
-            comboBox.setGeometry(this.geometry())
-            comboBox.setMinimumSize(this.size())
-            comboBox.loadItems(items)
-            parent.addWidget(comboBox)
-            return comboBox
-
-        self.aimTypeCode = __comboBoxToComboCheckBox([
+        self.aimTypeCode.loadItems([
             'EnvOnly','Single0nly','AllowOutOfStageBorder',
             'ChaTagExclude','Boss','Trap','Turret',
             'HpLessThanSelf','NotAllowSelf',
             'ChaTagLimit','Machine','ThrougWall',
-        ],self.aimTypeCode_L,self.aimTypeCode)
-        self.perferredTargetTypeCode = __comboBoxToComboCheckBox([
+        ])
+        self.perferredTargetTypeCode.loadItems([
             "emy","self","player",
             "died","HasBuff","lowHpP","lowHpPltmt",
             "Breakable","tmt",
-        ],self.perferredTargetTypeCode_L,self.perferredTargetTypeCode)
-        self.tagCode = __comboBoxToComboCheckBox([
+        ])
+        self.tagCode.loadItems([
             "Bomb","Boxing","Bullet","BulletCraft",
             "Craft","CardContainer","CombatonlyPosiBuff","CombatOnly",
             "Dedicated ","Debuff","DebuffProp",
@@ -526,7 +517,7 @@ class cardDetailTab(
             "Prop","PosiBuff",
             "Turret","Trap",
             "Unremovable",
-        ],self.tagCode_L,self.tagCode)
+        ])
     def _initBetterSettingInterface(self):
         self.backgrondImgWidgetList = []
         tempWidget = QWidget()

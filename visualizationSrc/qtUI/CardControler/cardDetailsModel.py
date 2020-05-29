@@ -180,7 +180,7 @@ class Ui_Form(object):
         self.label_16.setAlignment(QtCore.Qt.AlignCenter)
         self.label_16.setObjectName("label_16")
         self.aimTypeCode_L.addWidget(self.label_16)
-        self.aimTypeCode = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.aimTypeCode = ComboCheckBox(self.verticalLayoutWidget)
         self.aimTypeCode.setObjectName("aimTypeCode")
         self.aimTypeCode_L.addWidget(self.aimTypeCode)
         self.aimTypeCode_L.setStretch(0, 1)
@@ -193,7 +193,7 @@ class Ui_Form(object):
         self.label_17.setAlignment(QtCore.Qt.AlignCenter)
         self.label_17.setObjectName("label_17")
         self.perferredTargetTypeCode_L.addWidget(self.label_17)
-        self.perferredTargetTypeCode = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.perferredTargetTypeCode = ComboCheckBox(self.verticalLayoutWidget)
         self.perferredTargetTypeCode.setObjectName("perferredTargetTypeCode")
         self.perferredTargetTypeCode_L.addWidget(self.perferredTargetTypeCode)
         self.perferredTargetTypeCode_L.setStretch(0, 1)
@@ -217,7 +217,7 @@ class Ui_Form(object):
 "}")
         self.addMyEffect.setObjectName("addMyEffect")
         self.tagCode_L.addWidget(self.addMyEffect)
-        self.tagCode = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.tagCode = ComboCheckBox(self.verticalLayoutWidget)
         self.tagCode.setObjectName("tagCode")
         self.tagCode_L.addWidget(self.tagCode)
         self.tagCode_L.setStretch(0, 1)
@@ -307,7 +307,7 @@ class Ui_Form(object):
         self.betterSpread.setWidgetResizable(True)
         self.betterSpread.setObjectName("betterSpread")
         self.betterSpread_W = QtWidgets.QWidget()
-        self.betterSpread_W.setGeometry(QtCore.QRect(0, 0, 287, 98))
+        self.betterSpread_W.setGeometry(QtCore.QRect(0, 0, 98, 98))
         self.betterSpread_W.setObjectName("betterSpread_W")
         self.betterSpread.setWidget(self.betterSpread_W)
         self.verticalLayout_4.addWidget(self.betterSpread)
@@ -329,7 +329,7 @@ class Ui_Form(object):
         self.backgroundImgScroll.setWidgetResizable(True)
         self.backgroundImgScroll.setObjectName("backgroundImgScroll")
         self.backgroundImg_W = QtWidgets.QWidget()
-        self.backgroundImg_W.setGeometry(QtCore.QRect(0, 0, 287, 98))
+        self.backgroundImg_W.setGeometry(QtCore.QRect(0, 0, 98, 98))
         self.backgroundImg_W.setObjectName("backgroundImg_W")
         self.backgroundImgScroll.setWidget(self.backgroundImg_W)
         self.verticalLayout_7.addWidget(self.backgroundImgScroll)
@@ -568,5 +568,6 @@ class Ui_Form(object):
         self.buildScript.setToolTip(_translate("Form", "<html><head/><body><p>构建AliveScript文件</p></body></html>"))
         self.buildScript.setWhatsThis(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
 from ..MyWidgets.CodeTextEditor import CodeTextEditor
+from ..MyWidgets.ComboCheckBox import ComboCheckBox
 from ..MyWidgets.DragLabel import DragLabel
 from .. import AL_IDE_MainInterFace_rc
