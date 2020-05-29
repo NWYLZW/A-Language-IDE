@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/topLayered.png</file>
+    <file>../Data/qrc/ico/topLayer.png</file>
+    <file>../Data/qrc/ico/mored.png</file>
+    <file>../Data/qrc/ico/more.png</file>
     <file>../Data/qrc/ico/buildScript.png</file>
     <file>../Data/qrc/ico/buildScripted.png</file>
     <file>../Data/qrc/ico/login.png</file>

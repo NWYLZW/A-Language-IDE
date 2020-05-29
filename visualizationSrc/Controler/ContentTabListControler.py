@@ -18,7 +18,7 @@ class ContentTabList():
         self.ContentTabList = self.mainWindow.ContentTabList
 
         from ..Tabs.HomeTab import Home
-        self.Home_C = Home(mainWindow,mainWindow,self)
+        self.Home_C = Home(self, mainWindow)
         self._initTabs()
     def _initTab(self, TabName, TabCNName, widget):
         try:self.TabNameHash[TabName] = {

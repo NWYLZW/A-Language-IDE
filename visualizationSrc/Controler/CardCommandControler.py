@@ -21,6 +21,8 @@ class CardCommandControler(CSVHelperControler):
             "effectCode":"",
             "remapCode":""
         }
+    def getCardCommandList(self)->list:
+        return self._rowList
     def getCardCommandByName(self,CardCommandName):
         return self._getRowByfieldName('id', CardCommandName)
     def delCardCommandByName(self,CardCommandName) -> bool:

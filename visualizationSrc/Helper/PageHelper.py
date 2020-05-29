@@ -41,6 +41,7 @@ class PageHelper:
     def _initScrollArea(self, scrollArea):
         widget = QWidget()
         self._VL = QVBoxLayout()
+        self._VL.setContentsMargins(0,0,0,0)
         self._scrollArea = scrollArea
         self._scrollArea.setWidget(widget)
         widget.setLayout(self._VL)

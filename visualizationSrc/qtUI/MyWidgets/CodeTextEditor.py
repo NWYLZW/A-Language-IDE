@@ -12,6 +12,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QTextCursor, QTextFormat, QColor)
 from PyQt5.QtWidgets import (QApplication, QCompleter, QTextEdit)
 
+# TODO 自定义代码块功能
 class CodeTextEditor(QTextEdit):
     """Text editor with text completion for writing queries."""
     def __init__(self, parent=None):

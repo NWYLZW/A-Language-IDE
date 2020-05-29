@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import QFileDialog, QDialog
 from PyQt5.uic.properties import QtWidgets
 from PyQt5 import QtCore
 
+from .CommandList.CommandListShowWindow import CommandListShowWindow
 from .. import MyWindow
 from ..Controler.ContentTabListControler import ContentTabList
 from ..Util.ServerUserUtil import server
@@ -75,8 +76,7 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
         self.loginBTN.clicked.connect(login)
 
 class Home:
-    def __init__(self,UI:Ui_MainWindow,mainWindow:MyWindow.MyWindow,CTL:ContentTabList):
-        self.UI = UI
+    def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
         self.initCardItemClick()
@@ -85,19 +85,19 @@ class Home:
     def setSimpleData(self):
         u = UserUtil()
         temp = appPath().split('\\')
-        self.UI.ModName.setText(temp[len(temp)-1])
+        self.mainWindow.ModName.setText(temp[len(temp) - 1])
         tempGamePath = GamePath
         if len(GamePath)>30:
             tempGamePath = GamePath[:14]+'...'+GamePath[-14:]
-        self.UI.GamePath.setText(tempGamePath)
-        self.UI.GamePath.setToolTip(GamePath)
-        self.UI.UserName.setText(u.userName)
+        self.mainWindow.GamePath.setText(tempGamePath)
+        self.mainWindow.GamePath.setToolTip(GamePath)
+        self.mainWindow.UserName.setText(u.userName)
     def initClick(self):
         def sel_GamePath():
             directory = QFileDialog.getExistingDirectory(None, "getExistingDirectory", "C:\\")
             UserUtil().gamePath = directory
             self.setSimpleData()
-        self.UI.sel_GamePath.clicked.connect(sel_GamePath)
+        self.mainWindow.sel_GamePath.clicked.connect(sel_GamePath)
         def userLogin():
             if server.user.isLogin:
                 self.mainWindow.showWarn(
@@ -107,7 +107,7 @@ class Home:
                 );return
             tempDialog = loginDialogHelper()
             tempDialog.exec_()
-        self.UI.userLogin.clicked.connect(userLogin)
+        self.mainWindow.userLogin.clicked.connect(userLogin)
         def userLogout():
             if not server.user.isLogin:
                 self.mainWindow.showWarn(
@@ -125,9 +125,13 @@ class Home:
             else: self.mainWindow.showWarn(
                 "登出",self.__class__.__name__,
                 rsp.get('content', "好像与伺服娘断连了哦"))
-        self.UI.userLogout.clicked.connect(userLogout)
+        self.mainWindow.userLogout.clicked.connect(userLogout)
+        def showCommandListShowWindow():
+            temp = CommandListShowWindow(self.mainWindow)
+            temp.show()
+        self.mainWindow.CommandList.clicked.connect(showCommandListShowWindow)
     def initCardItemClick(self):
-        UI = self.UI
+        UI = self.mainWindow
         def windowClick(Element):
             def __windowClick(event):
                 if event.buttons() == QtCore.Qt.LeftButton:

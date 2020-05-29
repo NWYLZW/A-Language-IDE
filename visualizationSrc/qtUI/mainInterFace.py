@@ -145,13 +145,6 @@ class Ui_MainWindow(object):
 "}")
         self.CardControler.setObjectName("CardControler")
         self.gridLayout.addWidget(self.CardControler, 0, 0, 1, 1)
-        self.CommandList = QtWidgets.QTextBrowser(self.gridLayoutWidget)
-        self.CommandList.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.CommandList.setStyleSheet("QTextBrowser{\n"
-"    background-image: url(:/picture/Data/qrc/command.png);\n"
-"}")
-        self.CommandList.setObjectName("CommandList")
-        self.gridLayout.addWidget(self.CommandList, 0, 1, 1, 1)
         self.CommandList_2 = QtWidgets.QTextBrowser(self.gridLayoutWidget)
         self.CommandList_2.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.CommandList_2.setStyleSheet("QTextBrowser{\n"
@@ -405,6 +398,19 @@ class Ui_MainWindow(object):
 "}")
         self.OnlineServer.setObjectName("OnlineServer")
         self.gridLayout.addWidget(self.OnlineServer, 1, 2, 1, 1)
+        self.CommandList = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.CommandList.setMinimumSize(QtCore.QSize(0, 300))
+        self.CommandList.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CommandList.setStyleSheet("QPushButton{\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"    border:none;\n"
+"    border-radius:5px;\n"
+"    background-image: url(:/picture/Data/qrc/command.png);\n"
+"}")
+        self.CommandList.setText("")
+        self.CommandList.setObjectName("CommandList")
+        self.gridLayout.addWidget(self.CommandList, 0, 1, 1, 1)
         self.gridLayout.setColumnMinimumWidth(0, 1)
         self.gridLayout.setColumnMinimumWidth(1, 1)
         self.gridLayout.setColumnMinimumWidth(2, 1)
@@ -438,12 +444,6 @@ class Ui_MainWindow(object):
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.CardControler.setToolTip(_translate("MainWindow", "<html><head/><body><p>卡牌管理</p></body></html>"))
         self.CardControler.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.CommandList.setToolTip(_translate("MainWindow", "<html><head/><body><p>指令列表</p></body></html>"))
-        self.CommandList.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
