@@ -1,0 +1,83 @@
+vbox(def = 'bg2' corner = '12' radius = '2') ::
+{
+	hbox(size = '25') ::
+	{
+		hbox(id = 'top_render' hidden = '1' flex = '1') ::
+		{
+			switch(def = 'sw-play' onClick = 'set pt_auto' selected = '1')
+			(corner = '12' radius = '2' size = '32')
+			(hint = 'Toggle Progressive Rendering')
+
+			sp(flex = '1')	
+
+			label(def = 'h3' text = '^57' textFont = '2' textSize = '20 20')
+			(size = '26' next = '5')
+
+			textField(def = 'tf-size' id = 'pt_image' onEnter = 'set pt_image' default = 'image' maxLength = '10')
+			(size = '110')
+			(hint = 'Image Size [16 - 2048]')
+
+			resizer(axis = '0' class = 'image')(range = '16 2048' step = '5' space = '2')(size = '8' next = '3' margin = '0 0 0 0')
+
+			label(def = 'h3' text = '^59' textFont = '2' textSize = '17 16')
+			(size = '26' next = '3')
+
+			textField(def = 'tf-size' id = 'pt_spp' onEnter = 'set pt_spp' default = 'sample' maxLength = '7')
+			(size = '100')
+			(hint = 'Samples Per Pixel [512 - 100000]')
+			
+			resizer(axis = '0' class = 'int')(range = '512 100000' step = '10')(size = '8' next = '3' margin = '0 0 0 0')
+		}
+		
+		hbox(id = 'top_edit' flex = '1') ::
+		{
+			hbox(id = 'top_medit' hidden = '1' flex = '1' prev = '4') ::
+			{
+				sp(flex = '1')
+			
+				textField(def = 'tf-size' id = 'size' onEnter = 'size' default = 'size' maxLength = '12')
+				(corner = '0' margin = '0 0 0 0' size = '125')
+				(hint = 'Resize Model [1 - 126]')
+			}
+
+			hbox(id = 'top_oedit' flex = '1' prev = '4') ::
+			{
+				sp(flex = '1')
+				
+				button(def = 'bn-bar' id = 'onew' onClick = 'onew' textFont = '2' text = '^10')
+				(size = '40')
+				(hint = 'New Object [CTRL+N]')
+
+				button(def = 'bn-bar' id = 'odel' onClick = 'odel' textFont = '2' text = '^11')
+				(size = '40')
+				(hint = 'Delete Objects [Backspace/Delete]')
+				
+				sp(def = 'bg0')(size = '2')
+				
+				button(def = 'bn-bar' id = 'ogroup' onClick = 'ogroup' textFont = '2' text = '^19')
+				(size = '40')
+				(hint = 'Group Objects [CTRL+R]')
+
+				button(def = 'bn-bar' id = 'oungroup' onClick = 'oungroup' textFont = '2' text = '^18')
+				(size = '40')
+				(hint = 'Ungroup Objects [CTRL+SHIFT+R]')
+
+				sp(def = 'bg0')(size = '2')
+			
+				button(def = 'bn-bar' id = 'lv_prev' onClick = 'olevel -1' text = '^8593' textSize = '14 14')
+				(size = '40')
+				(hint = 'Leave Group [SHIFT+TAB]')
+
+				button(def = 'bn-bar' id = 'lv_next' onClick = 'olevel +1' text = '^8595' textSize = '14 14')
+				(size = '40')
+				(hint = 'Enter Group [TAB]')
+
+				sp(def = 'bg0')(size = '2')
+			}
+
+			button(def = 'bn-bar' id = 'lv_edit' onClick = 'olevel -2' text = '^8644' textSize = '18 16')
+			(corner = '8' radius = '2' size = '40')
+			(hint = 'Switch between Model/World Editor [TAB]')
+		}			
+	}
+}

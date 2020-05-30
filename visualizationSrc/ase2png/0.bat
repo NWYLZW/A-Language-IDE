@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Aseprite\Aseprite.exe" --batch 7.ase --save-as 7.png

@@ -1,0 +1,190 @@
+vbox(margin = '12 12 0 0') ::
+{
+	vbox(id = 'medit_basic') ::
+	{
+		//----------------
+		// Tool
+		//----------------
+		switch(class = 'panel' )(selected = '1' text = 'Tool' size = '26')
+		vbox ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'full' text = 'Full' flex = '1' next = '1')(corner = '4')(hint = 'Full : Full Volume [U]')
+				button(onClick = 'fill' text = 'Fill' flex = '1')(corner = '8')(hint = 'Fill : Fill Voxels with Same Color [I]')
+			}
+
+			hbox(size = '26' next = '2') ::
+			{
+				button(onClick = 'zero' text = 'Del' flex = '1' next = '1')(hint = 'Del : Delete Voxels [Backspace/Delete]')
+				button(onClick = 'x2'   text = '2X'  flex = '1')(hint = '2X : Double Size')
+			}
+
+			hbox(size = '26') ::
+			{
+				button(onClick = 'shrink' text = 'Fit')(flex = '1' next = '1')(corner = '1')(hint = 'Fit : Fit Model Size')
+				button(onClick = 'inv' text = 'Inv')(flex = '1')(corner = '2')(hint = 'Inv : Inverse Space')
+			}
+		}
+
+		//----------------
+		// Select
+		//----------------
+		switch(class = 'panel'  )(selected = '0' text = 'Select' size = '26')
+		vbox(next = '8') ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'sel_all' text = 'All')(flex = '1' next = '1' corner = '4')(hint = 'Select All [CTRL+A]')
+				button(onClick = 'sel_inv' text = 'Inv')(flex = '1' corner = '8')(hint = 'Select Inverse [CTRL+I]')
+			}
+			hbox(size = '26' next = '2') ::
+			{
+				button(onClick = 'sel_none' text = 'None')(flex = '1')(hint = 'Select None [CTRL+D]')
+			}
+
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'copy' text = 'Copy')(flex = '1' next = '1')(hint = 'Copy Voxels [CTRL+C]')
+				button(onClick = 'cut' text = 'Cut')(flex = '1')(hint = 'Cut Voxels [CTRL+X]')
+			}
+			hbox(size = '26') ::
+			{
+				button(onClick = 'paste' text = 'Paste')(flex = '1')(corner = '3')(hint = 'Paste Voxels [CTRL+V]')
+			}
+		}
+	}
+
+	sp(id = 'medit_sep0')(def = 'bar-h' size = '3' prev = '4' next = '4')
+	
+	vbox(id = 'medit_tran') ::
+	{
+		//----------------
+		// Rot
+		//----------------
+		switch(class = 'panel' )(selected = '0' text = 'Rot' size = '26')
+		hbox(size = '26' )(hint = 'Rot : Rotate Model 90 Degrees') ::
+		{
+			button(onClick = 'rot90 x' text = 'X')(flex = '1' next = '1' corner = '5')
+			button(onClick = 'rot90 y' text = 'Y')(flex = '1' next = '1')
+			button(onClick = 'rot90 z' text = 'Z')(flex = '1' corner = '10')
+		}
+
+		//----------------
+		// Flip
+		//----------------
+		switch(class = 'panel' )(selected = '0' text = 'Flip' size = '26')
+		hbox(size = '26' )(hint = 'Flip : Flip Model') ::
+		{
+			button(onClick = 'flip x' text = 'X' flex = '1' next = '1')(corner = '5')
+			button(onClick = 'flip y' text = 'Y' flex = '1' next = '1')
+			button(onClick = 'flip z' text = 'Z' flex = '1')(corner = '10')
+		}
+
+		//----------------
+		// Loop
+		//----------------
+		switch(class = 'panel' )(selected = '0' text = 'Loop' size = '26')
+		vbox()(hint = 'Loop : Move Model') ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'loop x +1' text = '+X' repeated = '1')(corner = '4')(flex = '1'  next = '1')
+				button(onClick = 'loop y +1' text = '+Y' repeated = '1')(flex = '1'  next = '1')
+				button(onClick = 'loop z +1' text = '+Z' repeated = '1')(corner = '8')(flex = '1')
+			}
+
+			hbox(size = '26') ::
+			{
+				button(onClick = 'loop x -1' text = '-X' repeated = '1')(corner = '1')(flex = '1'  next = '1')
+				button(onClick = 'loop y -1' text = '-Y' repeated = '1')(flex = '1'  next = '1')
+				button(onClick = 'loop z -1' text = '-Z' repeated = '1')(corner = '2')(flex = '1')
+			}
+		}
+
+		switch(class = 'panel' )(selected = '0' text = 'Scale' size = '26')
+		textField(onEnter = 'scale' default = 'xyz 1.0' maxLength = '9')
+		(size = '26')
+		(hint = 'Scale Model : [Axis] [Factor]')
+
+		switch(class = 'panel' )(selected = '0' text = 'Rotate' size = '26')
+		textField(onEnter = 'rot' default = 'xyz 0.0' maxLength = '9')
+		(size = '26')
+		(hint = 'Rotate Model : [Axis] [Angle]')
+
+		switch(class = 'panel' )(selected = '0' text = 'Repeat' size = '26')
+		textField(onEnter = 'repeat' default = 'xyz 1.0' maxLength = '9')
+		(size = '26' next = '6')
+		(hint = 'Repeat Model : [Axis] [Factor]')
+	}
+
+	sp(id = 'medit_sep1')(def = 'bar-h' size = '3' prev = '4' next = '4')
+	
+	vbox(id = 'medit_mod') ::
+	{
+		//----------------
+		// Sym
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Mirror' size = '26')
+		hbox(size = '26')(hint = 'Mirror') ::
+		{
+			button(onClick = 'mir x' text = 'X' repeated = '1')(corner = '5')(flex = '1' next = '1')
+			button(onClick = 'mir y' text = 'Y' repeated = '1')(flex = '1' next = '1')
+			button(onClick = 'mir z' text = 'Z' repeated = '1')(corner = '10')(flex = '1')
+		}
+
+		switch(class = 'panel')(selected = '0' text = 'Diagonal' size = '26')
+		hbox(size = '26')(hint = 'Diagonal') ::
+		{
+			button(onClick = 'dia x' text = 'X' repeated = '1')(corner = '5')(flex = '1' next = '1')
+			button(onClick = 'dia y' text = 'Y' repeated = '1')(flex = '1' next = '1')
+			button(onClick = 'dia z' text = 'Z' repeated = '1')(corner = '10')(flex = '1')
+		}
+	
+		//----------------
+		// Prim
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Shape' size = '26')
+		vbox(next = '1') ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'prim elli'	text = 'Elli'	flex = '1' next = '1')(corner = '4')(hint = 'Elli : Ellipsoid')
+				button(onClick = 'prim cyli'	text = 'Cyli'	flex = '1')(corner = '8')(hint = 'Cyli : Cylinder')
+			}
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'prim pyra'	text = 'Pyra'	flex = '1' next = '1')(hint = 'Pyra : Pyramid')
+				button(onClick = 'prim cone'	text = 'Cone'	flex = '1')(hint = 'Cone : Cone')
+			}
+			hbox(size = '26') ::
+			{
+				button(onClick = 'maze'		text = 'Maze'	flex = '1' next = '1')(corner = '1')(hint = 'Maze : Maze [Edge Length]')
+				button(onClick = 'noise -1'	text = 'Perlin'	flex = '1')(corner = '2')(hint = 'Perlin : Perlin Noise')
+			}
+		}
+		
+		//----------------
+		// Misc
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Misc' size = '26')
+		vbox(next = '1') ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'flood 0' text = 'Hull')(flex = '1' next = '1')(corner = '4')(hint = 'Hull : Remove All Invisible Voxels')
+				button(onClick = 'flood'   text = 'Flood')(flex = '1')(corner = '8')(hint = 'Flood : Flood Fill All Invisible Space')
+			}
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'fractal' text = 'Fract')(flex = '1' next = '1')(hint = 'Fract : Fractal Model')
+				button(onClick = 'rand'    text = 'Rand')(flex = '1')(hint = 'Rand : Random Color')
+			}
+			hbox(size = '26') ::
+			{
+				button(onClick = 'dil' repeated = '1'	text = 'Dilat')(flex = '1' next = '1')(corner = '1')(hint = 'Dilat : Dilation')
+				button(onClick = 'ero' repeated = '1'	text = 'Erode')(flex = '1')(corner = '2')(hint = 'Erode : Erosion')
+			}
+		}
+	}
+}

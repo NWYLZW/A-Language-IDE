@@ -1,0 +1,75 @@
+vbox(clip = '0' margin = '9 9 0 0') ::
+{		
+	switch(class = 'panel')(def = 'h1' selected = '1' text = 'Object')(size = '36')
+	textfield(id = 'oname' onEnter = 'oname' default = 'object' maxlength = '64' align = '1' enter = '1' once = '1' border = '6' textSize = '7 7')
+	(size = '24' next = '8')
+	(hint = 'Object Name')
+
+	//----------------
+	// Layer
+	//----------------
+	hbox(clip = '0' size = '36') ::
+	{
+		switch(class = 'panel')(def= 'h1' selected = '1' path = '1 1' text = 'Layer')(flex = '1')
+		switch(def = 'sw-edit')
+		(onClick = [[ui_view 'lay_cur' 'lay_name']] delayed = '0')
+		(corner = '15' size = '28' margin = '0 0 4 4')
+		(hint = 'Edit Layer Names')
+	}
+	hbox(corner = '15' radius = '2' size = '176') ::
+	{
+		vbox(id = 'lay_vis' size = '24')(hint = 'Set Layer Visibility') ::
+		{
+			switch(def = 'lay-vis' onClick = 'lay_show 0' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 1' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 2' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 3' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 4' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 5' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 6' flex = '1')
+			switch(def = 'lay-vis' onClick = 'lay_show 7' flex = '1')
+		}
+
+		opBox( id = 'lay_cur' index = '0' onClick = 'lay_cur' )(flex = '1')(hint = 'Set Layer for New Objects') ::
+		{
+			vbox ::
+			{
+				option(def = 'lay-cur' id = '0' flex = '1')
+				option(def = 'lay-cur' id = '1' flex = '1')
+				option(def = 'lay-cur' id = '2' flex = '1')
+				option(def = 'lay-cur' id = '3' flex = '1')
+				option(def = 'lay-cur' id = '4' flex = '1')
+				option(def = 'lay-cur' id = '5' flex = '1')
+				option(def = 'lay-cur' id = '6' flex = '1')
+				option(def = 'lay-cur' id = '7' flex = '1')
+			}
+		}
+
+		vbox(hidden = '1' id = 'lay_name')(flex = '1')(hint = 'Edit Layer Names') ::
+		{
+			textField(def = 'lay-name' default = '0' onEnter = 'lay_name 0' id = '0' flex = '1')
+			textField(def = 'lay-name' default = '1' onEnter = 'lay_name 1' id = '1' flex = '1')
+			textField(def = 'lay-name' default = '2' onEnter = 'lay_name 2' id = '2' flex = '1')
+			textField(def = 'lay-name' default = '3' onEnter = 'lay_name 3' id = '3' flex = '1')
+			textField(def = 'lay-name' default = '4' onEnter = 'lay_name 4' id = '4' flex = '1')
+			textField(def = 'lay-name' default = '5' onEnter = 'lay_name 5' id = '5' flex = '1')
+			textField(def = 'lay-name' default = '6' onEnter = 'lay_name 6' id = '6' flex = '1')
+			textField(def = 'lay-name' default = '7' onEnter = 'lay_name 7' id = '7' flex = '1')
+		}			
+
+		opBox( id = 'lay_sel' index = '0' onClick = 'lay_sel' )(size = '14')(hint = 'Set Layer for Selected Objects') ::
+		{
+			vbox(corner = '10' radius = '2') ::
+			{
+				option(def = 'lay-sel' id = '0' flex = '1')
+				option(def = 'lay-sel' id = '1' flex = '1')
+				option(def = 'lay-sel' id = '2' flex = '1')
+				option(def = 'lay-sel' id = '3' flex = '1')
+				option(def = 'lay-sel' id = '4' flex = '1')
+				option(def = 'lay-sel' id = '5' flex = '1')
+				option(def = 'lay-sel' id = '6' flex = '1')
+				option(def = 'lay-sel' id = '7' flex = '1')
+			}
+		}
+	}
+}

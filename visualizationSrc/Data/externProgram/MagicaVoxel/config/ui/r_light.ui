@@ -1,0 +1,222 @@
+vbox(id = 'menu_light')(margin = '9 9 0 0' clip = '0') ::
+{
+	//----------------
+	// Sun
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '1' text = 'Sun' flex = '1')
+
+		switch(id = 'pt_sun_disk' def = 'sw-check' onClick = 'set pt_sun_disk' selected = '0')
+		(size = '12')(hint = 'Show Sun Disk')
+	}
+	
+	vbox(next = '8' clip = '0')::
+	{
+		label(def = 'h3' text = 'Angle')(size = '15')
+		
+		hbox(size = '28' prev = '3' next = '5' margin = '-3 -3 0 0' clip = '0') ::
+		{
+			textField(def = 'tf-bg' id = 'pt_sun_p' onEnter = 'set pt_sun_p' maxLength = '5')
+			(flex = '1' corner = '5' margin = '0 0 3 3')
+			(hint = 'Pitch Angle of Sun Light [-90 - +90]')
+			resizer(class = 'float')(range = '-90 90' step = '1' space = '2' axis = '0')(size = '8' next = '4' margin = '0 0 3 3')
+
+			textField(def = 'tf-bg' id = 'pt_sun_y' onEnter = 'set pt_sun_y' maxLength = '5')
+			(flex = '1' corner = '5' margin = '0 0 3 3')
+			(hint = 'Yaw Angle of Sun Light [0 - 360]')
+			resizer(class = 'float')(range = '0 360' step = '1' space = '2' axis = '0' mod = '360')(size = '8' margin = '0 0 3 3')
+		}
+		
+		vbox(hint = 'Sun Area') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Area')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_shadow' onEnter = 'set pt_shadow')(size = '24')
+			}
+			slider(id = 'pt_shadow_sl' onChange = 'set pt_shadow')(size = '32')
+		}
+
+		vbox(hint = 'Sun Intensity') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Intensity')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_isun' onEnter = 'set pt_isun')(size = '24')
+			}
+			hbox(size = '32') ::
+			{
+				slider(id = 'pt_isun_sl' onChange = 'set pt_isun')(flex = '1')
+				colpick(id = 'pt_sun_col' onChange = 'set pt_sun_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Sun Color')
+			}
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+	
+	//----------------
+	// Sky
+	//----------------
+	hbox(size = '36' clip = '0' margin = '0 -4 0 0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '1' text = 'Sky' flex = '1')
+
+		opBox(class = 'tab')(id = 'pt_env' index = '0')(prev = '8' next = '3')::
+		{
+			hbox ::
+			{
+				option(class = 'cmd')(def = 'op-gr' id = [['menu_uni']]	text = '^78' textFont = '2' textsize = '14 15' onClick = 'set pt_env 0')(size = '16' next = '0')(hint = 'Uniform Lighting')
+				option(class = 'cmd')(def = 'op-gr' id = [['menu_atm']]	text = '^80' textFont = '2' textsize = '14 15' onClick = 'set pt_env 1')(size = '16' next = '0')(hint = 'Atmospheric Scattering')
+				option(class = 'cmd')(def = 'op-gr' id = [['menu_ibl']]	text = '^77' textFont = '2' textsize = '14 15' onClick = 'set pt_env 2')(size = '16' next = '0')(hint = 'Image Based Lighting')
+			}
+		}
+	}	
+
+	vbox(next = '8') ::
+	{
+		//----------------
+		// Uniform
+		//----------------
+		vbox(id = 'menu_uni') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Intensity')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_isky' onEnter = 'set pt_isky')(size = '24')
+			}
+			hbox(size = '32') ::
+			{
+				slider(id = 'pt_isky_sl' onChange = 'set pt_isky')(flex = '1')
+				colpick(id = 'pt_sky_col'  onChange = 'set pt_sky_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Sky Color')
+			}
+		}
+		 
+		//----------------
+		// Atmosphere
+		//----------------
+		vbox(id = 'menu_atm' hidden = '1') ::
+		{
+			vbox ::
+			{
+				vbox(hint = 'Rayleigh Density') ::
+				{
+					hbox(size = '15') ::
+					{
+						label(def = 'h3' text = 'Rayleigh')(flex = '1')
+						textField(def = 'tf-sl' id = 'pt_ray_d' onEnter = 'set pt_ray_d')(size = '24')
+					}
+
+					hbox(size = '32') ::
+					{
+						slider(id = 'pt_ray_d_sl' onChange = 'set pt_ray_d')(flex = '1')
+						colpick(id = 'pt_ray_col' onChange = 'set pt_ray_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Rayleigh Color')
+					}
+				}
+
+				vbox(hint = 'Mie Density') ::
+				{
+					hbox(size = '15') ::
+					{
+						label(def = 'h3' text = 'Mie:')(size = '30' next = '4')
+					
+						textField(def = 'tf-sl' id = 'pt_mie_g' onEnter = 'set pt_mie_g' maxLength = '4')(size = '24' next = '3')(hint = 'Mie Phase')
+						resizer( class = 'float')(range = '0.5 0.99' step = '0.01' space = '6')(size = '6' margin = '0 0 -2 -2')
+					
+						sp(flex = '1')
+					
+						textField(def = 'tf-sl' id = 'pt_mie_d' onEnter = 'set pt_mie_d')(size = '24')
+					}
+
+					hbox(size = '32') ::
+					{
+						slider(id = 'pt_mie_d_sl' onChange = 'set pt_mie_d')(flex = '1')
+						colpick(id = 'pt_mie_col' onChange = 'set pt_mie_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Mie Color')
+					}
+				}
+
+				vbox(hint = 'Ozone Density') ::
+				{
+					hbox(size = '15') ::
+					{
+						label(def = 'h3' text = 'Ozone')(flex = '1')
+						textField(def = 'tf-sl' id = 'pt_o3_d' onEnter = 'set pt_o3_d')(size = '24')
+					}
+
+					hbox(size = '32') ::
+					{
+						slider(id = 'pt_o3_d_sl' onChange = 'set pt_o3_d')(flex = '1')
+						colpick(id = 'pt_o3_col' onChange = 'set pt_o3_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Ozone Color')
+					}
+				}
+			}
+		}
+
+		//----------------
+		// IBL
+		//----------------
+		vbox(id = 'menu_ibl' hidden = '1') ::
+		{
+			hbox(size = '15')(hint = 'Intensity') ::
+			{
+				label(def = 'h3' text = 'Intensity')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_ibl_i' onEnter = 'set pt_ibl_i')(size = '24')
+			}
+			hbox(size = '32')(hint = 'Intensity') ::
+			{
+				slider(id = 'pt_ibl_i_sl' range = '0 100' onChange = 'set pt_ibl_i')(flex = '1')
+			}
+			hbox(size = '15')(hint = 'Rotation') ::
+			{
+				label(def = 'h3' text = 'Rotation')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_ibl_rot' onEnter = 'set pt_ibl_rot')(size = '24')
+			}
+			hbox(size = '32')(hint = 'Rotation') ::
+			{
+				slider(id = 'pt_ibl_rot_sl' range = '0 360' onChange = 'set pt_ibl_rot')(flex = '1')
+			}
+
+			/*hbox(size = '28') ::
+			{
+				label(def = 'h3' text = 'Image')(flex = '1')
+				button(onClick = 'ibl'	)(def = 'bn-ic-t' text = '^10'	textsize = '10 10')(size = '20' margin = '0 0 4 4')(hint = 'Load HDR Image')
+				button(onClick = 'ibl <null>')(def = 'bn-ic-t' text = '^11'	textsize = '10 10')(size = '20' margin = '0 0 4 4')(hint = 'Remove HDR Image')		
+			}*/
+
+			button(class = 'image')(id = 'ibl_image' onClick = 'ibl' bgColor = '100 100 100' bgColor-h = '160 160 160' bgColor-s = '0 0 0' border = '1')
+			(margin = '4 0 0 0' size = '46.5')(hint = 'Load HDR Image')
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Fog
+	//----------------
+	switch(class = 'panel')(def='h1' selected = '0' text = 'Fog')(size = '36')
+
+	vbox(next = '8')(hint = 'Fog Density') ::
+	{
+		hbox(size = '15') ::
+		{
+			label(def = 'h3' text = 'Density')(flex = '1')
+			textField(def = 'tf-sl'  id = 'pt_fog_et' onEnter = 'set pt_fog_et')(size = '24')
+		}
+
+		hbox(size = '32') ::
+		{
+			slider(id = 'pt_fog_et_sl' onChange = 'set pt_fog_et')(flex = '1')
+			colpick(id = 'pt_fog_col' onChange = 'set pt_fog_col')(prev = '9' size = '16' margin = '0 0 10 10')(hint = 'Fog Color')
+		}
+
+		hbox(size = '28')(hint = 'Fog Phase') ::
+		{
+			label(def = 'h3' text = 'Phase')(size = '36' next = '4')
+			sp(flex = '1')
+			textField(def = 'tf-sl' id = 'pt_fog_eg' onEnter = 'set pt_fog_eg' maxLength = '5')(size = '33' next ='3')
+			resizer( class = 'float')(range = '0.0 0.9' step = '0.01' space = '6')(size = '8')
+		}
+	}
+
+	sp(id = 'rl_sep0' def = 'bar-h' size = '3' hidden = '1')
+}

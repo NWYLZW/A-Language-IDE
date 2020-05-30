@@ -1,0 +1,888 @@
+layer(barColor = '55 55 55' barColor-h = '45 45 45' barColor-s = '30 30 30')
+layer-dark(scroll = '-1 1' corner = '15' radius = '3' bgColor = '40 40 40' barWidth = '6' barColor = '80 80 80' barColor-h = '110 110 110' barColor-s = '130 130 130')
+
+hbox()
+vbox()
+
+//======================================
+// bg
+//======================================
+bg0(bgColor = '40 40 40')
+bg(bgColor = '60 60 60')
+bg2(bgColor = '55 55 55')
+bg3(bgColor = '50 50 50')
+
+outline(bgColor = '100 100 100' corner = '15' radius = '6')
+outline-i(bgColor = '60 60 60' corner = '15' radius = '5' margin = '1 1 1 1')
+outline2(bgColor = '80 80 80' corner = '15' radius = '6')
+bar-v(bgColor = '50 50 50' corner = '15' radius = '3')
+bar-h(bgColor = '52 52 52' margin = '-3 -3 0 0')
+
+//======================================
+// label
+//======================================
+label(textSize = '8 8' textColor = '255 255 255 160')
+h1(style = '2')(textOffset = '13.0 0' textSize = '7.5 7.5' textColor = '140 140 140' textColor-s = '170 170 170')(margin = '-9 0 0 0')
+h3(align='1' textOffset = '4.0 0' textSize = '7.2 7.2' textColor = '120 120 120')
+hint(textSize = '8 8' textAlign = '2' textColor = '255 255 255 140')
+
+//======================================
+// textfied
+//======================================
+textfield( textSize = '6.5 6.5' bgColor = '30 30 30' corner = '15' radius = '2' align = '2' textFont = '1')
+
+tf-size(once = '1' enter = '1' align = '2' textSize = '8 8' textFont = '1')
+
+tf-sl( align = '3' textSize = '6 6' textOffset = '0 0' bgColor = '0 0 0 0' textColor = '130 130 130')
+(enter = '1' maxLength = '4' textFont = '1')
+
+tf-side( align = '3' textSize = '6.5 6.5' textOffset = '0 0' bgColor = '0 0 0 0' textColor = '130 130 130')
+(enter = '1' maxLength = '4' textFont = '1')
+
+tf-n-bg(textSize = '6 6' bgColor = '40 40 40' textColor = '130 130 130')
+(enter = '1' maxLength = '5' align = '2' textFont = '1')
+(corner = '15' radius = '3' margin = '0 0 3 3')
+
+tf-bg(textSize = '6 6' bgColor = '40 40 40' textColor = '130 130 130')
+(enter = '1' maxLength = '5' align = '2' textFont = '1')
+(corner = '15' radius = '3' margin = '0 0 3 3')
+
+tf-col(bgColor = '0 0 0 0' textsize = '5.5 5.5' align = '2' textFont = '1' maxLength = '4' enter = '1' once = '1')
+
+//======================================
+// option
+//======================================
+op-mode
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '75 75 75'
+	textColor	= '255 255 255 160'
+
+	// hover
+	bgColor-h	= '90 90 90'
+	textColor-h	= '255 255 255 190'
+
+	// select
+	bgColor-s	= '105 105 105'
+	textColor-s	= '255 255 255 190'
+)
+
+op-brush
+(
+	textFont	= '2'
+	textSize	= '18 18'
+	textAlign	= '2'
+
+
+	// idle
+	//bgColor	= '172 172 172'
+	textColor	= '10 10 10 160'
+
+	// hover
+	bgColor-h	= '172 172 172'
+	textColor-h	= '10 10 10 160'
+
+	// select
+	bgColor-s	= '195 195 195'
+	textColor-s	= '10 10 10 160'
+
+	corner = '15'
+	radius = '1'
+)
+
+op-bw
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	textColor	= '255 255 255 90'
+
+	// hover
+	textColor-h	= '255 255 255 150'
+
+	// select
+	textColor-s	= '255 255 255 220'
+
+	corner = '15'
+	radius = '5'
+)
+
+op-gr
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	textColor	= '255 255 255 90'
+
+	// hover
+	textColor-h	= '255 255 255 150'
+
+	// select
+	textColor-s	= '120 190 160'
+
+	corner = '15'
+	radius = '5'
+)
+
+op-sel
+(
+	textSize = '9 9'
+	textAlign = '2'
+	
+	// idle
+	//bgColor	= '80 80 80'
+	textColor	= '255 255 255 120'//'235 195 60 255'
+
+	// hover
+	//bgColor-h	= '50 50 50'
+	textColor-h	= '255 255 255 200'
+
+	// select
+	bgColor-s	= '50 50 50 0'
+	textColor-s	= '150 190 233 255' // 120 210 160 255'
+
+	corner = '15'
+	radius = '5'
+)
+
+op-otool
+(
+	textFont = '2'
+	textSize = '16.5 16.5'
+	
+	textAlign	= '2'
+
+	// idle
+	textColor	= '255 255 255 90'
+
+	// hover
+	textColor-h	= '255 255 255 150'
+
+	// select
+	textColor-s	= '255 255 255 220'
+)
+
+//======================================
+// switch
+//======================================
+switch
+(
+	textSize	= '10 10'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '0 0 0 0'
+	textColor	= '255 255 255 90'
+
+	// hover
+	bgColor-h	= '60 60 60'
+	textColor-h	= '255 255 255 190'
+
+	// select
+	bgColor-s	= '40 40 40'
+	textColor-s	= '235 195 60 255'
+
+	corner = '15'
+	radius = '5'
+)
+
+sw-sel
+(
+	textSize	= '8.5 8.5'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '90 90 90'
+	textColor	= '10 10 10 240'
+
+	// hover
+	bgColor-h	= '120 120 120'
+	textColor-h	= '10 10 10 240'
+
+	// select
+	bgColor-s	= '235 203 100'//'235 195 60'
+	textColor-s	= '10 10 10 240'
+)
+
+switch-panel
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+		
+	// idle
+	bgColor		= '50 50 50'
+	textColor = '172 172 172'
+)
+
+sw-bw
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	textColor	= '255 255 255 90'
+
+	// hover
+	textColor-h	= '255 255 255 150'
+
+	// select
+	textColor-s	= '255 255 255 255'
+)
+
+sw-toggle
+(
+	style = '2'
+	
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '90 90 90'
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '125 125 125'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '80 80 80'
+	textColor-s	= '255 255 255 255'
+)
+
+sw-rgb
+(
+	style = '2'
+	textSize	= '9 9'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '10 10 10'
+	textColor	= '255 255 255 230'
+
+	// hover
+	bgColor-h	= '30 30 30'
+	textColor-h	= '255 255 255 230'
+
+	// select
+	bgColor-s	= '10 10 10'
+	textColor-s	= '255 255 255 230'
+
+	radius = '4'
+)
+
+sw-view
+(
+	textSize	= '14 14'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '30 30 30'
+	textColor	= '255 255 255 230'
+
+	// hover
+	bgColor-h	= '40 40 40'
+	textColor-h	= '255 255 255 230'
+
+	// select
+	bgColor-s	= '10 10 10'
+	textColor-s	= '255 255 255 230'
+
+	radius = '4'
+	corner = '15' 
+)
+
+sw-title
+(
+	style = '2'
+	textSize = '9 9'
+	radius = '2'
+	corner = '12'
+		
+	// idle
+	bgColor = '65 65 65 0'
+	textColor = '255 255 255 100'
+
+	// hover
+	bgColor-h = '70 70 70 0'
+	textColor-h = '255 255 255 180'
+
+	// select
+	bgColor-s	= '85 85 85 0'
+	textColor-s = '255 255 255 140'
+)
+
+sw-render
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '80 80 80'
+	textColor	= '0 0 0 220'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '0 0 0 220'
+
+	// select
+	bgColor-s	= '30 30 30'
+	textColor-s	= '235 195 60 255'
+
+	corner = '15'
+	radius = '3'
+
+	delayed = '0'
+)
+
+sw-render-t
+(
+	textSize	= '8 8'
+	textAlign	= '2'
+
+	// idle
+	textColor	= '255 255 255 90'
+
+	// hover
+	textColor-h	= '255 255 255 180'
+
+	// select
+	bgColor-s	= '30 30 30'
+	textColor-s	= '235 195 60 255'
+
+	corner = '15'
+	radius = '5'
+
+	delayed = '0'
+)
+
+sw-check
+(
+	style = '1'
+	textFont = '2'
+	text = '^66'
+	text2 = '^67'
+	text = '^9745'
+	text2 = '^9744'
+	
+	textSize	= '14 14'
+	textAlign	= '2'
+
+	// idle
+	textColor	= '120 120 120'
+
+	// hover
+	textColor-h	= '200 200 200'
+
+	// select
+	textColor-s	= '120 190 160' // '80 160 240 255' '120 190 160 255'
+)
+
+sw-edit
+(
+	text= '^49'
+	textFont = '2'
+	textSize = '15 15'
+
+	// idle
+	textColor	= '255 255 255 130'
+
+	// hover
+	bgColor-h	= '70 70 70'
+	textColor-h	= '255 255 255 200'
+
+	// select
+	bgColor-s	= '30 30 30'
+	textColor-s = '245 170 100'
+
+	corner = '15'
+	radius = '3'
+)
+
+sw-side
+(
+	style = '1'
+	textFont = '2'
+	textSize	= '17 17'
+
+	// idle
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s = '255 200 95 255'
+
+	// disable
+	textColor-d	= '255 255 255 70'
+
+	corner = '15'
+	radius = '3'
+)
+
+sw-menu
+(
+	style = '0'
+
+	text = '^11096'//'^128903' '^11096''^9673'
+	textSize = '13 13'
+
+	hint = 'Pin the Menu'
+
+	// idle
+	bgColor		= '30 30 30'
+	textColor	= '255 255 255 70'
+
+	// hover
+	bgColor-h	= '50 50 50'
+	textColor-h	= '255 255 255 160'
+
+	// select
+	bgColor-s	= '0 0 0'
+	textColor-s	= '255 255 255 160'//'120 190 160'
+
+	radius = '3'
+)
+
+sw-menu2
+(
+	style = '0'
+
+	textSize = '7 7'
+
+	// idle
+	bgColor		= '0 0 0 0'
+	textColor	= '255 255 255 70'
+
+	// hover
+	bgColor-h	= '0 0 0 0'
+	textColor-h	= '255 255 255 160'
+
+	// select
+	bgColor-s	= '0 0 0 0'
+	textColor-s	= '120 190 160'
+)
+
+sw-play
+(
+	style = '2' 
+	textFont = '2' 
+	textSize = '12 12'
+
+	text = '^41'
+	text2 = '^42' 
+
+	// idle
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s	= '255 255 255 255'
+
+	// disable
+	textColor-d	= '255 255 255 70'
+
+	corner = '15'
+	radius = '3'
+)
+
+//======================================
+// button
+//======================================
+button
+(
+	textSize	= '7.5 7.5'
+
+	// idle
+	bgColor		= '130 130 130'
+	textColor	= '0 0 0 150'
+
+	// hover
+	bgColor-h	= '160 160 160'
+	textColor-h	= '0 0 0 150'
+
+	// select
+	bgColor-s	= '120 120 120'
+	textColor-s	= '0 0 0 150'
+
+	// disable
+	bgColor-d	= '130 130 130'
+	textColor-d	= '0 0 0 80'
+
+	radius = '2'
+)
+
+bn-menu
+(
+	textSize	= '7.5 7.5'
+
+	// idle
+	bgColor		= '30 30 30'
+	textColor	= '255 255 255 180'
+
+	// hover
+	bgColor-h	= '60 60 60'
+	textColor-h	= '255 255 255 180'
+
+	// select
+	bgColor-s	= '40 40 40'
+	textColor-s	= '255 255 255 180'
+
+	// disable
+	bgColor-d	= '90 90 90'
+	textColor-d	= '255 255 255 80'
+
+	radius = '3'
+)
+
+bn-task
+(
+	textSize = '9 9'
+
+	// idle
+	bgColor		= '200 70 60'
+	textColor	= '255 255 255 255'
+
+	// hover
+	bgColor-h	= '230 100 90'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '185 55 45'
+	textColor-s	= '255 255 255 255'
+
+	// disable
+	bgColor-d	= '90 90 90'
+	textColor-d	= '255 255 255 80'
+)
+
+bn-grey
+(
+	textSize	= '7.5 7.5'
+
+	// idle
+	bgColor		= '100 100 100'
+	textColor	= '255 255 255 170'
+
+	// hover
+	bgColor-h	= '130 130 130'
+	textColor-h	= '255 255 255 200'
+
+	// select
+	bgColor-s	= '77 77 77'
+	textColor-s	= '255 255 255 200'
+
+	// disable
+	bgColor-d	= '90 90 90'
+	textColor-d	= '255 255 255 80'
+)
+
+bn-black
+(
+	textSize	= '7.5 7.5'
+
+	// idle
+	bgColor		= '85 85 85'
+	textColor	= '255 255 255 150'
+
+	// hover
+	bgColor-h	= '110 110 110'
+	textColor-h	= '255 255 255 175'
+
+	// select
+	bgColor-s	= '77 77 77'
+	textColor-s	= '255 255 255 170'
+)
+
+bn-ic // camera, mtl, play
+(
+	delayed = '1'
+	textFont = '2'
+	textSize = '17 17'
+
+	// idle
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s	= '255 255 255 255'
+
+	// disable
+	textColor-d	= '255 255 255 70'
+
+	corner = '15'
+	radius = '3'
+)
+
+bn-ic-t // file
+(
+	delayed = '1'
+	textFont = '2'
+	textSize = '17 17'
+
+	// idle
+	textColor	= '255 255 255 150'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '255 255 255 150'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s	= '255 255 255 150'
+
+	// disable
+	textColor-d	= '255 255 255 70'
+
+	corner = '15'
+	radius = '3'
+)
+
+bn-bar // tools
+(
+	textSize	= '17 17'
+
+	// idle
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '100 100 100'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s	= '255 255 255 255'
+
+	// disable
+	textColor-d	= '255 255 255 70'
+)
+
+bn-undo
+(
+	textSize = '21 22'
+	textAlign	= '2'
+
+	// idle
+	bgColor		= '85 85 85'
+	textColor	= '255 255 255 220'
+
+	// hover
+	bgColor-h	= '120 120 120'
+	textColor-h	= '255 255 255 255'
+
+	// select
+	bgColor-s	= '75 75 75'
+	textColor-s	= '255 255 255 255'
+
+	// disable
+	bgColor-d	= '80 80 80'
+	textColor-d	= '255 255 255 40'
+
+	corner = '15'
+	radius = '2'
+	margin = '0 0 1 1' 
+)
+
+//======================================
+// layer
+//======================================
+
+lay-vis
+(
+	style = '1'
+	textSize	= '11 11'
+	textAlign	= '2'
+	text		= '^9899'
+
+	// idle
+	bgColor		= '70 70 70'
+
+	// hover
+	bgColor-h	= '90 90 90'
+
+	// select
+	bgColor-s	= '90 90 90'
+	textColor-s	= '255 255 255 250'
+
+	margin = '1 1 1 1'
+	
+	delayed = '0'
+)
+
+lay-cur
+(
+	textFont = '1'
+	textSize	= '6 6'
+	textAlign	= '1'
+	textBorder	= '3'
+
+	// idle
+	bgColor		= '70 70 70'
+	textColor	= '255 255 255 200'
+
+	// hover
+	bgColor-h	= '90 90 90'
+	textColor-h	= '255 255 255 250'
+
+	// select
+	bgColor-s	= '90 90 90'
+	textColor-s	= '255 255 255 250'
+
+	margin = '0 0 1 1'
+)
+
+lay-name
+(
+	bgColor = '50 50 50'
+	textFont = '1'
+	textSize = '6 6'
+	textColor = '255 255 255 190'
+	
+	margin = '0 0 1 1'
+
+	border = '3'
+	maxlength = '64'
+	align = '1'
+	enter = '1'
+	once = '1'
+)
+
+lay-sel
+(
+	textSize	= '12 12'
+	textAlign	= '2'
+	text		= '^10094'
+
+	// idle
+	bgColor		= '70 70 70'
+
+	// hover
+	bgColor-h	= '90 90 90'
+
+	// select
+	bgColor-s	= '90 90 90'
+	textColor-s	= '255 255 255 250'
+
+	margin = '1 1 1 1'
+)
+
+//======================================
+// tab
+//======================================
+
+tab-panel-text
+(
+	textSize = '8.5 8.5'
+
+	// idle
+	textColor	= '255 255 255 120'
+
+	// hover
+	textColor-h	= '255 255 255 200'
+
+	// select
+	textColor-s	= '150 190 233 255' // '140 180 253 255'
+)
+
+tab-panel
+(
+	textFont = '2'
+	textSize = '17 17'
+
+	// idle
+	textColor	= '255 255 255 120'
+
+	// hover
+	textColor-h	= '255 255 255 200'
+
+	// select
+	textColor-s	= '150 190 233 255' // '140 180 253 255'
+)
+
+//======================================
+// slider
+//======================================
+slider
+(
+	snap = '1' // FIXME
+	
+	bdColor		= '52 52 52'
+	bgColor		= '20 20 20'
+	color		= '100 160 230'
+	range		= '0 100'
+	margin		= '4.7 0 1 1'
+	barWidth	= '1.5'
+	radius		= '0.5'
+	border		= '0'
+)
+			  
+sl-cam			  
+(				  
+	snap = '1'
+	
+	bdColor		= '52 52 52'
+	bgColor		= '20 20 20'
+	color		= '232 122 144' // '180 100 204'
+	range		= '0 100'
+	margin		= '4.7 0 1 1'
+	barWidth	= '1.5'
+	radius		= '0.5'
+	border		= '0'
+)
+
+sl-mtl			  
+(				  
+	snap = '1'
+	
+	bdColor		= '52 52 52'
+	bgColor		= '20 20 20'
+	color		= '130 198 107'
+	range		= '0 100'
+	margin		= '4.7 0 1 1'
+	barWidth	= '1.5'
+	radius		= '0.5'
+	border		= '0'
+)
+
+sl
+(				  
+	snap = '1'
+	
+	bdColor		= '52 52 52'
+	bgColor		= '20 20 20'
+	color		= '220 220 220'
+	range		= '0 100'
+	margin		= '4.7 0 1 1'
+	barWidth	= '1.5'
+	radius		= '0.5'
+	border		= '0'
+)
+
+fileList
+(
+	textSize = '8 8'
+	
+	bgColor		= '40 40 40'
+	bgColor-s	= '70 70 70' //'130 155 132'//'181 124 179'
+
+	textColor	= '255 255 255 130'
+	textColor-s	= '255 255 255 220'
+)
+
+colpick(menu = 'menu_col' border = '0' corner = '15' radius = '2')
+resizer-float(step = '0.1' space = '4')

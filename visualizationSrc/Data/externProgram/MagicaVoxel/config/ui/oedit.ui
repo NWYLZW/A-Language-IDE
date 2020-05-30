@@ -1,0 +1,152 @@
+vbox(margin = '12 12 0 0') ::
+{
+	vbox(id = 'oedit_basic') ::
+	{
+		//----------------
+		// Select
+		//----------------
+		switch(class = 'panel')(selected = '1' text = 'Select' size = '26')
+		vbox ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'osel_all' text = 'All')(flex = '1' next = '1' corner = '4')(hint = 'Select All [CTRL+A]')
+				button(onClick = 'osel_inv' text = 'Inv')(flex = '1' corner = '8')(hint = 'Select Inverse [CTRL+I]')
+			}
+
+			hbox(size = '26' next = '2') ::
+			{
+				button(onClick = 'osel_none' text = 'None')(flex = '1')(hint = 'Select None [CTRL+D]')
+			}
+
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'ocopy'   text = 'Copy')(flex = '1' next = '1')(hint = 'Copy Objects [CTRL+C]')
+				button(onClick = 'ocut'    text = 'Cut' )(flex = '1')(hint = 'Cut Objects [CTRL+X]')
+			}
+	
+			hbox(size = '26' next = '2') ::
+			{
+				button(onClick = 'ocopy ref' text = 'Ref' )(flex = '1' next = '1')(hint = 'Copy as Reference [CTRL+SHIFT+C]')
+				button(id = 'r2d' onClick = 'oref2obj'  text = 'R-D' )(flex = '1')(hint = 'Convert Reference to Duplicate [CTRL+T]')
+			}		
+
+			hbox(size = '26') ::
+			{
+				button(onClick = 'opaste' text = 'Paste')(flex = '1')(corner = '3')(hint = 'Paste Objects [CTRL+V]')
+			}		
+		}
+
+		//----------------
+		// Boolean Tool
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Boolean' size = '26')
+		vbox(next = '8') ::
+		{
+			button(onClick = 'ounion' text = 'Union')(corner = '15')(size = '26')(hint = 'Union Combination of Objects [U]')
+		}
+	}
+
+	sp(id = 'oedit_sep0')(def = 'bar-h' size = '3' prev = '4' next = '4')
+	
+	vbox(id = 'oedit_tran') ::
+	{
+		//----------------
+		// Rot
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Rot' size = '26')
+		hbox(size = '26')(hint = 'Rotate Objects 90 Degrees [-/+]') ::
+		{
+			button(onClick = 'orot x 1' text = 'X' flex = '1' next = '1')(corner = '5')
+			button(onClick = 'orot y 1' text = 'Y' flex = '1' next = '1')
+			button(onClick = 'orot z 1' text = 'Z' flex = '1')(corner = '10')
+		}
+
+		//----------------
+		// Flip
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Flip' size = '26')
+		hbox(size = '26')(hint = 'Flip Objects') ::
+		{
+			button(onClick = 'oflip x' text = 'X' flex = '1' next = '1')(corner = '5')
+			button(onClick = 'oflip y' text = 'Y' flex = '1' next = '1')
+			button(onClick = 'oflip z' text = 'Z' flex = '1')(corner = '10')
+		}
+
+		//----------------
+		// Move
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Move' size = '26')
+		vbox(hint = 'Move Objects [Arrow/Page]') ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'omove x +1' text = '+X' repeated = '1')(corner = '4')(flex = '1' next = '1')
+				button(onClick = 'omove y +1' text = '+Y' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'omove z +1' text = '+Z' repeated = '1')(corner = '8')(flex = '1')
+			}
+
+			hbox(size = '26' next = '2') ::
+			{
+				button(onClick = 'omove x -1' text = '-X' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'omove y -1' text = '-Y' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'omove z -1' text = '-Z' repeated = '1')(flex = '1')
+			}
+
+			button(onClick = 'omove g' text = 'Ground')(corner = '3')(size = '26' )(hint = 'Move Objects to Ground [G]')
+		}
+
+		//----------------
+		// Align
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Align' size = '26')
+		vbox(next = '8') ::
+		{
+			hbox(size = '26' next = '1')(hint = 'Align Objects to Maximum') ::
+			{
+				button(onClick = 'oalign x +1' text = '+X' repeated = '1')(corner = '4')(flex = '1' next = '1')
+				button(onClick = 'oalign y +1' text = '+Y' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'oalign z +1' text = '+Z' repeated = '1')(corner = '8')(flex = '1')
+			}
+
+			hbox(size = '26' next = '1')(hint = 'Align Objects to Center') ::
+			{
+				button(onClick = 'oalign yz 0' text = 'cX' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'oalign zx 0' text = 'cY' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'oalign xy 0' text = 'cZ' repeated = '1')(flex = '1')
+			}
+
+			hbox(size = '26' )(hint = 'Align Objects to Minimum') ::
+			{
+				button(onClick = 'oalign x -1' text = '-X' repeated = '1')(corner = '1')(flex = '1' next = '1')
+				button(onClick = 'oalign y -1' text = '-Y' repeated = '1')(flex = '1' next = '1')
+				button(onClick = 'oalign z -1' text = '-Z' repeated = '1')(corner = '2')(flex = '1')
+			}
+		}
+	}
+
+	sp(id = 'oedit_sep1')(def = 'bar-h' size = '3' prev = '4' next = '4')
+	
+	vbox(id = 'oedit_obj') ::
+	{
+		//----------------
+		// Hide
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Hide' size = '26')
+		hbox(size = '26') ::
+		{
+			button(id = 'ohide' onClick = 'ohide 1' text = 'Hide' flex = '1' next = '1')(corner = '5')(hint = 'Hide Objects [CTRL+H]')
+			button(id = 'oshow' onClick = 'ohide 0' text = 'Show' flex = '1')(corner = '10')(hint = 'Show Objects [CTRL+SHIFT+H]')
+		}
+	
+		//----------------
+		// Order
+		//----------------
+		switch(class = 'panel')(selected = '0' text = 'Order' size = '26')
+		hbox(size = '26')(hint = 'Order : Render Order') ::
+		{
+			button(onClick = 'order 1' text = 'First' flex = '1' next = '1')(corner = '5')(hint = 'Bring to First')
+			button(onClick = 'order 0' text = 'Last'  flex = '1')(corner = '10')(hint = 'Bring to Last')
+		}
+	}
+}

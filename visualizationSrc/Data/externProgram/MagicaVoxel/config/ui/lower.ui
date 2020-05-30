@@ -1,0 +1,54 @@
+vbox(def = 'bg2') ::
+{
+	hbox(size = '26' prev = '3' next = '3') ::
+	{
+		switch(class = 'view')(def = 'sw-view' style = '2' view = [['hint']] selected = '1')
+		(text = '^9660' text2 = '^9650' textSize = '12 12')
+		(size = '24' prev = '3' next = '3' margin = '0 0 2 2')
+		(hint = 'Toggle Hint')
+
+		button(def = 'bn-ic' onClick = 'snap scene')
+		(text = '^8' textOffset = '0 1' textSize = '19 19')
+		(next = '3' size = '28')
+		(hint = 'Save Image [6] : Window [CTRL+6]')		
+		
+		textField(id = 'cmd' onEnter = '/' default = 'console' maxLength = '128' clear = '1' history = '1' border = '10' bgColor = '30 30 30' textSize = '8 8' align = '1')
+		(flex = '1' size = '90' next = '3' margin = '0 0 1 1')(radius = '6') 
+		(hint = 'Console [F1] : History [UP/DOWN]')
+
+		opBox(id = 'v_cam' value = '0' onClick = 'ui_set scene proj')(size = '140') ::
+		{
+			hbox ::
+			{
+				option(def = 'tab-panel-text' id = '0' text = 'Pers')(flex = '1' next = '2')(hint = 'Pers : Perspective Camera')
+				option(def = 'tab-panel-text' id = '3' text = 'Free')(flex = '1' next = '2')(hint = 'Free : Freestyle Camera : Move [WASDQE]')
+				option(def = 'tab-panel-text' id = '1' text = 'Orth')(flex = '1' next = '2')(hint = 'Orth : Orthogonal Camera')
+				option(def = 'tab-panel-text' id = '2' text = 'Iso' )(flex = '1' next = '2')(hint = 'Iso : Isometric Camera')
+			}
+		}
+
+		textField(id = 'cam_slot' onEnter = 'cam slot' text = '0' enter = '1' maxLength = '1' align = '2' bgColor = '0 0 0 0' textColor = '255 255 255 240')
+		(size = '22' next = '3' radius = '3')
+		(hint = 'Camera [NUMPAD 0-9] : Save/Load [7/8]')
+
+		button(def = 'bn-ic' onClick = 'cam focus' text = '^15' delayed = '0')
+		(size = '22' next = '3')
+		(hint = 'Recenter Camera [4] : Face View [5]')
+		
+		switch(def = 'sw-side' onClick = 'ui_set scene ruler' selected = '0')
+		(text = '^14')
+		(size = '22' next = '3')
+		(hint = 'Camera Ruler : Drag on Ruler [LButton]')
+
+		switch(def = 'sw-side' onClick = 'ui_set scene cube' selected = '1')
+		(text = '^13')
+		(size = '22' next = '3')
+		(hint = 'Toggle View Cube')
+		
+	}
+
+	hbox(id = 'hint' size = '24') ::
+	{
+		hint( flex = '1')(hint = 'Hint : [HotKey]')
+	}
+}	

@@ -1,0 +1,162 @@
+vbox(id = 'menu_display' hidden = '1' clip = '0')(margin = '9 9 0 0') ::
+{
+	//----------------
+	// Grid
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '0' text = 'Grid' flex = '1')
+		colpick(id = 'pt_grid_col' onChange = 'set pt_grid_col')(size = '16' margin = '0 0 12 12')(hint = 'Grid Color')
+	//	switch(def = 'sw-check' id = 'pt_grid' onClick = 'set pt_show grid')(prev = '4' size = '12')
+	}
+
+	vbox(next = '8') ::
+	{
+		hbox(size = '28')(hint = 'Grid Spacing [1 - 1024]') ::
+		{
+			label(def = 'h3' text = 'Space')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_grid_spa' onEnter = 'set pt_grid_spa')(size = '40' next ='3')
+			resizer(class = 'int')(range = '1 1024' step = '1' space = '4')(size = '8')
+		}
+
+		hbox(size = '28')(hint = 'Grid Width [0.01 - 1.0]') ::
+		{
+			label(def = 'h3' text = 'Width')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_grid_w' onEnter = 'set pt_grid_w')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0.01 1.0' step = '0.01' space = '4')(size = '8')
+		}
+	
+		hbox(size = '28')(hint = 'Only Display Grid on Ground') ::
+		{
+			label(def = 'h3' text = 'Ground')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_grid_dis' onClick = 'set pt_grid_dis')
+			(size = '12')
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Edge
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '0' text = 'Edge' flex = '1')
+		colpick(id = 'pt_edge_col' onChange = 'set pt_edge_col')(size = '16' margin = '0 0 12 12')(hint = 'Edge Color')
+	}		
+	vbox(next = '8') ::
+	{
+		hbox(size = '28')(hint = 'Edge Width [0.01 - 1.0]') ::
+		{
+			label(def = 'h3' text = 'Width')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_edge_w' onEnter = 'set pt_edge_w')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0.01 5.0' step = '0.01' space = '4')(size = '8')
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Ground
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '0' text = 'Ground' flex = '1')
+		colpick(id = 'pt_gd_col' onChange = 'set pt_gd_col')(size = '16' margin = '0 0 12 12')(hint = 'Ground Color')
+	//	switch(def = 'sw-check' id = 'pt_gd' onClick = 'set pt_show gd')(prev = '4' size = '12')
+	}
+
+	vbox(size = '28' next = '8') ::
+	{
+		hbox(size = '28')(hint = 'Horizon') ::
+		{
+			label(def = 'h3' text = 'Horizon')(flex = '1' next = '8')
+			textField(def = 'tf-n-bg' id = 'pt_hor_et' onEnter = 'set pt_hor_et')(size = '40' next ='3')
+			resizer(class = 'int')(range = '0 100' step = '1' space = '4')(size = '8')
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Background
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '0' text = 'BG' flex = '1')
+		colpick(id = 'pt_bg_col' onChange = 'set pt_bg_col')(size = '16' margin = '0 0 12 12')(hint = 'Background Color')
+	//	switch(def = 'sw-check' id = 'pt_bg_c' onClick = 'set pt_show bg_c')(prev = '4' size = '12')
+	}
+
+	vbox(next = '8') ::
+	{
+		hbox(size = '28')(hint = 'Transparent Background') ::
+		{
+			label(def = 'h3' text = 'Transparent')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_bg_a' onClick = 'set pt_show bg_a')
+			(size = '12')
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Voxel Size
+	//----------------
+	switch(class = 'panel')(def = 'h1' text = 'Scale' selected = '0')(size = '36')
+	vbox(next = '8') ::
+	{
+		hbox(size = '28')(hint = 'Voxel Scale X') ::
+		{
+			label(def = 'h3' text = 'X')(flex = '1')	
+			textField(def = 'tf-n-bg' id = 'pt_ws_x' onEnter = 'set pt_world_scale x')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0 10' step = '0.1' space = '4')(size = '8')
+		}
+		hbox(size = '28')(hint = 'Voxel Scale Y') ::
+		{
+			label(def = 'h3' text = 'Y')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_ws_y' onEnter = 'set pt_world_scale y')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0 100' step = '0.1' space = '4')(size = '8')
+		}
+		hbox(size = '28')(hint = 'Voxel Scale Z') ::
+		{
+			label(def = 'h3' text = 'Z')(flex = '1')	
+			textField(def = 'tf-n-bg' id = 'pt_ws_z' onEnter = 'set pt_world_scale z')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0 100' step = '0.1' space = '4')(size = '8')
+		}
+	}
+	
+	sp(def = 'bar-h' size = '3')
+	
+	switch(class = 'panel')(def = 'h1' text = 'Shape' selected = '0')(size = '36')
+	vbox(next = '8') ::
+	{
+		opBox(onClick = 'set pt_prim' value = 'cube')(bgColor = '100 100 100' corner = '15' radius = '6')(next = '6') ::
+		{
+			vbox(def = 'bg' corner = '15' radius = '5' margin = '1 1 1 1') ::
+			{
+				hbox(size = '24') ::
+				{
+					option(def = 'op-bw' id = 'cube'	text = 'Cube'	)(flex = '1')(hint = 'Cube : Cubic Voxel')
+					option(def = 'op-bw' id = 'lego'	text = 'Lego'	)(flex = '1')(hint = 'Lego : Lego Voxel')
+				}
+				hbox(size = '24') ::
+				{
+					option(def = 'op-bw' id = 'mc'	text = 'MC'		)(flex = '1')(hint = 'MC : Marching Cubes')
+					option(def = 'op-bw' id = 'clay'text = 'Clay'	)(flex = '1')(hint = 'Clay : Isosurface')
+				}
+				hbox(size = '24') ::
+				{
+					option(def = 'op-bw' id = 'sphr'	text = 'Sphr'	)(flex = '1')(hint = 'Sphr : Sphere Voxel')
+					option(def = 'op-bw' id = 'cyli' text = 'Cyli'	)(flex = '1')(hint = 'Cyli : Cylinder Voxel')
+				}
+			}
+		}
+		hbox(size = '28')(hint = 'Cell Size') ::
+		{
+			label(def = 'h3' text = 'Cell')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_cell' onEnter = 'set pt_cell')(size = '40' next ='3')
+			resizer(class = 'float')(range = '0 1' step = '0.1' space = '8')(size = '8')
+		}
+	}
+}

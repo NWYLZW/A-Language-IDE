@@ -1,0 +1,170 @@
+vbox(id = 'menu_cam' hidden = '1' clip = '0')(margin = '9 9 0 0') ::
+{
+	//----------------
+	// Lens
+	//----------------
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '1' text = 'Lens')(flex = '1')
+		
+		hbox(margin = '0 0 4 4')(hint = 'Field of View [1 - 360]') ::
+		{
+			//label(def = 'h3' text = 'Fov :')(size = '25')
+
+			textField(def = 'tf-bg'id = 'pt_fov' onEnter = 'set pt_fov' maxLength = '3')
+			(size = '45' next = '3')
+			
+			resizer( class = 'int')(range = '1 360' step = '1' space = '3')(size = '8')
+		}
+	}
+	vbox(next = '8') ::
+	{
+		opBox(def = 'outline' id = "pt_proj" onClick = 'set pt_proj' index = '0' size = '27' next = '11') ::
+		{
+			hbox(def = 'outline-i') ::
+			{
+				option(def = 'op-bw' id = '0' text = 'Pers'	textSize = '8 8')(flex = '1' )(hint = 'Perspective Projection')
+				option(def = 'op-bw' id = '1' text = 'SG'	textSize = '8 8')(flex = '0.7')(hint = 'Stereographics Projection')
+				option(def = 'op-bw' id = '2' text = 'Pano'	textSize = '8 8')(flex = '1' )(hint = 'Equirectangular Panorama : Spherical Projection')
+			}
+		}
+		
+		vbox(hint = 'Aperture Size : Depth of Field') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Aperture')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_dof' onEnter = 'set pt_dof')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_dof_sl' onChange = 'set pt_dof')(size = '32' )
+		}
+
+		vbox(hint = 'Blade Rotation Angle [-180 - 180]') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Blade:')(size = '40' next = '3')
+				textField(def = 'tf-sl' id = 'pt_blade_num' onEnter = 'set pt_blade_num' maxLength = '1')
+				(size = '6' next = '3')		
+				(hint = 'Blade Number [0 - 8]')
+				resizer( class = 'int')(range = '0 8' step = '1' space = '8')(size = '6' margin = '0 0 -4 -4')
+
+				sp(flex = '1')
+
+				textField(def = 'tf-sl' id = 'pt_blade_rot' onEnter = 'set pt_blade_rot' maxLength = '4')
+				(size = '30')
+			}
+			slider(def = 'sl-cam' id = 'pt_blade_rot_sl' onChange = 'set pt_blade_rot' range = '-180 180')(size = '32' )
+		}
+
+		vbox(hint = 'Click Voxel to Set Focus') ::
+		{
+			label(def = 'h3' text = 'Focus')(size = '15')
+			hbox(size = '28' prev = '3') ::
+			{
+				switch(def = 'sw-render' id = 'pt_fix_ocus' onClick = 'set pt_fix_focus' text = 'FIX' textSize = '7 7')
+				(next = '4' margin = '0 0 3 3' flex = '1' prev = '4')(hint = 'Fix Focus Distance')
+		
+				textField(def = 'tf-n-bg' id = 'pt_focus' onEnter = 'set pt_focus' maxLength = '6')
+				(size = '45' next = '3')(hint = 'Set Focus Distance : Click Voxel to Set Focus')
+
+				resizer( class = 'float')(range = '0 9999.9' step = '1' space = '5')(size = '8')
+			}
+		}
+	}
+
+	sp(def = 'bar-h' size = '3')
+
+	//----------------
+	// Film
+	//----------------
+	switch(class = 'panel')(def='h1' selected = '1' text = 'Film')(size = '36' )
+	vbox(next = '8') ::
+	{
+		vbox(hint = 'Exposure') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Exposure')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_expo' onEnter = 'set pt_expo')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_expo_sl' onChange = 'set pt_expo' range = '1.0 16.0' snap = '0.01')(size = '32' )		
+		}
+
+		vbox(hint = 'Vignette') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Vignette')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_vig' onEnter = 'set pt_vig')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_vig_sl' onChange = 'set pt_vig')(size = '32' )
+		}
+
+		label(def = 'h3' text = 'Tone')(size = '15')
+		hbox(size = '28' prev = '3')(hint = 'Gamma Correction [1 - 5]') ::
+		{
+			switch(def = 'sw-render' id = 'pt_aces' onClick = 'set pt_aces' text = 'ACES' textSize = '7 7')
+			(next = '4' margin = '0 0 3 3' flex = '1' prev = '4')(hint = 'ACES Filmic Tone Mapping')
+		
+			textField(def = 'tf-n-bg' id = 'pt_gamma' onEnter = 'set pt_gamma' maxLength = '3')
+			(size = '45' next = '3')
+
+			resizer( class = 'float')(range = '1 5' step = '0.1' space = '5')(size = '8')
+		}	
+	}
+
+	sp(def = 'bar-h' size = '3')
+	
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '0' text = 'Bloom' flex = '1')
+
+		switch(def = 'sw-play' onClick = 'set pt_bloom' selected = '0')
+		(size = '13')(margin = '-6 -6 8 8')(hint = 'Toggle Bloom Calculation')
+	}
+
+	vbox(next = '8') ::
+	{
+		vbox(hint = 'Mix') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Mix')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_bloom_mix' onEnter = 'set pt_bloom_mix')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_bloom_mix_sl' onChange = 'set pt_bloom_mix')(size = '32' )
+		}
+		
+		vbox(hint = 'Kernel Size') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Size')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_bloom_sca' onEnter = 'set pt_bloom_sca')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_bloom_sca_sl' onChange = 'set pt_bloom_sca')(size = '32' )
+		}
+
+		vbox(hint = 'Aspect Ratio') ::
+		{
+			hbox(size = '15') ::
+			{
+				label(def = 'h3' text = 'Aspect')(flex = '1')
+				textField(def = 'tf-sl' id = 'pt_bloom_asp' onEnter = 'set pt_bloom_asp')(size = '40')
+			}
+			slider(def = 'sl-cam' id = 'pt_bloom_asp_sl' onChange = 'set pt_bloom_asp')(size = '32' )
+		}
+
+		hbox(size = '28')(hint = 'Threshold [0 - 100]') ::
+		{
+			label(def = 'h3' text = 'Threshold')(flex = '1' next = '8')	
+
+			textField(def = 'tf-n-bg' id = 'pt_bloom_thr' onEnter = 'set pt_bloom_thr' maxLength = '5')
+			(size = '45' next ='3')
+			resizer( class = 'float')(range = '0 100' step = '0.1' space = '4')(size = '8')
+		}
+	}
+
+	sp(id = 'rr_sep1' def = 'bar-h' size = '3' hidden = '1')
+}

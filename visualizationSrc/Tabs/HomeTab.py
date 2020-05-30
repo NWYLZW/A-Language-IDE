@@ -8,6 +8,8 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   主页
 '''
+import subprocess
+
 from PyQt5.QtCore import QTimer, QThread, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QDialog
 from PyQt5.uic.properties import QtWidgets
@@ -18,9 +20,8 @@ from .. import MyWindow
 from ..Controler.ContentTabListControler import ContentTabList
 from ..Util.ServerUserUtil import server
 from ..Util.UserUtil import UserUtil
-from ..Util.frozenDir import appPath
+from ..Util.frozenDir import appPath, tempPath
 from ..config import GamePath
-from ..qtUI.mainInterFace import Ui_MainWindow
 
 class loginThread(QThread):
     signal = pyqtSignal()
@@ -75,14 +76,36 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
                 self.loginThreadX.start()
         self.loginBTN.clicked.connect(login)
 
+class ControlMainMenu:
+    def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
+        self.mainWindow = mainWindow
+        self.CTL = CTL
+        self._initClick()
+    def _initClick(self):
+        def showCommandListShowWindow():
+            temp = CommandListShowWindow(self.mainWindow)
+            temp.show()
+        self.mainWindow.CommandList.clicked.connect(showCommandListShowWindow)
+class ControlNavMenu:
+    def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
+        self.mainWindow = mainWindow
+        self.CTL = CTL
+        self._initClick()
+    def _initClick(self):
+        def MagicaVoxel():
+            subprocess.Popen(tempPath()+"./visualizationSrc/Data/externProgram/MagicaVoxel/MagicaVoxel.exe")
+        self.mainWindow.MagicaVoxel.clicked.connect(MagicaVoxel)
+
 class Home:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
         self.initCardItemClick()
-        self.setSimpleData()
-        self.initClick()
-    def setSimpleData(self):
+        self._setSimpleData()
+        self._initClick()
+        self.CMM = ControlMainMenu(CTL,mainWindow)
+        self.CNM = ControlNavMenu(CTL,mainWindow)
+    def _setSimpleData(self):
         u = UserUtil()
         temp = appPath().split('\\')
         self.mainWindow.ModName.setText(temp[len(temp) - 1])
@@ -92,11 +115,11 @@ class Home:
         self.mainWindow.GamePath.setText(tempGamePath)
         self.mainWindow.GamePath.setToolTip(GamePath)
         self.mainWindow.UserName.setText(u.userName)
-    def initClick(self):
+    def _initClick(self):
         def sel_GamePath():
             directory = QFileDialog.getExistingDirectory(None, "getExistingDirectory", "C:\\")
             UserUtil().gamePath = directory
-            self.setSimpleData()
+            self._setSimpleData()
         self.mainWindow.sel_GamePath.clicked.connect(sel_GamePath)
         def userLogin():
             if server.user.isLogin:
@@ -126,10 +149,6 @@ class Home:
                 "登出",self.__class__.__name__,
                 rsp.get('content', "好像与伺服娘断连了哦"))
         self.mainWindow.userLogout.clicked.connect(userLogout)
-        def showCommandListShowWindow():
-            temp = CommandListShowWindow(self.mainWindow)
-            temp.show()
-        self.mainWindow.CommandList.clicked.connect(showCommandListShowWindow)
     def initCardItemClick(self):
         UI = self.mainWindow
         def windowClick(Element):

@@ -1,0 +1,190 @@
+camera-control :
+{
+	// movement
+	'forward'				: { 'W' }
+	'backward'				: { 'S' }
+	'left'					: { 'A' }
+	'right'					: { 'D' }
+	'down'					: { 'Q' }
+	'up'					: { 'E' }
+
+	// drag left mouse button
+	'span'					: { 'space' }
+	'zoom'					: { 'Z' }
+	'focus'					: { 'X' }
+	'rotate'				: { 'K' }
+}
+
+global :
+{
+	// command
+	'cmd console'			: { 'F1' }
+	'cmd undo'				: { 'Z'		'ctrl' 'repeat' }
+	'cmd redo'				: { 'Y'		'ctrl' 'repeat' }
+	'cmd redo'				: { 'Z'		'ctrl' 'shift' 'repeat' }
+
+	// project
+	'new'					: { 'P'		'ctrl' }
+	'dup'					: { 'P'		'ctrl' 'shift' }
+	'open'					: { 'O'		'ctrl' }
+	'save'					: { 'S'		'ctrl' }
+	'save as'				: { 'S'		'ctrl' 'shift' }
+
+	// screenshot
+	'snap scene'			: { '6' }
+	'snap'					: { '6'		'ctrl' }
+
+	'snap scene'			: { 'F6' }
+	'snap'					: { 'F6'	'ctrl' }
+
+	// camera
+	'cam save'				: { 'F7' }
+	'cam load'				: { 'F8' }
+	'cam focus'				: { 'F4' }
+	'cam face'				: { 'F5' }
+
+	'cam save'				: { '7' } 
+	'cam load'				: { '8' } 
+	'cam focus'				: { '4' } 
+	'cam face'				: { '5' } 
+
+	'cam slot 0'			: { 'NUMPAD0' }
+	'cam slot 1'			: { 'NUMPAD1' }
+	'cam slot 2'			: { 'NUMPAD2' }
+	'cam slot 3'			: { 'NUMPAD3' }
+	'cam slot 4'			: { 'NUMPAD4' }
+	'cam slot 5'			: { 'NUMPAD5' }
+	'cam slot 6'			: { 'NUMPAD6' }
+	'cam slot 7'			: { 'NUMPAD7' }
+	'cam slot 8'			: { 'NUMPAD8' }
+	'cam slot 9'			: { 'NUMPAD9' }
+
+	// ui
+	'ui inc -0.25'			: { 'MINUS'	'ctrl' 'repeat' }
+	'ui inc +0.25'			: { 'PLUS'	'ctrl' 'repeat' }
+}
+
+model-editor :
+{
+	// brush mode
+	'set b_shape vox'		: { 'V' } 
+	'set b_shape face'		: { 'F' }
+	'set b_shape box'		: { 'B' }
+	'set b_shape line'		: { 'L' }
+	'set b_shape center'	: { 'C' }
+	'set b_shape pattern'	: { 'P' } 
+	
+	// brush type
+	'set b_type attach'		: { 'T' }
+	'set b_type erase'		: { 'R' } 
+	'set b_type paint'		: { 'G' }	
+	'set b_type bsel'		: { 'N' } 
+	'set b_type rsel'		: { 'M' }
+	 
+	// brush mirror options
+	'mirror x 2'			: { '1' }
+	'mirror y 2'			: { '2' }
+	'mirror z 2'			: { '3' }
+
+	// brush axis options
+	'axis x 2'				: { '1'		'ctrl' }
+	'axis y 2'				: { '2'		'ctrl' }
+	'axis z 2'				: { '3'		'ctrl' }
+
+	// selection
+	'sel_inv'				: { 'I'		'ctrl' }
+	'sel_none'				: { 'D'		'ctrl' }
+	'sel_all'				: { 'A'		'ctrl' }
+
+	// clipboard
+	'copy'					: { 'C'		'ctrl' }
+	'paste'					: { 'V'		'ctrl' }
+	'paste 1'				: { 'V'		'ctrl' 'shift' }
+	'cut'					: { 'X'		'ctrl' } 
+
+	// edit
+	'full'					: { 'U' }
+	'fill'					: { 'I' }
+	'zero'					: { 'BACK' }
+	'zero'					: { 'DELETE' }
+
+	// view
+	'set rm_show edge 2'	: { 'E'		'ctrl' }
+	'set rm_show grid 2'	: { 'G'		'ctrl' }
+	'set rm_show frame 2'	: { 'F'		'ctrl' }
+	'set rs_show bg 2'		: { 'B'		'ctrl' }
+	'set rm_show sw 2'		: { 'W'		'ctrl' }
+
+	// scene graph level
+	'olevel -2'				: { 'TAB' }
+	'olevel -1'				: { 'TAB'	'shift' }
+}
+
+world-editor :
+{
+	// object
+	'onew'					: { 'N'		'ctrl' }
+	'odel'					: { 'BACK' }
+	'odel'					: { 'DELETE' }
+	'ogroup'				: { 'R'		'ctrl' } 
+	'oungroup'				: { 'R'		'ctrl' 'shift' }
+
+	// scene graph level
+	'olevel -2'				: { 'TAB' }
+	'olevel -1'				: { 'TAB'	'shift' }
+
+	// selection
+	'osel_inv'				: { 'I'		'ctrl' } 
+	'osel_none'				: { 'D'		'ctrl' } 
+	'osel_all'				: { 'A'		'ctrl' } 
+
+	// clipboard
+	'ocopy'					: { 'C'		'ctrl' } 
+	'ocopy ref'				: { 'C'		'ctrl' 'shift' }
+	'opaste'				: { 'V'		'ctrl' }
+	'ocut'					: { 'X'		'ctrl' } 
+	'oref2obj'				: { 'T'		'ctrl' } 
+
+	// edit
+	'ounion'				: { 'U' }
+
+	// move
+	'omove x -1'			: { 'LEFT'		'repeat' } 
+	'omove x +1'			: { 'RIGHT'		'repeat' } 
+	'omove y -1'			: { 'DOWN'		'repeat' } 
+	'omove y +1'			: { 'UP'		'repeat' } 
+	'omove z -1'			: { 'PAGEDOWN'	'repeat' }
+	'omove z +1'			: { 'PAGEUP'	'repeat' }
+	'omove g'				: { 'G' } 
+
+	// rotate
+	'orot z -1'				: { 'PLUS' } 
+	'orot z +1'				: { 'MINUS' } 
+	'orot x -1'				: { '9' }
+	'orot x +1'				: { '0' } 
+
+	// hide
+	'ohide 1'				: { 'H'		'ctrl' } 
+	'ohide 0'				: { 'H'		'ctrl' 'shift' }
+
+	// view
+	'set rs_show edge 2'	: { 'E'		'ctrl' }
+	'set rs_show grid 2'	: { 'G'		'ctrl' } 
+	'set rs_show bg 2'		: { 'B'		'ctrl' } 
+	'set rs_show wr 2'		: { 'M'		'ctrl' }
+}
+
+renderer :
+{
+	// material clipboard
+	'mtl_reset'				: { 'R'		'ctrl' }
+	'mtl_copy'				: { 'C'		'ctrl' }
+	'mtl_paste'				: { 'V'		'ctrl' }
+
+	// view
+	'set pt_show edge 2'	: { 'E'		'ctrl' }
+	'set pt_show grid 2'	: { 'G'		'ctrl' }
+	'set pt_show gd 2'		: { 'U'		'ctrl' }
+	'set pt_show sw 2'		: { 'W'		'ctrl' }
+	'set pt_show bg_c 2'	: { 'B'		'ctrl' }
+}

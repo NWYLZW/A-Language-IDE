@@ -74,7 +74,7 @@ QTabBar::close-button:hover{
       <height>721</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="Interface" stretch="1,20">
+    <layout class="QVBoxLayout" name="Interface" stretch="0,1">
      <property name="spacing">
       <number>5</number>
      </property>
@@ -247,10 +247,10 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTextBrowser{
+        <string notr="true">QPushButton{
 	background-repeat: no-repeat;
 	background-position: center;
-	border:none; 
+	border:none;
 	border-radius:5px;
 }</string>
        </property>
@@ -282,7 +282,7 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
            <height>631</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="1,1,1" rowminimumheight="1,1" columnminimumwidth="1,1,1">
+         <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="3,4,3">
           <property name="leftMargin">
            <number>10</number>
           </property>
@@ -298,51 +298,1038 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
           <property name="spacing">
            <number>10</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QTextBrowser" name="CardControler">
-            <property name="cursor" stdset="0">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;卡牌管理&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
+          <item row="1" column="1">
+           <widget class="QWidget" name="widget_2" native="true">
             <property name="styleSheet">
-             <string notr="true">QTextBrowser{
-	background-image: url(:/picture/Data/qrc/cardPkg.png);
+             <string notr="true">QPushButton{
+	border: none;
 }</string>
             </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
+            <widget class="QWidget" name="gridLayoutWidget_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>441</width>
+               <height>301</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0" columnstretch="0,0,0,0,0">
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <property name="horizontalSpacing">
+               <number>22</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>20</number>
+              </property>
+              <item row="2" column="2">
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="musicControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;音乐系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/music.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_14">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>音乐系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="3">
+               <layout class="QVBoxLayout" name="verticalLayout_10">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="levelControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关卡管理&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/level.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/leveled.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>关卡管理</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="2">
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="monsterControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;怪物系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/Monster.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_12">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>怪物系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="EquipmentControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;装备系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/Equipment.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>装备系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="SuppliesControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;物资系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/Supplies.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>物资系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="FollowerControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;随从系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/Follower.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_10">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>随从系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="3">
+               <layout class="QVBoxLayout" name="verticalLayout_14">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="effectControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;特效系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/special Effect.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/special Effected.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>特效系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="MagicaVoxel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;场景制作&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/MagicaVoxel.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>场景制作</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="CharacterControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;角色系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>-10</number>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/CharacterControler.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>角色系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="2">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="stageControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;场景管理&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/stage.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/staged.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>场景管理</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="NPCControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;NPC系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/NPC.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>NPC系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="4">
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="stageControler_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;剧情系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/plot.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/ploted.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_16">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>剧本系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="4">
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="achievementControler">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;成就系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/achievement.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/achievemented.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_18">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>成就系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="3">
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="stageControler_7">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tield&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/picture/Data/qrc/Tield.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_17">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>关卡编辑器</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="4">
+               <layout class="QVBoxLayout" name="verticalLayout_12">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="stageControler_3">
+                  <property name="minimumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>64</width>
+                    <height>64</height>
+                   </size>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;等级系统&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+	border-image: url(:/ico/Data/qrc/ico/grade.png);
+}
+QPushButton:hover{
+	border-image: url(:/ico/Data/qrc/ico/graded.png);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_13">
+                  <property name="font">
+                   <font>
+                    <family>Adobe 黑体 Std R</family>
+                    <pointsize>8</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>等级系统</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QTextBrowser" name="CommandList_2">
-            <property name="cursor" stdset="0">
-             <cursorShape>ForbiddenCursor</cursorShape>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_4">
+            <property name="spacing">
+             <number>0</number>
             </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;卡牌酒馆&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QTextBrowser{
+            <item row="1" column="1">
+             <widget class="QLabel" name="label_9">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>指令管理</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="OnlineServer">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>ForbiddenCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/server.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QPushButton" name="CommandList">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/command.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="OnlineStore">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>ForbiddenCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
 	background-image: url(:/picture/Data/qrc/store.png);
 }</string>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QPushButton" name="CardControler">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/cardPkg.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>卡牌管理</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_19">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>卡牌集市</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="label_20">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>联机大厅</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item row="1" column="0">
+          <item row="0" column="2" rowspan="2">
+           <layout class="QFormLayout" name="formLayout"/>
+          </item>
+          <item row="0" column="1">
            <widget class="QWidget" name="widget" native="true">
             <property name="styleSheet">
              <string notr="true">#userSetting{
@@ -373,15 +1360,15 @@ p, li { white-space: pre-wrap; }
             <widget class="QWidget" name="gridLayoutWidget_2">
              <property name="geometry">
               <rect>
-               <x>-1</x>
-               <y>-1</y>
-               <width>371</width>
-               <height>301</height>
+               <x>0</x>
+               <y>0</y>
+               <width>445</width>
+               <height>302</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0" columnstretch="0,0,0,0">
               <property name="spacing">
-               <number>0</number>
+               <number>10</number>
               </property>
               <item row="2" column="0">
                <widget class="QPushButton" name="userLogin">
@@ -652,353 +1639,13 @@ QPushButton:hover{
                   </item>
                  </layout>
                 </item>
+                <item>
+                 <widget class="QTextBrowser" name="textBrowser"/>
+                </item>
                </layout>
               </item>
              </layout>
             </widget>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QWidget" name="widget_2" native="true">
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	border: none;
-	border-radius: 8px;
-	background-color: rgba(240, 240, 240);
-}
-QPushButton:hover{
-	background-color: rgba(205, 205, 205);
-}</string>
-            </property>
-            <widget class="QWidget" name="gridLayoutWidget_3">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>371</width>
-               <height>301</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <property name="horizontalSpacing">
-               <number>0</number>
-              </property>
-              <property name="verticalSpacing">
-               <number>10</number>
-              </property>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="xxxxx1_2">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="3">
-               <widget class="QPushButton" name="xxxxx1_5">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="3">
-               <widget class="QPushButton" name="xxxxx1_3">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QPushButton" name="xxxxx1_4">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QPushButton" name="xxxxx1_6">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QPushButton" name="xxxxx1_7">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QPushButton" name="xxxxx1_8">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QPushButton" name="xxxxx1_9">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QPushButton" name="xxxxx1_10">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="3">
-               <widget class="QPushButton" name="xxxxx1_11">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QPushButton" name="xxxxx1_12">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QPushButton" name="xxxxx1_13">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QTextBrowser" name="OnlineServer">
-            <property name="cursor" stdset="0">
-             <cursorShape>ForbiddenCursor</cursorShape>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;联机大厅(已死)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QTextBrowser{
-	background-image:url(:/picture/Data/qrc/server.png);
-}</string>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="CommandList">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-repeat: no-repeat;
-	background-position: center;
-	border:none;
-	border-radius:5px;
-	background-image: url(:/picture/Data/qrc/command.png);
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
            </widget>
           </item>
          </layout>

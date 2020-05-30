@@ -1,0 +1,260 @@
+vbox(margin = '10 10 0 0') ::
+{
+	//----------------
+	// Mode
+	//----------------
+	opBox(id = 'b_shape' onClick = 'set b_shape' value = 'box' next = '8') ::
+	{
+		vbox(radius = '5' corner = '15') ::
+		{
+			hbox(id = 'v_shape' size = '26' next = '1') ::
+			{
+				option(class = 'cmd')(def = 'op-mode' id = 'line'		text = 'L')(flex = '1' next = '1')(hint = 'L : Line Mode [L]')(onClick = [[ui_view 'v_line']])
+				option(class = 'cmd')(def = 'op-mode' id = 'center'		text = 'C')(flex = '1' next = '1')(hint = 'C : Center Mode [C]')(onClick = [[ui_view 'v_center']])
+				option(class = 'cmd')(def = 'op-mode' id = 'pattern'	text = 'P')(flex = '1')(hint = 'Pattern [P] : Rot [-/+/0/9] : Move [Dir/Page/Home]')(onClick = [[ui_view 'v_pat']])
+			}
+
+			hbox(size = '26') ::
+			{
+				option(class = 'cmd')(def = 'op-mode' id = 'vox'	text = 'V')(flex = '1' next = '1')(hint = 'V : Voxel Mode [V] : Resize [-/+]')(onClick = [[ui_view 'v_vox']])
+				option(class = 'cmd')(def = 'op-mode' id = 'face'	text = 'F')(flex = '1' next = '1')(hint = 'F : Face Mode [F] : Extrude [Drag]')(onClick = [[ui_view 'v_face']])
+				option(class = 'cmd')(def = 'op-mode' id = 'box'	text = 'B')(flex = '1')(hint = 'B : Box Mode [B]')
+			}
+		}
+	}
+
+	//----------------
+	// Type
+	//----------------
+	opBox(id = 'b_type' onClick = 'set b_type' value = 'erase') ::
+	{
+		vbox ::
+		{
+			vbox(def = 'op-brush' bgColor = '152 152 154')(corner = '15') ::
+			{
+				option(class = 'cmd')(def = 'op-brush' id = 'attach'	text = 'Attach'	textFont = '0' textSize = '8.5 8.5')(size = '29')(corner = '15')(hint = 'Attach Voxels [T]')(onClick = [[ui_view 'v_b_sym']])
+				option(class = 'cmd')(def = 'op-brush' id = 'erase' 	text = 'Erase'	textFont = '0' textSize = '8.5 8.5')(size = '29')(corner = '15')(hint = 'Erase Voxels [R]')(onClick = [[ui_view 'v_b_sym']])
+				option(class = 'cmd')(def = 'op-brush' id = 'paint' 	text = 'Paint'	textFont = '0' textSize = '8.5 8.5')(size = '29')(corner = '15')(hint = 'Paint Voxels [G]')(onClick = [[ui_view 'v_b_sym']])
+			}
+																														
+			vbox(def = 'op-brush' bgColor = '132 132 134' corner = '15' prev = '2' next = '2') ::
+			{
+				hbox(size = '30' next = '1') ::
+				{
+					option(class = 'cmd')(def = 'op-brush' id = 'loop' text = '^22')(flex = '1' next = '1')(corner = '15')(hint = 'Move [CTRL+LButton] : Normal Axis [+SHIFT]')
+
+					option(class = 'cmd')(def = 'op-brush' id = 'bsel' text = '^12')(flex = '1' next = '1')(corner = '15')(hint = 'Box Select [N] : Add [+SHIFT] : Remove [+SHIFT+ALT]')
+					(onClick = [[ui_view 'v_b_bsel']])
+				
+					option(class = 'cmd')(def = 'op-brush' id = 'rsel' text = '^20')(flex = '1' next = '0')(corner = '15')(hint = 'Region Select [M] : Add [+SHIFT] : Remove [+SHIFT+ALT]')
+					(onClick = [[ui_view 'v_b_rsel']])
+				}
+
+				hbox(size = '30') ::
+				{
+					option(def = 'op-brush' id = 'pick' text = '^26' textSize = '16 16')(flex = '1' next = '1')(corner = '15')(hint = 'Pick Voxel Color [ALT+LButton]')
+					option(def = 'op-brush' id = 'remove' text = '^46' textOffset = '0 -1' )(flex = '1' next = '1')(corner = '15')(hint = 'Remove Voxel Color')
+					option(def = 'op-brush' id = 'replace' text = '^71' textOffset = '0 -1' textSize = '18 18')(flex = '1' next = '0')(corner = '15')(hint = 'Replace Voxel Color')
+				}
+			}
+		}
+	}
+	
+	vbox(id = 'v_b_sym') ::
+	{					
+		//----------------
+		// Mirror
+		//----------------
+		label(selected = '1' text = 'Mirror' size = '28')(hint = 'Mirror : Mirror Mode')
+		vbox(size = '26')::
+		{
+			hbox(flex = '1') ::
+			{
+				switch(def = 'sw-sel' id = 'm_x' onClick = 'mirror x' text = 'X' flex = '1' next = '1' corner = '5' )(hint = 'X : Mirror X [1]')
+				switch(def = 'sw-sel' id = 'm_y' onClick = 'mirror y' text = 'Y' flex = '1' next = '1' corner = '0' )(hint = 'Y : Mirror Y [2]')
+				switch(def = 'sw-sel' id = 'm_z' onClick = 'mirror z' text = 'Z' flex = '1' next = '0' corner = '10')(hint = 'Z : Mirror Z [3]')
+			}
+		}
+
+		//----------------
+		// Axis
+		//----------------
+		label(selected = '1' text = 'Axis' size = '28')(hint = 'Axis : Whole Axis Mode')
+		vbox(size = '26')::
+		{
+			hbox(flex = '1') ::
+			{
+				switch(def = 'sw-sel' id = 'l_x' onClick = 'loft x' text = 'X' flex = '1' next = '1' corner = '5' )(hint = 'X : Whole X Axis [CTRL+1]')
+				switch(def = 'sw-sel' id = 'l_y' onClick = 'loft y' text = 'Y' flex = '1' next = '1' corner = '0' )(hint = 'Y : Whole Y Axis [CTRL+2]')
+				switch(def = 'sw-sel' id = 'l_z' onClick = 'loft z' text = 'Z' flex = '1' next = '0' corner = '10')(hint = 'Z : Whole Z Axis [CTRL+3]')
+			}
+		}
+	}
+
+	//----------------
+	// Box Select
+	//----------------
+	vbox(id = 'v_b_bsel' hidden = '1') ::
+	{
+		label(selected = '1' text = 'Select' size = '28')(hint = 'Box Select Option')
+		opBox(def = 'outline' onClick = 'set b_bsel_type' index = '0')(size = '28') ::
+		{
+			hbox(def = 'outline-i') ::
+			{
+				option(def = 'op-sel' id = '0' text = 'Box' )(flex = '1')(hint = 'Box Select')
+				option(def = 'op-sel' id = '1' text = 'Rect')(flex = '1')(hint = 'Rect Select')
+			}					
+		}
+	}	
+
+	//----------------
+	// Region Select
+	//----------------
+	vbox(id = 'v_b_rsel' hidden = '1') ::
+	{
+		label(selected = '1' text = 'Region' size = '28')(hint = 'Region Select Option')
+		vbox(def = 'outline') ::
+		{
+			vbox(def = 'outline-i') ::
+			{
+				opBox(onClick = 'set b_rsel_type' index = '0')(size = '28' next = '2') ::
+				{
+					hbox::
+					{
+						option(def = 'op-sel' id = '0' text = 'V')(flex = '1')(hint = 'V : Select Voxels within Same Volume')
+						option(def = 'op-sel' id = '1' text = 'F')(flex = '1')(hint = 'F : Select Voxels within Same Face')
+						option(def = 'op-sel' id = '2' text = 'A')(flex = '1')(hint = 'A : Select All Voxels with Same Color')
+					}			
+				}
+
+				opBox(onClick = 'set b_rsel_col' index = '0')(size = '24' next = '2')(hint = 'Col/Geo : Color or Geometry Connectivity') ::
+				{
+					hbox::
+					{
+						option(def = 'op-sel' id = '1' text = 'Col')(flex = '1')
+						option(def = 'op-sel' id = '0' text = 'Geo')(flex = '1')
+					}
+		
+				}
+
+				opBox(onClick = 'set b_rsel_4' index = '0')(size = '24')(hint = '4/8 : Neighbor Searching Direction') ::
+				{
+					hbox::
+					{
+						option(def = 'op-sel' id = '1' text = '4')(flex = '1')
+						option(def = 'op-sel' id = '0' text = '8')(flex = '1')
+					}		
+				}
+			}
+		}
+	}
+		
+	vbox(id = 'v_b_opt') ::
+	{					
+		//----------------
+		// Voxel
+		//----------------
+		vbox(id = 'v_vox' hidden = '1') ::
+		{					
+			label(selected = '1' text = 'Voxel' size = '28' next = '1')(hint = 'Voxel Mode Option')
+			vbox ::
+			{
+				hbox(size = '26') ::
+				{
+					switch(def ='sw-toggle')(onClick = 'set b_vox_cube'	selected = '1' text = 'Cube' text2 = 'Sphere')
+					(flex = '1' next = '1')
+					(corner = '4')
+					(hint = 'Cubic or Spherical Brush Shape')
+
+					switch(def = 'sw-toggle')(onClick = 'set b_vox_vol' selected = '0' text = '2D' text2 = '3D')
+					(size = '35')
+					(corner = '10')
+					(hint = 'Volume or Flat Shape')
+				}
+
+				hbox(size = '26') ::
+				{
+					textField(id = 'b_size' onEnter = 'set b_vox_size' align = '2' maxLength = '3')
+					(corner = '3')(flex = '1' next = '3')
+					(hint = 'Brush Size [1 - 64] : Resize [-/+]')
+
+					resizer(class = 'int')(path = '-1' range = '1 64' step = '1' space = '4')(size = '8' next = '1')(corner = '10')
+				}
+			}
+		}
+
+		//----------------
+		// Face
+		//----------------
+		vbox(id = 'v_face' hidden = '1') ::
+		{
+			label(selected = '1' text = 'Face' size = '28' next = '1')(hint = 'Face Mode Option')
+			hbox(size = '26') ::
+			{
+				switch(def = 'sw-toggle')(onClick = 'set b_face_col' selected = '1' text = 'Co' text2 = 'Ge')
+				(flex = '1' next = '1')
+				(corner = '5')
+				(hint = 'Co/Ge : Color or Geometry Connectivity')
+
+				switch(def = 'sw-toggle')(onClick = 'set b_face_pal' selected = '1' text = 'Pa' text2 = 'Su')
+				(flex = '1' next = '1')
+				(hint = 'Pa/Su : Use Palette Color or Raw Surface Color')
+
+				switch(def = 'sw-toggle')(onClick = 'set b_face_4'	selected = '1' text = '4' text2 = '8')
+				(flex = '1')
+				(hint = '4/8 : Neighbor Searching Direction')
+				(corner = '10')
+			}
+		}
+
+		//----------------
+		// Line
+		//----------------
+		vbox(id = 'v_line' hidden = '1') ::
+		{
+			label(selected = '1' text = 'Line' size = '28' next = '1')(hint = 'Line Mode Option')
+			switch(def = 'sw-toggle')(onClick = 'set b_line_proj'	selected = '1' text = 'Project' text2 = 'Straight')
+			(size = '26')
+			(corner = '15')
+			(hint = 'Project Line on Surface or Straight Line')
+		}
+
+		//----------------
+		// Center
+		//----------------
+		vbox(id = 'v_center' hidden = '1') ::
+		{
+			label(selected = '1' text = 'Center' size = '28' next = '1')(hint = 'Center Mode Option')
+			hbox(size = '26') ::
+			{
+				switch(def = 'sw-toggle')(onClick = 'set b_c_circle' selected = '1' text = 'Circle' text2 = 'Square')
+				(flex = '1' next = '1')
+				(corner = '5')
+				(hint = 'Circle or Square Shape')
+
+				switch(def = 'sw-toggle')(onClick = 'set b_c_even' selected = '0' text = 'E' text2 = 'O')
+				(size = '32')
+				(corner = '10')
+				(hint = 'Odd or Even Size')
+			}
+		}
+
+		//----------------
+		// Pattern
+		//----------------
+		vbox(id = 'v_pat' hidden = '1') ::
+		{
+			label(selected = '1' text = 'Pattern' size = '28' next = '1')(hint = 'Pattern Mode Option')
+			hbox(size = '26') ::
+			{
+				switch(def = 'sw-toggle')(onClick = 'set b_patt_pal' selected = '0' text = 'Pal' text2 = 'Raw')
+				(flex = '1' next = '1')
+				(corner = '5')
+				(hint = 'Use Raw Color or Palette Color')
+
+				button(def ='bn-grey' text = '^12' textFont = '2' textSize = '18 18' onClick = 'spatt')(corner = '10')(flex = '1')
+				(hint = 'Create Pattern from Selection')
+			}
+		}
+	}
+}

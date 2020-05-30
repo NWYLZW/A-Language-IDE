@@ -1,17 +1,30 @@
 <RCC>
   <qresource prefix="ico">
+    <file>../Data/qrc/ico/plot.png</file>
+    <file>../Data/qrc/ico/ploted.png</file>
+    <file>../Data/qrc/ico/graded.png</file>
+    <file>../Data/qrc/ico/grade.png</file>
+    <file>../Data/qrc/ico/special Effected.png</file>
+    <file>../Data/qrc/ico/special Effect.png</file>
+    <file>../Data/qrc/ico/achievemented.png</file>
+    <file>../Data/qrc/ico/achievement.png</file>
+    <file>../Data/qrc/ico/music.png</file>
+    <file>../Data/qrc/ico/staged.png</file>
+    <file>../Data/qrc/ico/stage.png</file>
+    <file>../Data/qrc/ico/leveled.png</file>
+    <file>../Data/qrc/ico/level.png</file>
     <file>../Data/qrc/ico/topLayered.png</file>
     <file>../Data/qrc/ico/topLayer.png</file>
     <file>../Data/qrc/ico/mored.png</file>
     <file>../Data/qrc/ico/more.png</file>
-    <file>../Data/qrc/ico/buildScript.png</file>
     <file>../Data/qrc/ico/buildScripted.png</file>
-    <file>../Data/qrc/ico/login.png</file>
+    <file>../Data/qrc/ico/buildScript.png</file>
     <file>../Data/qrc/ico/logined.png</file>
-    <file>../Data/qrc/ico/logout.png</file>
+    <file>../Data/qrc/ico/login.png</file>
     <file>../Data/qrc/ico/logouted.png</file>
-    <file>../Data/qrc/ico/refresh.png</file>
+    <file>../Data/qrc/ico/logout.png</file>
     <file>../Data/qrc/ico/refreshed.png</file>
+    <file>../Data/qrc/ico/refresh.png</file>
     <file>../Data/qrc/ico/join_green.png</file>
     <file>../Data/qrc/ico/build.png</file>
     <file>../Data/qrc/ico/builded.png</file>
@@ -62,6 +75,14 @@
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/Tield.png</file>
+    <file>../Data/qrc/Monster.png</file>
+    <file>../Data/qrc/Equipment.png</file>
+    <file>../Data/qrc/Supplies.png</file>
+    <file>../Data/qrc/Follower.png</file>
+    <file>../Data/qrc/NPC.png</file>
+    <file>../Data/qrc/MagicaVoxel.png</file>
+    <file>../Data/qrc/CharacterControler.png</file>
     <file>../Data/qrc/roomImg.jpg</file>
     <file>../Data/qrc/server.png</file>
     <file>../Data/qrc/userSetting.png</file>

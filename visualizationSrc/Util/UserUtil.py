@@ -18,6 +18,7 @@ import os,json
 defaultUserDict = {
     "UserName":"无名",
     "PWD":"***",
+    "ModName":"未设置Mod名",
     "GamePath":"D:\\Steam\\steamapps\\common\\Tetra Project\\",
 }
 cardPKGs = {

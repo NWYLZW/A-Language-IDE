@@ -1,0 +1,97 @@
+vbox(id = 'menu_sample' hidden = '1' clip = '0')(margin = '9 9 0 0') ::
+{
+	switch(class = 'panel')(def='h1' selected = '1' text = 'Bounce' size = '36')
+	vbox(next = '6') ::
+	{
+		hbox(size = '28')(hint = 'Diffuse Depth [1 - 15]') ::
+		{
+			label(def = 'h3' text = 'Diffuse')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_bounce_d' onEnter = 'set pt_bounce_d')(size = '35' next ='3')
+			resizer(class = 'int')(range = '0 15' step = '1' space = '8')(size = '8')
+		}
+
+		hbox(size = '28')(hint = 'Reflection/Refraction Depth [5 - 15]') ::
+		{
+			label(def = 'h3' text = 'Specular')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_bounce_sp' onEnter = 'set pt_bounce_sp')(size = '35' next ='3')
+			resizer(class = 'int')(range = '5 15' step = '1' space = '8')(size = '8')
+		}
+
+		hbox(size = '28')(hint = 'Scatter Depth [5 - 15]') ::
+		{
+			label(def = 'h3' text = 'Scatter')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_bounce_sc' onEnter = 'set pt_bounce_sc')(size = '35' next ='3')
+			resizer(class = 'int')(range = '5 15' step = '1' space = '8')(size = '8')
+		}
+
+		hbox(size = '28')(hint = 'Clamp Energy') ::
+		{
+			label(def = 'h3' text = 'Energy')(flex = '1')
+			textField(def = 'tf-n-bg' id = 'pt_clamp' onEnter = 'set pt_clamp')(size = '35' next ='3')
+			resizer(class = 'int')(range = '1 5000' step = '1' space = '8')(size = '8')
+		}
+	}
+	
+	sp(def = 'bar-h' size = '3')
+	
+	hbox(size = '36' clip = '0') ::
+	{
+		switch(class = 'panel')(def='h1' path = '1 1' selected = '1' text = 'Sample' flex = '1')
+	}
+	vbox(next = '6')::
+	{
+		hbox(size = '24')(hint = 'Stochastic Sampling Global Illumination') ::
+		{
+			label(def = 'h3' text = 'Stochastic')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_jit' onClick = 'set pt_jit')(size = '12')
+		}
+		
+		hbox(size = '24')(hint = 'Multiple Importance Sampling for GGX Surfaces') ::
+		{
+			label(def = 'h3' text = 'MIS-GGX')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_mis_ggx' onClick = 'set pt_mis_ggx')(size = '12')
+		}
+
+		hbox(size = '24')(hint = 'Multiple Importance Sampling for Cloud Media') ::
+		{
+			label(def = 'h3' text = 'MIS-Cloud')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_mis_cloud' onClick = 'set pt_mis_cloud')(size = '12')
+		}
+		
+		hbox(size = '24')(hint = 'Pixelated Illumination') ::
+		{
+			label(def = 'h3' text = 'Pixelated')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_px' onClick = 'set pt_px')(size = '12')
+		}
+
+		hbox(size = '24')(hint = 'Anti-Aliasing') ::
+		{
+			label(def = 'h3' text = 'Anti-Aliasing')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_aa' onClick = 'set pt_show aa')(size = '12')
+		}
+
+		hbox(size = '24')(hint = 'Show Shadow') ::
+		{
+			label(def = 'h3' text = 'Shadow')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_sw' onClick = 'set pt_show sw')(size = '12')
+		}
+		
+		hbox(size = '24')(hint = 'Translucent Shadow') ::
+		{
+			label(def = 'h3' text = 'TR-Shadow')(flex = '1' next = '8')
+			switch(def = 'sw-check' id = 'pt_tr' onClick = 'set pt_tr')(size = '12')
+		}
+	}
+	
+	sp(def = 'bar-h' size = '3')
+
+	switch(class = 'panel')(def='h1' selected = '1' text = 'Geometry' size = '36')
+	hbox(size = '24' next = '8')(hint = 'SV : Sparse Volume for Large Space') ::
+	{
+		label(def = 'h3' text = 'Sparse')(flex = '1' next = '8')
+		switch(def = 'sw-check' id = 'pt_sv' onClick = 'set pt_sv')
+		(size = '12')
+	}
+
+	sp(id = 'rl_sep1' def = 'bar-h' size = '3' hidden = '1')
+}

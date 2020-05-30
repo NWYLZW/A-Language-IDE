@@ -1,0 +1,70 @@
+vbox(margin = '6 6 0 0') ::
+{
+	//----------------
+	// Model File
+	//----------------
+	vbox(id = 'menu_model')(flex = '1') ::
+	{
+		layer(def = 'layer-dark')(flex = '1') ::
+		{
+			list(def = 'fileList' id = 'file' root = [[$/vox]] ext = "vox" onSelect = 'open' )(hint = 'Model List for Projects')
+		}
+	}
+
+	//----------------
+	// Pattern File
+	//----------------
+	vbox(id = 'menu_patt' flex = '1' hidden = '1') ::
+	{
+		layer(def = 'layer-dark')(flex = '1') ::
+		{
+			list(def = 'fileList' id = 'file_patt' root = [[$/vox]] ext = 'vox' onSelect = 'ipatt')(flex = '1')(hint = 'Model List for Pattern Brush')
+		}
+	}
+
+	//----------------
+	// Scene Outline
+	//----------------
+	vbox(id = 'menu_graph' flex = '1' hidden = '1') ::
+	{
+		layer(def = 'layer-dark')(flex = '1') ::
+		{
+			graph(def = 'fileList' id = 'graph' root = [[$/vox]] ext = 'vox' onSelect = 'ipatt')(flex = '1')(hint = 'Scene Outline')
+		}
+	}
+
+	//----------------
+	// Export
+	//----------------
+	vbox(def = 'bg') ::
+	{
+		switch(class = 'panel')(style = '1' selected = '0' text = 'Export' size = '26')
+		vbox ::
+		{
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'o obj'	text = 'obj'	delayed = '1' 	)(flex = '1' next = '1')(corner = '4')(hint = 'obj : Export obj mesh')
+				button(onClick = 'o ply'	text = 'ply'	delayed = '1' 	)(flex = '1' next = '1')(corner = '0')(hint = 'ply : Export ply mesh')
+				button(onClick = 'o mc'		text = 'mc'		delayed = '1' 	)(flex = '1' next = '0')(corner = '8')(hint = 'mc : Export Marching Cubes')
+			}
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'o xraw'   text = 'xraw'	delayed = '1' 	)(flex = '1' next = '1')(hint = 'vox : Export xraw volume')
+				button(onClick = 'o slab'	text = 'slab'	delayed = '1' 	)(flex = '1' next = '1')(hint = 'slab : Export slab6 vox volume')
+				button(onClick = 'o qb'		text = 'qb'		delayed = '1' 	)(flex = '1' next = '0')(hint = 'qb : Export qb volume')
+			}
+			hbox(size = '26' next = '1') ::
+			{
+				button(onClick = 'o vox'	text = 'vox'	delayed = '1' 	)(flex = '1' next = '1')(hint = 'vox : Export vox voxels')
+				button(onClick = 'o iso'	text = 'iso'	delayed = '1' 	)(flex = '1' next = '1')(hint = 'iso : Export isometric pixel sprite')
+				button(onClick = 'o 2d'		text = '2d'		delayed = '1' 	)(flex = '1' next = '0')(hint = '2d : Export 2D sprite')
+			}
+			hbox(size = '26') ::
+			{
+				button(onClick = 'o slice'	text = 'slice'	delayed = '1' 	)(flex = '1' next = '1')(corner = '1')(hint = 'slice : Export slices')
+				button(onClick = 'o pcl'	text = 'point'	delayed = '1' 	)(flex = '1' next = '1')(corner = '0')(hint = 'point : Export point clouds')
+				button(onClick = 'o cube'	text = 'cube'	delayed = '1' 	)(flex = '1' next = '0')(corner = '2')(hint = 'cube : Export cubes')
+			}
+		}
+	}
+}
