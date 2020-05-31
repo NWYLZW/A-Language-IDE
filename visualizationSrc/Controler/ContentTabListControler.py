@@ -38,10 +38,12 @@ class ContentTabList():
         self.ContentTabList.tabBar().setTabButton(0,QTabBar.RightSide,None)
 
         from ..Tabs.CardControlerTab import CardControlerTab
+        from ..Tabs.ProtagonistControlerTab import ProtagonistControlerTab
         from ..Tabs.OnlineServerTab import OnlineServerTab
-        self.TabNameList = ['CardControler','OnlineServer']
+        self.TabNameList = ['CardControler', 'ProtagonistControler', 'OnlineServer']
         self.TabNameHash = {}
         self._initTab("CardControler","卡牌管理",CardControlerTab)
+        self._initTab("ProtagonistControler","角色管理",ProtagonistControlerTab)
         self._initTab("OnlineServer","联机大厅",OnlineServerTab)
         self._initTabClose()
     def clearAllTab(self):

@@ -28,23 +28,23 @@ importCardList = {}
 
 class base(object):
     def __init__(self):
-        self.userDataPath = "{0}\\AppData\\Local\\AL-IDE_Data\\Config".format(os.path.expanduser('~'))
-        if not os.path.exists(self.userDataPath):
-            os.makedirs(self.userDataPath)
+        self.userConfigPath = "{0}\\AppData\\Local\\AL-IDE_Data\\Config".format(os.path.expanduser('~'))
+        if not os.path.exists(self.userConfigPath):
+            os.makedirs(self.userConfigPath)
 
 class user(base):
     def __init__(self):
         super().__init__()
         self._initUserJson()
     def _initUserJson(self):
-        if not os.path.isfile(self.userDataPath + "/user.json"):
-            with open(self.userDataPath + "/user.json", mode="w", encoding="utf-8"):pass
-        with open(self.userDataPath + "/user.json", mode="r", encoding="utf-8") as f:
+        if not os.path.isfile(self.userConfigPath + "/user.json"):
+            with open(self.userConfigPath + "/user.json", mode="w", encoding="utf-8"):pass
+        with open(self.userConfigPath + "/user.json", mode="r", encoding="utf-8") as f:
             try: self.userDict = json.loads(f.read())
             except: self.userDict = defaultUserDict
         self._saveUserDict()
     def _saveUserDict(self):
-        with open(self.userDataPath + "/user.json", mode="w", encoding="utf-8") as f:
+        with open(self.userConfigPath + "/user.json", mode="w", encoding="utf-8") as f:
             f.write(json.dumps(self.userDict))
     def _getUserValue(self,key):
         return self.userDict.get(
@@ -98,22 +98,22 @@ class card(base):
         super().__init__()
         self._initCardPKGJson()
     def _initCardPKGJson(self):
-        if not os.path.isfile(self.userDataPath + "/cardPKG.json"):
-            with open(self.userDataPath + "/cardPKG.json", mode="w", encoding="utf-8"):pass
-        if not os.path.isfile(self.userDataPath + "/importCardList.json"):
-            with open(self.userDataPath + "/importCardList.json", mode="w", encoding="utf-8"):pass
+        if not os.path.isfile(self.userConfigPath + "/cardPKG.json"):
+            with open(self.userConfigPath + "/cardPKG.json", mode="w", encoding="utf-8"):pass
+        if not os.path.isfile(self.userConfigPath + "/importCardList.json"):
+            with open(self.userConfigPath + "/importCardList.json", mode="w", encoding="utf-8"):pass
 
-        with open(self.userDataPath + "/cardPKG.json", mode="r", encoding="utf-8") as f:
+        with open(self.userConfigPath + "/cardPKG.json", mode="r", encoding="utf-8") as f:
             try: self.cardPKGs = json.loads(f.read())
             except: self.cardPKGs = cardPKGs
-        with open(self.userDataPath + "/importCardList.json", mode="r", encoding="utf-8") as f:
+        with open(self.userConfigPath + "/importCardList.json", mode="r", encoding="utf-8") as f:
             try: self.importCardList = json.loads(f.read())
             except: self.importCardList = importCardList
         self._saveCardPKGDict()
     def _saveCardPKGDict(self):
-        with open(self.userDataPath + "/cardPKG.json", mode="w", encoding="utf-8") as f:
+        with open(self.userConfigPath + "/cardPKG.json", mode="w", encoding="utf-8") as f:
             f.write(json.dumps(self.cardPKGs))
-        with open(self.userDataPath + "/importCardList.json", mode="w", encoding="utf-8") as f:
+        with open(self.userConfigPath + "/importCardList.json", mode="w", encoding="utf-8") as f:
             f.write(json.dumps(self.importCardList))
     def _getCardImportData(self, author, displayName):
         returnDict = self.cardPKGs\
@@ -130,6 +130,7 @@ class card(base):
 class UserUtil(user,card):
     def __init__(self):
         super().__init__()
+        self.exeDataPath = "{0}\\AppData\\Local\\AL-IDE_Data\\".format(os.path.expanduser('~'))
 
     def addCard(self, author, card:dict, reprintedAuthorList):
         if author == self.userName: author = "MYSELF_CARD_PKG"

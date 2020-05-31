@@ -303,7 +303,7 @@ class Ui_main(object):
     def retranslateUi(self, main):
         _translate = QtCore.QCoreApplication.translate
         main.setWindowTitle(_translate("main", "Form"))
-        self.cardId.setText(_translate("main", "无名(ID:10001)"))
+        self.cardId.setText(_translate("main", "ID:10001"))
         self.detailsBTN.setToolTip(_translate("main", "<html><head/><body><p>展开详情</p></body></html>"))
         self.description.setHtml(_translate("main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

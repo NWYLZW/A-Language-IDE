@@ -985,7 +985,7 @@ QPushButton:hover{
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="CharacterControler">
+                 <widget class="QPushButton" name="ProtagonistControler">
                   <property name="minimumSize">
                    <size>
                     <width>64</width>
@@ -2029,8 +2029,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>331</width>
-                 <height>505</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -2048,6 +2048,14 @@ p, li { white-space: pre-wrap; }
                </widget>
               </widget>
               <widget class="QWidget" name="Friends">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>100</width>
+                 <height>30</height>
+                </rect>
+               </property>
                <attribute name="label">
                 <string>Friends</string>
                </attribute>
@@ -2057,8 +2065,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>331</width>
-                 <height>505</height>
+                 <width>100</width>
+                 <height>30</height>
                 </rect>
                </property>
                <attribute name="label">

@@ -91,6 +91,7 @@ class controlMainMenu:
 
         self.mainWindow.CardControler.clicked.connect(lambda : self.CTL.showTab('CardControler'))
         self.mainWindow.OnlineServer.clicked.connect(lambda : self.CTL.showTab('OnlineServer'))
+        self.mainWindow.ProtagonistControler.clicked.connect(lambda : self.CTL.showTab('ProtagonistControler'))
 class controlNavMenu:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow

@@ -97,7 +97,7 @@ QTextEdit{
 }</string>
            </property>
            <property name="text">
-            <string>无名(ID:10001)</string>
+            <string>ID:10001</string>
            </property>
           </widget>
          </item>

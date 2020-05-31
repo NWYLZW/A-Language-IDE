@@ -75,7 +75,7 @@ class CSVHelperControler(object):
                 newRowDict.update({
                     key:newRowDict.get(key,self.DefaultValue.get(key,''))
                 })
-            self._refreshFile()
+            # self._refreshFile()
             self._rowList.append(newRowDict)
             self._refreshFile()
             return newRowDict

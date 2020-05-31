@@ -55,7 +55,7 @@ class CardControlerTab(ListTabHelper):
             isShowClose=False,
         )
         self.setCurrentIndex(0)
-    def _addCardDatailTab(self, cardDict):
+    def _addCardDetailTab(self, cardDict):
         if cardDict != "newCard":
             index = self.addWidgetTab(
                 widget=cardDetailTab(self,cardDict),
@@ -77,7 +77,7 @@ class CardControlerTab(ListTabHelper):
     def removeNewCardTab(self, newCardTabWidget):
         self.removeWidgetTab(self.widgetIndex(newCardTabWidget))
     def toCardDetailTab(self, cardDict):
-        return self.setCurrentIndex(self._addCardDatailTab(cardDict))
+        return self.setCurrentIndex(self._addCardDetailTab(cardDict))
     def _initClick(self):
         pass
 
@@ -268,7 +268,7 @@ class scrollCradItem(
         self.cardDict = cardDict
         if isSel: self.isSel = isSel
 
-        self.cardId.setText("ID:"+cardDict['id'])
+        self.cardId.setText("ID:"+cardDict.get('id','-0'))
         strModel = \
 """\
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
@@ -284,10 +284,10 @@ cardDict['displayName']+\
 </p></body></html>\
 """
         self.cardName.setHtml(strModel)
-        self.price.setText(cardDict['price'])
-        self.description.setText(cardDict['description'])
+        self.price.setText(cardDict.get('price','0'))
+        self.description.setText(cardDict.get('description',''))
         self.description.setReadOnly(True)
-        self.story.setText(cardDict['story'])
+        self.story.setText(cardDict.get('story',''))
         self.story.setReadOnly(True)
         import os
         backgroundImgPath = currentProPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
