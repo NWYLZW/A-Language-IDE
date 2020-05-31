@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_main(object):
     def setupUi(self, main):
         main.setObjectName("main")
-        main.resize(470, 360)
+        main.resize(280, 360)
         main.setMinimumSize(QtCore.QSize(0, 360))
         main.setMaximumSize(QtCore.QSize(470, 360))
         main.setStyleSheet("#main{\n"
@@ -45,20 +45,20 @@ class Ui_main(object):
         self.head = QtWidgets.QHBoxLayout()
         self.head.setSpacing(10)
         self.head.setObjectName("head")
-        self.NameAndId = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        self.cardId = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
-        self.NameAndId.setFont(font)
-        self.NameAndId.setStyleSheet("QLabel{\n"
+        self.cardId.setFont(font)
+        self.cardId.setStyleSheet("QLabel{\n"
 "    padding:5px;\n"
 "    font-size:12pt;\n"
 "    font-weight:600;\n"
 "}")
-        self.NameAndId.setObjectName("NameAndId")
-        self.head.addWidget(self.NameAndId)
+        self.cardId.setObjectName("cardId")
+        self.head.addWidget(self.cardId)
         self.detailsBTN = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.detailsBTN.setMinimumSize(QtCore.QSize(30, 30))
         self.detailsBTN.setMaximumSize(QtCore.QSize(30, 30))
@@ -149,6 +149,20 @@ class Ui_main(object):
 "    border: none;\n"
 "}")
         self.description.setObjectName("description")
+        self.cardName = QtWidgets.QTextBrowser(self.cardShow)
+        self.cardName.setGeometry(QtCore.QRect(35, 105, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.cardName.setFont(font)
+        self.cardName.setStyleSheet("QTextBrowser{\n"
+"    color: white;\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    border: none;\n"
+"}")
+        self.cardName.setObjectName("cardName")
         self.gridLayout.addWidget(self.cardShow, 0, 0, 1, 1)
         self.horizontalLayout_2.addLayout(self.gridLayout)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
@@ -289,13 +303,18 @@ class Ui_main(object):
     def retranslateUi(self, main):
         _translate = QtCore.QCoreApplication.translate
         main.setWindowTitle(_translate("main", "Form"))
-        self.NameAndId.setText(_translate("main", "无名(ID:10001)"))
+        self.cardId.setText(_translate("main", "无名(ID:10001)"))
         self.detailsBTN.setToolTip(_translate("main", "<html><head/><body><p>展开详情</p></body></html>"))
         self.description.setHtml(_translate("main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">还没有介绍哦~</p></body></html>"))
+        self.cardName.setHtml(_translate("main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:12pt; font-weight:600; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:400;\">无名</span></p></body></html>"))
         self.cardSelect.setToolTip(_translate("main", "<html><head/><body><p>选择卡牌</p></body></html>"))
         self.cardEdit.setToolTip(_translate("main", "<html><head/><body><p>编辑卡牌</p></body></html>"))
         self.cardExport.setToolTip(_translate("main", "<html><head/><body><p>导出卡牌</p></body></html>"))

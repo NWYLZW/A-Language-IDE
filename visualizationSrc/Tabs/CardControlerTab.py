@@ -268,7 +268,22 @@ class scrollCradItem(
         self.cardDict = cardDict
         if isSel: self.isSel = isSel
 
-        self.NameAndId.setText(cardDict['displayName']+'(ID:'+cardDict['id']+')')
+        self.cardId.setText("ID:"+cardDict['id'])
+        strModel = \
+"""\
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Adobe 黑体 Std R'; font-size:12pt; font-weight:600; font-style:normal;">
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">\
+<span style=" font-weight:600;">
+"""+\
+cardDict['displayName']+\
+"""
+</span>\
+</p></body></html>\
+"""
+        self.cardName.setHtml(strModel)
         self.price.setText(cardDict['price'])
         self.description.setText(cardDict['description'])
         self.description.setReadOnly(True)

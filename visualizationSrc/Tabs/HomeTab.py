@@ -12,7 +12,8 @@ import json
 import subprocess
 
 from PyQt5.QtCore import QTimer, QThread, pyqtSignal
-from PyQt5.QtWidgets import QFileDialog, QDialog
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QFileDialog, QDialog, QListWidgetItem
 from PyQt5.uic.properties import QtWidgets
 from PyQt5 import QtCore
 
@@ -87,6 +88,9 @@ class controlMainMenu:
             temp = CommandListShowWindow(self.mainWindow)
             temp.show()
         self.mainWindow.CommandList.clicked.connect(showCommandListShowWindow)
+
+        self.mainWindow.CardControler.clicked.connect(lambda : self.CTL.showTab('CardControler'))
+        self.mainWindow.OnlineServer.clicked.connect(lambda : self.CTL.showTab('OnlineServer'))
 class controlNavMenu:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
@@ -139,12 +143,15 @@ class simpleDataMenu:
         def __setSimpleData():
             u = UserUtil()
             self.mainWindow.UserName.setText(u.userName)
+            def getModName(path):
+                temp = path.split('/')
+                return temp[len(temp) - 1]
 
             tempPathX = currentProPath()
             if tempPathX != "":
-                temp = tempPathX.split('/')
-                self.mainWindow.ModName.setText(temp[len(temp) - 1])
-                self.mainWindow.ModeAndPath.setText(temp[len(temp) - 1]+"("+tempPathX+")")
+                modName = getModName(tempPathX)
+                self.mainWindow.ModName.setText(modName)
+                self.mainWindow.ModeAndPath.setText(modName+"("+tempPathX+")")
             else:
                 self.mainWindow.ModName.setText("未打开工作Mod文件夹")
                 return
@@ -158,6 +165,21 @@ class simpleDataMenu:
             self.mainWindow.GamePath.setText(tempGamePath)
             self.mainWindow.GamePath.setToolTip(GamePath)
             self.mainWindow.description.setText(PackageInfo.get("description","未设置mod介绍，写点什么吧"))
+
+            self.mainWindow.recentProjectList.clear()
+            for projectPath in u.getRecentProjectPathList():
+                temp = tempPathX.split('/')
+                self.mainWindow.ModName.setText(temp[len(temp) - 1])
+                self.mainWindow.ModeAndPath.setText(temp[len(temp) - 1]+"("+tempPathX+")")
+
+                item = QListWidgetItem(
+                    QIcon(projectPath+"/icon.png"),
+                    getModName(projectPath),
+                    self.mainWindow.recentProjectList
+                )
+                item.modPath = projectPath
+                self.mainWindow.recentProjectList.addItem(item)
+
             self.CTL.clearAllTab()
 
         QTimer.singleShot(200, __setSimpleData)
@@ -176,11 +198,18 @@ class menuToolBoxMenu:
             if not os.path.exists(TetraProjectPackagesPath):
                 os.makedirs(TetraProjectPackagesPath)
             directory = QFileDialog.getExistingDirectory(None, "getExistingDirectory", TetraProjectPackagesPath)
-            self.setProjectPath(directory)
+            if directory != "": self.setProjectPath(directory)
+            else:self.mainWindow.showWarn(
+                "打开项目", self.__class__.__name__,
+                "打开项目失败，请保证Mod文件夹存在")
         self.mainWindow.openMod.clicked.connect(__openMod)
         def __zipMod():
             pass
         self.mainWindow.zipMod.clicked.connect(__zipMod)
+
+        def __recentProjectListItemClick(item):
+            self.setProjectPath(item.modPath)
+        self.mainWindow.recentProjectList.itemClicked.connect(__recentProjectListItemClick)
     def setProjectPath(self, directory):
         if UserUtil().pushNewProject(directory):
             self.mainWindow.showInfo(
@@ -196,34 +225,8 @@ class Home:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
-        self.initCardItemClick()
         self.cmM = controlMainMenu      (CTL, mainWindow)
         self.cnM = controlNavMenu       (CTL, mainWindow)
         self.snM = simpleDataMenu       (CTL, mainWindow)
         self.snM.setSimpleData()
         self.mtbM = menuToolBoxMenu     (CTL, mainWindow)
-    def initCardItemClick(self):
-        UI = self.mainWindow
-        def windowClick(Element):
-            def __windowClick(event):
-                if event.buttons() == QtCore.Qt.LeftButton:
-                    Element.clickType = QtCore.Qt.LeftButton
-                Element.down = True
-            return __windowClick
-        def windowRelease(Element):
-            def __windowRelease(event):
-                if Element.clickType == QtCore.Qt.LeftButton:
-                    if Element == UI.CardControler and Element.down:
-                        self.CTL.showTab('CardControler')
-                    elif Element == UI.OnlineServer and Element.down:
-                        self.CTL.showTab('OnlineServer')
-                Element.down = False
-            return __windowRelease
-        def connectClick(Ele,fun):
-            Ele.mousePressEvent = fun
-        def connectRelease(Ele:QtWidgets,fun):
-            Ele.mouseReleaseEvent = fun
-
-        for Ele in [UI.CardControler,UI.OnlineServer]:
-            connectClick(Ele,windowClick(Ele))
-            connectRelease(Ele,windowRelease(Ele))

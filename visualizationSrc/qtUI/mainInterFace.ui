@@ -151,7 +151,7 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
             </font>
            </property>
            <property name="text">
-            <string>(Modname)PATH</string>
+            <string>Modname(PATH)</string>
            </property>
           </widget>
          </item>
@@ -1396,25 +1396,31 @@ QPushButton:hover{
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0" columnstretch="0,0,0,0">
-              <property name="spacing">
+              <property name="horizontalSpacing">
+               <number>20</number>
+              </property>
+              <property name="verticalSpacing">
                <number>10</number>
               </property>
               <item row="2" column="2">
                <widget class="QPushButton" name="plugin">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;插件市场&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
                  <string/>
@@ -1425,14 +1431,14 @@ QPushButton:hover{
                <widget class="QPushButton" name="about">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1673,8 +1679,8 @@ QPushButton:hover{
                    <widget class="QGraphicsView" name="graphicsView_3">
                     <property name="maximumSize">
                      <size>
-                      <width>32</width>
-                      <height>32</height>
+                      <width>24</width>
+                      <height>24</height>
                      </size>
                     </property>
                     <property name="styleSheet">
@@ -1725,14 +1731,14 @@ QPushButton:hover{
                <widget class="QPushButton" name="userData">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1750,14 +1756,14 @@ QPushButton:hover{
                <widget class="QPushButton" name="userLogin">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1775,14 +1781,14 @@ QPushButton:hover{
                <widget class="QPushButton" name="userLogout">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1800,14 +1806,14 @@ QPushButton:hover{
                <widget class="QPushButton" name="userSetting">
                 <property name="minimumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>64</width>
-                  <height>64</height>
+                  <width>80</width>
+                  <height>80</height>
                  </size>
                 </property>
                 <property name="cursor">
@@ -1998,7 +2004,7 @@ QScrollBar::add-line, QScrollBar::sub-line
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe 黑体 Std R'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mod还没有什么介绍哦&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -2030,6 +2036,16 @@ p, li { white-space: pre-wrap; }
                <attribute name="label">
                 <string>Recent</string>
                </attribute>
+               <widget class="QListWidget" name="recentProjectList">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>311</width>
+                  <height>491</height>
+                 </rect>
+                </property>
+               </widget>
               </widget>
               <widget class="QWidget" name="Friends">
                <attribute name="label">
