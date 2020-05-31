@@ -8,6 +8,7 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   主页
 '''
+import json
 import subprocess
 
 from PyQt5.QtCore import QTimer, QThread, pyqtSignal
@@ -20,7 +21,7 @@ from .. import MyWindow
 from ..Controler.ContentTabListControler import ContentTabList
 from ..Util.ServerUserUtil import server
 from ..Util.UserUtil import UserUtil
-from ..Util.frozenDir import appPath, tempPath
+from ..Util.frozenDir import tempPath, currentProPath
 from ..config import GamePath
 
 class loginThread(QThread):
@@ -76,7 +77,7 @@ class loginDialogHelper(QDialog, loginDialog.Ui_Dialog):
                 self.loginThreadX.start()
         self.loginBTN.clicked.connect(login)
 
-class ControlMainMenu:
+class controlMainMenu:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
@@ -86,7 +87,7 @@ class ControlMainMenu:
             temp = CommandListShowWindow(self.mainWindow)
             temp.show()
         self.mainWindow.CommandList.clicked.connect(showCommandListShowWindow)
-class ControlNavMenu:
+class controlNavMenu:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
@@ -95,31 +96,16 @@ class ControlNavMenu:
         def MagicaVoxel():
             subprocess.Popen(tempPath()+"./visualizationSrc/Data/externProgram/MagicaVoxel/MagicaVoxel.exe")
         self.mainWindow.MagicaVoxel.clicked.connect(MagicaVoxel)
-
-class Home:
+class simpleDataMenu:
     def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
         self.mainWindow = mainWindow
         self.CTL = CTL
-        self.initCardItemClick()
-        self._setSimpleData()
         self._initClick()
-        self.CMM = ControlMainMenu(CTL,mainWindow)
-        self.CNM = ControlNavMenu(CTL,mainWindow)
-    def _setSimpleData(self):
-        u = UserUtil()
-        temp = appPath().split('\\')
-        self.mainWindow.ModName.setText(temp[len(temp) - 1])
-        tempGamePath = GamePath
-        if len(GamePath)>30:
-            tempGamePath = GamePath[:14]+'...'+GamePath[-14:]
-        self.mainWindow.GamePath.setText(tempGamePath)
-        self.mainWindow.GamePath.setToolTip(GamePath)
-        self.mainWindow.UserName.setText(u.userName)
     def _initClick(self):
         def sel_GamePath():
             directory = QFileDialog.getExistingDirectory(None, "getExistingDirectory", "C:\\")
             UserUtil().gamePath = directory
-            self._setSimpleData()
+            self.setSimpleData()
         self.mainWindow.sel_GamePath.clicked.connect(sel_GamePath)
         def userLogin():
             if server.user.isLogin:
@@ -149,6 +135,73 @@ class Home:
                 "登出",self.__class__.__name__,
                 rsp.get('content', "好像与伺服娘断连了哦"))
         self.mainWindow.userLogout.clicked.connect(userLogout)
+    def setSimpleData(self):
+        def __setSimpleData():
+            u = UserUtil()
+            self.mainWindow.UserName.setText(u.userName)
+
+            tempPathX = currentProPath()
+            if tempPathX != "":
+                temp = tempPathX.split('/')
+                self.mainWindow.ModName.setText(temp[len(temp) - 1])
+                self.mainWindow.ModeAndPath.setText(temp[len(temp) - 1]+"("+tempPathX+")")
+            else:
+                self.mainWindow.ModName.setText("未打开工作Mod文件夹")
+                return
+            PackageInfo = {}
+            with open(tempPathX + "/PackageInfo.json", mode="r", encoding="utf-8") as f:
+                try: PackageInfo = json.loads(f.read())
+                except:pass
+            tempGamePath = GamePath
+            if len(GamePath)>30:
+                tempGamePath = GamePath[:14]+'...'+GamePath[-14:]
+            self.mainWindow.GamePath.setText(tempGamePath)
+            self.mainWindow.GamePath.setToolTip(GamePath)
+            self.mainWindow.description.setText(PackageInfo.get("description","未设置mod介绍，写点什么吧"))
+            self.CTL.clearAllTab()
+
+        QTimer.singleShot(200, __setSimpleData)
+class menuToolBoxMenu:
+    def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
+        self.mainWindow = mainWindow
+        self.CTL = CTL
+        self._initClick()
+    def _initClick(self):
+        def __newMod():
+            pass
+        self.mainWindow.newMod.clicked.connect(__newMod)
+        def __openMod():
+            import os
+            TetraProjectPackagesPath = os.path.join(os.path.expanduser('~'), 'Documents\TetraProject\Packages')
+            if not os.path.exists(TetraProjectPackagesPath):
+                os.makedirs(TetraProjectPackagesPath)
+            directory = QFileDialog.getExistingDirectory(None, "getExistingDirectory", TetraProjectPackagesPath)
+            self.setProjectPath(directory)
+        self.mainWindow.openMod.clicked.connect(__openMod)
+        def __zipMod():
+            pass
+        self.mainWindow.zipMod.clicked.connect(__zipMod)
+    def setProjectPath(self, directory):
+        if UserUtil().pushNewProject(directory):
+            self.mainWindow.showInfo(
+                "打开项目", self.__class__.__name__,
+                "打开项目成功")
+            self.CTL.home.snM.setSimpleData()
+        else:
+            self.mainWindow.showWarn(
+                "打开项目", self.__class__.__name__,
+                "打开项目失败，请保证文件夹为标准Mod文件夹")
+
+class Home:
+    def __init__(self,CTL:ContentTabList,mainWindow:MyWindow.MyWindow):
+        self.mainWindow = mainWindow
+        self.CTL = CTL
+        self.initCardItemClick()
+        self.cmM = controlMainMenu      (CTL, mainWindow)
+        self.cnM = controlNavMenu       (CTL, mainWindow)
+        self.snM = simpleDataMenu       (CTL, mainWindow)
+        self.snM.setSimpleData()
+        self.mtbM = menuToolBoxMenu     (CTL, mainWindow)
     def initCardItemClick(self):
         UI = self.mainWindow
         def windowClick(Element):

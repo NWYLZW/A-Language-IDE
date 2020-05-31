@@ -146,10 +146,10 @@ QScrollBar::add-line, QScrollBar::sub-line
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_2"/>
+       <widget class="ComboCheckBox" name="comboBox_2"/>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="ComboCheckBox" name="comboBox"/>
       </item>
      </layout>
     </item>
@@ -341,6 +341,13 @@ QPushButton:hover{
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboCheckBox</class>
+   <extends>QComboBox</extends>
+   <header>..MyWidgets.ComboCheckBox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../AL_IDE_MainInterFace.qrc"/>
  </resources>

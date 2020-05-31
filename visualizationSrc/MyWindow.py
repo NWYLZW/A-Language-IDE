@@ -22,7 +22,7 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         super(MyWindow, self).__init__(parent)
         # 解决输出窗口打印出“UpdateLayeredWindowIndirect failed for ptDst=xxx”的错误
         self.setWindowFlag(Qt.FramelessWindowHint)
-        self.initUI()
+        self._initUI()
         self._MessageBox = MessageBoxHelper.MessageBox(self.Main)
         self.m_drag = False
     def initContentTabList(self):
@@ -57,7 +57,7 @@ class MyWindow(QMainWindow,mainInterFace.Ui_MainWindow):
         for Ele in [self.close_window,self.min_window,self.max_window]:
             connectClick(Ele,windowClick(Ele))
             connectRelease(Ele,windowRelease(Ele))
-    def initUI(self):
+    def _initUI(self):
         self.setupUi(self)
         self.initToolBar()
         self.EXETitle.setText(config.ExeName +' ' + config.Version)

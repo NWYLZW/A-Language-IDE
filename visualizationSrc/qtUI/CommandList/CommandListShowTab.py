@@ -89,10 +89,10 @@ class Ui_Form(object):
         self.Search_Input = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.Search_Input.setObjectName("Search_Input")
         self.horizontalLayout_2.addWidget(self.Search_Input)
-        self.comboBox_2 = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.comboBox_2 = ComboCheckBox(self.verticalLayoutWidget)
         self.comboBox_2.setObjectName("comboBox_2")
         self.horizontalLayout_2.addWidget(self.comboBox_2)
-        self.comboBox = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.comboBox = ComboCheckBox(self.verticalLayoutWidget)
         self.comboBox.setObjectName("comboBox")
         self.horizontalLayout_2.addWidget(self.comboBox)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -184,4 +184,5 @@ class Ui_Form(object):
         self.topLayer.setToolTip(_translate("Form", "<html><head/><body><p>置顶</p></body></html>"))
         self.Search_Input.setPlaceholderText(_translate("Form", "搜索指令"))
         self.toFirstBtn.setToolTip(_translate("Form", "<html><head/><body><p>第一页</p></body></html>"))
+from ..MyWidgets.ComboCheckBox import ComboCheckBox
 from .. import AL_IDE_MainInterFace_rc

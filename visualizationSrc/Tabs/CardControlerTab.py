@@ -24,11 +24,17 @@ from visualizationSrc.qtUI.MyWidgets.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
 from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
-from ..Util.frozenDir import tempPath, appPath
+from ..Util.frozenDir import tempPath, currentProPath
 from ..Util.windowsHelp import openTetraProject
 from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardLibWidget
 from ..qtUI.MyWidgets.HighLighter import HighLighter
 from ..Util.CompleterUtil import Completer
+
+# TODO 打开卡牌详细页展示一个可置顶弹窗预览图
+#  设置中选择是否自动打开
+# TODO 卡库页面不显示过于详细的卡面
+#  鼠标移至上方展示详细信息
+# TODO 卡包界面
 
 class CardControlerTab(ListTabHelper):
     def __init__(self, mainWindow: MyWindow.MyWindow):
@@ -55,7 +61,7 @@ class CardControlerTab(ListTabHelper):
                 widget=cardDetailTab(self,cardDict),
                 title= cardDict['displayName']+'(ID:'+cardDict['id']+')',
                 content=cardDict['description'],
-                icoImage=QPixmap(appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'),
+                icoImage=QPixmap(currentProPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'),
                 isShowClose=True,
             )
             return index
@@ -269,8 +275,8 @@ class scrollCradItem(
         self.story.setText(cardDict['story'])
         self.story.setReadOnly(True)
         import os
-        backgroundImgPath = appPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
-        cardArtImgPath = appPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
+        backgroundImgPath = currentProPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
+        cardArtImgPath = currentProPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
         if os.path.exists(backgroundImgPath):
             try:
                 self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
@@ -362,8 +368,8 @@ class cardDetailTab(
             for sel in cardDict['tagCode'].split(';'):
                 self.tagCode.selQCheckBoxByName(sel.split(':')[0])
             import os
-            from ..Util.frozenDir import appPath
-            cardArtPath = appPath()+"/CardArt/"+str(self.cardId)+".png"
+            from ..Util.frozenDir import currentProPath
+            cardArtPath = currentProPath()+"/CardArt/"+str(self.cardId)+".png"
             if os.path.isfile(cardArtPath):
                 self.selCardArtImg.path = cardArtPath
                 self.selCardArtImg.setStyleSheet("")
@@ -393,10 +399,10 @@ class cardDetailTab(
             def cpSelCardArtToModCardArt():
                 # 复制选择card art到指定cardArt目录中
                 import os, shutil
-                from ..Util.frozenDir import appPath
+                from ..Util.frozenDir import currentProPath
                 if os.path.isfile(self.selCardArtImg.path) \
-                        and self.selCardArtImg.path != appPath() + "/CardArt/" + str(self.cardId) + ".png":
-                    shutil.copyfile(self.selCardArtImg.path, appPath() + "/CardArt/" + str(self.cardId) + ".png")
+                        and self.selCardArtImg.path != currentProPath() + "/CardArt/" + str(self.cardId) + ".png":
+                    shutil.copyfile(self.selCardArtImg.path, currentProPath() + "/CardArt/" + str(self.cardId) + ".png")
             if self.cardDict == {}:
                 newCard = cardControler.addCard(**self.getCard().toDict())
                 if newCard!={}:
@@ -526,8 +532,8 @@ class cardDetailTab(
         tempHL.setContentsMargins(0,0,0,0)
 
         import os
-        from ..Util.frozenDir import appPath
-        backgroundImgPath = appPath()+"/CardBackground"
+        from ..Util.frozenDir import currentProPath
+        backgroundImgPath = currentProPath()+"/CardBackground"
         if not os.path.exists(backgroundImgPath):
             os.makedirs(backgroundImgPath)
         backgrondImgId = self.cardDict.get('backgroundId', '1')

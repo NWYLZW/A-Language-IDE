@@ -14,8 +14,8 @@ from abc import abstractmethod, ABCMeta
 class CSVHelperControler(object):
     __metaclass__ = ABCMeta
     def __init__(self,csvName=None):
-        from ...Util.frozenDir import appPath
-        proHome = appPath()
+        from ...Util.frozenDir import currentProPath
+        proHome = currentProPath()
         self.csvFileName = proHome+"/Database/"+csvName+".csv"
         self._rowList = []
         self._readFromFile()

@@ -11,13 +11,18 @@
 # -*- coding: utf-8 -*-
 import sys,os
 
+from .UserUtil import UserUtil
+
 def appPath():
-    """Returns the base application path."""
+    """Returns the application run path."""
     if hasattr(sys, 'frozen'):
         return os.path.dirname(sys.executable)
     return os.getcwd()
+def currentProPath():
+    """Returns the current project path."""
+    return UserUtil().getRecentProjectPath()
 def tempPath():
-    """Returns the base application path."""
+    """Returns the application temp path."""
     if hasattr(sys, 'frozen'):
         return sys._MEIPASS
     return os.getcwd()

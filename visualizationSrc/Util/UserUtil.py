@@ -11,15 +11,15 @@
 __all__ = ["UserUtil"]
 
 import time
-
-from visualizationSrc.Util.frozenDir import appPath
 import os,json
 
 defaultUserDict = {
     "UserName":"无名",
     "PWD":"***",
-    "ModName":"未设置Mod名",
     "GamePath":"D:\\Steam\\steamapps\\common\\Tetra Project\\",
+    "recentProject":[
+
+    ],
 }
 cardPKGs = {
     "MYSELF_CARD_PKG":{},
@@ -28,7 +28,7 @@ importCardList = {}
 
 class base(object):
     def __init__(self):
-        self.userDataPath = appPath() + "/../AL-IDE_Data"
+        self.userDataPath = "{0}\\AppData\\Local\\AL-IDE_Data\\Config".format(os.path.expanduser('~'))
         if not os.path.exists(self.userDataPath):
             os.makedirs(self.userDataPath)
 
@@ -46,6 +46,17 @@ class user(base):
     def _saveUserDict(self):
         with open(self.userDataPath + "/user.json", mode="w", encoding="utf-8") as f:
             f.write(json.dumps(self.userDict))
+    def _getUserValue(self,key):
+        return self.userDict.get(
+            key,
+            defaultUserDict.get(
+                key
+            )
+        )
+    def _setUserValue(self,key,value):
+        self.userDict[key] = value
+        self._saveUserDict()
+
     @property
     def gamePath(self):
         return self._getUserValue("GamePath")
@@ -64,16 +75,23 @@ class user(base):
     @PWD.setter
     def PWD(self,value):
         self._setUserValue("PWD",value)
-    def _getUserValue(self,key):
-        return self.userDict.get(
-            key,
-            defaultUserDict.get(
-                key
-            )
-        )
-    def _setUserValue(self,key,value):
-        self.userDict[key] = value
-        self._saveUserDict()
+    def pushNewProject(self, new_pro_path):
+        if os.path.isfile(new_pro_path+"/Database/Database.xls"):
+            pathList = self.getRecentProjectPathList()
+            for pro_path in pathList:
+                if pro_path == new_pro_path:
+                    pathList.remove(pro_path);break
+            pathList.insert(0, new_pro_path)
+            self._saveUserDict()
+            return True
+        return False
+    def getRecentProjectPathList(self):
+        return self._getUserValue("recentProject")
+    def getRecentProjectPath(self):
+        pathList = self.getRecentProjectPathList()
+        if len(pathList)!=0 \
+                and pathList[0]: return pathList[0]
+        return ""
 
 class card(base):
     def __init__(self):

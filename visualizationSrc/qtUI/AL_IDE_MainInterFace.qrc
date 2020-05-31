@@ -75,6 +75,8 @@
     <file>../Data/qrc/ico/tool.png</file>
   </qresource>
   <qresource prefix="picture">
+    <file>../Data/qrc/plugin.png</file>
+    <file>../Data/qrc/about.png</file>
     <file>../Data/qrc/Tield.png</file>
     <file>../Data/qrc/Monster.png</file>
     <file>../Data/qrc/Equipment.png</file>

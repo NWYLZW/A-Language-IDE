@@ -78,10 +78,10 @@ class CardControler(CSVHelperControler):
         if cardId == "newCard":
             return False
         import os
-        from ..Util.frozenDir import appPath
+        from ..Util.frozenDir import currentProPath
         messageTxtPath = os.path.expanduser('~')+'\AppData\Local\Temp\TetraProject'
         if not os.path.exists(messageTxtPath):
             os.makedirs(messageTxtPath)
         with open(messageTxtPath+'\message.txt','w',encoding='utf-8') as f1:
-            f1.write("Card:'"+cardId+"','id',"+os.path.abspath(appPath()+"/Database/Database.xls")+";")
+            f1.write("Card:'"+cardId+"','id',"+os.path.abspath(currentProPath()+"/Database/Database.xls")+";")
         return True

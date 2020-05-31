@@ -36,6 +36,9 @@
   <property name="mouseTracking">
    <bool>false</bool>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>AL-IDE</string>
   </property>
@@ -46,6 +49,18 @@
 QTabBar::close-button:hover{
 	image: url(:/ico/Data/qrc/ico/closed.png);
 }</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="Main">
    <property name="maximumSize">
@@ -91,14 +106,14 @@ QTabBar::close-button:hover{
       <number>10</number>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="HeadToolBar" stretch="1,0,1">
+      <layout class="QHBoxLayout" name="HeadToolBar" stretch="1,1,0">
        <property name="spacing">
         <number>0</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" name="top_right" stretch="0,0">
+        <layout class="QHBoxLayout" name="top_right" stretch="1,0,1">
          <property name="spacing">
-          <number>0</number>
+          <number>10</number>
          </property>
          <item>
           <widget class="QGraphicsView" name="graphicsView">
@@ -127,6 +142,19 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLabel" name="ModeAndPath">
+           <property name="font">
+            <font>
+             <family>Adobe 黑体 Std R</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>(Modname)PATH</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -136,7 +164,7 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>800</width>
+           <width>400</width>
            <height>20</height>
           </size>
          </property>
@@ -252,6 +280,33 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
 	background-position: center;
 	border:none;
 	border-radius:5px;
+}
+#userSetting{
+	border-image: url(:/picture/Data/qrc/userSetting.png);
+}
+#userData{
+	border-image: url(:/ico/Data/qrc/ico/user.png);
+}
+#userData:hover{
+	border-image: url(:/ico/Data/qrc/ico/usered.png);
+}
+#userLogin{
+	border-image: url(:/ico/Data/qrc/ico/login.png);
+}
+#userLogin:hover{
+	border-image: url(:/ico/Data/qrc/ico/logined.png);
+}
+#userLogout{
+	border-image: url(:/ico/Data/qrc/ico/logout.png);
+}
+#userLogout:hover{
+	border-image: url(:/ico/Data/qrc/ico/logouted.png);
+}
+#about{
+	border-image: url(:/picture/Data/qrc/about.png);
+}
+#plugin{
+	border-image: url(:/picture/Data/qrc/plugin.png);
 }</string>
        </property>
        <property name="tabShape">
@@ -282,7 +337,7 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
            <height>631</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="3,4,3">
+         <layout class="QGridLayout" name="gridLayout" rowstretch="1,1" columnstretch="3,4,3">
           <property name="leftMargin">
            <number>10</number>
           </property>
@@ -298,6 +353,161 @@ border-image: url(:/picture/Data/qrc/tetra.png);</string>
           <property name="spacing">
            <number>10</number>
           </property>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_4">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item row="1" column="1">
+             <widget class="QLabel" name="label_9">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>指令管理</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="OnlineServer">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>ForbiddenCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/server.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QPushButton" name="CommandList">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/command.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="OnlineStore">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>ForbiddenCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/store.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QPushButton" name="CardControler">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>136</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-image: url(:/picture/Data/qrc/cardPkg.png);
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>卡牌管理</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_19">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>卡牌集市</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="label_20">
+              <property name="font">
+               <font>
+                <family>Adobe 黑体 Std R</family>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>联机大厅</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item row="1" column="1">
            <widget class="QWidget" name="widget_2" native="true">
             <property name="styleSheet">
@@ -1171,191 +1381,10 @@ QPushButton:hover{
             </widget>
            </widget>
           </item>
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_4">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="1" column="1">
-             <widget class="QLabel" name="label_9">
-              <property name="font">
-               <font>
-                <family>Adobe 黑体 Std R</family>
-                <pointsize>8</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>指令管理</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="OnlineServer">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>136</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>ForbiddenCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-	background-image: url(:/picture/Data/qrc/server.png);
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QPushButton" name="CommandList">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>136</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-	background-image: url(:/picture/Data/qrc/command.png);
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QPushButton" name="OnlineStore">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>136</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>ForbiddenCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-	background-image: url(:/picture/Data/qrc/store.png);
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QPushButton" name="CardControler">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>136</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton{
-	background-image: url(:/picture/Data/qrc/cardPkg.png);
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_6">
-              <property name="font">
-               <font>
-                <family>Adobe 黑体 Std R</family>
-                <pointsize>8</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>卡牌管理</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_19">
-              <property name="font">
-               <font>
-                <family>Adobe 黑体 Std R</family>
-                <pointsize>8</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>卡牌集市</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="label_20">
-              <property name="font">
-               <font>
-                <family>Adobe 黑体 Std R</family>
-                <pointsize>8</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>联机大厅</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="2" rowspan="2">
-           <layout class="QFormLayout" name="formLayout"/>
-          </item>
           <item row="0" column="1">
            <widget class="QWidget" name="widget" native="true">
             <property name="styleSheet">
-             <string notr="true">#userSetting{
-	border-image: url(:/ico/Data/qrc/ico/set.png);
-}
-#userSetting:hover{
-	border-image: url(:/ico/Data/qrc/ico/seted.png);
-}
-#userData{
-	border-image: url(:/ico/Data/qrc/ico/user.png);
-}
-#userData:hover{
-	border-image: url(:/ico/Data/qrc/ico/usered.png);
-}
-#userLogin{
-	border-image: url(:/ico/Data/qrc/ico/login.png);
-}
-#userLogin:hover{
-	border-image: url(:/ico/Data/qrc/ico/logined.png);
-}
-#userLogout{
-	border-image: url(:/ico/Data/qrc/ico/logout.png);
-}
-#userLogout:hover{
-	border-image: url(:/ico/Data/qrc/ico/logouted.png);
-}</string>
+             <string notr="true"/>
             </property>
             <widget class="QWidget" name="gridLayoutWidget_2">
              <property name="geometry">
@@ -1370,105 +1399,8 @@ QPushButton:hover{
               <property name="spacing">
                <number>10</number>
               </property>
-              <item row="2" column="0">
-               <widget class="QPushButton" name="userLogin">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QPushButton" name="userLogout">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QPushButton" name="userData">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;我的&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="userSetting">
-                <property name="minimumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>64</width>
-                  <height>64</height>
-                 </size>
-                </property>
-                <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
-                </property>
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::LeftToRight</enum>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="2">
-               <widget class="QPushButton" name="xxxxx">
+               <widget class="QPushButton" name="plugin">
                 <property name="minimumSize">
                  <size>
                   <width>64</width>
@@ -1482,7 +1414,7 @@ QPushButton:hover{
                  </size>
                 </property>
                 <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
+                 <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="text">
                  <string/>
@@ -1490,7 +1422,7 @@ QPushButton:hover{
                </widget>
               </item>
               <item row="2" column="3">
-               <widget class="QPushButton" name="xxxxx_2">
+               <widget class="QPushButton" name="about">
                 <property name="minimumSize">
                  <size>
                   <width>64</width>
@@ -1504,7 +1436,10 @@ QPushButton:hover{
                  </size>
                 </property>
                 <property name="cursor">
-                 <cursorShape>ForbiddenCursor</cursorShape>
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;关于本软件&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
                  <string/>
@@ -1514,44 +1449,97 @@ QPushButton:hover{
               <item row="0" column="1" rowspan="2" colspan="3">
                <layout class="QVBoxLayout" name="simpleData">
                 <property name="spacing">
-                 <number>0</number>
+                 <number>5</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="ModName">
-                  <property name="font">
-                   <font>
-                    <family>Adobe 黑体 Std R</family>
-                    <pointsize>10</pointsize>
-                   </font>
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <property name="spacing">
+                   <number>10</number>
                   </property>
-                  <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;模组名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="text">
-                   <string>*Mod</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="UserName">
-                  <property name="font">
-                   <font>
-                    <family>Adobe 黑体 Std R</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
-                  <property name="toolTip">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                  <property name="text">
-                   <string>无名</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QLabel" name="ModName">
+                    <property name="minimumSize">
+                     <size>
+                      <width>240</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>240</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Adobe 黑体 Std R</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;模组名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>未设置工作目录</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="sel_ProPath">
+                    <property name="minimumSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;修改模组名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(170, 255, 255);
+}
+QPushButton:hover{
+	background-color: rgb(0, 170, 255);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                  <property name="spacing">
+                   <number>10</number>
+                  </property>
                   <item>
                    <widget class="QLabel" name="GamePath">
+                    <property name="minimumSize">
+                     <size>
+                      <width>240</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>240</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
                     <property name="font">
                      <font>
                       <family>Adobe 黑体 Std R</family>
@@ -1604,9 +1592,82 @@ QPushButton:hover{
                  </layout>
                 </item>
                 <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <property name="spacing">
+                   <number>10</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="UserName">
+                    <property name="minimumSize">
+                     <size>
+                      <width>240</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>240</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Adobe 黑体 Std R</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>无名</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="sel_GamePath_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;修改用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(170, 255, 255);
+}
+QPushButton:hover{
+	background-color: rgb(0, 170, 255);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
                  <layout class="QHBoxLayout" name="horizontalLayout">
                   <property name="spacing">
                    <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>10</number>
                   </property>
                   <item>
                    <widget class="QGraphicsView" name="graphicsView_3">
@@ -1623,6 +1684,12 @@ QPushButton:hover{
                   </item>
                   <item>
                    <widget class="QLabel" name="label_4">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>20</height>
+                     </size>
+                    </property>
                     <property name="font">
                      <font>
                       <family>Adobe 黑体 Std R</family>
@@ -1640,13 +1707,640 @@ QPushButton:hover{
                  </layout>
                 </item>
                 <item>
-                 <widget class="QTextBrowser" name="textBrowser"/>
+                 <spacer name="verticalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="userData">
+                <property name="minimumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>ForbiddenCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;我的&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="userLogin">
+                <property name="minimumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;登陆&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="userLogout">
+                <property name="minimumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;登出&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="userSetting">
+                <property name="minimumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>64</width>
+                  <height>64</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>ForbiddenCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
            </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QTextBrowser" name="textBrowser_2"/>
+          </item>
+          <item row="0" column="2" rowspan="2">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <property name="spacing">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="QToolBox" name="menuToolBox">
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	border: 1px solid gray;
+	border-radius: 8px;
+	background-color: rgba(255, 255, 255, 0);
+}
+QPushButton:hover{
+	background-color: rgb(85, 170, 255);
+}
+#File,#Recent,#Friends,#Help{
+	background-color: rgb(255, 255, 255);
+}</string>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="File">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>331</width>
+                 <height>505</height>
+                </rect>
+               </property>
+               <attribute name="label">
+                <string>File</string>
+               </attribute>
+               <widget class="QWidget" name="verticalLayoutWidget_2">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>331</width>
+                  <height>551</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <item>
+                  <widget class="QPushButton" name="newMod">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Adobe 黑体 Std R</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="text">
+                    <string>新建项目</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="openMod">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Adobe 黑体 Std R</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="text">
+                    <string>打开项目</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="zipMod">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Adobe 黑体 Std R</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="text">
+                    <string>打包项目</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTextBrowser" name="description">
+                   <property name="font">
+                    <font>
+                     <family>Adobe 黑体 Std R</family>
+                     <pointsize>8</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QTextBrowser{
+	border:none;
+}
+
+QScrollBar:vertical
+{
+    background-color: rgba(255, 255, 255, 0);
+    width: 6px;
+    margin: 0px;border: none;
+}
+QScrollBar::handle:vertical
+{
+    background-color: rgb(216, 216, 216);
+    min-height: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:vertical:hover{background-color: rgb(181, 181, 181);}
+QScrollBar:horizontal
+{
+    background-color: rgba(255, 255, 255, 0);
+    height: 6px;
+    margin: 0px;border: none;
+}
+QScrollBar::handle:horizontal
+{
+    background-color: rgb(216, 216, 216);
+    min-width: 5px;
+    border-radius: 3px;
+}
+QScrollBar::handle:horizontal:hover{background-color: rgb(181, 181, 181);}
+
+QScrollBar::up-arrow, QScrollBar::down-arrow,
+QScrollBar::right-arrow, QScrollBar::left-arrow,
+QScrollBar::add-page, QScrollBar::sub-page,
+QScrollBar::add-line, QScrollBar::sub-line
+{
+    border: none;background: none;color: none;height: 0;
+}</string>
+                   </property>
+                   <property name="html">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Adobe 黑体 Std R'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="Recent">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>331</width>
+                 <height>505</height>
+                </rect>
+               </property>
+               <attribute name="label">
+                <string>Recent</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="Friends">
+               <attribute name="label">
+                <string>Friends</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="Help">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>331</width>
+                 <height>505</height>
+                </rect>
+               </property>
+               <attribute name="label">
+                <string>Help</string>
+               </attribute>
+               <widget class="QWidget" name="verticalLayoutWidget_3">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>311</width>
+                  <height>201</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_18">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <property name="spacing">
+                    <number>5</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_6">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>本软件使用教程</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <property name="spacing">
+                    <number>5</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>Mod教程</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_3">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>像素画教程</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>场景制作教程</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                   <property name="spacing">
+                    <number>5</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_4">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>反馈</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_5">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>报告Bug</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <property name="spacing">
+                    <number>5</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_7">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>关于软件</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_8">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>赞助一下</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_9">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Adobe 黑体 Std R</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>赞助列表</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

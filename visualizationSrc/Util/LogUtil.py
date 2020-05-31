@@ -25,7 +25,7 @@ class LOG:
             3:"DEBUG",
         }
         self.__ignoreLevelDict = {}
-        pass
+        self.logPath = "{0}\\AppData\\Local\\AL-IDE_Data\\Log".format(os.path.expanduser('~'))
     def record(self, level:logLevel, TAG:str, message):
         self.isEnd = False
         if not level in self.__ignoreLevelDict:
@@ -35,9 +35,9 @@ class LOG:
                 if TAG != "": print(head+TAG+'\t'+str(message))
                 else: print(head+str(message))
                 try:
-                    if not os.path.exists('../AL-IDE_Data/log/'):
-                        os.makedirs('../AL-IDE_Data/log/')
-                    with open('../AL-IDE_Data/log/' + self.__logLevelName.get(level.value) + '.log', 'a+', encoding='utf-8') as f1:
+                    if not os.path.exists(self.logPath):
+                        os.makedirs(self.logPath)
+                    with open(self.logPath + '\\' + self.__logLevelName.get(level.value) + '.log', 'a+', encoding='utf-8') as f1:
                         writeStr = head
                         if TAG != "": writeStr+=TAG + '\t'
                         try: writeStr+=str(message)
@@ -47,7 +47,7 @@ class LOG:
                 except Exception as e:print(e)
         self.isEnd = True
     def getLogListFromFile(self,TAG:logLevel):
-        with open('../AL-IDE_Data/log/'+self.__logLevelName.get(TAG.value)+'.log','r+',encoding='utf-8') as f1:
+        with open(self.logPath + '\\' + self.__logLevelName.get(TAG.value)+'.log','r+',encoding='utf-8') as f1:
             return f1.readlines()
     def setIgnoreMinLevel(self, ignoreLevel:logLevel):
         self.__ignoreLevel = ignoreLevel

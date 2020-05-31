@@ -18,12 +18,12 @@ class ContentTabList():
         self.ContentTabList = self.mainWindow.ContentTabList
 
         from ..Tabs.HomeTab import Home
-        self.Home_C = Home(self, mainWindow)
+        self.home = Home(self, mainWindow)
         self._initTabs()
-    def _initTab(self, TabName, TabCNName, widget):
+    def _initTab(self, TabName, TabCNName, widgetClass):
         try:self.TabNameHash[TabName] = {
                 'CN': TabCNName,
-                'widget': widget,
+                'widgetClass': widgetClass,
                 'isAdd': False
             }
         except Exception as e:
@@ -41,23 +41,28 @@ class ContentTabList():
         from ..Tabs.OnlineServerTab import OnlineServerTab
         self.TabNameList = ['CardControler','OnlineServer']
         self.TabNameHash = {}
-        self._initTab("CardControler","卡牌管理",CardControlerTab(self.mainWindow))
-        self._initTab("OnlineServer","联机大厅",OnlineServerTab(self.mainWindow))
+        self._initTab("CardControler","卡牌管理",CardControlerTab)
+        self._initTab("OnlineServer","联机大厅",OnlineServerTab)
         self._initTabClose()
+    def clearAllTab(self):
+        for key in self.TabNameHash:
+            if self.TabNameHash[key].get('widget',None): del self.TabNameHash[key]['widget']
     def _initTabClose(self):
-        def __closeTab(currentIndex):
-            currentQWidget = self.ContentTabList.widget(currentIndex)
+        def __closeTab(closeIndex):
+            currentQWidget = self.ContentTabList.widget(closeIndex)
             if currentQWidget == None: return
-            self.ContentTabList.removeTab(currentIndex)
+            self.ContentTabList.removeTab(closeIndex)
             for key in self.TabNameHash:
                 dict = self.TabNameHash[key]
-                if dict['widget'] == currentQWidget:
+                if dict.get('widget', None) == currentQWidget:
                     dict['isAdd'] = False
         self.ContentTabList.tabCloseRequested.connect(__closeTab)
     def showTab(self,TabName):
         if not TabName in self.TabNameList: return
         TabNameHash = self.TabNameHash
-        if TabNameHash.get(TabName,None)==None:return
+        if TabNameHash.get(TabName,None)==None: return
+        if not TabNameHash[TabName].get('widget', None):
+            TabNameHash[TabName]['widget'] = TabNameHash[TabName]['widgetClass'](self.mainWindow)
         if not TabNameHash[TabName]['isAdd']:
             self.ContentTabList\
                 .addTab(TabNameHash[TabName]['widget'],TabNameHash[TabName]['CN'])

@@ -24,12 +24,17 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         MainWindow.setMouseTracking(False)
+        MainWindow.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         MainWindow.setStyleSheet("QTabBar::close-button{\n"
 "    image: url(:/ico/Data/qrc/ico/close.png);\n"
 "}\n"
 "QTabBar::close-button:hover{\n"
 "    image: url(:/ico/Data/qrc/ico/closed.png);\n"
 "}")
+        MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        MainWindow.setDocumentMode(False)
+        MainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
+        MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.Main = QtWidgets.QWidget(MainWindow)
         self.Main.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.Main.setStyleSheet("#MainWindow{\n"
@@ -53,7 +58,7 @@ class Ui_MainWindow(object):
         self.HeadToolBar.setSpacing(0)
         self.HeadToolBar.setObjectName("HeadToolBar")
         self.top_right = QtWidgets.QHBoxLayout()
-        self.top_right.setSpacing(0)
+        self.top_right.setSpacing(10)
         self.top_right.setObjectName("top_right")
         self.graphicsView = QtWidgets.QGraphicsView(self.verticalLayoutWidget)
         self.graphicsView.setMaximumSize(QtCore.QSize(20, 20))
@@ -68,8 +73,17 @@ class Ui_MainWindow(object):
         self.EXETitle.setFont(font)
         self.EXETitle.setObjectName("EXETitle")
         self.top_right.addWidget(self.EXETitle)
+        self.ModeAndPath = QtWidgets.QLabel(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.ModeAndPath.setFont(font)
+        self.ModeAndPath.setObjectName("ModeAndPath")
+        self.top_right.addWidget(self.ModeAndPath)
+        self.top_right.setStretch(0, 1)
+        self.top_right.setStretch(2, 1)
         self.HeadToolBar.addLayout(self.top_right)
-        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(400, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.HeadToolBar.addItem(spacerItem)
         self.top_left = QtWidgets.QHBoxLayout()
         self.top_left.setSpacing(10)
@@ -115,7 +129,7 @@ class Ui_MainWindow(object):
         self.top_left.addWidget(self.close_window)
         self.HeadToolBar.addLayout(self.top_left)
         self.HeadToolBar.setStretch(0, 1)
-        self.HeadToolBar.setStretch(2, 1)
+        self.HeadToolBar.setStretch(1, 1)
         self.Interface.addLayout(self.HeadToolBar)
         self.ContentTabList = QtWidgets.QTabWidget(self.verticalLayoutWidget)
         self.ContentTabList.setMaximumSize(QtCore.QSize(1160, 660))
@@ -124,6 +138,33 @@ class Ui_MainWindow(object):
 "    background-position: center;\n"
 "    border:none;\n"
 "    border-radius:5px;\n"
+"}\n"
+"#userSetting{\n"
+"    border-image: url(:/picture/Data/qrc/userSetting.png);\n"
+"}\n"
+"#userData{\n"
+"    border-image: url(:/ico/Data/qrc/ico/user.png);\n"
+"}\n"
+"#userData:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/usered.png);\n"
+"}\n"
+"#userLogin{\n"
+"    border-image: url(:/ico/Data/qrc/ico/login.png);\n"
+"}\n"
+"#userLogin:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logined.png);\n"
+"}\n"
+"#userLogout{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logout.png);\n"
+"}\n"
+"#userLogout:hover{\n"
+"    border-image: url(:/ico/Data/qrc/ico/logouted.png);\n"
+"}\n"
+"#about{\n"
+"    border-image: url(:/picture/Data/qrc/about.png);\n"
+"}\n"
+"#plugin{\n"
+"    border-image: url(:/picture/Data/qrc/plugin.png);\n"
 "}")
         self.ContentTabList.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.ContentTabList.setTabsClosable(True)
@@ -138,6 +179,78 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(10, 10, 10, 10)
         self.gridLayout.setSpacing(10)
         self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout_4 = QtWidgets.QGridLayout()
+        self.gridLayout_4.setSpacing(0)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.label_9 = QtWidgets.QLabel(self.gridLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.label_9.setFont(font)
+        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout_4.addWidget(self.label_9, 1, 1, 1, 1)
+        self.OnlineServer = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.OnlineServer.setMinimumSize(QtCore.QSize(0, 136))
+        self.OnlineServer.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.OnlineServer.setStyleSheet("QPushButton{\n"
+"    background-image: url(:/picture/Data/qrc/server.png);\n"
+"}")
+        self.OnlineServer.setText("")
+        self.OnlineServer.setObjectName("OnlineServer")
+        self.gridLayout_4.addWidget(self.OnlineServer, 2, 1, 1, 1)
+        self.CommandList = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.CommandList.setMinimumSize(QtCore.QSize(0, 136))
+        self.CommandList.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CommandList.setStyleSheet("QPushButton{\n"
+"    background-image: url(:/picture/Data/qrc/command.png);\n"
+"}")
+        self.CommandList.setText("")
+        self.CommandList.setObjectName("CommandList")
+        self.gridLayout_4.addWidget(self.CommandList, 0, 1, 1, 1)
+        self.OnlineStore = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.OnlineStore.setMinimumSize(QtCore.QSize(0, 136))
+        self.OnlineStore.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.OnlineStore.setStyleSheet("QPushButton{\n"
+"    background-image: url(:/picture/Data/qrc/store.png);\n"
+"}")
+        self.OnlineStore.setText("")
+        self.OnlineStore.setObjectName("OnlineStore")
+        self.gridLayout_4.addWidget(self.OnlineStore, 2, 0, 1, 1)
+        self.CardControler = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.CardControler.setMinimumSize(QtCore.QSize(0, 136))
+        self.CardControler.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.CardControler.setStyleSheet("QPushButton{\n"
+"    background-image: url(:/picture/Data/qrc/cardPkg.png);\n"
+"}")
+        self.CardControler.setText("")
+        self.CardControler.setObjectName("CardControler")
+        self.gridLayout_4.addWidget(self.CardControler, 0, 0, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.gridLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.label_6.setFont(font)
+        self.label_6.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_4.addWidget(self.label_6, 1, 0, 1, 1)
+        self.label_19 = QtWidgets.QLabel(self.gridLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.label_19.setFont(font)
+        self.label_19.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_19.setObjectName("label_19")
+        self.gridLayout_4.addWidget(self.label_19, 3, 0, 1, 1)
+        self.label_20 = QtWidgets.QLabel(self.gridLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.label_20.setFont(font)
+        self.label_20.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_20.setObjectName("label_20")
+        self.gridLayout_4.addWidget(self.label_20, 3, 1, 1, 1)
+        self.gridLayout.addLayout(self.gridLayout_4, 0, 0, 1, 1)
         self.widget_2 = QtWidgets.QWidget(self.gridLayoutWidget)
         self.widget_2.setStyleSheet("QPushButton{\n"
 "    border: none;\n"
@@ -504,106 +617,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.addWidget(self.label_13)
         self.gridLayout_2.addLayout(self.verticalLayout_12, 1, 4, 1, 1)
         self.gridLayout.addWidget(self.widget_2, 1, 1, 1, 1)
-        self.gridLayout_4 = QtWidgets.QGridLayout()
-        self.gridLayout_4.setSpacing(0)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.label_9 = QtWidgets.QLabel(self.gridLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(8)
-        self.label_9.setFont(font)
-        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_9.setObjectName("label_9")
-        self.gridLayout_4.addWidget(self.label_9, 1, 1, 1, 1)
-        self.OnlineServer = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.OnlineServer.setMinimumSize(QtCore.QSize(0, 136))
-        self.OnlineServer.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.OnlineServer.setStyleSheet("QPushButton{\n"
-"    background-image: url(:/picture/Data/qrc/server.png);\n"
-"}")
-        self.OnlineServer.setText("")
-        self.OnlineServer.setObjectName("OnlineServer")
-        self.gridLayout_4.addWidget(self.OnlineServer, 2, 1, 1, 1)
-        self.CommandList = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.CommandList.setMinimumSize(QtCore.QSize(0, 136))
-        self.CommandList.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CommandList.setStyleSheet("QPushButton{\n"
-"    background-image: url(:/picture/Data/qrc/command.png);\n"
-"}")
-        self.CommandList.setText("")
-        self.CommandList.setObjectName("CommandList")
-        self.gridLayout_4.addWidget(self.CommandList, 0, 1, 1, 1)
-        self.OnlineStore = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.OnlineStore.setMinimumSize(QtCore.QSize(0, 136))
-        self.OnlineStore.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.OnlineStore.setStyleSheet("QPushButton{\n"
-"    background-image: url(:/picture/Data/qrc/store.png);\n"
-"}")
-        self.OnlineStore.setText("")
-        self.OnlineStore.setObjectName("OnlineStore")
-        self.gridLayout_4.addWidget(self.OnlineStore, 2, 0, 1, 1)
-        self.CardControler = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.CardControler.setMinimumSize(QtCore.QSize(0, 136))
-        self.CardControler.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.CardControler.setStyleSheet("QPushButton{\n"
-"    background-image: url(:/picture/Data/qrc/cardPkg.png);\n"
-"}")
-        self.CardControler.setText("")
-        self.CardControler.setObjectName("CardControler")
-        self.gridLayout_4.addWidget(self.CardControler, 0, 0, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.gridLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(8)
-        self.label_6.setFont(font)
-        self.label_6.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout_4.addWidget(self.label_6, 1, 0, 1, 1)
-        self.label_19 = QtWidgets.QLabel(self.gridLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(8)
-        self.label_19.setFont(font)
-        self.label_19.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_19.setObjectName("label_19")
-        self.gridLayout_4.addWidget(self.label_19, 3, 0, 1, 1)
-        self.label_20 = QtWidgets.QLabel(self.gridLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(8)
-        self.label_20.setFont(font)
-        self.label_20.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_20.setObjectName("label_20")
-        self.gridLayout_4.addWidget(self.label_20, 3, 1, 1, 1)
-        self.gridLayout.addLayout(self.gridLayout_4, 0, 0, 1, 1)
-        self.formLayout = QtWidgets.QFormLayout()
-        self.formLayout.setObjectName("formLayout")
-        self.gridLayout.addLayout(self.formLayout, 0, 2, 2, 1)
         self.widget = QtWidgets.QWidget(self.gridLayoutWidget)
-        self.widget.setStyleSheet("#userSetting{\n"
-"    border-image: url(:/ico/Data/qrc/ico/set.png);\n"
-"}\n"
-"#userSetting:hover{\n"
-"    border-image: url(:/ico/Data/qrc/ico/seted.png);\n"
-"}\n"
-"#userData{\n"
-"    border-image: url(:/ico/Data/qrc/ico/user.png);\n"
-"}\n"
-"#userData:hover{\n"
-"    border-image: url(:/ico/Data/qrc/ico/usered.png);\n"
-"}\n"
-"#userLogin{\n"
-"    border-image: url(:/ico/Data/qrc/ico/login.png);\n"
-"}\n"
-"#userLogin:hover{\n"
-"    border-image: url(:/ico/Data/qrc/ico/logined.png);\n"
-"}\n"
-"#userLogout{\n"
-"    border-image: url(:/ico/Data/qrc/ico/logout.png);\n"
-"}\n"
-"#userLogout:hover{\n"
-"    border-image: url(:/ico/Data/qrc/ico/logouted.png);\n"
-"}")
+        self.widget.setStyleSheet("")
         self.widget.setObjectName("widget")
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.widget)
         self.gridLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 445, 302))
@@ -612,69 +627,57 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setSpacing(10)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.userLogin = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.userLogin.setMinimumSize(QtCore.QSize(64, 64))
-        self.userLogin.setMaximumSize(QtCore.QSize(64, 64))
-        self.userLogin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.userLogin.setText("")
-        self.userLogin.setObjectName("userLogin")
-        self.gridLayout_3.addWidget(self.userLogin, 2, 0, 1, 1)
-        self.userLogout = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.userLogout.setMinimumSize(QtCore.QSize(64, 64))
-        self.userLogout.setMaximumSize(QtCore.QSize(64, 64))
-        self.userLogout.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.userLogout.setText("")
-        self.userLogout.setObjectName("userLogout")
-        self.gridLayout_3.addWidget(self.userLogout, 2, 1, 1, 1)
-        self.userData = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.userData.setMinimumSize(QtCore.QSize(64, 64))
-        self.userData.setMaximumSize(QtCore.QSize(64, 64))
-        self.userData.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.userData.setText("")
-        self.userData.setObjectName("userData")
-        self.gridLayout_3.addWidget(self.userData, 1, 0, 1, 1)
-        self.userSetting = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.userSetting.setMinimumSize(QtCore.QSize(64, 64))
-        self.userSetting.setMaximumSize(QtCore.QSize(64, 64))
-        self.userSetting.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.userSetting.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.userSetting.setText("")
-        self.userSetting.setObjectName("userSetting")
-        self.gridLayout_3.addWidget(self.userSetting, 0, 0, 1, 1)
-        self.xxxxx = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.xxxxx.setMinimumSize(QtCore.QSize(64, 64))
-        self.xxxxx.setMaximumSize(QtCore.QSize(64, 64))
-        self.xxxxx.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.xxxxx.setText("")
-        self.xxxxx.setObjectName("xxxxx")
-        self.gridLayout_3.addWidget(self.xxxxx, 2, 2, 1, 1)
-        self.xxxxx_2 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.xxxxx_2.setMinimumSize(QtCore.QSize(64, 64))
-        self.xxxxx_2.setMaximumSize(QtCore.QSize(64, 64))
-        self.xxxxx_2.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
-        self.xxxxx_2.setText("")
-        self.xxxxx_2.setObjectName("xxxxx_2")
-        self.gridLayout_3.addWidget(self.xxxxx_2, 2, 3, 1, 1)
+        self.plugin = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.plugin.setMinimumSize(QtCore.QSize(64, 64))
+        self.plugin.setMaximumSize(QtCore.QSize(64, 64))
+        self.plugin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.plugin.setText("")
+        self.plugin.setObjectName("plugin")
+        self.gridLayout_3.addWidget(self.plugin, 2, 2, 1, 1)
+        self.about = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.about.setMinimumSize(QtCore.QSize(64, 64))
+        self.about.setMaximumSize(QtCore.QSize(64, 64))
+        self.about.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.about.setText("")
+        self.about.setObjectName("about")
+        self.gridLayout_3.addWidget(self.about, 2, 3, 1, 1)
         self.simpleData = QtWidgets.QVBoxLayout()
-        self.simpleData.setSpacing(0)
+        self.simpleData.setSpacing(5)
         self.simpleData.setObjectName("simpleData")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setSpacing(10)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.ModName = QtWidgets.QLabel(self.gridLayoutWidget_2)
+        self.ModName.setMinimumSize(QtCore.QSize(240, 0))
+        self.ModName.setMaximumSize(QtCore.QSize(240, 16777215))
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(10)
         self.ModName.setFont(font)
         self.ModName.setObjectName("ModName")
-        self.simpleData.addWidget(self.ModName)
-        self.UserName = QtWidgets.QLabel(self.gridLayoutWidget_2)
-        font = QtGui.QFont()
-        font.setFamily("Adobe 黑体 Std R")
-        font.setPointSize(10)
-        self.UserName.setFont(font)
-        self.UserName.setObjectName("UserName")
-        self.simpleData.addWidget(self.UserName)
+        self.horizontalLayout_3.addWidget(self.ModName)
+        self.sel_ProPath = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.sel_ProPath.setMinimumSize(QtCore.QSize(20, 20))
+        self.sel_ProPath.setMaximumSize(QtCore.QSize(20, 20))
+        self.sel_ProPath.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.sel_ProPath.setStyleSheet("QPushButton{\n"
+"    border: none;\n"
+"    border-radius: 8px;\n"
+"    background-color: rgb(170, 255, 255);\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(0, 170, 255);\n"
+"}")
+        self.sel_ProPath.setText("")
+        self.sel_ProPath.setObjectName("sel_ProPath")
+        self.horizontalLayout_3.addWidget(self.sel_ProPath)
+        self.simpleData.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(10)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.GamePath = QtWidgets.QLabel(self.gridLayoutWidget_2)
+        self.GamePath.setMinimumSize(QtCore.QSize(240, 0))
+        self.GamePath.setMaximumSize(QtCore.QSize(240, 16777215))
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(10)
@@ -697,7 +700,36 @@ class Ui_MainWindow(object):
         self.sel_GamePath.setObjectName("sel_GamePath")
         self.horizontalLayout_2.addWidget(self.sel_GamePath)
         self.simpleData.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_8.setSpacing(10)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.UserName = QtWidgets.QLabel(self.gridLayoutWidget_2)
+        self.UserName.setMinimumSize(QtCore.QSize(240, 0))
+        self.UserName.setMaximumSize(QtCore.QSize(240, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.UserName.setFont(font)
+        self.UserName.setObjectName("UserName")
+        self.horizontalLayout_8.addWidget(self.UserName)
+        self.sel_GamePath_2 = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.sel_GamePath_2.setMinimumSize(QtCore.QSize(20, 20))
+        self.sel_GamePath_2.setMaximumSize(QtCore.QSize(20, 20))
+        self.sel_GamePath_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.sel_GamePath_2.setStyleSheet("QPushButton{\n"
+"    border: none;\n"
+"    border-radius: 8px;\n"
+"    background-color: rgb(170, 255, 255);\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(0, 170, 255);\n"
+"}")
+        self.sel_GamePath_2.setText("")
+        self.sel_GamePath_2.setObjectName("sel_GamePath_2")
+        self.horizontalLayout_8.addWidget(self.sel_GamePath_2)
+        self.simpleData.addLayout(self.horizontalLayout_8)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setContentsMargins(10, -1, -1, -1)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.graphicsView_3 = QtWidgets.QGraphicsView(self.gridLayoutWidget_2)
@@ -706,6 +738,7 @@ class Ui_MainWindow(object):
         self.graphicsView_3.setObjectName("graphicsView_3")
         self.horizontalLayout.addWidget(self.graphicsView_3)
         self.label_4 = QtWidgets.QLabel(self.gridLayoutWidget_2)
+        self.label_4.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(10)
@@ -713,14 +746,269 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.horizontalLayout.addWidget(self.label_4)
         self.simpleData.addLayout(self.horizontalLayout)
-        self.textBrowser = QtWidgets.QTextBrowser(self.gridLayoutWidget_2)
-        self.textBrowser.setObjectName("textBrowser")
-        self.simpleData.addWidget(self.textBrowser)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.simpleData.addItem(spacerItem1)
         self.gridLayout_3.addLayout(self.simpleData, 0, 1, 2, 3)
+        self.userData = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userData.setMinimumSize(QtCore.QSize(64, 64))
+        self.userData.setMaximumSize(QtCore.QSize(64, 64))
+        self.userData.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.userData.setText("")
+        self.userData.setObjectName("userData")
+        self.gridLayout_3.addWidget(self.userData, 0, 0, 1, 1)
+        self.userLogin = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userLogin.setMinimumSize(QtCore.QSize(64, 64))
+        self.userLogin.setMaximumSize(QtCore.QSize(64, 64))
+        self.userLogin.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.userLogin.setText("")
+        self.userLogin.setObjectName("userLogin")
+        self.gridLayout_3.addWidget(self.userLogin, 1, 0, 1, 1)
+        self.userLogout = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userLogout.setMinimumSize(QtCore.QSize(64, 64))
+        self.userLogout.setMaximumSize(QtCore.QSize(64, 64))
+        self.userLogout.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.userLogout.setText("")
+        self.userLogout.setObjectName("userLogout")
+        self.gridLayout_3.addWidget(self.userLogout, 2, 0, 1, 1)
+        self.userSetting = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.userSetting.setMinimumSize(QtCore.QSize(64, 64))
+        self.userSetting.setMaximumSize(QtCore.QSize(64, 64))
+        self.userSetting.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
+        self.userSetting.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.userSetting.setText("")
+        self.userSetting.setObjectName("userSetting")
+        self.gridLayout_3.addWidget(self.userSetting, 2, 1, 1, 1)
         self.gridLayout.addWidget(self.widget, 0, 1, 1, 1)
+        self.textBrowser_2 = QtWidgets.QTextBrowser(self.gridLayoutWidget)
+        self.textBrowser_2.setObjectName("textBrowser_2")
+        self.gridLayout.addWidget(self.textBrowser_2, 1, 0, 1, 1)
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_5.setSpacing(10)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.menuToolBox = QtWidgets.QToolBox(self.gridLayoutWidget)
+        self.menuToolBox.setStyleSheet("QPushButton{\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 8px;\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"QPushButton:hover{\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}\n"
+"#File,#Recent,#Friends,#Help{\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}")
+        self.menuToolBox.setObjectName("menuToolBox")
+        self.File = QtWidgets.QWidget()
+        self.File.setGeometry(QtCore.QRect(0, 0, 331, 505))
+        self.File.setObjectName("File")
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.File)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 0, 331, 551))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_8.setSpacing(10)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.newMod = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.newMod.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.newMod.setFont(font)
+        self.newMod.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.newMod.setObjectName("newMod")
+        self.verticalLayout_8.addWidget(self.newMod)
+        self.openMod = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.openMod.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.openMod.setFont(font)
+        self.openMod.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.openMod.setObjectName("openMod")
+        self.verticalLayout_8.addWidget(self.openMod)
+        self.zipMod = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.zipMod.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.zipMod.setFont(font)
+        self.zipMod.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.zipMod.setObjectName("zipMod")
+        self.verticalLayout_8.addWidget(self.zipMod)
+        self.description = QtWidgets.QTextBrowser(self.verticalLayoutWidget_2)
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(8)
+        self.description.setFont(font)
+        self.description.setStyleSheet("QTextBrowser{\n"
+"    border:none;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    width: 6px;\n"
+"    margin: 0px;border: none;\n"
+"}\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-height: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QScrollBar::handle:vertical:hover{background-color: rgb(181, 181, 181);}\n"
+"QScrollBar:horizontal\n"
+"{\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"    height: 6px;\n"
+"    margin: 0px;border: none;\n"
+"}\n"
+"QScrollBar::handle:horizontal\n"
+"{\n"
+"    background-color: rgb(216, 216, 216);\n"
+"    min-width: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QScrollBar::handle:horizontal:hover{background-color: rgb(181, 181, 181);}\n"
+"\n"
+"QScrollBar::up-arrow, QScrollBar::down-arrow,\n"
+"QScrollBar::right-arrow, QScrollBar::left-arrow,\n"
+"QScrollBar::add-page, QScrollBar::sub-page,\n"
+"QScrollBar::add-line, QScrollBar::sub-line\n"
+"{\n"
+"    border: none;background: none;color: none;height: 0;\n"
+"}")
+        self.description.setObjectName("description")
+        self.verticalLayout_8.addWidget(self.description)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_8.addItem(spacerItem2)
+        self.menuToolBox.addItem(self.File, "")
+        self.Recent = QtWidgets.QWidget()
+        self.Recent.setGeometry(QtCore.QRect(0, 0, 331, 505))
+        self.Recent.setObjectName("Recent")
+        self.menuToolBox.addItem(self.Recent, "")
+        self.Friends = QtWidgets.QWidget()
+        self.Friends.setObjectName("Friends")
+        self.menuToolBox.addItem(self.Friends, "")
+        self.Help = QtWidgets.QWidget()
+        self.Help.setGeometry(QtCore.QRect(0, 0, 331, 505))
+        self.Help.setObjectName("Help")
+        self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.Help)
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 311, 201))
+        self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
+        self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_18.setSpacing(0)
+        self.verticalLayout_18.setObjectName("verticalLayout_18")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_7.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_7.setSpacing(5)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.pushButton_6 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_6.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.horizontalLayout_7.addWidget(self.pushButton_6)
+        self.verticalLayout_18.addLayout(self.horizontalLayout_7)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_4.setSpacing(5)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton.setFont(font)
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.pushButton_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.horizontalLayout_4.addWidget(self.pushButton_3)
+        self.pushButton_2 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_4.addWidget(self.pushButton_2)
+        self.verticalLayout_18.addLayout(self.horizontalLayout_4)
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_5.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_5.setSpacing(5)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.pushButton_4 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_4.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_4.setFont(font)
+        self.pushButton_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout_5.addWidget(self.pushButton_4)
+        self.pushButton_5 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_5.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayout_5.addWidget(self.pushButton_5)
+        self.verticalLayout_18.addLayout(self.horizontalLayout_5)
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_6.setContentsMargins(5, 5, 5, 5)
+        self.horizontalLayout_6.setSpacing(5)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_7.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_7.setFont(font)
+        self.pushButton_7.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.horizontalLayout_6.addWidget(self.pushButton_7)
+        self.pushButton_8 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_8.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_8.setFont(font)
+        self.pushButton_8.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_8.setObjectName("pushButton_8")
+        self.horizontalLayout_6.addWidget(self.pushButton_8)
+        self.pushButton_9 = QtWidgets.QPushButton(self.verticalLayoutWidget_3)
+        self.pushButton_9.setMinimumSize(QtCore.QSize(0, 32))
+        font = QtGui.QFont()
+        font.setFamily("Adobe 黑体 Std R")
+        font.setPointSize(10)
+        self.pushButton_9.setFont(font)
+        self.pushButton_9.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_9.setObjectName("pushButton_9")
+        self.horizontalLayout_6.addWidget(self.pushButton_9)
+        self.verticalLayout_18.addLayout(self.horizontalLayout_6)
+        self.menuToolBox.addItem(self.Help, "")
+        self.verticalLayout_5.addWidget(self.menuToolBox)
+        self.gridLayout.addLayout(self.verticalLayout_5, 0, 2, 2, 1)
         self.gridLayout.setColumnStretch(0, 3)
         self.gridLayout.setColumnStretch(1, 4)
         self.gridLayout.setColumnStretch(2, 3)
+        self.gridLayout.setRowStretch(0, 1)
+        self.gridLayout.setRowStretch(1, 1)
         self.ContentTabList.addTab(self.HomeTab, "")
         self.Interface.addWidget(self.ContentTabList)
         self.Interface.setStretch(1, 1)
@@ -728,12 +1016,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.ContentTabList.setCurrentIndex(0)
+        self.menuToolBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "AL-IDE"))
         self.EXETitle.setText(_translate("MainWindow", "AL-IDE_1.0.0.0"))
+        self.ModeAndPath.setText(_translate("MainWindow", "(Modname)PATH"))
         self.min_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>最小化</p></body></html>"))
         self.min_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.max_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>最大化</p></body></html>"))
@@ -741,6 +1031,10 @@ class Ui_MainWindow(object):
         self.close_window.setToolTip(_translate("MainWindow", "<html><head/><body><p>关闭</p></body></html>"))
         self.close_window.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.HomeTab.setWhatsThis(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.label_9.setText(_translate("MainWindow", "指令管理"))
+        self.label_6.setText(_translate("MainWindow", "卡牌管理"))
+        self.label_19.setText(_translate("MainWindow", "卡牌集市"))
+        self.label_20.setText(_translate("MainWindow", "联机大厅"))
         self.musicControler.setToolTip(_translate("MainWindow", "<html><head/><body><p>音乐系统</p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "音乐系统"))
         self.levelControler.setToolTip(_translate("MainWindow", "<html><head/><body><p>关卡管理</p></body></html>"))
@@ -771,20 +1065,42 @@ class Ui_MainWindow(object):
         self.label_17.setText(_translate("MainWindow", "关卡编辑器"))
         self.stageControler_3.setToolTip(_translate("MainWindow", "<html><head/><body><p>等级系统</p></body></html>"))
         self.label_13.setText(_translate("MainWindow", "等级系统"))
-        self.label_9.setText(_translate("MainWindow", "指令管理"))
-        self.label_6.setText(_translate("MainWindow", "卡牌管理"))
-        self.label_19.setText(_translate("MainWindow", "卡牌集市"))
-        self.label_20.setText(_translate("MainWindow", "联机大厅"))
-        self.userData.setToolTip(_translate("MainWindow", "<html><head/><body><p>我的</p></body></html>"))
-        self.userSetting.setToolTip(_translate("MainWindow", "<html><head/><body><p>设置</p></body></html>"))
+        self.about.setToolTip(_translate("MainWindow", "<html><head/><body><p>关于本软件</p></body></html>"))
         self.ModName.setToolTip(_translate("MainWindow", "<html><head/><body><p>模组名</p></body></html>"))
-        self.ModName.setText(_translate("MainWindow", "*Mod"))
-        self.UserName.setToolTip(_translate("MainWindow", "<html><head/><body><p>用户名</p></body></html>"))
-        self.UserName.setText(_translate("MainWindow", "无名"))
+        self.ModName.setText(_translate("MainWindow", "未设置工作目录"))
+        self.sel_ProPath.setToolTip(_translate("MainWindow", "<html><head/><body><p>修改模组名</p></body></html>"))
         self.GamePath.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.GamePath.setText(_translate("MainWindow", "D:"))
         self.sel_GamePath.setToolTip(_translate("MainWindow", "<html><head/><body><p>设置游戏本体路径</p></body></html>"))
+        self.UserName.setToolTip(_translate("MainWindow", "<html><head/><body><p>用户名</p></body></html>"))
+        self.UserName.setText(_translate("MainWindow", "无名"))
+        self.sel_GamePath_2.setToolTip(_translate("MainWindow", "<html><head/><body><p>修改用户名</p></body></html>"))
         self.label_4.setToolTip(_translate("MainWindow", "<html><head/><body><p>原石积分</p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "∞"))
+        self.userData.setToolTip(_translate("MainWindow", "<html><head/><body><p>我的</p></body></html>"))
+        self.userLogin.setToolTip(_translate("MainWindow", "<html><head/><body><p>登陆</p></body></html>"))
+        self.userLogout.setToolTip(_translate("MainWindow", "<html><head/><body><p>登出</p></body></html>"))
+        self.userSetting.setToolTip(_translate("MainWindow", "<html><head/><body><p>设置</p></body></html>"))
+        self.newMod.setText(_translate("MainWindow", "新建项目"))
+        self.openMod.setText(_translate("MainWindow", "打开项目"))
+        self.zipMod.setText(_translate("MainWindow", "打包项目"))
+        self.description.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Adobe 黑体 Std R\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.menuToolBox.setItemText(self.menuToolBox.indexOf(self.File), _translate("MainWindow", "File"))
+        self.menuToolBox.setItemText(self.menuToolBox.indexOf(self.Recent), _translate("MainWindow", "Recent"))
+        self.menuToolBox.setItemText(self.menuToolBox.indexOf(self.Friends), _translate("MainWindow", "Friends"))
+        self.pushButton_6.setText(_translate("MainWindow", "本软件使用教程"))
+        self.pushButton.setText(_translate("MainWindow", "Mod教程"))
+        self.pushButton_3.setText(_translate("MainWindow", "像素画教程"))
+        self.pushButton_2.setText(_translate("MainWindow", "场景制作教程"))
+        self.pushButton_4.setText(_translate("MainWindow", "反馈"))
+        self.pushButton_5.setText(_translate("MainWindow", "报告Bug"))
+        self.pushButton_7.setText(_translate("MainWindow", "关于软件"))
+        self.pushButton_8.setText(_translate("MainWindow", "赞助一下"))
+        self.pushButton_9.setText(_translate("MainWindow", "赞助列表"))
+        self.menuToolBox.setItemText(self.menuToolBox.indexOf(self.Help), _translate("MainWindow", "Help"))
         self.ContentTabList.setTabText(self.ContentTabList.indexOf(self.HomeTab), _translate("MainWindow", "主页"))
 from . import AL_IDE_MainInterFace_rc
