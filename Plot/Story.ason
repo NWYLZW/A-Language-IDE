@@ -1,6 +1,0 @@
-Story_1:{
-	SetVar:npc,{CreateCha:422,{GetPoint:1}};
-	npc.AddPlotCode:{
-		Say:"233";
-	};
-};
