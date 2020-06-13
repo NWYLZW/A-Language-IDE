@@ -22,17 +22,25 @@ a = Analysis(['start.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
-exe = EXE(pyz,
-          a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
-          [],
-          name='AL-IDE_1.1.5.2',
-          debug=False,
-          bootloader_ignore_signals=False,
-          strip=False,
-          upx=True,
-          upx_exclude=['./upx-3.96'],
-          runtime_tmpdir=None,
-          console=False, icon='AL-IDE.ico')
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    [],
+    exclude_binaries=True,
+    name='AL-IDE',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=['./upx-3.96'],
+    console=False, icon='AL-IDE.ico')
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=True,
+    upx_exclude=['./upx-3.96'],
+    name='ALIDE【原石计划Mod开发IDE】')

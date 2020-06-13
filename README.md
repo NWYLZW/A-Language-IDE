@@ -13,7 +13,7 @@ python .\start.py
 # Build
 
 ```shell script
-# pyinstaller -F start.py --noupx
+# pyinstaller -D start.py --noupx
 # pyinstaller start.py -w -F --icon="AL-IDE.ico" --noupx
 pyinstaller start.spec
 ```
