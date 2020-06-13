@@ -29,10 +29,11 @@ if __name__ == '__main__':
     with open('start.spec', 'w+', encoding="utf-8") as f:
         f.write(str)
     os.system("pyinstaller start.spec")
-    try:
-        import os
-        from glob import glob
-        for file in glob('./AL-IDE_*.exe'):
-            os.remove(file)
-        shutil.copy('./dist/'+fileName+'.exe','./'+fileName+'.exe')
-    except Exception as e:print(e)
+    # 不需要将dist放到项目根目录下了
+    # try:
+    #     import os
+    #     from glob import glob
+    #     for file in glob('./AL-IDE_*.exe'):
+    #         os.remove(file)
+    #     shutil.copy('./dist/'+fileName+'.exe','./'+fileName+'.exe')
+    # except Exception as e:print(e)
