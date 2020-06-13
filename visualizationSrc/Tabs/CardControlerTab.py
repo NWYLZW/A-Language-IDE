@@ -8,6 +8,8 @@
 @Contact        :   yijie4188@gmail.com
 @Desciption     :   卡牌制作界面
 '''
+import os
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -20,13 +22,12 @@ from ..Controler.CardControler import CardControler
 from ..Helper.ListTabHelper import ListTabHelper
 from ..Helper.PageHelper import PageHelper
 from ..Util.AliveScriptCompile import AliveScriptCompile
-from visualizationSrc.qtUI.MyWidgets.ComboCheckBox import ComboCheckBox
 from ..Util.ImportExportCardUtil import *
 from ..Util.LogUtil import logLevel, log
 from ..Util.UserUtil import UserUtil
 from ..Util.frozenDir import tempPath, currentProPath
 from ..Util.windowsHelp import openTetraProject
-from ..qtUI.CardControler import cardItemModel, cardDetailsModel, cardLibWidget
+from ..qtUI.CardControler import cardDetailsModel, cardLibWidget, cardSimpleItemModel, previewCard
 from ..qtUI.MyWidgets.HighLighter import HighLighter
 from ..Util.CompleterUtil import Completer
 
@@ -168,9 +169,44 @@ class cardPageControler(PageHelper):
             cardItemEle.parentLayout = tempHL
             tempHL.addWidget(cardItemEle)
             tempHL.cardItemEleList.append(cardItemEle)
-
+class preCardShowWidget(
+    previewCard.Ui_main,
+    QWidget):
+    def __init__(self):
+        super().__init__(None)
+        self.setupUi(self)
+    def refeshData(self,cardDict:dict):
+        strModel = \
+"""\
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Adobe 黑体 Std R'; font-size:12pt; font-weight:600; font-style:normal;">
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">\
+<span style=" font-weight:600;">
+"""+\
+cardDict['displayName']+\
+"""
+</span>\
+</p></body></html>\
+"""
+        self.cardName.setHtml(strModel)
+        self.description.setText(cardDict.get('description',''))
+        self.description.setReadOnly(True)
+        backgroundImgPath = currentProPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
+        if os.path.isfile(backgroundImgPath):
+            try:
+                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
+                self.backgroundImg.setStyleSheet("border-image: none;")
+            except Exception as e:log.record(logLevel.ERROR, 'preCardShowWidget.refeshData backgroundImg', e)
+        cardArtImgPath = currentProPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
+        if os.path.isfile(cardArtImgPath):
+            try:
+                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(80,80))
+                self.cardArt.setStyleSheet("border-image: none;")
+            except Exception as e:log.record(logLevel.ERROR, 'preCardShowWidget.refeshData cardArt', e)
 class scrollCradItem(
-    cardItemModel.Ui_main,
+    cardSimpleItemModel.Ui_main,
     QWidget
 ):
     def __init__(self, CLT:cardLibTab=None):
@@ -252,70 +288,33 @@ class scrollCradItem(
         self.cardPrint.clicked.connect(clickCardItem('print'))
         self.cardImport.clicked.connect(clickCardItem('import'))
         self.cardExport.clicked.connect(clickCardItem('export'))
-        def showDetails():
-            parentLayout = self.parentLayout
-            for item in parentLayout.cardItemEleList:
-                if item != self:
-                    item.isShowDetails = False
-                    item.details()
-                    item._initUI()
-            self.isShowDetails = not self.isShowDetails
-            self.details()
-            self._initUI()
-        self.detailsBTN.clicked.connect(showDetails)
 
+    def _setShowWidget(self,cardDict:dict):
+        pcs = preCardShowWidget()
+        pcs.refeshData(cardDict)
+        self.cardArt.setToolTipWidget(pcs)
     def refeshData(self,cardDict:dict,isSel:bool=None):
         self.cardDict = cardDict
         if isSel: self.isSel = isSel
 
         self.cardId.setText("ID:"+cardDict.get('id','-0'))
-        strModel = \
-"""\
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-<html><head><meta name="qrichtext" content="1" /><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style></head><body style=" font-family:'Adobe 黑体 Std R'; font-size:12pt; font-weight:600; font-style:normal;">
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">\
-<span style=" font-weight:600;">
-"""+\
-cardDict['displayName']+\
-"""
-</span>\
-</p></body></html>\
-"""
-        self.cardName.setHtml(strModel)
+        self.cardName.setText(cardDict['displayName'])
         self.price.setText(cardDict.get('price','0'))
         self.description.setText(cardDict.get('description',''))
         self.description.setReadOnly(True)
-        self.story.setText(cardDict.get('story',''))
-        self.story.setReadOnly(True)
-        import os
-        backgroundImgPath = currentProPath()+"/CardBackground/"+cardDict.get('backgroundId','1')+"/Card.png"
         cardArtImgPath = currentProPath()+"/CardArt"+'/'+str(cardDict.get('id','Unknown'))+'.png'
-        if os.path.exists(backgroundImgPath):
-            try:
-                self.backgroundImg.setPixmap(QPixmap(backgroundImgPath).scaled(310,310))
-                # QPixmap图片大小自适应
-                self.backgroundImg.setScaledContents(True)
-                self.backgroundImg.setStyleSheet("border-image: none;")
-            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData backgroundImg', e)
         if os.path.exists(cardArtImgPath):
             try:
-                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(80,80))
+                self.cardArt.setPixmap(QPixmap(cardArtImgPath).scaled(48,48))
                 self.cardArt.setStyleSheet("border-image: none;")
-            except Exception as e:log.record(logLevel.ERROR, 'cradItem_C.refeshData cardArt', e)
+            except Exception as e:log.record(logLevel.ERROR, 'scrollCradItem.refeshData cardArt', e)
+
         if self.isSel:
             self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/selected.png);}")
         else:
             self.cardSelect.setStyleSheet("QPushButton{border-image: url(:/ico/Data/qrc/ico/select.png);}")
-    def details(self):
-        if self.isShowDetails:
-            self.setMinimumWidth(470)
-            self.cardItem.setGeometry(10,10,450,340)
-        else:
-            self.setMinimumWidth(280)
-            self.cardItem.setGeometry(10,10,260,340)
-        self._initUI()
+
+        self._setShowWidget(cardDict)
     def printCard(self):
         mainWindow = self.CLT.mainWindow
         if self.CLT.CCT.cardControler.printCard(self.cardDict.get('id', 'newCard')):

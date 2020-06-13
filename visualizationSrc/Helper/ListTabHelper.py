@@ -154,6 +154,8 @@ class ListTabHelper(QWidget, ListTab.Ui_Form):
             self.removeWidgetBefore()
             if index == self._currentIndex:
                 self.setCurrentIndex(0)
+            elif index < self._currentIndex:
+                self._currentIndex -= 1
 
             l_item = self._l_itemList[index]    # type: ListTabWidget_ListItem
             self._l_itemList.remove(l_item)

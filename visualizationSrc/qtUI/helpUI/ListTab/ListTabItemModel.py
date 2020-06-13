@@ -41,6 +41,7 @@ class Ui_listItem(object):
         font.setPointSize(10)
         self.title.setFont(font)
         self.title.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.title.setText("")
         self.title.setObjectName("title")
         self.verticalLayout.addWidget(self.title)
         self.content = QtWidgets.QLabel(self.horizontalLayoutWidget)
@@ -48,6 +49,7 @@ class Ui_listItem(object):
         font.setFamily("Adobe 黑体 Std R")
         font.setPointSize(8)
         self.content.setFont(font)
+        self.content.setText("")
         self.content.setObjectName("content")
         self.verticalLayout.addWidget(self.content)
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -76,7 +78,5 @@ class Ui_listItem(object):
     def retranslateUi(self, listItem):
         _translate = QtCore.QCoreApplication.translate
         listItem.setWindowTitle(_translate("listItem", "Form"))
-        self.title.setText(_translate("listItem", "TextLabel"))
-        self.content.setText(_translate("listItem", "TextLabel"))
         self.removeBTN.setToolTip(_translate("listItem", "<html><head/><body><p>关闭标签</p></body></html>"))
 from ... import AL_IDE_MainInterFace_rc

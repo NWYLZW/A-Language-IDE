@@ -10,7 +10,7 @@
 '''
 
 ExeName = "AL-IDE"
-Version = "1.1.5.1"
+Version = "1.1.5.2"
 Debug = False
 Console = False
 Ico = "AL-IDE.ico"
@@ -19,7 +19,7 @@ GamePath = "D:\\Steam\\steamapps\\common\\Tetra Project\\"
 
 ModContent = """
 // @name:       AL-IDE(Alive Language IDE:原石计划Mod开发工具)
-// @version:    1.1.5.1
+// @version:    1.1.5.2
 // @content:    原石计划Mod开发工具，建议加Mod群，获取最新版本
                 该版本可对其他Mod进行一些友好的修改
 // @note:       2020/5/18 AL-IDE_1.0.4.2 美化UI，更好的卡牌体验
